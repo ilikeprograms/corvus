@@ -1,0 +1,26 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+
+	<h2>Editing "{{ form.vars.value.educationInstitute }} - {{ form.vars.value.qualification }}"</h2>
+	<p>
+		Use this form to update education details. <br />
+		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	</p>
+
+	<form action="{{ path('CorvusAdminBundle_EditEducation', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+		<fieldset>
+			<legend>Education Fields:</legend>
+
+			{{ form_errors(form) }}
+
+			{{ form_widget(form) }}
+
+		</fieldset>
+		<a href="{{ path('CorvusAdminBundle_Education') }}" class="cancel">Cancel</a>
+		&nbsp;
+		<input type="submit" class="submit" value="Submit" />
+	
+	</form>
+
+{% endblock %}

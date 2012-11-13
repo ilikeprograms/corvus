@@ -1,0 +1,23 @@
+Corvus\AdminBundle\Entity\Education:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    education_institute:
+      type: string
+      length: 255
+    qualification:
+      type: string
+      length: 255
+    start_date:
+      type: date
+    duration:
+      type: decimal
+    result:
+      type: string
+      length: 255
+  lifecycleCallbacks: {  }

@@ -1,0 +1,12 @@
+parameters:
+#    corvus_frontend.example.class: Corvus\FrontendBundle\Example
+
+services:
+    portfolioinforepository:
+        class: Corvus\FrontendBundle\Extension\PortfolioInfoRepository
+        arguments: [@doctrine.orm.entity_manager]
+    corvus.twig.extension.portfolio_info:
+        class: Corvus\FrontendBundle\Extension\PortfolioInfoRepositoryExtension
+        arguments: [@portfolioinforepository]
+        tags:
+            - { name: twig.extension }

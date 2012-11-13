@@ -1,0 +1,28 @@
+Corvus\AdminBundle\Entity\Image:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    image_title:
+      type: string
+      length: 255
+    path:
+      type: string
+      length: 255
+    description:
+      type: string
+      length: 255
+    updated:
+      type: datetime
+  manyToOne:
+    ProjectHistory:
+      targetEntity: Corvus\AdminBundle\Entity\ProjectHistory
+      inversedBy: images
+      joinColumn:
+        name: project_history_id
+        referencedColumnName: id
+  lifecycleCallbacks: {  }

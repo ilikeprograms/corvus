@@ -1,0 +1,21 @@
+Corvus\AdminBundle\Entity\Navigation:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    navigation_order:
+      type: integer
+    href:
+      type: string
+      length: 255
+    title:
+      type: string
+      length: 255
+    alt:
+      type: string
+      length: 255
+  lifecycleCallbacks: {  }

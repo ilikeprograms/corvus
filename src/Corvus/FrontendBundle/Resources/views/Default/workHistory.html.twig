@@ -1,0 +1,36 @@
+{% extends 'CorvusFrontendBundle:Default:index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.workHistoryMetaTitle}}{% endblock %}
+
+{% block mainContent %}
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/workHistory-large.png') }}" class="inlineIcon" />
+		<hgroup>
+			<h2>Work History</h2>
+			<p>These are the places which I have been an employee.</p>
+		</hgroup>
+	</header>
+	<div class="boxDecoration">
+		
+		{% for work in workHistory %}
+			
+			<section>
+				<h3>{{ work.employerName }}</h3>
+				<div class="description">
+					{{ work.role }}
+					<br />
+					Started: {{ work.startDate | date("d/m/y") }}
+				</div>
+				
+				<br />
+				<a href="{{ path('CorvusFrontendBundle_WorkHistoryId', { 'id' : work.id }) }}">Read More</a>
+			</section>
+
+			{% if loop.last == false %}
+			<br />
+			<hr />
+			<br />
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endblock %}

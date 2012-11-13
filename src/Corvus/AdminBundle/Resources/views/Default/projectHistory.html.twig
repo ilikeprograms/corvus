@@ -1,0 +1,48 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+    <h2>Project History</h2>
+    <p>From here you can change the work history on your website. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
+    
+    <div>
+    
+    <form action="{{ path('CorvusAdminBundle_DeleteProjectHistory') }}" method="post" id="projectHistoryform" name="projectHistoryform">
+
+    <table class="fancyTable">
+    	<thead>
+    		<tr><th><input type="checkbox" id="selectAll" /></th>
+            <th>Project Name</th>
+            <th>Role</th>
+            <th>Actions</th></tr>
+    	</thead>
+    	<tbody>
+
+		    {% for item in form.projectHistory %}
+            
+		    	<tr>
+		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+		    	<td>{{ item.vars.value.projectName }}</td>
+                <td>{{ item.vars.value.role }}</td>  
+		    	<td>
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_EditProjectHistory', { id : item.vars.value.id }) }}">Edit</a> |
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_DeleteProjectHistoryId', { id : item.vars.value.id }) }}">
+                    Delete</a>
+                </td>
+                </tr>
+		    {% endfor %}
+    	</tbody>
+    </table>
+    <br />
+    <p>Multiple Actions</p>
+    <select>
+    	<option>Delete Selected</option>
+    </select>
+    <input type="submit" value="Go" />
+    <a href="{{ path('CorvusAdminBundle_NewProjectHistory') }}">New</a>
+
+    {{ form_widget(form._token) }}
+    </form>
+    </div>
+{% endblock %}

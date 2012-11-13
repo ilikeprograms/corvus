@@ -1,0 +1,25 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+
+	<h2>Add a New Work History</h2>
+	<p>
+		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	</p>
+
+	<form action="{{ path('CorvusAdminBundle_NewWorkHistory') }}" method="post" {{ form_enctype(form) }} class="classy">
+		<fieldset>
+			<legend>Work History Fields:</legend>
+			
+			{{ form_errors(form) }}
+
+			{{ form_widget(form) }}
+
+		</fieldset>
+		<a href="{{ path('CorvusAdminBundle_WorkHistory') }}" class="cancel">Cancel</a>
+		&nbsp;
+		<input type="submit" class="submit" value="Submit" />
+	
+	</form>
+
+{% endblock %}

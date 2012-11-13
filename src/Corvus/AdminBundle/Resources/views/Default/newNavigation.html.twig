@@ -1,0 +1,42 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+
+	<h2>Add a New Navigation item.</h2>
+	<p>
+		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	</p>
+
+	<form action="{{ path('CorvusAdminBundle_NewNavigation') }}" method="post" {{ form_enctype(form) }} class="classy">
+		<fieldset>
+			<legend>Navigation Fields:</legend>
+			
+			{{ form_errors(form) }}
+
+			{{ form_widget(form) }}
+
+		</fieldset>
+		<a href="{{ path('CorvusAdminBundle_Navigation') }}" class="cancel">Cancel</a>
+		&nbsp;
+		<input type="submit" class="submit" value="Submit" />
+	
+	</form>
+
+	<script type="text/javascript">
+		jQuery(function(){
+			var navSelect = $("#navigation_internalRoutes");
+			var navHref = $("#navigation_href");
+			$(navSelect).change(function() {
+				if(navSelect.val() != "")
+				{
+					$(navHref).parent().slideUp();
+				}
+				else
+				{
+					
+					$(navHref).parent().slideDown();
+				}
+			})
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+    <h2>Education</h2>
+    <p>These are all the education details stored in your corvus record. This will be used to display details of your education on the frontend of the website. It will also be included in the downloadable CV. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
+    
+    <div>
+    
+    <form action="{{ path('CorvusAdminBundle_DeleteEducation') }}" method="post" id="educationform" name="educationform">
+
+    <table class="fancyTable">
+    	<thead>
+    		<tr><th><input type="checkbox" id="selectAll" /></th>
+            <th>Education Institute</th>
+            <th>Qualification</th>
+            <th>Result</th>
+            <th>Actions</th></tr>
+    	</thead>
+    	<tbody>
+		    {% for item in form.education %}
+            
+		    	<tr>
+		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+		    	<td>{{ item.vars.value.educationinstitute }}</td>
+                <td>{{ item.vars.value.qualification }}</td>
+                <td>{{ item.vars.value.result }}</td>
+		    	<td>
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_EditEducation', { id : item.vars.value.id }) }}">Edit</a> |
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_DeleteEducationId', { id : item.vars.value.id }) }}">Delete</a></td>
+                </tr>
+		    {% endfor %}
+    	</tbody>
+    </table>
+    <br />
+    <p>Multiple Actions</p>
+    <select>
+    	<option>Delete Selected</option>
+    </select>
+    <input type="submit" value="Go" />
+    <a href="{{ path('CorvusAdminBundle_NewEducation') }}">New</a>
+
+    {{ form_widget(form._token) }}
+    </form>
+    </div>
+{% endblock %}

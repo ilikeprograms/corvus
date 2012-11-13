@@ -1,0 +1,16 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+    <h2>Site Design</h2>
+    <p>This part of the system has not been implemented yet. The plan with this section will be to enable the CorvusFrontendbundle to be customised.</p>
+    
+    <p>This customisation will be split into two parts:
+    <ol><li>Themes</li><li>Templates</li></ol></p>
+    
+    <p>The theme would just be concerned with the colour scheme/fonts etc. So changing the theme would appear to just change the appearance of HOW the frontend look.</p>
+
+    <p>The template system will just be concerned with the layout and structure of the frontend. So when then template is changed, the theme would still be the same. The structure such as the positioning of elements as well adding/removing parts of the structure would change. 
+    </p>
+
+    <p>This seperation of concern would hopefully lead to the frontend being highly customisable, and easy to change. Someone could like the current look of the theme they are using, but not like where things are postions, so they could change the template or vice-versa.</p>
+{% endblock %}

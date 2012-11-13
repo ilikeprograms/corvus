@@ -1,0 +1,35 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+        Corvus\AdminBundle\Entity\User:
+            algorithm:        sha1
+            encode_as_base64: false
+            iterations:       1
+
+    providers:
+        user_db:
+            entity: { class: Corvus\AdminBundle\Entity\User, property: username }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/Login
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            anonymous:  ~
+            form_login:
+                login_path: /Login
+                check_path: /login_check
+            logout: ~
+
+    access_control:
+        - { path: ^/Login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/Admin, roles: ROLE_ADMIN }

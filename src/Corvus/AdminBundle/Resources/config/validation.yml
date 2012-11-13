@@ -1,0 +1,55 @@
+# src/Corvus/AdminBundle/Resources/config/validation.yml
+Corvus\AdminBundle\Entity\GeneralSettings:
+    properties:
+        portfolio_title:
+            - NotNull: ~
+
+Corvus\AdminBundle\Entity\Navigation:
+    properties:
+        href:
+            - NotNull: ~
+        title:
+            - NotNull: ~
+        alt:
+            - NotNull: ~
+
+Corvus\AdminBundle\Entity\Education:
+    properties:
+        education_institute:
+            - NotNull: ~
+        qualification:
+            - NotNull: ~
+        start_date:
+            - NotNull: ~
+            - Date: ~
+        duration:
+            - NotNull: ~
+
+Corvus\AdminBundle\Entity\About:
+    properties:
+        firstname:
+            - NotNull: ~
+        lastname:
+            - NotNull: ~
+        age:
+            - NotNull: ~
+            - Min: 0
+            - Max: 130
+        bio:
+            - NotNull: ~
+        address:
+            - NotNull: ~
+        location:
+            - NotNull: ~
+        email_address:
+            - NotNull: ~
+            - email: ~
+
+Corvus\AdminBundle\Entity\Image:
+    properties:
+        image_title:
+            - NotNull: ~
+        description:
+            - NotNull: ~
+        path:
+            - NotNull: ~

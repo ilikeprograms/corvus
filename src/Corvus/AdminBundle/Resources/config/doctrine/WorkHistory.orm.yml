@@ -1,0 +1,39 @@
+Corvus\AdminBundle\Entity\WorkHistory:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    employer_name:
+      type: string
+      length: 255
+    employer_address:
+      type: string
+      length: 255
+    start_date:
+      type: date
+    duration:
+      type: decimal
+    role:
+      type: string
+      length: 255
+    duties:
+      type: string
+      length: 255
+    feedback_received:
+      type: string
+      length: 255
+    reflection:
+      type: string
+      length: 255
+    employer_phone_number:
+      type: string
+      length: 255
+    meta_title:
+      type: string
+    meta_description:
+      type: string
+  lifecycleCallbacks: {  }

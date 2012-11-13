@@ -1,0 +1,74 @@
+{% extends 'CorvusFrontendBundle:Default:index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.educationMetaTitle }}{% endblock %}
+{% block mainContent %}
+
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/education-large.png') }}" class="inlineIcon" />
+		<hgroup>
+			<h2>Education</h2>
+			<p>This is a list of my education</p>
+		</hgroup>
+	</header>
+	<div class="boxDecoration">
+		
+		{% for edu in education %}
+			<h3>Education Institute</h3>
+			<p>{{ edu.educationInstitute }}</p>
+			
+			<h3>Qualification</h3>
+			<p>{{ edu.qualification }}</p>
+
+			<h3>Time Period</h3>
+			<p>{{ edu.startDate | date("d/m/y") }}</p>
+
+			<h3>Years</h3>
+			<p>{{ edu.duration }}</p>
+
+			<h3>Result</h3>
+			<p>{{ edu.result }}</p>
+
+			<br />
+			<hr />
+			<br />
+
+		{% endfor %}
+	</div>
+
+	<br />
+	<hr />
+	<br />
+
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/skills-large.png') }}" class="inlineIcon" />
+		<hgroup>
+			<h2>Skills</h2>
+			<p>This is a list of my skills</p>
+		</hgroup>
+	</header>
+	<div class="boxDecoration">
+		
+		{% for skill in skills %}
+			<h3>Skill Name</h3>
+			<p>{{ skill.skillName }}</p>
+
+			<h3>Competency</h3>
+			<p>{{ skill.competency }}</p>
+
+			<h3>Years Experience</h3>
+			<p>{{ skill.yearsExperience }}</p>
+
+			<h3>Description</h3>
+			<p>{{ skill.description }}</p>
+
+			{% if loop.last == false %}
+				<br />
+				<hr />
+				<br />
+			{% endif %}
+
+
+		{% endfor %}
+		
+	</div>
+{% endblock %}

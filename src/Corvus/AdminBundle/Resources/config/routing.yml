@@ -1,0 +1,165 @@
+CorvusAdminBundle_homepage:
+    pattern:  /
+    defaults: { _controller: CorvusAdminBundle:Default:index }
+
+CorvusAdminBundle_GeneralSettings:
+    pattern: /GeneralSettings
+    defaults: { _controller: CorvusAdminBundle:Default:generalSettings }
+
+CorvusAdminBundle_SiteDesign:
+    pattern: /SiteDesign
+    defaults: { _controller: CorvusAdminBundle:Default:siteDesign }
+
+CorvusAdminBundle_Education:
+    pattern: /Education
+    defaults: { _controller: CorvusAdminBundle:Default:education }
+
+CorvusAdminBundle_NewEducation:
+    pattern: /Education/New
+    defaults: { _controller: CorvusAdminBundle:Education:new }
+
+CorvusAdminBundle_EditEducation:
+    pattern: /Education/Edit/id/{id}
+    defaults: { _controller: CorvusAdminBundle:Education:edit }
+
+CorvusAdminBundle_DeleteEducationId:
+    pattern: /Education/Delete/id/{id}
+    defaults: { _controller: CorvusAdminBundle:Education:delete }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteEducation:
+    pattern: /Education/Delete
+    defaults: { _controller: CorvusAdminBundle:Education:delete, id: null }
+
+CorvusAdminBundle_ProjectHistory:
+    pattern: /ProjectHistory
+    defaults: { _controller: CorvusAdminBundle:Default:projectHistory }
+
+CorvusAdminBundle_NewProjectHistory:
+    pattern: /ProjectHistory/New
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:new }
+
+CorvusAdminBundle_EditProjectHistory:
+    pattern: /ProjectHistory/Edit/id/{id}
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:edit }
+
+CorvusAdminBundle_DeleteProjectHistoryId:
+    pattern: /ProjectHistory/Delete/id/{id}
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:delete }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteProjectHistory:
+    pattern: /ProjectHistory/Delete
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:delete, id: null }
+
+CorvusAdminBundle_WorkHistory:
+    pattern: /WorkHistory
+    defaults: { _controller: CorvusAdminBundle:Default:workHistory }
+
+CorvusAdminBundle_NewWorkHistory:
+    pattern: /WorkHistory/New
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:new }
+
+CorvusAdminBundle_EditWorkHistory:
+    pattern: /WorkHistory/Edit/id/{id}
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:edit }
+
+CorvusAdminBundle_DeleteWorkHistoryId:
+    pattern: /WorkHistory/Delete/id/{id}
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:delete }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteWorkHistory:
+    pattern: /WorkHistory/Delete
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:delete, id: null }
+
+CorvusAdminBundle_Downloads:
+    pattern: /Downloads
+    defaults: { _controller: CorvusAdminBundle:Default:downloads }
+
+CorvusAdminBundle_About:
+    pattern: /About
+    defaults: { _controller: CorvusAdminBundle:Default:about }
+
+CorvusAdminBundle_EditAbout:
+    pattern: /About/Edit/id/{id}
+    defaults: { _controller: CorvusAdminBundle:About:edit }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_NewAbout:
+    pattern: /About/New
+    defaults: { _controller: CorvusAdminBundle:About:new }
+
+CorvusAdminBundle_DeleteAboutId:
+    pattern: /About/Delete/id/{id}
+    defaults: { _controller: CorvusAdminBundle:About:delete }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteAbout:
+    pattern: /About/Delete
+    defaults: { _controller: CorvusAdminBundle:About:delete, id: null }
+
+CorvusAdminBundle_Skills:
+    pattern: /Skills
+    defaults: { _controller: CorvusAdminBundle:Default:skills }
+
+CorvusAdminBundle_NewSkills:
+    pattern: /Skills/New
+    defaults: { _controller: CorvusAdminBundle:Skills:new }
+
+CorvusAdminBundle_EditSkills:
+    pattern: /Skills/Edit/id/{id}
+    defaults: { _controller: CorvusAdminBundle:Skills:edit }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteSkillsId:
+    pattern: /Skills/Delete/id/{id}
+    defaults: { _controller: CorvusAdminBundle:Skills:delete }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteSkills:
+    pattern: /Skills/Delete
+    defaults: { _controller: CorvusAdminBundle:Skills:delete, id: null }
+
+CorvusAdminBundle_Navigation:
+    pattern: /Navigation
+    defaults: { _controller: CorvusAdminBundle:Default:navigation }
+
+CorvusAdminBundle_NewNavigation:
+    pattern: /Navigation/New
+    defaults: { _controller: CorvusAdminBundle:Navigation:new }
+
+CorvusAdminBundle_UpNavigationOrder:
+    pattern: /Navigation/Order/Up/{id}
+    defaults: { _controller: CorvusAdminBundle:Navigation:orderUp }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DownNavigationOrder:
+    pattern: /Navigation/Order/Down/{id}
+    defaults: { _controller: CorvusAdminBundle:Navigation:orderDown }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_EditNavigation:
+    pattern: /Navigation/Edit/id/{id}
+    defaults: { _controller: CorvusAdminBundle:Navigation:edit }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteNavigationId:
+    pattern: /Navigation/Delete/id/{id}
+    defaults: { _controller: CorvusAdminBundle:Navigation:delete }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DeleteNavigation:
+    pattern: /Navigation/Delete
+    defaults: { _controller: CorvusAdminBundle:Navigation:delete, id: null }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title%}Corvus Dashboard{% endblock %}</title>
+
+    {% stylesheets filter="cssrewrite"
+        'bundles/corvusadmin/css/layout.css'
+        'bundles/corvusadmin/css/design.css'
+    %}
+    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+    {% endstylesheets %}
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    {% javascripts output="js/compiled/main.js"
+        'bundles/corvusadmin/js/noticeScript.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+    {% block javascript %}
+    {% endblock %}
+</head>
+<body>
+<div id="container">
+    <div id="corvusBar">
+        <div id="logo">
+            <img src="{{ asset('bundles/corvusadmin/images/logo.png') }}" /> &nbsp; Corvus
+            &raquo; Hello {{ portfolio_info.about.firstname }}
+        </div>
+        <div id="flashes">
+            {% if app.session.hasFlash('notice') %}
+                <div id="flash-notice">
+                    {{ app.session.flash('notice') }}
+                </div>
+            {% endif %}
+        </div>
+        <div id="version">
+            {% block version %}Version 1.0{% endblock %} &laquo;
+            <a href="{{ path('CorvusFrontendBundle_Logout') }}">Logout</a>
+        </div>
+    </div>
+    
+
+    <div id="mainContainer">
+        <navigation id="mainNavigation">
+            <ul id="logoNav">
+                <li class="dashboard"><a href="{{ path('CorvusAdminBundle_homepage') }}">Dashboard</a></li>
+                <li class="generalSettings"><a href="{{ path('CorvusAdminBundle_GeneralSettings') }}">General Settings</a></li>
+                <li class="siteDesign"><a href="{{ path('CorvusAdminBundle_SiteDesign') }}">Site Design</a></li>
+                <li class="education"><a href="{{ path('CorvusAdminBundle_Education') }}">Education</a></li>
+                <li class="workHistory"><a href="{{ path('CorvusAdminBundle_WorkHistory') }}">Work History</a></li>
+                <li class="projectHistory"><a href="{{ path('CorvusAdminBundle_ProjectHistory') }}">Project History</a></li>
+                <li class="skills"><a href="{{ path('CorvusAdminBundle_Skills') }}">Skills</a></li>
+                <li class="navigation"><a href="{{ path('CorvusAdminBundle_Navigation') }}">Navigation</a></li>
+                <li class="downloads"><a href="{{ path('CorvusAdminBundle_Downloads') }}">Downloads</a></li>
+                <li class="about"><a href="{{ path('CorvusAdminBundle_About') }}">About</a></li>
+            </ul>
+        </navigation>
+        <div id="mainContent">
+            {% block mainContent %}
+            <h2>Admin Dashboard</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nulla purus, pretium et consectetur quis, faucibus eget lorem. Etiam id libero enim. Maecenas gravida lacinia tincidunt. Curabitur gravida sagittis est et ultricies. Phasellus ultricies tristique dolor vitae venenatis. In hac habitasse platea dictumst. Morbi rhoncus eros at lacus interdum lobortis.
+            </p>
+            <p>
+                Morbi vitae mi ac lorem porttitor bibendum id nec velit. Integer id lacus lorem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc scelerisque leo at leo vestibulum porta. Nulla facilisi. In euismod diam non neque auctor eleifend. In mollis risus ut elit feugiat ac elementum augue malesuada. Duis libero dolor, bibendum non sollicitudin sit amet, placerat ac urna. Nunc sollicitudin pulvinar tristique. Proin lacinia pretium varius. In vitae orci sit amet ante volutpat cursus eget sed ante. Proin pretium elementum volutpat. Donec aliquet varius rhoncus. Cras fringilla egestas felis, vel porta sem congue a. Donec id risus id enim malesuada auctor quis ut urna.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non tristique nibh. Morbi in eros at libero fringilla convallis eu dapibus augue. Nullam id diam mauris, quis convallis dui. Mauris pellentesque neque dolor. Duis in erat elit, in mattis dui. Praesent venenatis metus vitae magna laoreet sagittis. Quisque consectetur sem at purus luctus et suscipit leo lobortis. Donec ligula est, dapibus nec ullamcorper eu, laoreet sit amet nisl. Aenean pulvinar eros sed metus tempus sed tincidunt est tristique. Duis aliquam fermentum mi. Fusce et libero nec quam vehicula hendrerit eget et tellus. Vestibulum scelerisque auctor lectus, vitae lobortis est elementum eget.
+            </p>
+            {% endblock %}
+        </div>
+        <br class="clear" />
+    </div>
+
+    <footer id="pageFooter">
+        <p>&copy; 2012 Thomas Coleman</p>
+    </footer>
+</div>
+</body>
+</html>

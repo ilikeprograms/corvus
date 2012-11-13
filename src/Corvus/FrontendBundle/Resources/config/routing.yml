@@ -1,0 +1,45 @@
+CorvusFrontendBundle_homepage:
+    pattern:  /
+    defaults: { _controller: CorvusFrontendBundle:Default:index }
+
+CorvusFrontendBundle_Education:
+    pattern: /Education
+    defaults: { _controller: CorvusFrontendBundle:Default:education }
+
+CorvusFrontendBundle_About:
+    pattern: /About
+    defaults: { _controller: CorvusFrontendBundle:Default:about }
+
+CorvusFrontendBundle_WorkHistory:
+    pattern: /WorkHistory
+    defaults: { _controller: CorvusFrontendBundle:Default:workHistory }
+
+CorvusFrontendBundle_WorkHistoryId:
+    pattern: /WorkHistory/id/{id}
+    defaults: { _controller: CorvusFrontendBundle:WorkHistory:findById }
+    requirements:
+        id: \d+
+
+CorvusFrontendBundle_ProjectHistory:
+    pattern: /ProjectHistory
+    defaults: { _controller: CorvusFrontendBundle:Default:projectHistory }
+
+CorvusFrontendBundle_ProjectHistoryId:
+    pattern: /ProjectHistory/id/{id}
+    defaults: { _controller: CorvusFrontendBundle:ProjectHistory:findById }
+    requirements:
+        id: \d+
+
+CorvusFrontendBundle_ContactForm:
+    pattern: /About/Contact
+    defaults: { _controller: CorvusFrontendBundle:About:contact }
+
+CorvusFrontendBundle_Login:
+    pattern: /Login
+    defaults: { _controller: CorvusFrontendBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+CorvusFrontendBundle_Logout:
+    pattern: /logout

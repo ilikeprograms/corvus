@@ -1,0 +1,64 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+    <h2>Navigation</h2>
+    <p>These are all the navigation items that corvus will display as a menu on the frontend. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
+    
+    <div>
+    
+    <form action="{{ path('CorvusAdminBundle_DeleteNavigation') }}" method="post" id="navform" name="navform">
+
+    <table class="fancyTable">
+    	<thead>
+    		<tr><th><input type="checkbox" id="selectAll" /></th>
+            <th>Order</th>
+            <th>Href</th>
+            <th>Title</th>
+            <th>Actions</th></tr>
+    	</thead>
+    	<tbody>
+
+		    {% for item in form.navItems %}
+            
+		    	<tr>
+		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+                <td>{{ item.vars.value.navigationOrder }}</td>
+		    	<td>{{ item.vars.value.href }}</td>
+                <td>{{ item.vars.value.title }}</td>
+		    	<td>
+                    {% if loop.first == true %}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% endif %}
+                    {% if loop.first == false %}
+                        <a href="{{ path('CorvusAdminBundle_UpNavigationOrder', { id : loop.index - 1 }) }}">
+                        <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
+                    {% endif %}
+                    {% if loop.last == false %}
+                        <a href="{{ path('CorvusAdminBundle_DownNavigationOrder', { id : loop.index - 1 }) }}">
+                        <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
+                    {% endif %}
+                    {% if loop.last == true %}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% endif %}
+                    |
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_EditNavigation', { id : item.vars.value.id }) }}">Edit</a> |
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_DeleteNavigationId', { id : item.vars.value.id }) }}">
+                    Delete</a>
+                </tr>
+		    {% endfor %}
+    	</tbody>
+    </table>
+    <br />
+    <p>Multiple Actions</p>
+    <select>
+    	<option>Delete Selected</option>
+    </select>
+    <input type="submit" value="Go" />
+    <a href="{{ path('CorvusAdminBundle_NewNavigation') }}">New</a>
+
+    {{ form_widget(form._token) }}
+    </form>
+    </div>
+{% endblock %}

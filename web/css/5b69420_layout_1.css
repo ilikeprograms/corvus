@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header, footer, nav, section, article
+{
+    display: block;
+}
+
+p {
+    margin-bottom: 1%;
+}
+
+
+#corvusBar {
+    padding: 5px;
+    display: table;
+    width: 100%;
+}
+
+#logo, #flashes, #version {
+    display: table-cell;
+    padding-right: 10px;
+}
+
+#logo {
+    vertical-align: top;
+}
+
+#logo img {
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    border-radius: 5px 5px;
+}
+
+#flashes {
+    text-align: left;
+    width: 30%;
+}
+
+#version {
+    text-align: right;
+}
+
+#pageHeader {
+    display: table;
+    width: 100%;
+}
+
+#pageHeader div {
+    vertical-align: bottom;
+}
+
+#headerLogo, #greeting, #logoutContain {
+    display: table-cell;
+}
+
+#greeting {
+    width: 100%;
+}
+
+#headerLogo a {
+    display: block;
+}
+
+#headerLogo a, #greeting, #logoutContain {
+    padding: 10px 10px;
+}
+
+#logoutContain {
+    text-align: right;
+}
+
+#logoutContain img {
+    display: inline;
+    height: 50px;
+    width: 50px;
+}
+
+#mainContainer {
+    display: table;
+    width: 100%;
+}
+
+#mainContent {
+    display: table-cell;
+    padding: 1%;
+}
+
+/*
+ * Main Navigation Layout
+ *
+ */
+
+#mainNavigation {
+    display: table-cell;
+    width: 200px;
+}
+
+#logoNav {
+    list-style: none;
+}
+
+#logoNav li a {
+    display:block;
+    height: 56px;
+    line-height: 56px;
+    padding: 0 0 0 73px;
+    vertical-align: top;
+}
+
+#logoNav li.projectHistory {
+    background-position: 10px 10px;
+    background-origin: border-box;
+}
+
+.cancel {
+    color: #FFF;
+    background-color: red;
+    border-radius: 6px;
+    padding: 15px 10px 15px 50px;
+    background-origin: border-box;
+    background: url('../../bundles/corvusadmin/images/icons/cancel.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fa665a), color-stop(1, #A32619));
+    background: url('../../bundles/corvusadmin/images/icons/cancel.png'), -moz-linear-gradient(center top, #fa665a 5%, #A32619 100% );
+    background-position: 5px 7px, 0 0;
+    background-repeat: no-repeat;
+    border: 0;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    box-shadow: inset 0px 1px 0px -24px red, 2px 2px 3px #000;
+    text-shadow: 0px -2px 0px #000;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cancel:hover {
+    background: url('../../bundles/corvusadmin/images/icons/cancel.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #FF938a), color-stop(1, #D35649));
+    background-position: 5px 7px, 0 0;
+    background-repeat: no-repeat;
+}
+
+.submit {
+    color: #FFF;
+    background-color: green;
+    border-radius: 6px;
+    padding: 15px 10px 15px 50px;
+    background-origin: border-box;
+    background: url('../../bundles/corvusadmin/images/icons/submit.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #376800));
+    background: url('../../bundles/corvusadmin/images/icons/submit.png'), -moz-linear-gradient(center top, #89c403 5%, #376800 100% );
+    background-position: 5px 7px, 0 0;
+    background-repeat: no-repeat;
+    border: 0;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    box-shadow: inset 0px 1px 0px -24px green, 2px 2px 3px #000;
+    text-shadow: 0px -2px 0px #000;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.submit:hover {
+    background: url('../../bundles/corvusadmin/images/icons/submit.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #B9F433), color-stop(1, #679830));
+    background-position: 5px 7px, 0 0;
+    background-repeat: no-repeat;
+}
+
+
+/* */
+
+#flash-notice {
+    display: none;
+}
+
+fieldset {
+    padding: 5px;
+    margin-bottom: 1%;
+}
+
+input[type="text"], input[type="url"], input[type="email"], textarea {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    display: block;
+}
+
+#pageFooter {
+    padding: 1%;
+}
+
+.clear {
+    clear: both;
+}

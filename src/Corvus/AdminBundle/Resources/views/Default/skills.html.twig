@@ -1,0 +1,47 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+    <h2>Skills</h2>
+    <p>These are all the skills stored in your corvus record. This will be used to display details of your skills on the frontend of the website. It will also be included in the downloadable CV. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
+    
+    <div>
+    
+    <form action="{{ path('CorvusAdminBundle_DeleteSkills') }}" method="post" id="skillsform" name="skillsform">
+
+    <table class="fancyTable">
+    	<thead>
+    		<tr><th><input type="checkbox" id="selectAll" /></th>
+            <th>Skill Name</th>
+            <th>Competency</th>
+            <th>Years Experience</th>
+            <th>Actions</th></tr>
+    	</thead>
+    	<tbody>
+		    {% for item in form.skills %}
+            
+		    	<tr>
+		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+		    	<td>{{ item.vars.value.skillName }}</td>
+                <td>{{ item.vars.value.competency }}</td>
+                <td>{{ item.vars.value.yearsExperience }}</td>
+		    	<td>
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_EditSkills', { id : item.vars.value.id }) }}">Edit</a> |
+                    <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
+                    <a href="{{ path('CorvusAdminBundle_DeleteSkillsId', { id : item.vars.value.id }) }}">Delete</a></td>
+                </tr>
+		    {% endfor %}
+    	</tbody>
+    </table>
+    <br />
+    <p>Multiple Actions</p>
+    <select>
+    	<option>Delete Selected</option>
+    </select>
+    <input type="submit" value="Go" />
+    <a href="{{ path('CorvusAdminBundle_NewSkills') }}">New</a>
+
+    {{ form_widget(form._token) }}
+    </form>
+    </div>
+{% endblock %}

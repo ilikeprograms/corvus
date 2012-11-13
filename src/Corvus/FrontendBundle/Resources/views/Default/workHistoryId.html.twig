@@ -1,0 +1,41 @@
+{% extends 'CorvusFrontendBundle:Default:index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.globalWorkHistoryMetaTitle}} {{ workHistory.metaTitle }}{% endblock %}
+
+{% block metaDescription %}<meta name="description" content="{{ workHistory.metaDescription }}" />{% endblock %}
+
+{% block mainContent %}
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/workHistory-large.png') }}" class="inlineIcon" />
+		<hgroup>
+			<h2>{{ workHistory.employerName }}</h2>
+		</hgroup>
+		<hr />
+	</header>
+	<div class="boxDecoration">
+		<h3>Role</h3>
+		<p>{{ workHistory.role }}</p>
+
+		<h3>Duties</h3>
+		<p>{{ workHistory.duties }}</p>
+
+		<h3>Feedback Received</h3>
+		<p>{{ workHistory.feedbackReceived }}</p>
+
+		<h3>Reflection</h3>
+		<p>{{ workHistory.reflection }}</p>
+		
+		<br />
+
+		<h2>Additional Employer Details</h2>
+		<hr/>
+		<br/>
+
+		<h3>Address</h3>
+		<p>{{ workHistory.employerAddress }}</p>
+
+		<h3>Phone Number</h3>
+		<p>{{ workHistory.employerPhoneNumber }}</p>
+		
+	</div>
+{% endblock %}

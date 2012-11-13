@@ -1,0 +1,24 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+
+    <h2>About</h2>
+    <p>
+        These are all the personal/contact details stored in your corvus record. This will be displayed on the frontend. It will also be included in the downloadable CV. It will also be included in the downloadable CV.
+    </p>
+    
+    <form action="{{ path('CorvusAdminBundle_About') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+			<legend><span>About Fields:</span></legend>
+			
+			{{ form_errors(form) }}
+
+			{{ form_widget(form) }}
+
+		</fieldset>
+		<a href="{{ path('CorvusAdminBundle_homepage') }}" class="cancel">Cancel</a>
+		&nbsp;
+		<input type="submit" class="submit" value="Submit" />
+    </form>
+
+{% endblock %}

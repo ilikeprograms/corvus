@@ -1,0 +1,32 @@
+Corvus\AdminBundle\Entity\GeneralSettings:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    portfolio_title:
+      type: string
+      length: 255
+    display_subtitle:
+      type: boolean
+    portfolio_subtitle:
+      type: string
+      length: 255
+    global_general_meta_title:
+      type: string
+    about_meta_title:
+      type: string
+    education_meta_title:
+      type: string
+    work_history_meta_title:
+      type: string
+    project_history_meta_title:
+      type: string
+    global_work_history_meta_title:
+      type: string
+    global_project_history_meta_title:
+      type: string
+  lifecycleCallbacks: { }

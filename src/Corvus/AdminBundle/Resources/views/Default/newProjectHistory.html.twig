@@ -1,0 +1,86 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+
+	<h2>Add a New Project.</h2>
+	<p>
+		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	</p>
+
+	<form action="{{ path('CorvusAdminBundle_NewProjectHistory') }}" method="post" {{ form_enctype(form) }} class="classy">
+		<fieldset>
+            <legend>Project History Fields:</legend>             
+
+            {{ form_row(form.project_name) }}
+            {{ form_row(form.project_description) }}
+            {{ form_row(form.role) }}
+            {{ form_row(form.process) }}
+            {{ form_row(form.feedback_received) }}
+            {{ form_row(form.reflection) }}
+            {{ form_row(form.url) }}
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Images:</legend>
+            <div>
+                {{ form_widget(form.images) }}
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Meta Info:</legend>
+            {{ form_row(form.meta_title) }}
+            {{ form_row(form.meta_description) }}
+        </fieldset>
+
+        {{ form_rest(form) }}
+
+		<a href="{{ path('CorvusAdminBundle_ProjectHistory') }}" class="cancel">Cancel</a>
+		&nbsp;
+		<input type="submit" class="submit" value="Submit" />
+
+
+
+        <script type="text/javascript">
+        // Get the div that holds the collection of tags
+        var collectionHolder = $('#projectHistory_images');
+
+        // setup an "add a tag" link
+        var $addTagLink = $('<a name="addAnImage" href="#">Add an Image</a>');
+        var $newLinkLi = $('<div></div>').append($addTagLink);
+
+        jQuery(document).ready(function() {
+            // add the "add a tag" anchor and li to the tags ul
+            collectionHolder.append($newLinkLi);
+
+            $addTagLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm(collectionHolder, $newLinkLi);
+            });
+
+            function addTagForm(collectionHolder, $newLinkLi) {
+            // Get the data-prototype we explained earlier
+            var prototype = collectionHolder.attr('data-prototype');
+
+            var newForm = prototype.replace(/__name__label__/g, "Image " + (collectionHolder.children("div").length -1).toString());
+            // Replace '$$name$$' in the prototype's HTML to
+            // instead be a number based on the current collection's length.
+            newForm = newForm.replace(/__name__/g, collectionHolder.children().length -1);
+            newForm += "<hr /><br />";
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<div></div>').append(newForm);
+            $newLinkLi.before(newForm);
+        }
+        });
+
+
+        </script>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block mainContent %}
+
+    <h2>Portfolio General Settings</h2>
+    <p>
+        Here you can customise information about your corvus installation. This will be displayed on the frontend (If told to display). It will also be included in the downloadable CV.
+    </p>
+    {{ form_errors(form) }}
+    <form action="{{ path('CorvusAdminBundle_GeneralSettings') }}" method="post" {{ form_enctype(form) }}>
+        <fieldset>
+			<legend>General Settings Fields:</legend>
+			
+			{{ form_row(form.portfolio_title) }}
+			{{ form_row(form.portfolio_subtitle) }}
+			{{ form_row(form.display_subtitle) }}
+			
+			<footer><div>Field Notes<br/>
+			Meta Title: This is used as part of the title of all the pages on the frontend. By default it is usually appended to the end of the title of pages, for example with the title as "Hello Site", a page title could be "My Home Page | Hello Site".</div>
+			</footer>
+		</fieldset>
+
+		<fieldset>
+			<legend>Meta Title Fields:</legend>
+			{{ form_row(form.global_general_meta_title) }}
+			{{ form_row(form.about_meta_title) }}
+			{{ form_row(form.education_meta_title) }}
+			{{ form_row(form.work_history_meta_title) }}
+			{{ form_row(form.project_history_meta_title) }}
+			{{ form_row(form.global_work_history_meta_title) }}
+			{{ form_row(form.global_project_history_meta_title) }}
+		</fieldset>
+
+		<fieldset>
+			<legend>Change Password Fields:</legend>
+			<p>To change the password for the admin. Enter the current password and a matching new password and confirmation.</p>
+			{{ form_row(form.current_password) }}
+			{{ form_row(form.new_password) }}
+		</fieldset>
+
+		{{ form_rest(form) }}
+
+		<a href="{{ path('CorvusAdminBundle_homepage') }}" class="cancel">Cancel</a>
+		&nbsp;
+		<input type="submit" class="submit" value="Submit" />
+    </form>
+
+{% endblock %}

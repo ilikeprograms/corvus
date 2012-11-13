@@ -1,0 +1,43 @@
+Corvus\AdminBundle\Entity\ProjectHistory:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    project_name:
+      type: string
+      length: 255
+    project_description:
+      type: string
+      length: 2000
+    role:
+      type: string
+      length: 255
+    process:
+      type: string
+      length: 3000
+    feedback_received:
+      type: string
+      length: 500
+    reflection:
+      type: string
+      length: 2000
+    url:
+      type: string
+      length: 255
+      nullable: true
+    updated:
+      type: datetime
+    meta_title:
+      type: string
+    meta_description:
+      type: string
+  oneToMany:
+    images:
+      targetEntity: Corvus\AdminBundle\Entity\Image
+      mappedBy: ProjectHistory
+      cascade: [persist, merge, remove]
+  lifecycleCallbacks: { }
