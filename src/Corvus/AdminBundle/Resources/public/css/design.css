@@ -1,8 +1,11 @@
 h1, h2, h3, h4, h5, h6 {
     color: #0033b8;
-    margin-top: -10px;
     margin-bottom: 10px;
     padding: 0;
+}
+
+h3 {
+    color: #2255D8;
 }
 
 
@@ -19,6 +22,16 @@ list-style-type: decimal;
 -webkit-margin-start: 0px;
 -webkit-margin-end: 0px;
 -webkit-padding-start: 40px;
+}
+
+ul.square-list {
+    display: block;
+    list-style: square;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
 }
 
 #corvusBar {

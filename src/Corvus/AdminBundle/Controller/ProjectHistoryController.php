@@ -54,7 +54,7 @@ class ProjectHistoryController extends Controller
             throw $this->createNotFoundException('No Project History found with id '.$id);
         }
 
-        $thumbnails = [];
+        $thumbnails = array();
 
         if($projectHistory->images) {
             foreach ($projectHistory->getImages()->getValues() as $key ) {

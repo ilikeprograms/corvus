@@ -24,13 +24,7 @@ class NavigationController extends Controller
 
             if($navigationRequest['internalRoutes'] != null)
             {
-                $navigationArray = [
-                    '_token' => $navigationRequest['_token'],
-                    'navigation_order' => $navigationRequest['navigation_order'],
-                    'href' => $navigationRequest['internalRoutes'],
-                    'title' => $navigationRequest['title'],
-                    'alt' => $navigationRequest['alt'],
-                    'internalRoutes' => $navigationRequest['internalRoutes'] ];
+                $navigationArray = array('_token' => $navigationRequest['_token'], 'navigation_order' => $navigationRequest['navigation_order'], 'href' => $navigationRequest['internalRoutes'], 'title' => $navigationRequest['title'], 'alt' => $navigationRequest['alt'], 'internalRoutes' => $navigationRequest['internalRoutes']);    
 
                 $request->request->set('navigation', $navigationArray);
             }

@@ -40,9 +40,9 @@ class PortfolioInfoRepository
 	public function createNavigation()
 	{
 		$navigation = $this->getNavigation();
-		$locator = new FileLocator(array(__DIR__));
+		$locator = new FileLocator(__DIR__.'/../Resources/config');
 		$loader = new YamlFileLoader($locator);
-		$collection = $loader->load('../resources/config/routing.yml');
+		$collection = $loader->load('routing.yml');
 
 		$context = new RequestContext($_SERVER['SCRIPT_NAME']);
 		$matcher = new UrlMatcher($collection, $context);

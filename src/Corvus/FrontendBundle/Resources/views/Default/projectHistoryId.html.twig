@@ -2,54 +2,7 @@
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.globalProjectHistoryMetaTitle }} {{ projectHistory.metaTitle }}{% endblock %}
 
-{% block metaDescription %}<meta name="description" content="{{ projectHistory.metaDescription }}" />{% endblock %}
-
-{% block mainContent %}
-	<header class="headerDecoration">
-		<img src="{{ asset('bundles/corvusfrontend/images/icons/projectHistory-large.png') }}" class="inlineIcon" />
-		<h2>{{ projectHistory.projectName }}</h2>
-		<hr />
-		{% if projectHistory.url %}
-			<p>{{ projectHistory.url }}</p>
-		{% endif %}
-	</header>
-	<div class="boxDecoration">
-		<section id="lightboxThumbnails">
-			{% for thumbnail in thumbnails %}
-				<a href="/uploads/{{ projectHistory.images[loop.index -1].path }}" class="lightbox"
-				data-title="{{ projectHistory.images[loop.index -1].imageTitle}}"
-				data-description="{{ projectHistory.images[loop.index -1].description }}"
-				data-currentNum="{{ loop.index -1 }}">
-					<img src="/uploads/{{ thumbnail }}" />
-				</a>
-			{% endfor %}
-		</section>
-
-		<h3>Project Description</h3>
-		<p>
-			{{ projectHistory.projectDescription }}
-		</p>
-
-		<h3>Role</h3>
-		<p>
-			{{ projectHistory.role }}
-		</p>
-
-		<h3>Process</h3>
-		<p>
-			{{ projectHistory.process }}
-		</p>
-
-		<h3>Feedback Received</h3>
-		<p>
-			<blockquote>{{ projectHistory.feedbackReceived }}</blockquote>
-		</p>
-
-		<h3>Reflection</h3>
-		<p>
-			{{ projectHistory.reflection }}
-		</p>
-	</div>
+{% block javascript %}
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -277,4 +230,56 @@
 	}
 
 </script>
+{% endblock %}
+
+{% block metaDescription %}<meta name="description" content="{{ projectHistory.metaDescription }}" />{% endblock %}
+
+{% block mainContent %}
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/projectHistory-large.png') }}" class="inlineIcon" />
+		<h2>{{ projectHistory.projectName }}</h2>
+		<hr />
+		{% if projectHistory.url %}
+			<p>{{ projectHistory.url }}</p>
+		{% endif %}
+	</header>
+	<div class="boxDecoration">
+		<section id="lightboxThumbnails">
+			{% for thumbnail in thumbnails %}
+				<a href="/uploads/{{ projectHistory.images[loop.index -1].path }}" class="lightbox"
+				data-title="{{ projectHistory.images[loop.index -1].imageTitle}}"
+				data-description="{{ projectHistory.images[loop.index -1].description }}"
+				data-currentNum="{{ loop.index -1 }}">
+					<img src="/uploads/{{ thumbnail }}" />
+				</a>
+			{% endfor %}
+		</section>
+
+		<h3>Project Description</h3>
+		<p>
+			{{ projectHistory.projectDescription }}
+		</p>
+
+		<h3>Role</h3>
+		<p>
+			{{ projectHistory.role }}
+		</p>
+
+		<h3>Process</h3>
+		<p>
+			{{ projectHistory.process }}
+		</p>
+
+		<h3>Feedback Received</h3>
+		<p>
+			<blockquote>{{ projectHistory.feedbackReceived }}</blockquote>
+		</p>
+
+		<h3>Reflection</h3>
+		<p>
+			{{ projectHistory.reflection }}
+		</p>
+	</div>
+
+
 {% endblock %}

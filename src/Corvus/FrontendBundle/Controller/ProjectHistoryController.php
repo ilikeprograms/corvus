@@ -12,7 +12,7 @@ class ProjectHistoryController extends Controller
         $projectHistory = $this->getDoctrine()->getEntityManager()
             ->getRepository('CorvusAdminBundle:ProjectHistory')->Find($id);
 
-        $thumbnails = [];
+        $thumbnails = array();
 
         if($projectHistory->images) {
             foreach ($projectHistory->getImages()->getValues() as $key ) {
