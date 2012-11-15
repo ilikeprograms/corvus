@@ -124,13 +124,13 @@ class NavigationController extends Controller
 
             if($internalRoute != null)
             {
-                $navigationArray = [
+                $navigationArray = array(
                     '_token' => $form->get('_token')->getData(),
                     'navigation_order' => $form->get('navigation_order')->getData(),
                     'href' => $internalRoute,
                     'title' => $form->get('title')->getData(),
                     'alt' => $form->get('alt')->getData(),
-                    'internalRoutes' => $internalRoute ];
+                    'internalRoutes' => $internalRoute );
 
                 $request->request->set('navigation', $navigationArray);
                 $form->bindRequest($request);
