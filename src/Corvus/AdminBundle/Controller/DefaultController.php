@@ -182,7 +182,7 @@ class DefaultController extends Controller
         $form = $this->createForm(new AboutType(), $about);
 
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getEntityManager();
