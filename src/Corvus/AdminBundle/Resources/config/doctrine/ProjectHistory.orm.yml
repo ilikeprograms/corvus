@@ -39,5 +39,5 @@ Corvus\AdminBundle\Entity\ProjectHistory:
     images:
       targetEntity: Corvus\AdminBundle\Entity\Image
       mappedBy: ProjectHistory
-      cascade: [persist, merge, remove]
+      cascade: [merge, persist, remove]
   lifecycleCallbacks: { }

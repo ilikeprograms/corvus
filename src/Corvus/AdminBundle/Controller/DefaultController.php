@@ -175,7 +175,7 @@ class DefaultController extends Controller
             ->getRepository('CorvusAdminBundle:About')
             ->Find(1);
 
-        if(!$about) {
+        if($about == null) {
             $about = new About();
         }
 
@@ -183,9 +183,10 @@ class DefaultController extends Controller
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
+            $em = $this->getDoctrine()->getEntityManager();
 
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
+                
                 $em->persist($about);
                 $em->flush();
 
