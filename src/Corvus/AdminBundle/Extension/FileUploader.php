@@ -29,8 +29,12 @@ class FileUploader
      */
     public function prePersist(LifecycleEventArgs $args)
     {
-        if(($entity = $args->getEntity()) instanceof FileUpload)
-    	{
+        $entity = $args->getEntity();
+        if($entity instanceof Image) {
+            $entity->path = $this->setFilename($entity->ProjectHistory->getUploadRootDir(), $entity->path, $entity->file);
+        }
+        if($entity instanceof FileUpload)
+        {
             if(count($entity->images) > 0)
             {
                 if($entity->images->count() > 1) {
@@ -39,7 +43,7 @@ class FileUploader
                     $entity->images[0]->path = $this->setFilename($entity->getUploadRootDir(), $entity->images[0]->path, $entity->images[0]->file);
                 }
             }
-    	}
+        }
         else
         {
             return;
@@ -55,7 +59,7 @@ class FileUploader
      */
     public function preUpdate(PreUpdateEventArgs $args)
     {
-    	if(!($entity = $args->getEntity()) instanceof FileUpload)
+        if(!($entity = $args->getEntity()) instanceof FileUpload)
         {
             return;
         }
@@ -92,6 +96,7 @@ class FileUploader
             if($entity->images->count() > 1) {
                 $entity->images = $this->uploadMultipleFiles($entity);
             } else {
+                var_dump($entity->images[0]->path);
                 $this->uploadFile($entity, $entity->images[0]->file, $entity->images[0]->path);
             }
         }
@@ -112,10 +117,10 @@ class FileUploader
     	}
 
         if (null === $entity->images) {
-        	return; 
+        	return;
         }
 
-        if($entity->images->count() > 0)
+        if(count($entity->images) > 0)
         {
             $entity->images->count() > 1 ? $this->uploadMultipleFiles($entity) : $this->uploadFile($entity, $entity->images[0]->file, $entity->images[0]->path);
         }
@@ -145,10 +150,13 @@ class FileUploader
      */
     private function setFilename($uploadDir, $path, $file)
     {
-        if(is_dir($oldFile = $uploadDir."/".$path) == false) {
-                unset($oldFile);
-        } else {
+        if($path == null)
+        {
             return $path = uniqid().'.'.$file->guessExtension();
+        }
+        else
+        {
+            return $path;
         }
     }
 
@@ -159,14 +167,14 @@ class FileUploader
      */
     private function setMultipleFilenames($entity)
     {
-        //$count = 0;
         foreach ($entity->images as $image) {
-            $image->updated = new \DateTime('now');
-        
-            if(is_dir($oldFile = $entity->getUploadRootDir()."/".$image->path) == false) {
-                unset($oldFile);
-            } else {
-                $image->path = uniqid().'.'.$image->file->guessExtension();
+            if($image->file)
+            {
+                if($image->path == null)
+                {
+                    $image->updated = new \DateTime('now');
+                    $image->path = uniqid().'.'.$image->file->guessExtension();
+                }
             }
         }
     }
@@ -178,8 +186,11 @@ class FileUploader
      */
     private function uploadFile($entity, $file, $path)
     {
-        $entity->images[0]->file->move($entity->getUploadRootDir(), $entity->images[0]->path);
-        $this->createThumbnail($entity->getUploadRootDir()."/".$path);
+        if($file)
+        {
+            $entity->images[0]->file->move($entity->getUploadRootDir(), $entity->images[0]->path);
+            $this->createThumbnail($entity->getUploadRootDir()."/".$path);
+        }
     }
 
     /**
@@ -190,8 +201,11 @@ class FileUploader
     private function uploadMultipleFiles($entity)
     {
         foreach ($entity->images as $image) {
-            $image->file->move($entity->getUploadRootDir(), $image->path);
-            $this->createThumbnail($entity->getUploadRootDir()."/".$image->path);
+            if($image->file)
+            {
+                $image->file->move($entity->getUploadRootDir(), $image->path);
+                $this->createThumbnail($entity->getUploadRootDir()."/".$image->path);
+            }
         }      
     }
 
