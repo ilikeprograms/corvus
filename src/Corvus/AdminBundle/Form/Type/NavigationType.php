@@ -52,7 +52,7 @@ class NavigationType extends AbstractType
 
 	private function getRouteChoices()
 	{
-		$locator = new FileLocator(array(__DIR__.'/../../../FrontendBundle/resources/config'));
+		$locator = new FileLocator(__DIR__.'/../../../FrontendBundle/resources/config');
 		$loader = new YamlFileLoader($locator);
 		$collection = $loader->load('routing.yml');
 
