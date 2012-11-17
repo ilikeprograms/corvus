@@ -53,15 +53,15 @@ class NavigationType extends AbstractType
 	private function getRouteChoices()
 	{
 		$locator = new FileLocator(array(__DIR__.'/../../../FrontendBundle/resources/config'));
-        $loader = new YamlFileLoader($locator);
-        $collection = $loader->load('routing.yml');
-        
-        $routeNames = array();
+		$loader = new YamlFileLoader($locator);
+		$collection = $loader->load('routing.yml');
 
-        foreach ($collection as $key => $value) {
-            $routeNames[$value->getPattern()] = $value->getPattern();
-        }
+		$routeNames = array();
 
-        return $routeNames;
+		foreach ($collection as $key => $value) {
+		    $routeNames[$value->getPattern()] = $value->getPattern();
+		}
+
+		return $routeNames;
 	}
 }
