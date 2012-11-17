@@ -63,7 +63,7 @@ class NavigationType extends AbstractType
 		$path = implode("/", $pathArray);
 
 		// Set the FileLocator directory to be src/Corvus/FrontendBundle/resources/config
-		$locator = new FileLocator($path."/FrontendBundle/resources/config");
+		$locator = new FileLocator($path."/FrontendBundle/Resources/config");
 		$loader = new YamlFileLoader($locator);
 		// Load the routing file
 		$collection = $loader->load('routing.yml');
