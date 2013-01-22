@@ -12,9 +12,26 @@
 		<fieldset>
 			<legend>Project History Fields:</legend>			 
 
-    		{{ form_row(form.project_name) }}
-    		{{ form_row(form.project_description) }}
-    		{{ form_row(form.role) }}
+    		<div>
+                {{ form_label(form.project_name) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.project_name) }}
+                {{ form_widget(form.project_name) }}
+            </div>
+
+            <div>
+                {{ form_label(form.project_description) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.project_description) }}
+                {{ form_widget(form.project_description) }}
+            </div>
+
+            <div>
+                {{ form_label(form.role) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.role) }}
+                {{ form_widget(form.role) }}
+            </div>
     		{{ form_row(form.process) }}
     		{{ form_row(form.feedback_received) }}
     		{{ form_row(form.reflection) }}
@@ -36,7 +53,12 @@
 
         <fieldset>
             <legend>Meta Info:</legend>
-            {{ form_row(form.meta_title) }}
+            <div>
+                {{ form_label(form.meta_title) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.meta_title) }}
+                {{ form_widget(form.meta_title) }}
+            </div>
             {{ form_row(form.meta_description) }}
         </fieldset>
 
