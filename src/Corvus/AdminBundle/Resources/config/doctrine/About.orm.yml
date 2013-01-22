@@ -21,9 +21,11 @@ Corvus\AdminBundle\Entity\About:
     address:
       type: string
       length: 255
+      nullable: true
     location:
       type: string
       length: 255
+      nullable: true
     interests_hobbies:
       type: string
       length: 255

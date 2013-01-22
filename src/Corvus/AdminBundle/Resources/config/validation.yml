@@ -11,10 +11,6 @@ Corvus\AdminBundle\Entity\About:
             - Max: 130
         bio:
             - NotNull: ~
-        address:
-            - NotNull: ~
-        location:
-            - NotNull: ~
         email_address:
             - NotNull: ~
             - email: ~
