@@ -155,6 +155,10 @@ fieldset {
     box-shadow: inset 0px 0px 3px #FFF, inset -1px -1px 3px #FFF;
 }
 
+fieldset label {
+    font-size: 1.125em;
+}
+
 legend {
     font-weight: bold;
     font-size: 1.125em;
@@ -176,6 +180,12 @@ fieldset div div {
 fieldset div div div {
     padding: 0;
     margin-top: 5px;
+}
+
+fieldset span.asterix {
+    color: red;
+    font-size: 200%;
+    vertical-align: middle;
 }
 
 input[type="text"], input[type="url"], input[type="email"], textarea, fieldset select {
