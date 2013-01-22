@@ -19,12 +19,15 @@ Corvus\AdminBundle\Entity\ProjectHistory:
     process:
       type: string
       length: 3000
+      nullable: true
     feedback_received:
       type: string
       length: 500
+      nullable: true
     reflection:
       type: string
       length: 2000
+      nullable: true
     url:
       type: string
       length: 255
@@ -35,6 +38,7 @@ Corvus\AdminBundle\Entity\ProjectHistory:
       type: string
     meta_description:
       type: string
+      nullable: true
   oneToMany:
     images:
       targetEntity: Corvus\AdminBundle\Entity\Image
