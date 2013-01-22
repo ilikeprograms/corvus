@@ -20,10 +20,10 @@ class AboutType extends AbstractType
         $builder->add('age', 'number', array(
             'label' => 'Age:',
         ));
-        $builder->add('bio', 'text', array(
+        $builder->add('bio', 'textarea', array(
             'label' => 'Bio:',
         ));
-        $builder->add('address', 'text', array(
+        $builder->add('address', 'textarea', array(
             'label' => 'Address:',
         ));
         $builder->add('location', 'text', array(
