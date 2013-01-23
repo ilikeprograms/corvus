@@ -10,12 +10,63 @@
 	<form action="{{ path('CorvusAdminBundle_NewWorkHistory') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Work History Fields:</legend>
-			
-			{{ form_errors(form) }}
 
-			{{ form_widget(form) }}
+			<div>
+                {{ form_label(form.employer_name) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.employer_name) }}
+                {{ form_widget(form.employer_name) }}
+            </div>
 
+			<div>
+                {{ form_label(form.employer_address) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.employer_address) }}
+                {{ form_widget(form.employer_address) }}
+            </div>
+
+			<div>
+                {{ form_label(form.start_date) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.start_date) }}
+                {{ form_widget(form.start_date) }}
+            </div>
+
+			<div>
+                {{ form_label(form.duration) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.duration) }}
+                {{ form_widget(form.duration) }}
+            </div>
+
+			<div>
+                {{ form_label(form.role) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.role) }}
+                {{ form_widget(form.role) }}
+            </div>
+
+			{{ form_row(form.duties) }}
+			{{ form_row(form.feedback_received) }}
+			{{ form_row(form.reflection) }}
+			{{ form_row(form.employer_phone_number) }}
 		</fieldset>
+
+		<fieldset>
+            <legend>Meta Info:</legend>
+
+            <div>
+                {{ form_label(form.meta_title) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.meta_title) }}
+                {{ form_widget(form.meta_title) }}
+            </div>
+
+            {{ form_row(form.meta_description) }}
+        </fieldset>
+
+    	{{ form_rest(form) }}
+    	
 		<a href="{{ path('CorvusAdminBundle_WorkHistory') }}" class="cancel">Cancel</a>
 		&nbsp;
 		<input type="submit" class="submit" value="Submit" />
