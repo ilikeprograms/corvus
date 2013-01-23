@@ -32,6 +32,15 @@ Corvus\AdminBundle\Entity\GeneralSettings:
         portfolio_title:
             - NotNull: ~
 
+Corvus\AdminBundle\Entity\Image:
+    properties:
+        image_title:
+            - NotNull: ~
+        description:
+            - NotNull: ~
+        path:
+            - NotNull: ~
+
 Corvus\AdminBundle\Entity\Navigation:
     properties:
         href:
@@ -52,11 +61,17 @@ Corvus\AdminBundle\Entity\ProjectHistory:
         meta_title:
             - NotNull: ~
 
-Corvus\AdminBundle\Entity\Image:
+Corvus\AdminBundle\Entity\WorkHistory:
     properties:
-        image_title:
+        employer_name:
             - NotNull: ~
-        description:
+        employer_address:
             - NotNull: ~
-        path:
+        start_date:
+            - NotNull: ~
+        duration:
+            - NotNull: ~
+        role:
+            - NotNull: ~
+        meta_title:
             - NotNull: ~

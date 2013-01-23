@@ -23,17 +23,22 @@ Corvus\AdminBundle\Entity\WorkHistory:
     duties:
       type: string
       length: 255
+      nullable: true
     feedback_received:
       type: string
       length: 255
+      nullable: true
     reflection:
       type: string
       length: 255
+      nullable: true
     employer_phone_number:
       type: string
       length: 255
+      nullable: true
     meta_title:
       type: string
     meta_description:
       type: string
+      nullable: true
   lifecycleCallbacks: {  }
