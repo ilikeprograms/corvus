@@ -43,6 +43,8 @@ Corvus\AdminBundle\Entity\Image:
 
 Corvus\AdminBundle\Entity\Navigation:
     properties:
+        navigation_order:
+            - NotNull: ~
         href:
             - NotNull: ~
         title:
