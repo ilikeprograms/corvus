@@ -12,11 +12,33 @@
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 
-			{{ form_errors(form) }}
+            <div>
+                {{ form_label(form.href) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.href) }}
+                {{ form_widget(form.href) }}
+            </div>
 
-			{{ form_widget(form) }}
+            <div>
+                {{ form_label(form.title) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
+            </div>
+
+            <div>
+                {{ form_label(form.alt) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.alt) }}
+                {{ form_widget(form.alt) }}
+            </div>
+
+            {{ form_row(form.internalRoutes) }}
 
 		</fieldset>
+
+		{{ form_rest(form) }}
+
 		<a href="{{ path('CorvusAdminBundle_Navigation') }}" class="cancel">Cancel</a>
 		&nbsp;
 		<input type="submit" class="submit" value="Submit" />
