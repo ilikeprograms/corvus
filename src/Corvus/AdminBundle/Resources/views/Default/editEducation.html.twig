@@ -11,12 +11,41 @@
 	<form action="{{ path('CorvusAdminBundle_EditEducation', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Education Fields:</legend>
+			
+			<div>
+                {{ form_label(form.education_institute) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.education_institute) }}
+                {{ form_widget(form.education_institute) }}
+            </div>
 
-			{{ form_errors(form) }}
+            <div>
+                {{ form_label(form.qualification) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.qualification) }}
+                {{ form_widget(form.qualification) }}
+            </div>
 
-			{{ form_widget(form) }}
+            <div>
+                {{ form_label(form.start_date) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.start_date) }}
+                {{ form_widget(form.start_date) }}
+            </div>
+
+            <div>
+                {{ form_label(form.duration) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.duration) }}
+                {{ form_widget(form.duration) }}
+            </div>
+
+            {{ form_row(form.result) }}
 
 		</fieldset>
+
+		{{ form_rest(form) }}
+		
 		<a href="{{ path('CorvusAdminBundle_Education') }}" class="cancel">Cancel</a>
 		&nbsp;
 		<input type="submit" class="submit" value="Submit" />
