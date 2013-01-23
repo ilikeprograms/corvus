@@ -61,6 +61,17 @@ Corvus\AdminBundle\Entity\ProjectHistory:
         meta_title:
             - NotNull: ~
 
+Corvus\AdminBundle\Entity\Skills:
+    properties:
+        skill_name:
+            - NotNull: ~
+        competency:
+            - NotNull: ~
+        years_experience:
+            - NotNull: ~
+        description:
+            - NotNull: ~
+
 Corvus\AdminBundle\Entity\WorkHistory:
     properties:
         employer_name:
