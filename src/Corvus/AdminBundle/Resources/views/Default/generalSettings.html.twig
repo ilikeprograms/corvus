@@ -11,13 +11,16 @@
         <fieldset>
 			<legend>General Settings Fields:</legend>
 			
-			{{ form_row(form.portfolio_title) }}
+			<div>
+                {{ form_label(form.portfolio_title) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.portfolio_title) }}
+                {{ form_widget(form.portfolio_title) }}
+            </div>
+
 			{{ form_row(form.portfolio_subtitle) }}
 			{{ form_row(form.display_subtitle) }}
 			
-			<footer><div>Field Notes<br/>
-			Meta Title: This is used as part of the title of all the pages on the frontend. By default it is usually appended to the end of the title of pages, for example with the title as "Hello Site", a page title could be "My Home Page | Hello Site".</div>
-			</footer>
 		</fieldset>
 
 		<fieldset>
@@ -29,6 +32,9 @@
 			{{ form_row(form.project_history_meta_title) }}
 			{{ form_row(form.global_work_history_meta_title) }}
 			{{ form_row(form.global_project_history_meta_title) }}
+			<footer><div>Field Notes<br/>
+			Meta Title: This is used as part of the title of all the pages on the frontend. By default it is usually appended to the end of the title of pages, for example with the title as "Hello Site", a page title could be "My Home Page | Hello Site".</div>
+			</footer>
 		</fieldset>
 
 		<fieldset>
