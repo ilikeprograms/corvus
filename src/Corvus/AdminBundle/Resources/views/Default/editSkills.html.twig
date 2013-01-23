@@ -12,11 +12,38 @@
 		<fieldset>
 			<legend>Skill Fields:</legend>
 
-			{{ form_errors(form) }}
+			<div>
+                {{ form_label(form.skill_name) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.skill_name) }}
+                {{ form_widget(form.skill_name) }}
+            </div>
 
-			{{ form_widget(form) }}
+            <div>
+                {{ form_label(form.competency) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.competency) }}
+                {{ form_widget(form.competency) }}
+            </div>
+
+            <div>
+                {{ form_label(form.years_experience) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.years_experience) }}
+                {{ form_widget(form.years_experience) }}
+            </div>
+
+            <div>
+                {{ form_label(form.description) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description) }}
+            </div>
 
 		</fieldset>
+
+		{{ form_rest(form) }}
+
 		<a href="{{ path('CorvusAdminBundle_Skills') }}" class="cancel">Cancel</a>
 		&nbsp;
 		<input type="submit" class="submit" value="Submit" />
