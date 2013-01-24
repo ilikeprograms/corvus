@@ -19,6 +19,12 @@ class GeneralSettingsType extends AbstractType
 		$builder->add('display_subtitle', 'checkbox', array(
 			'label' => 'Display Subtitle?',
 		));
+		$builder->add('logo', 'file', array(
+			'label' => 'Logo:',
+		));
+		$builder->add('display_logo', 'checkbox', array(
+			'label' => 'Display Logo?',
+		));
 		$builder->add('current_password', 'password', array(
 			'property_path' => false,
 		));
