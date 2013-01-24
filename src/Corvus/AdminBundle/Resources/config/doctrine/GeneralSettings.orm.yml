@@ -10,11 +10,16 @@ Corvus\AdminBundle\Entity\GeneralSettings:
     portfolio_title:
       type: string
       length: 255
-    display_subtitle:
-      type: boolean
     portfolio_subtitle:
       type: string
       length: 255
+    display_subtitle:
+      type: boolean
+    path:
+      type: string
+      nullable: true
+    display_logo:
+      type: boolean
     global_general_meta_title:
       type: string
     about_meta_title:
@@ -29,4 +34,9 @@ Corvus\AdminBundle\Entity\GeneralSettings:
       type: string
     global_project_history_meta_title:
       type: string
-  lifecycleCallbacks: { }
+  lifecycleCallbacks:
+    prePersist: [preUpload]
+    preUpdate: [preUpload]
+    postPersist: [upload]
+    postUpdate: [upload]
+    postRemove: [removeUpload]
