@@ -20,6 +20,11 @@
 <body onkeydown="loadImage(event)">
 <div id="container">
     <div id="pageHeader">
+        <div id="logo">
+            {% if portfolio_info.generalSettings.displayLogo == true %}
+                {{ portfolio_info.getLogo }}
+            {% endif %}
+        </div>
     	<div id="title">
             <hgroup>
     			<h1>{{ portfolio_info.generalSettings.portfolioTitle }}</h1>
@@ -29,8 +34,7 @@
             	{% endif %}
             </hgroup>
     	</div>
-        <div id="logo">
-        </div>
+        <br class="clear" />
     </div>
 
     <div id="mainNavBar">
