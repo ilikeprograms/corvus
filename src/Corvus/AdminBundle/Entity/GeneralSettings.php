@@ -32,6 +32,21 @@ class GeneralSettings
     private $display_subtitle;
 
     /**
+     * @var string $path
+     */
+    public $path;
+
+    /**
+     * @var file $logo
+     */
+    private $logo;
+
+    /**
+     * @var boolean $display_logo
+     */
+    private $display_logo;
+
+    /**
      * @var string $global_general_meta_title
      */
     private $global_general_meta_title;
@@ -134,6 +149,46 @@ class GeneralSettings
     public function getDisplaySubtitle()
     {
         return $this->display_subtitle;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param file logo
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return file
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set display_logo
+     *
+     * @param boolean displayLogo
+     */
+    public function setDisplayLogo($displayLogo)
+    {
+        $this->display_logo = $displayLogo;
+    }
+
+    /**
+     * Get display_logo
+     *
+     * @return file
+     */
+    public function getDisplayLogo()
+    {
+        return $this->display_logo;
     }
 
     /**
@@ -274,5 +329,73 @@ class GeneralSettings
     public function getGlobalProjectHistoryMetaTitle()
     {
         return $this->global_project_history_meta_title;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->logo) {
+            // do whatever you want to generate a unique name
+            $this->path = 'logo.'.$this->logo->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->logo) {
+            return;
+        }
+
+        // if there is an error when moving the logo, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->logo->move($this->getUploadRootDir(), $this->path);
+
+        unset($this->logo);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($logo = $this->getAbsolutePath()) {
+            unlink($logo);
+        }
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads';
     }
 }
