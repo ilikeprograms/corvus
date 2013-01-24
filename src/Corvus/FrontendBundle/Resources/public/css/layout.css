@@ -46,6 +46,19 @@ blockquote::after {
 	margin-top: 70px;
 }
 
+.clear {
+	clear: both;
+}
+
+#logo {
+	float: left;
+	vertical-align: middle;
+}
+
+#title {
+	float: left;
+}
+
 .description {
 	overflow : hidden;
 	text-overflow: ellipsis;
