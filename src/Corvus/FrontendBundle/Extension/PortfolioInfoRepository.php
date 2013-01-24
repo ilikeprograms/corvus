@@ -37,6 +37,11 @@ class PortfolioInfoRepository
 		return $this->em->getRepository('CorvusAdminBundle:About')->Find(1);
 	}
 
+	public function getLogo()
+	{
+		echo '<img src="/uploads/logo.png" />';
+	}
+
 	public function createNavigation()
 	{
 		$navigation = $this->getNavigation();
@@ -55,7 +60,7 @@ class PortfolioInfoRepository
 				$url = $generator->generate($parameters['_route'], array());
 				echo "<li><a href='".$url."' alt='".$nav->getAlt()."'>".$nav->getTitle()."</a></li>";
 			} catch(ResourceNotFoundException $e) {
-				echo "<li><a href='".$nav->getHref()."'' alt='".$nav->getAlt()."''>".$nav->getTitle()."</a></li>";
+				echo "<li><a href='".$nav->getHref()."'' alt='".$nav->getAlt()."'' target='_blank'>".$nav->getTitle()."</a></li>";
 			}
 		}
 	}
