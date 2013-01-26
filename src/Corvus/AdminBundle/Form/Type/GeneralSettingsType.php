@@ -5,6 +5,9 @@ namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class GeneralSettingsType extends AbstractType
 {
@@ -24,16 +27,6 @@ class GeneralSettingsType extends AbstractType
 		));
 		$builder->add('display_logo', 'checkbox', array(
 			'label' => 'Display Logo?',
-		));
-		$builder->add('current_password', 'password', array(
-			'property_path' => false,
-		));
-		$builder->add('new_password', 'repeated', array(
-			'type' => 'password',
-			'first_name' => 'NewPassword:',
-			'second_name' => 'ConfirmPassword',
-			'invalid_message' => 'The Passwords don\'t match',
-			'property_path' => false,
 		));
 		$builder->add('global_general_meta_title', 'text', array(
 			'label' => 'Global General Meta Title:',
