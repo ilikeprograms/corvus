@@ -13,6 +13,7 @@ use Corvus\AdminBundle\Entity\WorkHistoryTableView;
 use Corvus\AdminBundle\Entity\SkillsTableView;
 use Corvus\AdminBundle\Entity\NavigationTableView;
 use Corvus\AdminBundle\Entity\About;
+use Corvus\AdminBundle\Model\ChangePasswordModel as ChangePassword;
 
 use Corvus\AdminBundle\Form\Type\GeneralSettingsType;
 use Corvus\AdminBundle\Form\Type\EducationTableViewType;
@@ -21,7 +22,7 @@ use Corvus\AdminBundle\Form\Type\WorkHistoryTableViewType;
 use Corvus\AdminBundle\Form\Type\SkillsTableViewType;
 use Corvus\AdminBundle\Form\Type\NavigationTableViewType;
 use Corvus\AdminBundle\Form\Type\AboutType;
-
+use Corvus\AdminBundle\Form\Type\ChangePasswordType;
 
 class DefaultController extends Controller
 {
@@ -40,27 +41,57 @@ class DefaultController extends Controller
             $generalSettings = new GeneralSettings();
         }
 
-        $form = $this->createForm(new GeneralSettingsType(), $generalSettings);
+        $changePassword = new ChangePassword();
 
+        $form = $this->createForm(new GeneralSettingsType(), $generalSettings);
+        $changePForm = $this->createForm(new ChangePasswordType(), $changePassword);
         if($request->getMethod() == 'POST')
         {
             $form->bind($request);
-            $em = $this->getDoctrine()->getEntityManager();
-
-            if($form->isValid())
+            $changePForm->bind($request);
+            
+            $newPassword = $changePForm['new_password']->getData();
+            if($changePForm['current_password']->getData() != null)
             {
-                $em->persist($generalSettings);
-                $em->flush();
+                $errors = $this->get('validator')->validate($changePassword);
+                if(count($errors) == 0)
+                {
+                    $securityContext = $this->container->get('security.context');
+                    $user  = $securityContext->getToken()->getUser();
+                    $encoder = $this->container
+                        ->get('security.encoder_factory')
+                        ->getEncoder($user);
+                    $user->setPassword($encoder->encodePassword($newPassword, $user->getSalt()));
+                    $userEm = $this->getDoctrine()->getEntityManager();
+                    $userEm->persist($user);
+                    $userEm->flush();
+                    $this->get('session')->setFlash('notice', 'New password has been saved.');
+                    return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
+                }
+                else
+                {
+                    $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
+                }
+            }
+            else
+            {
+                if($form->isValid())
+                {
+                    $em = $this->getDoctrine()->getEntityManager();
 
-                $this->get('session')->setFlash('notice', 'General Settings have been saved.');
-                return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
-            } else {
-                $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
+                    $em->persist($generalSettings);
+                    $em->flush();
+
+                    $this->get('session')->setFlash('notice', 'General Settings have been saved.');
+                    return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
+                } else {
+                    $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
+                }
             }
         }
 
         return $this->render('CorvusAdminBundle:Default:generalSettings.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView(), 'changePForm' => $changePForm->createView(),
         ));
     }
 
