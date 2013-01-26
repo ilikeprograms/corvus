@@ -42,8 +42,9 @@
 		<fieldset>
 			<legend>Change Password Fields:</legend>
 			<p>To change the password for the admin. Enter the current password and a matching new password and confirmation.</p>
-			{{ form_row(form.current_password) }}
-			{{ form_row(form.new_password) }}
+			{{ form_row(changePForm.current_password) }}
+			{{ form_row(changePForm.new_password) }}
+			{{ form_row(changePForm.confirm_password) }}
 		</fieldset>
 
 		{{ form_rest(form) }}
