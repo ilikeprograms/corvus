@@ -88,3 +88,7 @@ Corvus\AdminBundle\Entity\WorkHistory:
             - NotNull: ~
         meta_title:
             - NotNull: ~
+
+Corvus\AdminBundle\Model\ChangePasswordModel:
+    constraints:
+        - Corvus\AdminBundle\Validator\Constraints\ChangePassword: ~
