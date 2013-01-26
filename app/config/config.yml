@@ -68,6 +68,11 @@ services:
         arguments: [@portfolioinforepository]
         tags:
             - { name: twig.extension }
+    validator.corvus.change_password:
+        class: Corvus\AdminBundle\Validator\Constraints\ChangePasswordValidator
+        arguments: [@service_container]
+        tags:
+            - { name: validator.constraint_validator, alias: cpassword_validator }
     fileuploader:
         class: Corvus\AdminBundle\Extension\FileUploader
         tags:
