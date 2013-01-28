@@ -49,6 +49,9 @@ class GeneralSettingsType extends AbstractType
 		$builder->add('global_project_history_meta_title', 'text', array(
 			'label' => 'Global Project History Meta Title:',
 		));
+		$builder->add('analytics', 'text', array(
+			'label' => 'Analytics Tracking ID:',
+		));
 	}
 
 	public function getDefaultOptions(array $options)
