@@ -6,7 +6,6 @@ namespace Corvus\AdminBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
-use Symfony\Component\Routing\Router;
 
 use Twig_Environment as Twig;
 
@@ -14,12 +13,10 @@ use Twig_Environment as Twig;
 class CorvusAdminExceptionListener
 {
 	private $twig;
-	private $router;
 
-	function __construct(Twig $twig, Router $router)
+	function __construct(Twig $twig)
 	{
 		$this->twig = $twig;
-		$this->router = $router;
 	}
 
     public function onKernelException(GetResponseForExceptionEvent $event)
@@ -34,6 +31,7 @@ class CorvusAdminExceptionListener
         // holds status code and header details
         if ($exception instanceof HttpExceptionInterface) {
         	$response->setStatusCode($exception->getStatusCode());
+            $response->headers->replace($exception->getHeaders());
             if($exception->getStatusCode() == 404)
             {
             	if(preg_match('#/admin/#', $request) == 1)  {
