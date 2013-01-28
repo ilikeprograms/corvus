@@ -40,6 +40,12 @@
 		</fieldset>
 
 		<fieldset>
+			<legend>Google Analytics:</legend>
+			<p>Enter your Google Analytics Tracking ID to add analytics to corvus. Leave blank or remove to stop tracking.</p>
+			{{ form_row(form.analytics) }}
+		</fieldset>
+
+		<fieldset>
 			<legend>Change Password Fields:</legend>
 			<p>To change the password for the admin. Enter the current password and a matching new password and confirmation.</p>
 			{{ form_row(changePForm.current_password) }}
