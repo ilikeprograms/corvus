@@ -34,6 +34,9 @@ Corvus\AdminBundle\Entity\GeneralSettings:
       type: string
     global_project_history_meta_title:
       type: string
+    analytics:
+      type: string
+      nullable: true
   lifecycleCallbacks:
     prePersist: [preUpload]
     preUpdate: [preUpload]
