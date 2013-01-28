@@ -73,6 +73,11 @@ services:
         arguments: [@service_container]
         tags:
             - { name: validator.constraint_validator, alias: cpassword_validator }
+    kernel.listener.covus_admin_exception_listener:
+        class: Corvus\AdminBundle\EventListener\CorvusAdminExceptionListener
+        arguments: [@twig, @router]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
     fileuploader:
         class: Corvus\AdminBundle\Extension\FileUploader
         tags:
