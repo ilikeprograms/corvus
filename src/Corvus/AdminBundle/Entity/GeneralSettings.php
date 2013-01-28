@@ -81,6 +81,11 @@ class GeneralSettings
      */
     private $global_project_history_meta_title;
 
+    /*
+     * @var string $analytics
+     */
+    private $analytics;
+
     /**
      * Get id
      *
@@ -329,6 +334,26 @@ class GeneralSettings
     public function getGlobalProjectHistoryMetaTitle()
     {
         return $this->global_project_history_meta_title;
+    }
+
+    /**
+     * Set analytics
+     *
+     * @param string $analytics
+     */
+    public function setAnalytics($analytics)
+    {
+        $this->analytics = $analytics;
+    }
+
+    /**
+     * Get analytics
+     *
+     * @return string
+     */
+    public function getAnalytics()
+    {
+        return $this->analytics;
     }
 
     /**
