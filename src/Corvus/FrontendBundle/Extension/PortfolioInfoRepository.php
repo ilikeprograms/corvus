@@ -39,7 +39,8 @@ class PortfolioInfoRepository
 
 	public function getLogo()
 	{
-		echo '<img src="/uploads/logo.png" />';
+		$portfolioTitle = $this->getGeneralSettings()->getPortfolioTitle();
+		echo '<img src="/uploads/logo.png" alt="'.$portfolioTitle.'" />';
 	}
 
 	public function includeAnalyticsTracking()
