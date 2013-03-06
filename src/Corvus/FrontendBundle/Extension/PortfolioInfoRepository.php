@@ -73,7 +73,7 @@ class PortfolioInfoRepository
 		$loader = new YamlFileLoader($locator);
 		$collection = $loader->load('routing.yml');
 
-		$context = new RequestContext($_SERVER['SCRIPT_NAME']);
+		$context = new RequestContext();
 		$matcher = new UrlMatcher($collection, $context);
 		$generator = new UrlGenerator($collection, $context);
 
