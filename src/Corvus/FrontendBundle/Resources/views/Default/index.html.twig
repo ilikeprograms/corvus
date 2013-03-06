@@ -17,6 +17,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     {% block javascript %}
     {% endblock %}
+    {{ portfolio_info.includeAnalyticsTracking }}
 </head>
 <body onkeydown="loadImage(event)">
 <div id="container">
@@ -65,7 +66,6 @@
             <p><a href="#container" alt="Back to top of page Link">Back To Top</a></p>
         </div>
         <div id="subFooter">&copy; 2012 Thomas Coleman. Powered by Corvus</div>
-        {{ portfolio_info.includeAnalyticsTracking }}
     </footer>
 </div>
 </body>
