@@ -11,11 +11,8 @@ Corvus\AdminBundle\Entity\Navigation:
       type: integer
     href:
       type: string
-      length: 255
     title:
       type: string
-      length: 255
     alt:
       type: string
-      length: 255
   lifecycleCallbacks: {  }

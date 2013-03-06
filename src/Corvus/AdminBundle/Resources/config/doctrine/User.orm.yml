@@ -9,8 +9,6 @@ Corvus\AdminBundle\Entity\User:
         strategy: AUTO
     username:
       type: string
-      length: 255
     password:
       type: string
-      length: 255
   lifecycleCallbacks: {  }

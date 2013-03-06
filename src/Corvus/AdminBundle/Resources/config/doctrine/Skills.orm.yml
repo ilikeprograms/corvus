@@ -9,13 +9,10 @@ Corvus\AdminBundle\Entity\Skills:
         strategy: AUTO
     skill_name:
       type: string
-      length: 255
     competency:
       type: string
-      length: 255
     years_experience:
       type: decimal
     description:
       type: string
-      length: 255
   lifecycleCallbacks: {  }

@@ -9,20 +9,16 @@ Corvus\AdminBundle\Entity\WorkHistory:
         strategy: AUTO
     employer_name:
       type: string
-      length: 255
     employer_address:
       type: string
-      length: 255
     start_date:
       type: date
     duration:
       type: decimal
     role:
       type: string
-      length: 255
     duties:
       type: string
-      length: 255
       nullable: true
     feedback_received:
       type: string
@@ -34,7 +30,6 @@ Corvus\AdminBundle\Entity\WorkHistory:
       nullable: true
     employer_phone_number:
       type: string
-      length: 255
       nullable: true
     meta_title:
       type: string

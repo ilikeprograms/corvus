@@ -9,13 +9,11 @@ Corvus\AdminBundle\Entity\ProjectHistory:
         strategy: AUTO
     project_name:
       type: string
-      length: 255
     project_description:
       type: string
       length: 2000
     role:
       type: string
-      length: 255
     process:
       type: string
       length: 3000
@@ -30,7 +28,6 @@ Corvus\AdminBundle\Entity\ProjectHistory:
       nullable: true
     url:
       type: string
-      length: 255
       nullable: true
     updated:
       type: datetime

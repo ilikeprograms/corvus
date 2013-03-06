@@ -9,10 +9,8 @@ Corvus\AdminBundle\Entity\GeneralSettings:
         strategy: AUTO
     portfolio_title:
       type: string
-      length: 255
     portfolio_subtitle:
       type: string
-      length: 255
     display_subtitle:
       type: boolean
     path:

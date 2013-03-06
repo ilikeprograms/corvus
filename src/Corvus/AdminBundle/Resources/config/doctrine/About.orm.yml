@@ -9,36 +9,27 @@ Corvus\AdminBundle\Entity\About:
         strategy: AUTO
     firstname:
       type: string
-      length: 255
     lastname:
       type: string
-      length: 255
     age:
       type: integer
     bio:
       type: string
-      length: 255
     address:
       type: string
-      length: 255
       nullable: true
     location:
       type: string
-      length: 255
       nullable: true
     interests_hobbies:
       type: string
-      length: 255
       nullable: true
     email_address:
       type: string
-      length: 255
     twitter:
       type: string
-      length: 255
       nullable: true
     facebook:
       type: string
-      length: 255
       nullable: true
   lifecycleCallbacks: {  }
