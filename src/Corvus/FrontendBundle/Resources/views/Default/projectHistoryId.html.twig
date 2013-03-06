@@ -250,7 +250,7 @@
 				data-title="{{ projectHistory.images[loop.index -1].imageTitle}}"
 				data-description="{{ projectHistory.images[loop.index -1].description }}"
 				data-currentNum="{{ loop.index -1 }}">
-					<img src="/uploads/{{ thumbnail }}" />
+					<img src="/uploads/{{ thumbnail }}" alt="{{ projectHistory.images[loop.index -1].imageTitle}}" />
 				</a>
 			{% endfor %}
 		</section>
