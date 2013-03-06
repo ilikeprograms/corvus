@@ -26,11 +26,11 @@ Corvus\AdminBundle\Entity\WorkHistory:
       nullable: true
     feedback_received:
       type: string
-      length: 255
+      length: 500
       nullable: true
     reflection:
       type: string
-      length: 255
+      length: 2000
       nullable: true
     employer_phone_number:
       type: string
