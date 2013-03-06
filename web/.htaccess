@@ -7,4 +7,8 @@
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}\app.php -f
+    RewriteRule ^(.*)$ $1app.php
 </IfModule>
