@@ -13,7 +13,7 @@ Corvus\AdminBundle\Entity\About:
             - NotNull: ~
         email_address:
             - NotNull: ~
-            - email: ~
+            - Email: ~
 
 Corvus\AdminBundle\Entity\Education:
     properties:
