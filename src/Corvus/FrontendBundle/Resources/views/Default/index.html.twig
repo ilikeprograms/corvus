@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>{% spaceless %}
         {% block metaTitleStart %}{% endblock %} {{ portfolio_info.generalSettings.globalGeneralMetaTitle }}{% block metaTitleEnd %}{% endblock %}
@@ -8,6 +8,7 @@
     {% block metaDescription %}{% endblock %}
     
     {% stylesheets filter="cssrewrite"
+        'bundles/corvusfrontend/css/design.css'
         'bundles/corvusfrontend/css/layout.css'
         'bundles/corvusfrontend/css/navigation.css'
     %}
