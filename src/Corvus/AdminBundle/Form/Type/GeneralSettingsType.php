@@ -52,7 +52,7 @@ class GeneralSettingsType extends AbstractType
 		$builder->add('analytics', 'text', array(
 			'label' => 'Analytics Tracking ID:',
 		));
-		$builder->add('footer_text', 'text', array(
+		$builder->add('footer_text', 'textarea', array(
 			'label' => 'Footer Text:'
 		));
 	}
