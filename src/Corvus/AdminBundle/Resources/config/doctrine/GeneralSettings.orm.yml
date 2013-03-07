@@ -35,6 +35,10 @@ Corvus\AdminBundle\Entity\GeneralSettings:
     analytics:
       type: string
       nullable: true
+    footer_text:
+      type: string
+      length: 1500
+      nullable: true
   lifecycleCallbacks:
     prePersist: [preUpload]
     preUpdate: [preUpload]

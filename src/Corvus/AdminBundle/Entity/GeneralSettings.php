@@ -87,6 +87,11 @@ class GeneralSettings
     private $analytics;
 
     /**
+     * @var string $footer_text
+     */
+    private $footer_text;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -354,6 +359,26 @@ class GeneralSettings
     public function getAnalytics()
     {
         return $this->analytics;
+    }
+
+    /**
+     * Set footer_text
+     *
+     * @param string $footerText
+     */
+    public function setFooterText($footerText)
+    {
+        $this->footer_text = $footerText;
+    }
+
+    /**
+     * Get footer_text
+     *
+     * @return string
+     */
+    public function getFooterText()
+    {
+        return $this->footer_text;
     }
 
     /**
