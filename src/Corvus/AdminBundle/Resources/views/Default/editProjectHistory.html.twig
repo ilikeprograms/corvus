@@ -43,8 +43,15 @@
 			<legend>Images:</legend>
             <div id="projectHistory_images" data-prototype="{{ form_widget(form.images.vars.prototype) | e }}">
 			{% for image in form.images %}
-				{{ form_row(image) }}
-				<img src="/uploads/{{ thumbnails[loop.index - 1] }}" />
+                <div>
+    				{{ form_row(image) }}
+                    <div>
+        				<img src="/uploads/{{ thumbnails[loop.index - 1] }}" alt="{{ image.vars.value.imageTitle }}" style="display: block;" />
+                        <br />
+                        <hr />
+                        <br />
+                    </div>
+                </div>
 			{% endfor %}
 
             <div><a href="#" id="add-another-image">Add an Image</a></div>
