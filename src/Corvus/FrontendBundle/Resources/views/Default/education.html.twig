@@ -19,18 +19,20 @@
 			<h3>Qualification</h3>
 			<p>{{ edu.qualification }}</p>
 
-			<h3>Time Period</h3>
-			<p>{{ edu.startDate | date("d/m/y") }}</p>
+			<h3 class="displayInline">Time Period -</h3>
+			<p class="displayInline">{{ edu.startDate | date("d/m/y") }}</p>
 
-			<h3>Years</h3>
+			<h3 class="displayInline">Years -</h3>
 			<p>{{ edu.duration }}</p>
 
 			<h3>Result</h3>
 			<p>{{ edu.result }}</p>
 
-			<br />
-			<hr />
-			<br />
+			{% if loop.last == false %}
+				<br />
+				<hr />
+				<br />
+			{% endif %}
 
 		{% endfor %}
 	</div>
@@ -55,8 +57,8 @@
 			<h3>Competency</h3>
 			<p>{{ skill.competency }}</p>
 
-			<h3>Years Experience</h3>
-			<p>{{ skill.yearsExperience }}</p>
+			<h3 class="displayInline">Years Experience -</h3>
+			<p class="displayInline">{{ skill.yearsExperience }}</p>
 
 			<h3>Description</h3>
 			<p>{{ skill.description }}</p>
