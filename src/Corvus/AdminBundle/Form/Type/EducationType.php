@@ -13,26 +13,45 @@ class EducationType extends AbstractType
 	{
 		$builder->add('education_institute', 'text', array(
 			'label' => 'Education Institute:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('qualification', 'text', array(
 			'label' => 'Qualification:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('start_date', 'date', array(
 			'label' => 'Start Date:',
 			'input' => 'datetime',
 			'widget' => 'choice',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('duration', 'number', array(
 			'label' => 'Duration:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('result', 'text', array(
 			'label' => 'Result:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('check', 'checkbox', array(
 			'property_path' => false,
 			'attr' => array(
 				'class' => 'case',
-		)));	
+			),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));	
 	}
 
 	public function getDefaultOptions(array $options)

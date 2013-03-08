@@ -13,22 +13,38 @@ class SkillsType extends AbstractType
 	{
 		$builder->add('skill_name', 'text', array(
 			'label' => 'Skill Name:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 
 		$builder->add('competency', 'text', array(
 			'label' => 'Competency:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('years_experience', 'number', array(
 			'label' => 'Years Experience:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('description', 'textarea', array(
 			'label' => 'Description:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('check', 'checkbox', array(
 			'property_path' => false,
 			'attr' => array(
 				'class' => 'case',
-		)));
+			),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));
 	}
 
 	public function getDefaultOptions(array $options)

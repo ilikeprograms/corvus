@@ -15,26 +15,45 @@ class NavigationType extends AbstractType
 	{
 		$builder->add('navigation_order', 'number', array(
 			'label' => 'Order:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('href', 'text', array(
 			'label' => 'Href (Link address):',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('title', 'text', array(
 			'label' => 'Title:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('alt', 'text', array(
-			'label' => 'Alternative Text:'
+			'label' => 'Alternative Text:',
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 		$builder->add('check', 'checkbox', array(
 			'property_path' => false,
 			'attr' => array(
 				'class' => 'case',
-		)));
+			),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));
 		$builder->add('internalRoutes', 'choice', array(
 			'choices' => $this->getRouteChoices(),
 			'property_path' => false,
 			'required' => false,
 			'empty_data' => null,
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
 		));
 	}
 
