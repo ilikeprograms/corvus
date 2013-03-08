@@ -13,6 +13,9 @@ class SkillsType extends AbstractType
 	{
 		$builder->add('skill_name', 'text', array(
 			'label' => 'Skill Name:',
+			'attr' => array(
+				'placeholder' => 'E.g PHP',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
@@ -20,18 +23,27 @@ class SkillsType extends AbstractType
 
 		$builder->add('competency', 'text', array(
 			'label' => 'Competency:',
+			'attr' => array(
+				'placeholder' => 'E.g Average',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('years_experience', 'number', array(
 			'label' => 'Years Experience:',
+			'attr' => array(
+				'placeholder' => 'E.g 5',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('description', 'textarea', array(
 			'label' => 'Description:',
+			'attr' => array(
+				'placeholder' => 'E.g I have been using PHP for 5 years and really enjoy using it as a language and used it for my univesity project',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
@@ -41,9 +53,6 @@ class SkillsType extends AbstractType
 			'attr' => array(
 				'class' => 'case',
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 	}
 

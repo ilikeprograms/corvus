@@ -11,11 +11,17 @@ class ImageType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('image_title', 'text', array(
+			'attr' => array(
+				'placeholder' => 'E.g. My Picture',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
         ));
 		$builder->add('description', 'text', array(
+			'attr' => array(
+				'placeholder' => 'E.g A very nice picture',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),

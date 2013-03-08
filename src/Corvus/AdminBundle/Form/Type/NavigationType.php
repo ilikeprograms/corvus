@@ -15,24 +15,36 @@ class NavigationType extends AbstractType
 	{
 		$builder->add('navigation_order', 'number', array(
 			'label' => 'Order:',
+			'attr' => array(
+				'placeholder' => 'E.g 1',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('href', 'text', array(
 			'label' => 'Href (Link address):',
+			'attr' => array(
+				'placeholder' => 'E.g http://ilikeprograms.com',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('title', 'text', array(
 			'label' => 'Title:',
+			'attr' => array(
+				'placeholder' => 'E.g ilikeprograms',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('alt', 'text', array(
 			'label' => 'Alternative Text:',
+			'attr' => array(
+				'placeholder' => 'E.g ilikeprograms.com link',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
@@ -42,9 +54,6 @@ class NavigationType extends AbstractType
 			'attr' => array(
 				'class' => 'case',
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('internalRoutes', 'choice', array(
 			'choices' => $this->getRouteChoices(),

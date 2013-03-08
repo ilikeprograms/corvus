@@ -13,12 +13,18 @@ class EducationType extends AbstractType
 	{
 		$builder->add('education_institute', 'text', array(
 			'label' => 'Education Institute:',
+			'attr' => array(
+				'placeholder' => 'E.g Corvus University',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('qualification', 'text', array(
 			'label' => 'Qualification:',
+			'attr' => array(
+				'placeholder' => 'E.g. Web Development',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
@@ -48,9 +54,6 @@ class EducationType extends AbstractType
 			'attr' => array(
 				'class' => 'case',
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));	
 	}
 
