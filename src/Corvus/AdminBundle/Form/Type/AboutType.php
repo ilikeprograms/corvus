@@ -13,6 +13,9 @@ class AboutType extends AbstractType
 	{
 	 	$builder->add('firstname', 'text', array(
             'label' => 'Firstname:',
+            'label_attr' => array(
+                'class' => 'fontBold',
+            ),
         ));
         $builder->add('lastname', 'text', array(
             'label' => 'Lastname:',
