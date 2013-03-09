@@ -39,12 +39,18 @@ class EducationType extends AbstractType
 		));
 		$builder->add('duration', 'number', array(
 			'label' => 'Duration:',
+			'attr' => array(
+				'placeholder' => 'E.g 2',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('result', 'text', array(
 			'label' => 'Result:',
+			'attr' => array(
+				'placeholder' => 'E.g Honors Degree With a 1st',
+			),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
