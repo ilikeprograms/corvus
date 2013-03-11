@@ -6,7 +6,9 @@
     {% endspaceless %}</title>
 
     {% block metaDescription %}{% endblock %}
-    
+    {% if corvus_version %}
+    <meta name="generator" content="Corvus V. {{ corvus_version }}" />
+    {% endif %}
     {% stylesheets filter="cssrewrite"
         'bundles/corvusfrontend/css/design.css'
         'bundles/corvusfrontend/css/layout.css'
