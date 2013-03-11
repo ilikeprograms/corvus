@@ -21,6 +21,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        corvus_version: 1
 
 # Assetic Configuration
 assetic:
