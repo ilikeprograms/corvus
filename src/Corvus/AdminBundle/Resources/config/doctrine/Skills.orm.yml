@@ -15,4 +15,5 @@ Corvus\AdminBundle\Entity\Skills:
       type: decimal
     description:
       type: string
+      length: 2500
   lifecycleCallbacks: {  }
