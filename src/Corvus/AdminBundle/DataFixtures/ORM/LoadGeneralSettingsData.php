@@ -15,6 +15,7 @@ class LoadGeneralSettingsData implements FixtureInterface
 		$generalSettings->setPortfolioTitle('My Portfolio');
 		$generalSettings->setPortfolioSubtitle('Subtitle');
 		$generalSettings->setDisplaySubtitle(true);
+		$generalSettings->setDisplayLogo(false);
 		$generalSettings->setGlobalGeneralMetaTitle('iLikePrograms');
 		$generalSettings->setAboutMetaTitle('About | Thomas Coleman |');
 		$generalSettings->setEducationMetaTitle('Education | BSc Web Development |');
