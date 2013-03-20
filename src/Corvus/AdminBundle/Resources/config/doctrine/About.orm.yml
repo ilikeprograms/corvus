@@ -14,7 +14,7 @@ Corvus\AdminBundle\Entity\About:
     age:
       type: integer
     bio:
-      type: string
+      type: text
       length: 15000
     address:
       type: string
@@ -23,7 +23,7 @@ Corvus\AdminBundle\Entity\About:
       type: string
       nullable: true
     interests_hobbies:
-      type: string
+      type: text
       nullable: true
       length: 10000
     email_address:
