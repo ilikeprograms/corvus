@@ -57,11 +57,15 @@
 	<div class="boxDecoration">
 		
 		{% for skill in skills %}
-			<h3>Skill Name</h3>
-			<p>{{ skill.skillName }}</p>
+			<h2>{{ skill.skillName }}</h2>
+			<hr />
+			<br />
 
-			<h3>Competency</h3>
-			<p>{{ skill.competency }}</p>
+			<h3 class="displayInline">Competency -</h3>
+			<p class="displayInline">{{ skill.competency }}</p>
+
+			<br />
+			<br />
 
 			<h3 class="displayInline">Years Experience -</h3>
 			<p class="displayInline">{{ skill.yearsExperience }}</p>
