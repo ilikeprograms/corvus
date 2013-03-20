@@ -20,7 +20,7 @@ class DefaultController extends Controller
     {
         $education = $this->getDoctrine()
             ->getRepository('CorvusAdminBundle:Education')
-            ->FindAll();
+            ->findBy(array(), array('start_date' => 'DESC'));
 
         $skills = $this->getDoctrine()
             ->getRepository('CorvusAdminBundle:Skills')
