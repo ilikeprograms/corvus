@@ -63,6 +63,7 @@ class WorkHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('feedback_received', 'textarea', array(
 			'label' => 'Feedback Received:',
@@ -72,6 +73,7 @@ class WorkHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('reflection', 'textarea', array(
 			'label' => 'Reflection:',
@@ -81,6 +83,7 @@ class WorkHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('employer_phone_number', 'number', array(
 			'label' => 'Employer Phone Number:',
@@ -90,6 +93,7 @@ class WorkHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('meta_title', 'text', array(
 			'label' => 'Meta Title:',
@@ -108,6 +112,7 @@ class WorkHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('check', 'checkbox', array(
 			'property_path' => false,

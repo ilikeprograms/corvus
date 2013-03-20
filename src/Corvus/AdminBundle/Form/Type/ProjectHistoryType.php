@@ -46,6 +46,7 @@ class ProjectHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('feedback_received', 'textarea', array(
 			'label' => 'Feedback Received:',
@@ -55,6 +56,7 @@ class ProjectHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('reflection', 'textarea', array(
 			'label' => 'Reflection:',
@@ -64,6 +66,7 @@ class ProjectHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('url', 'url', array(
 			'label' => 'Url:',
@@ -73,6 +76,7 @@ class ProjectHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('images', 'collection', array(
 			'type' => new ImageType(),
@@ -100,6 +104,7 @@ class ProjectHistoryType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('check', 'checkbox', array(
 			'property_path' => false,

@@ -55,6 +55,7 @@ class AboutType extends AbstractType
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
         ));
         $builder->add('location', 'text', array(
             'label' => 'Location:',
@@ -64,6 +65,7 @@ class AboutType extends AbstractType
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
         ));
         $builder->add('interests_hobbies', 'textarea', array(
             'label' => 'Interests/Hobbies:',
@@ -73,6 +75,7 @@ class AboutType extends AbstractType
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
         ));
         $builder->add('email_address', 'email', array(
             'label' => 'Email Address:',
@@ -91,6 +94,7 @@ class AboutType extends AbstractType
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
         ));
         $builder->add('facebook', 'text', array(
             'label' => 'Facebook:',
@@ -100,6 +104,7 @@ class AboutType extends AbstractType
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
         ));
 	}
 

@@ -120,6 +120,7 @@ class GeneralSettingsType extends AbstractType
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
+            'required' => false,
 		));
 		$builder->add('footer_text', 'textarea', array(
 			'label' => 'Footer Text:',
