@@ -239,9 +239,6 @@
 		<img src="{{ asset('bundles/corvusfrontend/images/icons/projectHistory-large.png') }}" class="inlineIcon" />
 		<h2>{{ projectHistory.projectName }}</h2>
 		<hr />
-		{% if projectHistory.url %}
-			<p>{{ projectHistory.url }}</p>
-		{% endif %}
 	</header>
 	<div class="boxDecoration">
 		<section id="lightboxThumbnails">
@@ -265,20 +262,31 @@
 			{{ projectHistory.role }}
 		</p>
 
-		<h3>Process</h3>
-		<p>
-			{{ projectHistory.process }}
-		</p>
+		{% if projectHistory.process %}
+			<h3>Process</h3>
+			<p>
+				{{ projectHistory.process }}
+			</p>
+		{% endif %}
 
-		<h3>Feedback Received</h3>
-		<p>
-			<blockquote>{{ projectHistory.feedbackReceived }}</blockquote>
-		</p>
+		{% if projectHistory.feedbackReceived %}
+			<h3>Feedback Received</h3>
+			<p>
+				<blockquote>{{ projectHistory.feedbackReceived }}</blockquote>
+			</p>
+		{% endif %}
 
-		<h3>Reflection</h3>
-		<p>
-			{{ projectHistory.reflection }}
-		</p>
+		{% if projectHistory.reflection %}
+			<h3>Reflection</h3>
+			<p>
+				{{ projectHistory.reflection }}
+			</p>
+		{% endif %}
+
+		{% if projectHistory.url %}
+			<h3>Url</h3>
+			<p><a href="{{ projectHistory.url }}">{{ projectHistory.projectName }} URL</a></p>
+		{% endif %}
 	</div>
 
 

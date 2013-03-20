@@ -1,4 +1,4 @@
-{% extends 'CorvusFrontendBundle:Default:index.html.twig' %}
+ {% extends 'CorvusFrontendBundle:Default:index.html.twig' %}
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.globalWorkHistoryMetaTitle}} {{ workHistory.metaTitle }}{% endblock %}
 
@@ -16,26 +16,38 @@
 		<h3>Role</h3>
 		<p>{{ workHistory.role }}</p>
 
-		<h3>Duties</h3>
-		<p>{{ workHistory.duties }}</p>
+		{% if workHistory.duties %}
+			<h3>Duties</h3>
+			<p>{{ workHistory.duties }}</p>
+		{% endif %}
 
-		<h3>Feedback Received</h3>
-		<p>{{ workHistory.feedbackReceived }}</p>
+		{% if workHistory.feedbackReceived %}
+			<h3>Feedback Received</h3>
+			<p>{{ workHistory.feedbackReceived }}</p>
+		{% endif %}
 
-		<h3>Reflection</h3>
-		<p>{{ workHistory.reflection }}</p>
+		{% if workHistory.reflection %}
+			<h3>Reflection</h3>
+			<p>{{ workHistory.reflection }}</p>
+		{% endif %}
 		
 		<br />
 
-		<h2>Additional Employer Details</h2>
-		<hr/>
-		<br/>
+		{% if (workHistory.employerAddress or workHistory.employerPhoneNumber) %}
+			<h2>Additional Employer Details</h2>
+			<hr/>
+			<br/>
 
-		<h3>Address</h3>
-		<p>{{ workHistory.employerAddress }}</p>
+			{% if workHistory.employerAddress %}
+				<h3>Address</h3>
+				<p>{{ workHistory.employerAddress }}</p>
+			{% endif %}
 
-		<h3>Phone Number</h3>
-		<p>{{ workHistory.employerPhoneNumber }}</p>
+			{% if workHistory.employerPhoneNumber %}
+				<h3>Phone Number</h3>
+				<p>{{ workHistory.employerPhoneNumber }}</p>
+			{% endif %}
+		{% endif %}
 		
 	</div>
 {% endblock %}

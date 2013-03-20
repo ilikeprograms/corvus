@@ -24,6 +24,21 @@
 		<hr />
 		<p>{{ about.bio }}</p>
 
+		{% if about.address %}
+			<h3>Address</h3>
+			<p>{{ about.address }}</p>
+		{% endif %}
+
+		{% if about.location %}
+			<h3>Location</h3>
+			<p>{{ about.location }}</p>
+		{% endif %}
+
+		{% if about.interestsHobbies %}
+			<h3>Interests & Hobbies</h3>
+			<p>{{ about.interestsHobbies }}</p>
+		{% endif %}
+
 		<h3>Contact</h3>
 		<hr />
 		<p>Send me an email: {{ about.emailAddress }}</p>
