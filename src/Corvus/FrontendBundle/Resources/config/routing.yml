@@ -6,6 +6,10 @@ CorvusFrontendBundle_Education:
     pattern: /Education
     defaults: { _controller: CorvusFrontendBundle:Default:education }
 
+CorvusFrontendBundle_Skills:
+    pattern: /Skills
+    defaults: { _controller: CorvusFrontendBundle:Default:skills }
+
 CorvusFrontendBundle_About:
     pattern: /About
     defaults: { _controller: CorvusFrontendBundle:Default:about }
