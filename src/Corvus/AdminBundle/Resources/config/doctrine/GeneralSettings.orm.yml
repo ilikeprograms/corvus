@@ -24,6 +24,8 @@ Corvus\AdminBundle\Entity\GeneralSettings:
       type: string
     education_meta_title:
       type: string
+    skills_meta_title:
+      type: string
     work_history_meta_title:
       type: string
     project_history_meta_title:
