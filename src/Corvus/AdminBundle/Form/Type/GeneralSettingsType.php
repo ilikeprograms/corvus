@@ -76,6 +76,15 @@ class GeneralSettingsType extends AbstractType
                 'class' => 'fontBold',
             ),
 		));
+		$builder->add('skills_meta_title', 'text', array(
+			'label' => 'Skills Meta Title:',
+			'attr' => array(
+				'placeholder' => 'Skills |',
+			),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));
 		$builder->add('work_history_meta_title', 'text', array(
 			'label' => 'Work History Meta Title:',
 			'attr' => array(
