@@ -62,6 +62,11 @@ class GeneralSettings
     private $education_meta_title;
 
     /**
+     * @var string $skills_meta_title
+     */
+    private $skills_meta_title;
+
+    /**
      * @var string $work_history_meta_title
      */
     private $work_history_meta_title;
@@ -259,6 +264,26 @@ class GeneralSettings
     public function getEducationMetaTitle()
     {
         return $this->education_meta_title;
+    }
+
+    /**
+     * Set skills_meta_title
+     *
+     * @param string $skillsMetaTitle
+     */
+    public function setSkillsMetaTitle($skillsMetaTitle)
+    {
+        $this->skills_meta_title = $skillsMetaTitle;
+    }
+
+    /**
+     * Get skills_meta_title
+     *
+     * @return string
+     */
+    public function getSkillsMetaTitle()
+    {
+        return $this->skills_meta_title;
     }
 
     /**
