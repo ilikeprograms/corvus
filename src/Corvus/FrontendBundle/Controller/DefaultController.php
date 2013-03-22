@@ -22,12 +22,19 @@ class DefaultController extends Controller
             ->getRepository('CorvusAdminBundle:Education')
             ->findBy(array(), array('start_date' => 'DESC'));
 
+        return $this->render('CorvusFrontendBundle:Default:education.html.twig', array(
+            'education' => $education,
+        ));
+    }
+
+    public function skillsAction()
+    {
         $skills = $this->getDoctrine()
             ->getRepository('CorvusAdminBundle:Skills')
             ->FindAll();
 
-        return $this->render('CorvusFrontendBundle:Default:education.html.twig', array(
-            'education' => $education, 'skills' => $skills,
+        return $this->render('CorvusFrontendBundle:Default:skills.html.twig', array(
+            'skills' => $skills,
         ));
     }
 
