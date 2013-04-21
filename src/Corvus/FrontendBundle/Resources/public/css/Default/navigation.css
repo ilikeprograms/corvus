@@ -1,0 +1,68 @@
+#mainNavBar {
+    background: #000000;
+    border-bottom: 1px solid #999;
+    color: #EEEEEE;
+    display: table;
+    width: 100%;
+    font: 17px/1.4 "Tahoma", Arial, sans-serif normal;
+    padding-left: 1%;
+}
+
+#mainNav a {
+    display: block; 
+    padding: 10px; 
+}
+
+#adminBar a {
+    display: block; 
+    padding: 10px 0;
+}
+
+#mainNav a, #adminBar a {
+    color: #DDDDDD;
+    background-color: #222222;
+    font-weight: bold;
+}
+
+#mainNav a:hover, #adminBar a:hover {
+    background-color: #444444;
+    border-radius: none;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-style: italic;
+    -webkit-transition: color 0.7s ease-out, background-color 0.7s ease-out;
+    -moz-transition: color 0.7s ease-out, background-color 0.7s ease-out;
+}
+
+#mainNav {
+    display: table-cell;
+}
+
+#mainNav ul {
+    list-style: none;
+    display: table;
+}
+
+#mainNav ul li {
+    display: table-cell;
+    min-height: 100%;
+    overflow: hidden;
+    border-right: 1px solid #999;
+    font-weight: normal;
+}
+
+#mainNav ul>li:nth-of-type(2) {
+    border-left: 1px solid #999;
+}
+
+#mainNav ul>li:first-of-type {
+    border: none;
+    background: inherit;
+    padding-right: 1%;
+}
+
+#adminBar {
+    border-left: 1px solid #999;
+    display: table-cell;
+    text-align: center;
+}
