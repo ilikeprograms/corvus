@@ -1,0 +1,57 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.aboutMetaTitle }}{% endblock %}
+
+{% block mainContent %}
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/about-large.png') }}" class="inlineIcon" alt="Large About Icon" />
+		<hgroup>
+			<h2>About Me</h2>
+			<p>Some more info about good ol' me!</p>
+		</hgroup>
+	</header>
+	<div class="boxDecoration">
+		<h3>A little about me</h3>
+		<hr />
+		<p>
+			Firstname: {{ about.firstname }} <br />
+			Lastname: {{ about.lastname }} <br />
+			Age: {{ about.age }}
+		</p>
+		
+
+		<h3>Bio</h3>
+		<hr />
+		<p>{{ about.bio }}</p>
+
+		{% if about.address %}
+			<h3>Address</h3>
+			<p>{{ about.address }}</p>
+		{% endif %}
+
+		{% if about.location %}
+			<h3>Location</h3>
+			<p>{{ about.location }}</p>
+		{% endif %}
+
+		{% if about.interestsHobbies %}
+			<h3>Interests & Hobbies</h3>
+			<p>{{ about.interestsHobbies }}</p>
+		{% endif %}
+
+		<h3>Contact</h3>
+		<hr />
+		<p>Send me an email: {{ about.emailAddress }}</p>
+		{% if about.twitter %}
+			<p>Twitter: <a href="http://twitter.com/{{ about.twitter }}">{{ about.twitter }}</a></p>
+		{% endif %}
+		{% if about.facebook %}
+			<p>Facebook: <a href="http://facebook.com/{{ about.facebook }}">{{ about.facebook }}</a></p>
+		{% endif %}
+
+		<form action="{{ path('CorvusFrontendBundle_About') }}" method="post" {{ form_enctype(form) }}>
+			{{ form_widget(form) }}
+			<input type="submit" />
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.projectHistoryMetaTitle }}{% endblock %}
+
+{% block mainContent %}
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/projectHistory-large.png') }}" Alt="Large Project History Icon" class="inlineIcon" />
+		<hgroup>
+			<h2>Project History</h2>
+			<p>These are past projects that I have had the pleasure of working on. For the full project case study click the read more button</p>
+		</hgroup>
+	</header>
+	<div class="boxDecoration">
+		
+		{% for project in projectHistory %}
+			
+			<section>
+				<h3>{{ project.projectName }}</h3>
+				<div class="description">
+					{{ project.projectDescription }}
+				</div>
+				
+				<br />
+				<a href="{{ path('CorvusFrontendBundle_ProjectHistoryId', { 'id' : project.id }) }}">Read More</a>
+			</section>
+
+			{% if loop.last == false %}
+			<br />
+			<hr />
+			<br />
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endblock %}

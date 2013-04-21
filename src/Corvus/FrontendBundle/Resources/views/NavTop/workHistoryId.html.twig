@@ -1,0 +1,53 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.globalWorkHistoryMetaTitle}} {{ workHistory.metaTitle }}{% endblock %}
+
+{% block metaDescription %}<meta name="description" content="{{ workHistory.metaDescription }}" />{% endblock %}
+
+{% block mainContent %}
+	<header class="headerDecoration">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/workHistory-large.png') }}" alt="Large Work History Icon" class="inlineIcon" />
+		<hgroup>
+			<h2>{{ workHistory.employerName }}</h2>
+		</hgroup>
+		<hr />
+	</header>
+	<div class="boxDecoration">
+		<h3>Role</h3>
+		<p>{{ workHistory.role }}</p>
+
+		{% if workHistory.duties %}
+			<h3>Duties</h3>
+			<p>{{ workHistory.duties }}</p>
+		{% endif %}
+
+		{% if workHistory.feedbackReceived %}
+			<h3>Feedback Received</h3>
+			<p>{{ workHistory.feedbackReceived }}</p>
+		{% endif %}
+
+		{% if workHistory.reflection %}
+			<h3>Reflection</h3>
+			<p>{{ workHistory.reflection }}</p>
+		{% endif %}
+		
+		<br />
+
+		{% if (workHistory.employerAddress or workHistory.employerPhoneNumber) %}
+			<h2>Additional Employer Details</h2>
+			<hr/>
+			<br/>
+
+			{% if workHistory.employerAddress %}
+				<h3>Address</h3>
+				<p>{{ workHistory.employerAddress }}</p>
+			{% endif %}
+
+			{% if workHistory.employerPhoneNumber %}
+				<h3>Phone Number</h3>
+				<p>{{ workHistory.employerPhoneNumber }}</p>
+			{% endif %}
+		{% endif %}
+		
+	</div>
+{% endblock %}
