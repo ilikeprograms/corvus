@@ -142,18 +142,54 @@ class GeneralSettingsType extends AbstractType
 		));
 		$builder->add('template_choice', 'choice', array(
 			'label' => 'Template Choice:',
-			'choices'   => array('Default' => 'Default', 'NavTop' => 'NavTop'),
+			'choices'   => $this->getTemplateFolders(),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
 		$builder->add('theme_choice', 'choice', array(
 			'label' => 'Theme Choice:',
-			'choices'   => array('Default' => 'Default', 'NavTop' => 'NavTop'),
+			'choices'   => $this->getThemeFolders(),
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
 		));
+	}
+
+	private function getTemplateFolders()
+	{
+		$folders = array();
+		$directory = __DIR__."/../../../FrontendBundle/Resources/views";
+		$folderContents = scandir($directory);
+
+		if ($handle = opendir($directory)) {
+		    while (false !== ($folder = readdir($handle))) {
+		        if (strstr($folder, ".") == false) {
+		            $folders[$folder] = $folder;
+		        }
+		    }
+		    closedir($handle);
+		}
+
+		return $folders;
+	}
+
+	private function getThemeFolders()
+	{
+		$folders = array();
+		$directory = __DIR__."/../../../FrontendBundle/Resources/public/css";
+		$folderContents = scandir($directory);
+
+		if ($handle = opendir($directory)) {
+		    while (false !== ($folder = readdir($handle))) {
+		        if (strstr($folder, ".") == false) {
+		            $folders[$folder] = $folder;
+		        }
+		    }
+		    closedir($handle);
+		}
+
+		return $folders;
 	}
 
 	public function getDefaultOptions(array $options)
