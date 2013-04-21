@@ -1,4 +1,4 @@
-{% extends 'CorvusFrontendBundle:Default:index.html.twig' %}
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.projectHistoryMetaTitle }}{% endblock %}
 

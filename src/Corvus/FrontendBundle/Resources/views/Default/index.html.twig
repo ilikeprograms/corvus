@@ -9,13 +9,7 @@
     {% if corvus_version %}
     <meta name="generator" content="Corvus V. {{ corvus_version }}" />
     {% endif %}
-    {% stylesheets filter="cssrewrite"
-        'bundles/corvusfrontend/css/design.css'
-        'bundles/corvusfrontend/css/layout.css'
-        'bundles/corvusfrontend/css/navigation.css'
-    %}
-    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-    {% endstylesheets %}
+    {{ portfolio_info.includeStylesheets }}
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
     {% block javascript %}
     {% endblock %}
