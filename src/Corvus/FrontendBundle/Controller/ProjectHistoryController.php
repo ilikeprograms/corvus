@@ -9,6 +9,8 @@ class ProjectHistoryController extends Controller
 {
     public function findByIdAction($id)
     {
+        $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
+        
         $projectHistory = $this->getDoctrine()->getEntityManager()
             ->getRepository('CorvusAdminBundle:ProjectHistory')->Find($id);
 
@@ -27,7 +29,7 @@ class ProjectHistoryController extends Controller
             throw $this->createNotFoundException('No Project History found with id '.$id);
         }
 
-        return $this->render('CorvusFrontendBundle:Default:projectHistoryId.html.twig', array(
+        return $this->render('CorvusFrontendBundle:'.$template_choice.':projectHistoryId.html.twig', array(
             'projectHistory' => $projectHistory, 'thumbnails' => $thumbnails,
         ));
     }

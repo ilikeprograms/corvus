@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use Corvus\AdminBundle\Entity\Contact;
 use Corvus\AdminBundle\Form\Type\ContactType;
-use Corvus\FrontendBundle\Extension\PortfolioInfoRepository as PortfolioInfo;
 
 
 class DefaultController extends Controller
