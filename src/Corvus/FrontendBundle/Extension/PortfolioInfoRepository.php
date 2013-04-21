@@ -21,6 +21,16 @@ class PortfolioInfoRepository
 		$this->em = $entityManager;
 	}
 
+	public function getThemeChoice()
+	{
+		return $this->em->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1)->getThemeChoice();
+	}
+
+	public function getTemplateChoice()
+	{
+		return $this->em->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1)->getTemplateChoice();
+	}
+
 	public function getGeneralSettings()
 	{
 		return $this->em->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1);
@@ -41,6 +51,16 @@ class PortfolioInfoRepository
 	{
 		$portfolioTitle = $this->getGeneralSettings()->getPortfolioTitle();
 		echo '<img src="/uploads/logo.png" alt="'.$portfolioTitle.' logo" />';
+	}
+
+	public function includeStylesheets()
+	{
+		$themeChoice = $this->getThemeChoice();
+		echo @'
+		<link href="/bundles/corvusfrontend/css/'.$themeChoice.'/design.css" rel="stylesheet" type="text/css" />
+    	<link href="/bundles/corvusfrontend/css/'.$themeChoice.'/layout.css" rel="stylesheet" type="text/css" />
+    	<link href="/bundles/corvusfrontend/css/'.$themeChoice.'/navigation.css" rel="stylesheet" type="text/css" />
+    	';
 	}
 
 	public function includeAnalyticsTracking()
