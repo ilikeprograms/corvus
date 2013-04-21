@@ -140,6 +140,20 @@ class GeneralSettingsType extends AbstractType
                 'class' => 'fontBold',
             ),
 		));
+		$builder->add('template_choice', 'choice', array(
+			'label' => 'Template Choice:',
+			'choices'   => array('Default' => 'Default', 'NavTop' => 'NavTop'),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));
+		$builder->add('theme_choice', 'choice', array(
+			'label' => 'Theme Choice:',
+			'choices'   => array('Default' => 'Default', 'NavTop' => 'NavTop'),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));
 	}
 
 	public function getDefaultOptions(array $options)
