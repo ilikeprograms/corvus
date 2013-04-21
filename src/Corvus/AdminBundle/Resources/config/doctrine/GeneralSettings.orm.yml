@@ -41,6 +41,10 @@ Corvus\AdminBundle\Entity\GeneralSettings:
       type: string
       length: 1500
       nullable: true
+    template_choice:
+      type: string
+    theme_choice:
+      type: string
   lifecycleCallbacks:
     prePersist: [preUpload]
     preUpdate: [preUpload]
