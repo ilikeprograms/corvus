@@ -13,16 +13,17 @@ Corvus\AdminBundle\Entity\WorkHistory:
       type: string
     start_date:
       type: date
-    duration:
-      type: decimal
+    end_date:
+      type: date
     role:
       type: string
     duties:
       type: string
+      length: 2500
       nullable: true
     feedback_received:
       type: string
-      length: 500
+      length: 2000
       nullable: true
     reflection:
       type: string
