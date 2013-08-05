@@ -1,4 +1,16 @@
+[ChangeLog]
+
+This ChangeLog details all of the changes that were made (briefly) in each version of Corvus.
+The format of this ChangeLog is the following:
+
+[Version Number]
+git commit number
+commit short message
+*Note* can be any number of commits under a version number
+---------------------------------------------
+
 [1.02]
+b5764c9b995f8ff0d56521d53a700766496959a1
 Added function to scan for folder names in given directory
 
 [1.01]
