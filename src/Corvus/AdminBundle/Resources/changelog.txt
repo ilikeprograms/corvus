@@ -5,11 +5,15 @@ The format of this ChangeLog is the following:
 
 [Version Number]
 git commit number
-commit short message
+commit summary
 *Note* can be any number of commits under a version number
+
+Commit summaries will be added as the changes are made, then once commited the commit number is added here.
 ---------------------------------------------
 
 [1.02]
+785f9e210bf853f4b3b0d805e2f1779f4d3880f2
+Added description to detail purpose of changelog inside changelog.txt
 b5764c9b995f8ff0d56521d53a700766496959a1
 Added function to scan for folder names in given directory
 
