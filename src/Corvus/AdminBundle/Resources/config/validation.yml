@@ -82,7 +82,7 @@ Corvus\AdminBundle\Entity\WorkHistory:
             - NotNull: ~
         start_date:
             - NotNull: ~
-        duration:
+        end_date:
             - NotNull: ~
         role:
             - NotNull: ~
