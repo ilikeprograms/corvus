@@ -30,9 +30,9 @@ class WorkHistory
     private $start_date;
 
     /**
-     * @var decimal $duration
+     * @var date $end_date
      */
-    private $duration;
+    private $end_date;
 
     /**
      * @var string $role
@@ -140,23 +140,23 @@ class WorkHistory
     }
 
     /**
-     * Set duration
+     * Set end_date
      *
-     * @param decimal $duration
+     * @param date $endDate
      */
-    public function setDuration($duration)
+    public function setEndDate($endDate)
     {
-        $this->duration = $duration;
+        $this->end_date = $endDate;
     }
 
     /**
-     * Get duration
+     * Get end_date
      *
-     * @return decimal 
+     * @return date
      */
-    public function getDuration()
+    public function getEndDate()
     {
-        return $this->duration;
+        return $this->end_date;
     }
 
     /**
@@ -172,7 +172,7 @@ class WorkHistory
     /**
      * Get role
      *
-     * @return string 
+     * @return string
      */
     public function getRole()
     {
