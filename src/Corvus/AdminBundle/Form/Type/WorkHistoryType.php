@@ -37,7 +37,7 @@ class WorkHistoryType extends AbstractType
                 'class' => 'fontBold',
             ),
 		));
-		$builder->add('end_date', 'ndate', array(
+		$builder->add('end_date', 'date', array(
 			'label' => 'End Date:',
 			'input' => 'datetime',
 			'widget' => 'choice',
