@@ -20,7 +20,7 @@ Corvus\AdminBundle\Entity\ProjectHistory:
       nullable: true
     feedback_received:
       type: string
-      length: 500
+      length: 2000
       nullable: true
     reflection:
       type: string
