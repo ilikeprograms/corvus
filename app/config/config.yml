@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: ../../src/Corvus/AdminBundle/Resources/Config/config.yml }
+    - { resource: ../../src/Corvus/AdminBundle/Resources/Config/corvusdb.yml }
 
 framework:
     #esi:             ~
@@ -21,14 +23,11 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    globals:
-        corvus_version: 1
 
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [CorvusFrontendBundle, CorvusAdminBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -40,12 +39,12 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        driver:   %corvus.database_driver%
+        host:     %corvus.database_host%
+        port:     %corvus.database_port%
+        dbname:   %corvus.database_name%
+        user:     %corvus.database_user%
+        password: %corvus.database_password%
         charset:  UTF8
 
     orm:
@@ -61,30 +60,4 @@ swiftmailer:
     delivery_address:  ~
     spool:     { type: memory }
 
-services:
-    portfolioinforepository:
-        class: Corvus\FrontendBundle\Extension\PortfolioInfoRepository
-        arguments: [@doctrine.orm.default_entity_manager]
-    corvus.twig.extension.portfolio_info:
-        class: Corvus\FrontendBundle\Extension\PortfolioInfoRepositoryExtension
-        arguments: [@portfolioinforepository]
-        tags:
-            - { name: twig.extension }
-    validator.corvus.change_password:
-        class: Corvus\AdminBundle\Validator\Constraints\ChangePasswordValidator
-        arguments: [@service_container]
-        tags:
-            - { name: validator.constraint_validator, alias: cpassword_validator }
-    kernel.listener.covus_admin_exception_listener:
-        class: Corvus\AdminBundle\EventListener\CorvusAdminExceptionListener
-        arguments: [@twig]
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-    fileuploader:
-        class: Corvus\AdminBundle\Extension\FileUploader
-        tags:
-            - { name: doctrine.event_listener, event: preUpdate }
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: postPersist }
-            - { name: doctrine.event_listener, event: postUpdate }
-            - { name: doctrine.event_listener, event: postRemove }
+services: ~
