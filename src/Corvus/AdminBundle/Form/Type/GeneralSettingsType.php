@@ -158,30 +158,22 @@ class GeneralSettingsType extends AbstractType
 
 	private function getTemplateFolders()
 	{
-		$folders = array();
-		$directory = __DIR__."/../../../FrontendBundle/Resources/views";
-		$folderContents = scandir($directory);
-
-		if ($handle = opendir($directory)) {
-		    while (false !== ($folder = readdir($handle))) {
-		        if (strstr($folder, ".") == false) {
-		            $folders[$folder] = $folder;
-		        }
-		    }
-		    closedir($handle);
-		}
-
-		return $folders;
+		$dir = __DIR__."/../../../FrontendBundle/Resources/views";
+		return $this->scanFolderNamesInDirectory($dir);
 	}
 
 	private function getThemeFolders()
 	{
-		$folders = array();
-		$directory = __DIR__."/../../../FrontendBundle/Resources/public/css";
-		$folderContents = scandir($directory);
+		$dir = __DIR__."/../../../FrontendBundle/Resources/public/css";
+		return $this->scanFolderNamesInDirectory($dir);
+	}
 
-		if ($handle = opendir($directory)) {
+	private function scanFolderNamesInDirectory($dir)
+	{
+		$folders = array();
+		if ($handle = opendir($dir)) {
 		    while (false !== ($folder = readdir($handle))) {
+		    	// Ignore '.' and '..'
 		        if (strstr($folder, ".") == false) {
 		            $folders[$folder] = $folder;
 		        }
@@ -189,6 +181,7 @@ class GeneralSettingsType extends AbstractType
 		    closedir($handle);
 		}
 
+		// Return the array of folder names
 		return $folders;
 	}
 
