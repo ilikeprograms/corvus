@@ -37,11 +37,10 @@ class WorkHistoryType extends AbstractType
                 'class' => 'fontBold',
             ),
 		));
-		$builder->add('duration', 'number', array(
-			'label' => 'Duration:',
-			'attr' => array(
-				'placeholder' => 'E.g 2',
-			),
+		$builder->add('end_date', 'ndate', array(
+			'label' => 'End Date:',
+			'input' => 'datetime',
+			'widget' => 'choice',
 			'label_attr' => array(
                 'class' => 'fontBold',
             ),
