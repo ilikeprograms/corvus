@@ -15,9 +15,9 @@ class Navigation
     private $id;
 
     /**
-     * @var integer $navigation_order
+     * @var integer $row_order
      */
-    private $navigation_order;
+    private $row_order;
 
     /**
      * @var string $href
@@ -46,23 +46,23 @@ class Navigation
     }
 
     /**
-     * Set navigation_order
+     * Set row_order
      *
-     * @param integer $navigationOrder
+     * @param integer $rowOrder
      */
-    public function setNavigationOrder($navigationOrder)
+    public function setRowOrder($rowOrder)
     {
-        $this->navigation_order = $navigationOrder;
+        $this->row_order = $rowOrder;
     }
 
     /**
-     * Get navigation_order
+     * Get row_order
      *
      * @return integer 
      */
-    public function getNavigationOrder()
+    public function getRowOrder()
     {
-        return $this->navigation_order;
+        return $this->row_order;
     }
 
     /**
