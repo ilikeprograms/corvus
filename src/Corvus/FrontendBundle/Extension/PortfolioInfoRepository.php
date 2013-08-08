@@ -39,7 +39,7 @@ class PortfolioInfoRepository
 	private function getNavigation()
 	{
 		return $this->em->getRepository('CorvusAdminBundle:Navigation')
-			->findBy(array(), array('navigation_order' => 'ASC'));
+			->findBy(array(), array('row_order' => 'ASC'));
 	}
 
 	public function getAbout()
