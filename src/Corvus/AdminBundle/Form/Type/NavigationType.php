@@ -13,7 +13,7 @@ class NavigationType extends AbstractType
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('navigation_order', 'number', array(
+		$builder->add('row_order', 'number', array(
 			'label' => 'Order:',
 			'attr' => array(
 				'placeholder' => 'E.g 1',
