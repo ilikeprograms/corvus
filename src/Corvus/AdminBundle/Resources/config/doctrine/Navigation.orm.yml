@@ -7,7 +7,7 @@ Corvus\AdminBundle\Entity\Navigation:
       id: true
       generator:
         strategy: AUTO
-    navigation_order:
+    row_order:
       type: integer
     href:
       type: string

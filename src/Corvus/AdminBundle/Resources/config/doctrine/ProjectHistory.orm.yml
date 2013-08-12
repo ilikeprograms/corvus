@@ -7,6 +7,8 @@ Corvus\AdminBundle\Entity\ProjectHistory:
       id: true
       generator:
         strategy: AUTO
+    row_order:
+      type: integer
     project_name:
       type: string
     project_description:

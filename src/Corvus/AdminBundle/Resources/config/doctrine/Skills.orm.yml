@@ -7,6 +7,8 @@ Corvus\AdminBundle\Entity\Skills:
       id: true
       generator:
         strategy: AUTO
+    row_order:
+      type: integer
     skill_name:
       type: string
     competency:
