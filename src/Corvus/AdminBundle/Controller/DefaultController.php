@@ -182,7 +182,7 @@ class DefaultController extends Controller
 
         $navigation = $this->getDoctrine()
             ->getRepository('CorvusAdminBundle:Navigation')
-            ->findBy(array(), array('navigation_order' => 'ASC'));
+            ->findBy(array(), array('row_order' => 'ASC'));
 
         foreach ($navigation as $navItem) {
             $navigationTableView->getNavItems()->add($navItem);
