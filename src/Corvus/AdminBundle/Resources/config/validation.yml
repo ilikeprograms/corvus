@@ -17,6 +17,8 @@ Corvus\AdminBundle\Entity\About:
 
 Corvus\AdminBundle\Entity\Education:
     properties:
+        row_order:
+            - NotNull: ~
         education_institute:
             - NotNull: ~
         qualification:
@@ -43,7 +45,7 @@ Corvus\AdminBundle\Entity\Image:
 
 Corvus\AdminBundle\Entity\Navigation:
     properties:
-        navigation_order:
+        row_order:
             - NotNull: ~
         href:
             - NotNull: ~
@@ -54,6 +56,8 @@ Corvus\AdminBundle\Entity\Navigation:
 
 Corvus\AdminBundle\Entity\ProjectHistory:
     properties:
+        row_order:
+            - NotNull: ~
         project_name:
             - NotNull: ~
         project_description:
@@ -65,6 +69,8 @@ Corvus\AdminBundle\Entity\ProjectHistory:
 
 Corvus\AdminBundle\Entity\Skills:
     properties:
+        row_order:
+            - NotNull: ~
         skill_name:
             - NotNull: ~
         competency:
@@ -76,6 +82,8 @@ Corvus\AdminBundle\Entity\Skills:
 
 Corvus\AdminBundle\Entity\WorkHistory:
     properties:
+        row_order:
+            - NotNull: ~
         employer_name:
             - NotNull: ~
         employer_address:
