@@ -18,17 +18,17 @@
     	</thead>
     	<tbody>
 		    {% for item in form.education %}
-            
 		    	<tr>
-		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
-		    	<td>{{ item.vars.value.educationinstitute }}</td>
-                <td>{{ item.vars.value.qualification }}</td>
-                <td>{{ item.vars.value.result }}</td>
-		    	<td>
-                    <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
-                    <a href="{{ path('CorvusAdminBundle_EditEducation', { id : item.vars.value.id }) }}">Edit</a> |
-                    <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
-                    <a href="{{ path('CorvusAdminBundle_DeleteEducationId', { id : item.vars.value.id }) }}">Delete</a></td>
+        	    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+                    <td>{{ item.vars.value.rowOrder }}</td>
+        	    	<td>{{ item.vars.value.educationinstitute }}</td>
+                    <td>{{ item.vars.value.qualification }}</td>
+                    <td>{{ item.vars.value.result }}</td>
+        	    	<td>
+                        <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
+                        <a href="{{ path('CorvusAdminBundle_EditEducation', { id : item.vars.value.id }) }}">Edit</a> |
+                        <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
+                        <a href="{{ path('CorvusAdminBundle_DeleteEducationId', { id : item.vars.value.id }) }}">Delete</a></td>
                 </tr>
 		    {% endfor %}
     	</tbody>

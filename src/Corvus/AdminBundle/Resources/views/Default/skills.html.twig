@@ -18,9 +18,9 @@
     	</thead>
     	<tbody>
 		    {% for item in form.skills %}
-            
 		    	<tr>
 		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+                <td>{{ item.vars.value.rowOrder }}</td>
 		    	<td>{{ item.vars.value.skillName }}</td>
                 <td>{{ item.vars.value.competency }}</td>
                 <td>{{ item.vars.value.yearsExperience }}</td>

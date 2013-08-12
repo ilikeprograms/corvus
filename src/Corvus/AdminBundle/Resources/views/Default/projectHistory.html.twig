@@ -16,11 +16,10 @@
             <th>Actions</th></tr>
     	</thead>
     	<tbody>
-
 		    {% for item in form.projectHistory %}
-            
 		    	<tr>
 		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+                <td>{{ item.vars.value.rowOrder }}</td>
 		    	<td>{{ item.vars.value.projectName }}</td>
                 <td>{{ item.vars.value.role }}</td>  
 		    	<td>
