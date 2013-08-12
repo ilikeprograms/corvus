@@ -15,6 +15,11 @@ class Education
     private $id;
 
     /**
+     * @var integer $row_order
+     */
+    private $row_order;
+
+    /**
      * @var string $education_institute
      */
     private $education_institute;
@@ -57,6 +62,26 @@ class Education
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set row_order
+     *
+     * @param integer $rowOrder
+     */
+    public function setRowOrder($rowOrder)
+    {
+        $this->row_order = $rowOrder;
+    }
+
+    /**
+     * Get row_order
+     *
+     * @return integer 
+     */
+    public function getRowOrder()
+    {
+        return $this->row_order;
     }
 
     /**
