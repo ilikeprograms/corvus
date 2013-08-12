@@ -11,6 +11,15 @@ class SkillsType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options )
 	{
+		$builder->add('row_order', 'number', array(
+			'label' => 'Order:',
+			'attr' => array(
+				'placeholder' => 'E.g 1',
+			),
+			'label_attr' => array(
+                'class' => 'fontBold',
+            ),
+		));
 		$builder->add('skill_name', 'text', array(
 			'label' => 'Skill Name:',
 			'attr' => array(
