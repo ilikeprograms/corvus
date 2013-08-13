@@ -18,6 +18,18 @@ CorvusAdminBundle_NewEducation:
     pattern: /Education/New
     defaults: { _controller: CorvusAdminBundle:Education:new }
 
+CorvusAdminBundle_UpEducationOrder:
+    pattern: /Education/Order/Up/{id}
+    defaults: { _controller: CorvusAdminBundle:Education:orderUp }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DownEducationOrder:
+    pattern: /Education/Order/Down/{id}
+    defaults: { _controller: CorvusAdminBundle:Education:orderDown }
+    requirements:
+        id: \d+
+
 CorvusAdminBundle_EditEducation:
     pattern: /Education/Edit/id/{id}
     defaults: { _controller: CorvusAdminBundle:Education:edit }
@@ -40,6 +52,18 @@ CorvusAdminBundle_NewProjectHistory:
     pattern: /ProjectHistory/New
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:new }
 
+CorvusAdminBundle_UpProjectHistoryOrder:
+    pattern: /ProjectHistory/Order/Up/{id}
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:orderUp }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DownProjectHistoryOrder:
+    pattern: /ProjectHistory/Order/Down/{id}
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:orderDown }
+    requirements:
+        id: \d+
+
 CorvusAdminBundle_EditProjectHistory:
     pattern: /ProjectHistory/Edit/id/{id}
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:edit }
@@ -61,6 +85,18 @@ CorvusAdminBundle_WorkHistory:
 CorvusAdminBundle_NewWorkHistory:
     pattern: /WorkHistory/New
     defaults: { _controller: CorvusAdminBundle:WorkHistory:new }
+
+CorvusAdminBundle_UpWorkHistoryOrder:
+    pattern: /WorkHistory/Order/Up/{id}
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:orderUp }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DownWorkHistoryOrder:
+    pattern: /WorkHistory/Order/Down/{id}
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:orderDown }
+    requirements:
+        id: \d+
 
 CorvusAdminBundle_EditWorkHistory:
     pattern: /WorkHistory/Edit/id/{id}
@@ -111,6 +147,18 @@ CorvusAdminBundle_Skills:
 CorvusAdminBundle_NewSkills:
     pattern: /Skills/New
     defaults: { _controller: CorvusAdminBundle:Skills:new }
+
+CorvusAdminBundle_UpSkillsOrder:
+    pattern: /Skills/Order/Up/{id}
+    defaults: { _controller: CorvusAdminBundle:Skills:orderUp }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DownSkillsOrder:
+    pattern: /Skills/Order/Down/{id}
+    defaults: { _controller: CorvusAdminBundle:Skills:orderDown }
+    requirements:
+        id: \d+
 
 CorvusAdminBundle_EditSkills:
     pattern: /Skills/Edit/id/{id}
