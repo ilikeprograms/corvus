@@ -26,10 +26,29 @@
                     <td>{{ item.vars.value.role }}</td>
                     <td>{{ item.vars.value.startDate|date("d/m/y") }}</td>
     		    	<td>
+                        {% if form.workHistory|length > 1 %}
+                            {% if loop.first == true %}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% else %}
+                                <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : loop.index }) }}">
+                                <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
+                            {% endif %}
+                            {% if loop.last == false %}
+                                <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : loop.index }) }}">
+                                <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
+                            {% else %}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% endif %}
+                            |
+                        {% endif %}
                         <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_EditWorkHistory', { id : item.vars.value.id }) }}">Edit</a> |
+                        <a href="{{ path('CorvusAdminBundle_EditWorkHistory', { id : item.vars.value.id }) }}">
+                            Edit</a>
+                        |
                         <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_DeleteWorkHistoryId', { id : item.vars.value.id }) }}">Delete</a></td>
+                        <a href="{{ path('CorvusAdminBundle_DeleteWorkHistoryId', { id : item.vars.value.id }) }}">
+                            Delete</a>
+                    </td>
                 </tr>
 		    {% endfor %}
     	</tbody>
