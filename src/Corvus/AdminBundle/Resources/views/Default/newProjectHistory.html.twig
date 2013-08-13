@@ -12,6 +12,13 @@
             <legend>Project History Fields:</legend>             
 
             <div>
+                {{ form_label(form.row_order) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.row_order) }}
+                {{ form_widget(form.row_order) }}
+            </div>
+            
+            <div>
                 {{ form_label(form.project_name) }}
                 <span class="asterix">*</span>
                 {{ form_errors(form.project_name) }}

@@ -11,6 +11,13 @@
 		<fieldset>
 			<legend>Skill Fields:</legend>
 
+            <div>
+                {{ form_label(form.row_order) }}
+                <span class="asterix">*</span>
+                {{ form_errors(form.row_order) }}
+                {{ form_widget(form.row_order) }}
+            </div>
+            
 			<div>
                 {{ form_label(form.skill_name) }}
                 <span class="asterix">*</span>
