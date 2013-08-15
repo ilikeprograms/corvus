@@ -2,29 +2,37 @@
 
 namespace Corvus\AdminBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request,
 
-use Corvus\AdminBundle\Entity\Navigation;
-use Corvus\AdminBundle\Form\Type\NavigationType;
+    Corvus\AdminBundle\Entity\Navigation,
+    Corvus\AdminBundle\Form\Type\NavigationType,
+    Corvus\AdminBundle\Entity\NavigationTableView,
+    Corvus\AdminBundle\ILP\Controller\TableViewController;
 
-
-class NavigationController extends Controller
+class NavigationController extends TableViewController
 {
+    public function __construct()
+    {
+        // Give the TableViewController parent the data it needs to construct the table view and methods
+        parent::__construct(
+            new Navigation(),
+            new NavigationType(),
+            NavigationTableView::getDataName(),
+            NavigationTableView::getTypeName()
+        );
+    }
+
     public function newAction(Request $request)
     {
-        $navigation = new Navigation();
-
-        $form = $this->createForm(new NavigationType(), $navigation);
+        $form = $this->createForm($this->_formType, $this->_entity);
         $form->remove('check');
 
         if ($request->getMethod() == 'POST') {
-            $navigationRequest = $request->get('navigation');
+            $navigationRequest = $request->get($this->_formType->getName());
 
             if($navigationRequest['internalRoutes'] != null)
             {
-                $navigationArray = array('_token' => $navigationRequest['_token'], 'navigation_order' => $navigationRequest['navigation_order'], 'href' => $navigationRequest['internalRoutes'], 'title' => $navigationRequest['title'], 'alt' => $navigationRequest['alt'], 'internalRoutes' => $navigationRequest['internalRoutes']);    
+                $navigationArray = array('_token' => $navigationRequest['_token'], 'row_order' => $navigationRequest['row_order'], 'href' => $navigationRequest['internalRoutes'], 'title' => $navigationRequest['title'], 'alt' => $navigationRequest['alt'], 'internalRoutes' => $navigationRequest['internalRoutes']);    
 
                 $request->request->set('navigation', $navigationArray);
             }
@@ -33,7 +41,7 @@ class NavigationController extends Controller
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($navigation);
+                $em->persist($this->_entity);
                 $em->flush();
 
                 $this->get('session')->setFlash('notice', 'New Navigation was added!');
@@ -48,96 +56,43 @@ class NavigationController extends Controller
             'form' => $form->createView(),
         ));
     }
-
-    public function orderDownAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $navigation = $em->getRepository('CorvusAdminBundle:Navigation')
-            ->findBy(array(), array('navigation_order' => 'ASC'));
-
-        $navItemToChangeOrder = $navigation[$id]->getNavigationOrder();
-
-        $higherNavOrder = $navItemToChangeOrder + 1;
-
-        foreach ($navigation as $nav) {
-            if($nav->getNavigationOrder() == $higherNavOrder)
-            {
-                $nav->setNavigationOrder($navItemToChangeOrder);
-                $em->persist($nav);
-            }
-        }
-
-        $navigation[$id]->setNavigationOrder($navItemToChangeOrder + 1);
-        $em->persist($navigation[$id]);
-
-        $em->flush();
-
-        $this->get('session')->setFlash('notice', 'Navigation order has been updated!');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_Navigation'));
-    }
-
-    public function orderUpAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $navigation = $em->getRepository('CorvusAdminBundle:Navigation')
-            ->findBy(array(), array('navigation_order' => 'ASC'));
-
-        $navItemToChangeOrder = $navigation[$id]->getNavigationOrder();
-
-        $lowerNavOrder = $navItemToChangeOrder - 1;
-
-        foreach ($navigation as $nav) {
-            if($nav->getNavigationOrder() == $lowerNavOrder)
-            {
-                $nav->setNavigationOrder($navItemToChangeOrder);
-                $em->persist($nav);
-            }
-        }
-
-        $navigation[$id]->setNavigationOrder($navItemToChangeOrder - 1);
-        $em->persist($navigation[$id]);
-
-        $em->flush();
-
-        $this->get('session')->setFlash('notice', 'Navigation order has been updated!');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_Navigation'));
-    }
+    
 
     public function editAction($id, Request $request)
-    {
-        $navigation = $this->getDoctrine()
+    { 
+        $this->_entity = $this->getDoctrine()
             ->getRepository('CorvusAdminBundle:Navigation')
             ->find($id);
 
-        if (!$navigation) {
-            throw $this->createNotFoundException('No navigation found with id '.$id);
+        if (!$this->_entity) {
+            throw $this->createNotFoundException('No navigation found with id ' . $id);
         }
 
-        $form = $this->createForm(new NavigationType(), $navigation);
-        $form->remove('navigation_order');
+        $form = $this->createForm($this->_formType, $this->_entity);
+        $form->remove('row_order');
         $form->remove('check');
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
 
             $internalRoute = $form->get('internalRoutes')->getData();
-
-            if($internalRoute != null)
-            {
+            if($internalRoute != null) {
                 $navigationArray = array(
                     '_token' => $form->get('_token')->getData(),
-                    'navigation_order' => $form->get('navigation_order')->getData(),
+                    'row_order' => $form->get('row_order')->getData(),
                     'href' => $internalRoute,
                     'title' => $form->get('title')->getData(),
                     'alt' => $form->get('alt')->getData(),
-                    'internalRoutes' => $internalRoute );
+                    'internalRoutes' => $internalRoute
+                );
 
                 $request->request->set('navigation', $navigationArray);
                 $form->bindRequest($request);
             }
+            
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($navigation);
+                $em->persist($this->_entity);
                 $em->flush();
 
                 $this->get('session')->setFlash('notice', 'Your changes were saved!');
@@ -151,40 +106,5 @@ class NavigationController extends Controller
         return $this->render('CorvusAdminBundle:Default:editNavigation.html.twig', array(
             'form' => $form->createView(),
         ));
-    }
-
-    public function deleteAction($id, Request $request)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $data = $request->request->get('navigationTableView');
-
-        if(isset($data)) {
-
-            foreach ($data['navItems'] as $key => $value) {
-                if(is_int((int)$value['check']) == true)
-                {
-                    $navToRemove = $em
-                       ->getRepository('CorvusAdminBundle:Navigation')
-                       ->Find($value['check']);
-                    if(isset($navToRemove))
-                    {
-                        $em->remove($navToRemove);
-                    }
-                }
-            }
-        }
-        if(!$id == null)
-        {
-            $navToRemove = $em->getRepository('CorvusAdminBundle:Navigation')
-                ->Find($id);
-
-            $em->remove($navToRemove);
-        }
-
-        $em->flush();
-
-        $this->get('session')->setFlash('notice', 'Selected Navigation was deleted!');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_Navigation'));
     }
 }
