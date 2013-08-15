@@ -3,19 +3,35 @@
 // src/Corvus/AdminBundle/Entity/EducationTableView.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection,
 
-class EducationTableView
+    Corvus\AdminBundle\ILP\Entity\ITableView;
+
+class EducationTableView implements ITableView
 {
-    protected $education;
+    const DATA_NAME = 'education';
+    const TYPE_NAME = 'educationTableView';
+    
+
+    protected $_education;
 
     public function __construct()
     {
-        $this->education = new ArrayCollection();
+        $this->_education = new ArrayCollection();
     }
 
     public function getEducation()
     {
-        return $this->education;
+        return $this->_education;
+    }
+
+    public static function getDataName()
+    {
+        return self::DATA_NAME;
+    }
+
+    public static function getTypeName()
+    {
+        return self::TYPE_NAME;
     }
 }

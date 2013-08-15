@@ -3,19 +3,35 @@
 // src/Corvus/AdminBundle/Entity/NavigationTableView.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection,
+    
+    Corvus\AdminBundle\ILP\Entity\ITableView;
 
-class NavigationTableView
+class NavigationTableView implements ITableView
 {
-    protected $navItems;
+    const DATA_NAME = 'navItems';
+    const TYPE_NAME = 'navigationTableView';
+    
+
+    protected $_navItems;
 
     public function __construct()
     {
-        $this->navItems = new ArrayCollection();
+        $this->_navItems = new ArrayCollection();
     }
 
     public function getNavItems()
     {
-        return $this->navItems;
+        return $this->_navItems;
+    }
+
+    public static function getDataName()
+    {
+        return self::DATA_NAME;
+    }
+
+    public static function getTypeName()
+    {
+        return self::TYPE_NAME;
     }
 }

@@ -3,19 +3,33 @@
 // src/Corvus/AdminBundle/Entity/ProjectHistoryTableView.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection,
 
-class ProjectHistoryTableView
+    Corvus\AdminBundle\ILP\Entity\ITableView;
+
+class ProjectHistoryTableView implements ITableView
 {
-    protected $projectHistory;
+    const DATA_NAME = 'projectHistory';
+    const TYPE_NAME = 'projectHistoryTableView';
+    
+    
+    protected $_projectHistory;
 
     public function __construct()
     {
-        $this->projectHistory = new ArrayCollection();
+        $this->_projectHistory = new ArrayCollection();
     }
 
     public function getProjectHistory()
     {
-        return $this->projectHistory;
+        return $this->_projectHistory;
+    }
+    
+    public static function getDataName() {
+        return self::DATA_NAME;
+    }
+    
+    public static function getTypeName() {
+        return self::TYPE_NAME;
     }
 }

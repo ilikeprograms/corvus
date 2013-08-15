@@ -3,19 +3,33 @@
 // src/Corvus/AdminBundle/Entity/SkillTableView.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection,
 
-class SkillsTableView
+    Corvus\AdminBundle\ILP\Entity\ITableView;
+
+class SkillsTableView implements ITableView
 {
-    protected $skills;
+    const DATA_NAME = 'skills';
+    const TYPE_NAME = 'skillsTableView';
+    
+    
+    protected $_skills;
 
     public function __construct()
     {
-        $this->skills = new ArrayCollection();
+        $this->_skills = new ArrayCollection();
     }
 
     public function getSkills()
     {
-        return $this->skills;
+        return $this->_skills;
+    }
+    
+    public function getDataName() {
+        return self::DATA_NAME;
+    }
+    
+    public function getTypeName() {
+        return self::TYPE_NAME;
     }
 }
