@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection,
  */
 class ProjectHistory extends FileUpload implements FileUploadInterface, ITableViewEntity
 {
-    const DATA_NAME = 'projectHistory';
+    const ENTITY_NAME = 'projectHistory';
     
     
     /**

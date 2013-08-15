@@ -9,7 +9,7 @@ use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
  */
 class Skills implements ITableViewEntity
 {
-    const DATA_NAME = 'skills';
+    const ENTITY_NAME = 'skills';
     
     
     /**
