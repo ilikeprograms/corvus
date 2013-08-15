@@ -1,6 +1,7 @@
 Corvus\AdminBundle\Entity\WorkHistory:
   type: entity
   table: null
+  repositoryClass: Corvus\AdminBundle\Entity\WorkHistoryRepository
   fields:
     id:
       type: integer

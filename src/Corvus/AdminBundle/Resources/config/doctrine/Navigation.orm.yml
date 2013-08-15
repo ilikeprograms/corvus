@@ -1,6 +1,7 @@
 Corvus\AdminBundle\Entity\Navigation:
   type: entity
   table: null
+  repositoryClass: Corvus\AdminBundle\Entity\NavigationRepository
   fields:
     id:
       type: integer

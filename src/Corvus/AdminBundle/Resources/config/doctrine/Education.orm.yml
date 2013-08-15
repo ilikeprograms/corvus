@@ -1,6 +1,7 @@
 Corvus\AdminBundle\Entity\Education:
   type: entity
   table: null
+  repositoryClass: Corvus\AdminBundle\Entity\EducationRepository
   fields:
     id:
       type: integer
