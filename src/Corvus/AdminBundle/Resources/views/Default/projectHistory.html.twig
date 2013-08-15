@@ -28,11 +28,11 @@
                             {% if loop.first == true %}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             {% else %}
-                                <a href="{{ path('CorvusAdminBundle_UpNavigationOrder', { id : loop.index }) }}">
+                                <a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : loop.index }) }}">
                                 <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
                             {% endif %}
                             {% if loop.last == false %}
-                                <a href="{{ path('CorvusAdminBundle_DownNavigationOrder', { id : loop.index }) }}">
+                                <a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : loop.index }) }}">
                                 <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
                             {% else %}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,11 +40,11 @@
                             |
                         {% endif %}
                         <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_EditNavigation', { id : item.vars.value.id }) }}">
+                        <a href="{{ path('CorvusAdminBundle_EditProjectHistory', { id : item.vars.value.id }) }}">
                             Edit</a>
                         |
                         <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_DeleteNavigationId', { id : item.vars.value.id }) }}">
+                        <a href="{{ path('CorvusAdminBundle_DeleteProjectHistoryId', { id : item.vars.value.id }) }}">
                             Delete</a>
                     </td>
                 </tr>
