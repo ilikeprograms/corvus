@@ -25,11 +25,11 @@ class SkillsTableView implements ITableView
         return $this->_skills;
     }
     
-    public function getDataName() {
+    public static function getDataName() {
         return self::DATA_NAME;
     }
     
-    public function getTypeName() {
+    public static function getTypeName() {
         return self::TYPE_NAME;
     }
 }
