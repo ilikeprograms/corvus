@@ -31,7 +31,7 @@ abstract class TableViewController extends AbstractTableViewController
                 $em->persist($this->_entity);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice', 'New ' . $this->_entity->getName() . ' was added!');
+                $this->get('session')->setFlash('notice', 'New ' . ucfirst($this->_entity->getName()) . ' was added!');
 
                 return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->_entity->getRepoName()));
             } else {
