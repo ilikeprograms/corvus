@@ -3,7 +3,7 @@
 namespace Corvus\AdminBundle\ILP\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-	Symfony\Component\HttpFoundation\Request;
+    Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractTableViewController extends Controller
 {
