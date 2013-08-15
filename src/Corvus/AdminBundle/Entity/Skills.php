@@ -2,13 +2,16 @@
 
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
 
 /**
  * Corvus\AdminBundle\Entity\Skills
  */
-class Skills
+class Skills implements ITableViewEntity
 {
+    const DATA_NAME = 'skills';
+    
+    
     /**
      * @var integer $id
      */
@@ -148,5 +151,15 @@ class Skills
     public function getDescription()
     {
         return $this->description;
+    }
+    
+    public static function getName()
+    {
+        return self::ENTITY_NAME;
+    }
+
+    public static function getRepoName()
+    {
+        return ucfirst(self::ENTITY_NAME);
     }
 }

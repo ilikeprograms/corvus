@@ -2,16 +2,20 @@
 
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Corvus\AdminBundle\Model\FileUploadInterface;
-use Corvus\AdminBundle\Entity\FileUpload;
+use Doctrine\Common\Collections\ArrayCollection,
+        
+    Corvus\AdminBundle\Model\FileUploadInterface,
+    Corvus\AdminBundle\Entity\FileUpload,
+    Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
 
 /**
  * Corvus\AdminBundle\Entity\ProjectHistory
  */
-class ProjectHistory extends FileUpload implements FileUploadInterface
+class ProjectHistory extends FileUpload implements FileUploadInterface, ITableViewEntity
 {
+    const DATA_NAME = 'projectHistory';
+    
+    
     /**
      * @var integer $id
      */
@@ -321,5 +325,15 @@ class ProjectHistory extends FileUpload implements FileUploadInterface
     public function getMetaDescription()
     {
         return $this->meta_description;
+    }
+    
+    public static function getName()
+    {
+        return self::ENTITY_NAME;
+    }
+
+    public static function getRepoName()
+    {
+        return ucfirst(self::ENTITY_NAME);
     }
 }

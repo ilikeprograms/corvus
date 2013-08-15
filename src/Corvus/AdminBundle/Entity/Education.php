@@ -2,13 +2,16 @@
 
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
 
 /**
  * Corvus\AdminBundle\Entity\Education
  */
-class Education
+class Education implements ITableViewEntity
 {
+    const ENTITY_NAME = 'education';
+
+    
     /**
      * @var integer $id
      */
@@ -182,5 +185,15 @@ class Education
     public function getResult()
     {
         return $this->result;
+    }
+
+    public static function getName()
+    {
+        return self::ENTITY_NAME;
+    }
+
+    public static function getRepoName()
+    {
+        return ucfirst(self::ENTITY_NAME);
     }
 }

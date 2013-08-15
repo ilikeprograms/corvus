@@ -2,13 +2,16 @@
 
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
 
 /**
  * Corvus\AdminBundle\Entity\WorkHistory
  */
-class WorkHistory
+class WorkHistory implements ITableViewEntity
 {
+    const DATA_NAME = 'workHistory';
+    
+    
     /**
      * @var integer $id
      */
@@ -322,5 +325,15 @@ class WorkHistory
     public function getMetaDescription()
     {
         return $this->meta_description;
+    }
+    
+    public static function getName()
+    {
+        return self::ENTITY_NAME;
+    }
+
+    public static function getRepoName()
+    {
+        return ucfirst(self::ENTITY_NAME);
     }
 }
