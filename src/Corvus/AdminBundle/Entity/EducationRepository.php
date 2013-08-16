@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Entity/EducationRepository.php
 namespace Corvus\AdminBundle\Entity;
 
 use Doctrine\ORM\EntityManager,

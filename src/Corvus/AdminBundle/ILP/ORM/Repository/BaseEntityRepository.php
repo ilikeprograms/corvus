@@ -1,10 +1,10 @@
 <?php
 
+// src/Corvus/AdminBundle/ILP/ORM/Repository/BaseEntityRepository.php
 namespace Corvus\AdminBundle\ILP\ORM\Repository;
 
 use Doctrine\ORM\EntityRepository,
-    Doctrine\ORM\EntityManager,
-    Doctrine\ORM\Mapping\ClassMetadata;
+    Doctrine\ORM\EntityManager;
 
 class BaseEntityRepository extends EntityRepository
 {

@@ -1,7 +1,6 @@
 <?php
 
 // src/Corvus/AdminBundle/Form/Type/SkillsType.php
-
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;

@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/FrontendBundle/CorvusFrontendExtension
 namespace Corvus\FrontendBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;

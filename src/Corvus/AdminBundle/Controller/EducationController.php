@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Controller/EducationController.php
 namespace Corvus\AdminBundle\Controller;
 
 use Corvus\AdminBundle\Entity\Education,

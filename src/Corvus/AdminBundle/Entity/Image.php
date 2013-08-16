@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Entity/Image.php
 namespace Corvus\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

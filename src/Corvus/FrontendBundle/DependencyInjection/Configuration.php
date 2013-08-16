@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/FrontendBundle/DependencyInjection/Configuration.php
 namespace Corvus\FrontendBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

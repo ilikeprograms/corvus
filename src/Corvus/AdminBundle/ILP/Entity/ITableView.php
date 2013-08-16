@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/ILP/Entity/ITableView.php
 namespace Corvus\AdminBundle\ILP\Entity;
 
 interface ITableView

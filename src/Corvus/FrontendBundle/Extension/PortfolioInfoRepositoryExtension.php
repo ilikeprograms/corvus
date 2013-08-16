@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/FrontendBundle/Extension/PortfolioInfoRepositoryExtension
 namespace Corvus\FrontendBundle\Extension;
 
 use Corvus\FrontendBundle\Extension\GeneralSettings;

@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/DependencyInjection/Configuration.php
 namespace Corvus\AdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Entity/Navigation.php
 namespace Corvus\AdminBundle\Entity;
 
 use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;

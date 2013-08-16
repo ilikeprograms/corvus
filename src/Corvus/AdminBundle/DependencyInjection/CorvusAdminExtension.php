@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/DependencyInjection/CorvusAdminExtension.php
 namespace Corvus\AdminBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;

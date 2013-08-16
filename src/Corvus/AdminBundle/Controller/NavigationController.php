@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Controller/NavigationController.php
 namespace Corvus\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request,

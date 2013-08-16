@@ -1,7 +1,6 @@
 <?php
 
 // src/Corvus/AdminBundle/Entity/FileUpload.php
-
 namespace Corvus\AdminBundle\Entity;
 
 class FileUpload

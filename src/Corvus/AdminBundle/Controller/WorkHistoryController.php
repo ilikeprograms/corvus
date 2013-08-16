@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Controller/WorkHistoryController.php
 namespace Corvus\AdminBundle\Controller;
 
 use Corvus\AdminBundle\Entity\WorkHistory,

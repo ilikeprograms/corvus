@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/ILP/Controller/AbstractTableViewController.php
 namespace Corvus\AdminBundle\ILP\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,

@@ -1,7 +1,6 @@
 <?php
 
 // src/Corvus/AdminBundle/Extension/FileUploader.php
-
 namespace Corvus\AdminBundle\Extension;
 
 use Symfony\Component\HttpFoundation\File\File;

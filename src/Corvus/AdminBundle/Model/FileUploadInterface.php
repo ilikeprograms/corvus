@@ -1,7 +1,6 @@
 <?php
 
 // src/Corvus/AdminBundle/Model/FileUploadInterface.php
-
 namespace Corvus\AdminBundle\Model;
 
 interface FileUploadInterface

@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/AdminBundle/Entity/WorkHistory.php
 namespace Corvus\AdminBundle\Entity;
 
 use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;

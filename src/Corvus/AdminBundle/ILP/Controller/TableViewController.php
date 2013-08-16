@@ -1,9 +1,9 @@
 <?php
 
+// src/Corvus/AdminBundle/ILP/Controller/TableViewController.php
 namespace Corvus\AdminBundle\ILP\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Request,
+use Symfony\Component\HttpFoundation\Request,
 
     Corvus\AdminBundle\ILP\Controller\AbstractTableViewController;
 

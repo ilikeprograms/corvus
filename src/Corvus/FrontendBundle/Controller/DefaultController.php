@@ -1,5 +1,6 @@
 <?php
 
+// src/Corvus/FrontendBundle/Controller/DefaultController.php
 namespace Corvus\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
