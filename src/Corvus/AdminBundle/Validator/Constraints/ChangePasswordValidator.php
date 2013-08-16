@@ -3,11 +3,11 @@
 // src/Corvus/AdminBundle/Validator/Constraints/ChangePasswordValidator.php
 namespace Corvus\AdminBundle\Validator\Constraints;
 
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\ExecutionContext;
+use Symfony\Component\Validator\Constraint,
+    Symfony\Component\Validator\ConstraintValidator,
+    Symfony\Component\Validator\ExecutionContext,
+    Symfony\Component\DependencyInjection\ContainerInterface;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ChangePasswordValidator extends ConstraintValidator
 {

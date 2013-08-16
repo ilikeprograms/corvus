@@ -5,6 +5,7 @@ namespace Corvus\AdminBundle\Entity;
 
 use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
 
+
 /**
  * Corvus\AdminBundle\Entity\WorkHistory
  */

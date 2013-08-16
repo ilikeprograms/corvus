@@ -3,7 +3,6 @@
 // src/Corvus/AdminBundle/Entity/About.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Corvus\AdminBundle\Entity\About

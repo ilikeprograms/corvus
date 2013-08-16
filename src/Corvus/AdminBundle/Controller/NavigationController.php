@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Entity\NavigationTableView,
     Corvus\AdminBundle\ILP\Controller\TableViewController;
 
+
 class NavigationController extends TableViewController
 {
     public function __construct()

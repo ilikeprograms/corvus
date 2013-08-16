@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request,
 
     Corvus\AdminBundle\ILP\Controller\AbstractTableViewController;
 
+
 abstract class TableViewController extends AbstractTableViewController
 {
     public function __construct($entity, $formType, $tableViewDataName, $tableViewTypeName)

@@ -3,6 +3,7 @@
 // src/Corvus/AdminBundle/Model/ChangePasswordModel.php
 namespace Corvus\AdminBundle\Model;
 
+
 class ChangePasswordModel {
 	protected $current_password;
 	protected $new_password;

@@ -3,9 +3,11 @@
 // src/Corvus/AdminBundle/DataFixtures/ORM/LoadWorkHistoryData.php
 namespace Corvus\AdminBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Corvus\AdminBundle\Entity\WorkHistory;
+use Doctrine\Common\Persistence\ObjectManager,
+    Doctrine\Common\DataFixtures\FixtureInterface,
+
+    Corvus\AdminBundle\Entity\WorkHistory;
+
 
 class LoadWorkHistoryData implements FixtureInterface
 {

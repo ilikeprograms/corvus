@@ -3,16 +3,15 @@
 // src/Corvus/FontendBundle/Extension/PortfolioInfoRepository.php
 namespace Corvus\FrontendBundle\Extension;
 
-use Doctrine\ORM\EntityManager;
-//use Corvus\AdminBundle\Entity\GeneralSettings;
-use Symfony\Component\Routing\Matcher\UrlMatcher;
-use Symfony\Component\Routing\RequestContext;
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\Route;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Routing\Loader\YamlFileLoader;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Symfony\Component\Routing\Generator\UrlGenerator;
+use Doctrine\ORM\EntityManager,
+
+    Symfony\Component\Routing\Matcher\UrlMatcher,
+    Symfony\Component\Routing\RequestContext,
+    Symfony\Component\Config\FileLocator,
+    Symfony\Component\Routing\Loader\YamlFileLoader,
+    Symfony\Component\Routing\Exception\ResourceNotFoundException,
+    Symfony\Component\Routing\Generator\UrlGenerator;
+
 
 class PortfolioInfoRepository
 {

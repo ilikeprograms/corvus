@@ -3,7 +3,6 @@
 // src/Corvus/FrontendBundle/Extension/PortfolioInfoRepositoryExtension
 namespace Corvus\FrontendBundle\Extension;
 
-use Corvus\FrontendBundle\Extension\GeneralSettings;
 
 class PortfolioInfoRepositoryExtension extends \Twig_Extension
 {

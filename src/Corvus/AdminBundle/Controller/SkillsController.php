@@ -8,6 +8,7 @@ use Corvus\AdminBundle\Entity\Skills,
     Corvus\AdminBundle\Entity\SkillsTableView,
     Corvus\AdminBundle\ILP\Controller\TableViewController;
 
+
 class SkillsController extends TableViewController
 {
     public function __construct()

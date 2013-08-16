@@ -3,8 +3,8 @@
 // src/Corvus/AdminBundle/Entity/User.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * Corvus\AdminBundle\Entity\User

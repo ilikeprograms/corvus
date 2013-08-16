@@ -3,9 +3,6 @@
 // src/Corvus/AdminBundle/Entity/GeneralSettings.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Corvus\AdminBundle\Model\FileUploadInterface;
-use Corvus\AdminBundle\Entity\FileUpload;
 
 /**
  * Corvus\AdminBundle\Entity\GeneralSettings

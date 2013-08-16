@@ -3,8 +3,9 @@
 // src/Corvus/AdminBundle/Form/Type/AboutType.php
 namespace Corvus\AdminBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\AbstractType,
+    Symfony\Component\Form\FormBuilderInterface;
+
 
 class AboutType extends AbstractType
 {

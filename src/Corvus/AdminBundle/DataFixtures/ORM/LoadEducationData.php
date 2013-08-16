@@ -3,9 +3,11 @@
 // src/Corvus/AdminBundle/DataFixtures/ORM/LoadEducationData.php
 namespace Corvus\AdminBundle\DataFixtures\ORM;
 
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Corvus\AdminBundle\Entity\Education;
+use Doctrine\Common\Persistence\ObjectManager,
+    Doctrine\Common\DataFixtures\FixtureInterface,
+
+    Corvus\AdminBundle\Entity\Education;
+
 
 class LoadEducationData implements FixtureInterface
 {

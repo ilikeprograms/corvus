@@ -3,11 +3,12 @@
 // src/Corvus/FrontendBundle/Controller/DefaultController.php
 namespace Corvus\FrontendBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
-use Corvus\AdminBundle\Entity\Contact;
-use Corvus\AdminBundle\Form\Type\ContactType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle,
+
+    Corvus\AdminBundle\Entity\Contact,
+    Corvus\AdminBundle\Form\Type\ContactType;
 
 
 class DefaultController extends Controller

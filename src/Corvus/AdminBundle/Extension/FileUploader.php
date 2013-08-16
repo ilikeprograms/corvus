@@ -3,11 +3,12 @@
 // src/Corvus/AdminBundle/Extension/FileUploader.php
 namespace Corvus\AdminBundle\Extension;
 
-use Symfony\Component\HttpFoundation\File\File;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
-use Corvus\AdminBundle\Entity\FileUpload;
-use Corvus\AdminBundle\Entity\Image;
+use Doctrine\ORM\Event\LifecycleEventArgs,
+    Doctrine\ORM\Event\PreUpdateEventArgs,
+    
+    Corvus\AdminBundle\Entity\FileUpload,
+    Corvus\AdminBundle\Entity\Image;
+
 
 /**
  * FileUploader service

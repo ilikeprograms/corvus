@@ -3,10 +3,11 @@
 // src/Corvus/AdminBundle/Form/Type/NavigationType.php
 namespace Corvus\AdminBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Routing\Loader\YamlFileLoader;
+use Symfony\Component\Form\AbstractType,
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\Config\FileLocator,
+    Symfony\Component\Routing\Loader\YamlFileLoader;
+
 
 class NavigationType extends AbstractType
 {

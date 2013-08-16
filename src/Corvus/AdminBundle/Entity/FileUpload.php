@@ -3,6 +3,7 @@
 // src/Corvus/AdminBundle/Entity/FileUpload.php
 namespace Corvus\AdminBundle\Entity;
 
+
 class FileUpload
 {
     public function getAbsolutePath()

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection,
 
     Corvus\AdminBundle\ILP\Entity\ITableView;
 
+
 class ProjectHistoryTableView implements ITableView
 {
     const DATA_NAME = 'projectHistory';

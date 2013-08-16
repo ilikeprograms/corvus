@@ -6,6 +6,7 @@ namespace Corvus\AdminBundle\ILP\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Request;
 
+
 abstract class AbstractTableViewController extends Controller
 {
 	/* Define Attributes that the grandchld of this class will need to instantiate

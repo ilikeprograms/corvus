@@ -6,6 +6,7 @@ namespace Corvus\AdminBundle\ILP\ORM\Repository;
 use Doctrine\ORM\EntityRepository,
     Doctrine\ORM\EntityManager;
 
+
 class BaseEntityRepository extends EntityRepository
 {
 	protected $_entityName;

@@ -8,6 +8,7 @@ use Corvus\AdminBundle\Entity\Education,
     Corvus\AdminBundle\Entity\EducationTableView,
     Corvus\AdminBundle\ILP\Controller\TableViewController;
 
+
 class EducationController extends TableViewController
 {
     public function __construct()

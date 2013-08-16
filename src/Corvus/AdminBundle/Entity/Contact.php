@@ -3,7 +3,6 @@
 // src/Corvus/AdminBundle/Entity/Contact.php
 namespace Corvus\AdminBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Contact
