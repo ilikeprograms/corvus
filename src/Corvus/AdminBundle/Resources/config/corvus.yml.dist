@@ -1,0 +1,7 @@
+parameters:
+    corvus.database_driver:   pdo_mysql
+    corvus.database_host:     localhost
+    corvus.database_port:     3306
+    corvus.database_name:     corvus
+    corvus.database_user:     root
+    corvus.database_password: root
