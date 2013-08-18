@@ -60,6 +60,7 @@ class PortfolioInfoRepository
 		<link href="/bundles/corvusfrontend/css/'.$themeChoice.'/design.css" rel="stylesheet" type="text/css" />
     	<link href="/bundles/corvusfrontend/css/'.$themeChoice.'/layout.css" rel="stylesheet" type="text/css" />
     	<link href="/bundles/corvusfrontend/css/'.$themeChoice.'/navigation.css" rel="stylesheet" type="text/css" />
+        <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/mobile.css" rel="stylesheet" type="text/css" />
     	';
 	}
 
