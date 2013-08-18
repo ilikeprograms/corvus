@@ -1,8 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: ../../src/Corvus/AdminBundle/Resources/Config/config.yml }
-    - { resource: ../../src/Corvus/AdminBundle/Resources/Config/corvusdb.yml }
+    - { resource: ../../src/Corvus/AdminBundle/Resources/config/config.yml }
+    - { resource: ../../src/Corvus/AdminBundle/Resources/config/corvusdb.yml }
 
 framework:
     #esi:             ~
