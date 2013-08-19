@@ -12,7 +12,7 @@ class NavigationRepository extends BaseEntityRepository
 {
     public function __construct(EntityManager $em)
     {
-            $this->_entityName = Navigation::getRepoName();
-            parent::__construct($em);
+        $this->_entityName = Navigation::getRepoName();
+        parent::__construct($em);
     }
 }
