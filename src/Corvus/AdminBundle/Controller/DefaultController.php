@@ -93,7 +93,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('CorvusAdminBundle:Default:generalSettings.html.twig', array(
-            'form' => $form->createView(), 'changePForm' => $changePForm->createView(),
+            'form' => $form->createView(),
+            'changePForm' => $changePForm->createView(),
         ));
     }
 
