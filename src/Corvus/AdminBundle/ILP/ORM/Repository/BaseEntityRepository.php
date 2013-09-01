@@ -15,6 +15,13 @@ class BaseEntityRepository extends EntityRepository
      * @var string $_entityName 
      */
     protected $_entityName;
+    
+    /**
+     * The original name of the Entity, e.g ProjectHistory.
+     * 
+     * @var string $_originalEntityName
+     */
+    protected $_originalEntityName;
 
     
     /**
@@ -26,6 +33,12 @@ class BaseEntityRepository extends EntityRepository
      */
     public function __construct(EntityManager $em)
     {
+        /* Store the OriginalEntityName before it gets transformed by the parent constructor
+         * Turns from ProjectHistory to Corvus\AdminBundle\Entity\ProjectHistory etc
+         * when the parent is constructed.
+         */
+        $this->_originalEntityName = $this->_entityName;
+        
         /* Get the Class metadata for the Entity Repository that is inheriting from this class
          * _entityName should be setup in the constructor of the child class
          * 
@@ -80,5 +93,40 @@ class BaseEntityRepository extends EntityRepository
     	$this->_em->persist($entity);
     	$this->_em->persist($otherEntity);
     	$this->_em->flush();
+    }
+    
+    /**
+     * Find all Files which are linked to the Entity matching $entity_id
+     * Where the file_type is 'images' (Finds all images).
+     * 
+     * @param type $entity_id The id of the Entity to find the 'image' File(s)
+     * @return array All of the Files of file_type image linked to the Entity
+     */
+    public function findEntityImages($entity_id)
+    {
+        $images = $this->getEntityManager()->getRepository('CorvusAdminBundle:File')
+            ->findBy(array(
+                'file_type'   => 'image',
+                'entity_name' => $this->_originalEntityName,
+                'entity_id'   => $entity_id)
+            );
+
+        return $images;
+    }
+    
+    /**
+     * Find all Files which are linked to the Entity matching $entity_id.
+     * 
+     * @param int $entity_id The id of the Entity to find the File(s)
+     * @return array All of the Files linked to the Entity
+     */
+    public function findEntityFiles($entity_id) {
+        $files = $this->getEntityManager()->getRepository('CorvusAdminBundle:File')
+            ->findBy(array(
+                'entity_name' => $this->_originalEntityName,
+                'entity_id'   => $entity_id)
+            );
+        
+        return $files;
     }
 }
