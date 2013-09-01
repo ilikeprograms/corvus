@@ -39,9 +39,4 @@ Corvus\AdminBundle\Entity\ProjectHistory:
     meta_description:
       type: string
       nullable: true
-  oneToMany:
-    images:
-      targetEntity: Corvus\AdminBundle\Entity\Image
-      mappedBy: ProjectHistory
-      cascade: [merge, persist, remove]
   lifecycleCallbacks: { }
