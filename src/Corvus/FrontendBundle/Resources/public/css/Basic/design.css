@@ -138,3 +138,13 @@ p {
     border-top: 1px solid #FFFFFF;
     background: #465770;
 }
+
+ul.square-list {
+    display: block;
+    list-style: square;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
