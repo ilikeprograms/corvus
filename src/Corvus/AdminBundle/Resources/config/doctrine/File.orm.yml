@@ -1,0 +1,26 @@
+Corvus\AdminBundle\Entity\File:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    original_filename:
+      type: string
+    filename:
+      type: string
+    file_type:
+      type: string
+    file_title:
+      type: string
+    entity_name:
+      type: string
+    entity_id:
+      type: integer
+    description:
+      type: string
+    updated:
+      type: datetime
+  lifecycleCallbacks: {  }
