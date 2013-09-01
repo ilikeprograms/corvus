@@ -14,6 +14,7 @@ class LoadEducationData implements FixtureInterface
 	public function load(ObjectManager $manager)
 	{
 		$education = new Education();
+                $education->setRowOrder(1);
 		$education->setEducationInstitute('My First School');
 		$education->setQualification('My First Qualification');
 		$education->setStartDate(new \DateTime("now"));

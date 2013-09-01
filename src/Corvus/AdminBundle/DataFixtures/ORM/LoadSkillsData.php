@@ -14,6 +14,7 @@ class LoadSkillsData implements FixtureInterface
 	public function load(ObjectManager $manager)
 	{
 		$skills = new Skills();
+                $skills->setRowOrder(1);
 		$skills->setSkillName('Cooking');
 		$skills->setCompetency('Master Chef!');
 		$skills->setYearsExperience(17);

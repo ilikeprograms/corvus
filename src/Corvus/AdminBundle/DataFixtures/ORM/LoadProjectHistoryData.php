@@ -14,6 +14,7 @@ class LoadProjectHistoryData implements FixtureInterface
 	public function load(ObjectManager $manager)
 	{
 		$projectHistory = new ProjectHistory();
+                $projectHistory->setRowOrder(1);
 		$projectHistory->setProjectName('Secretary Lucy\'s Fansite');
 		$projectHistory->setProjectDescription('Creating and constantly looking at a fansite for the fantastic secretary lucy.');
 		$projectHistory->setRole('Creator and administrator');

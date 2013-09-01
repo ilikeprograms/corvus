@@ -21,10 +21,13 @@ class LoadGeneralSettingsData implements FixtureInterface
 		$generalSettings->setGlobalGeneralMetaTitle('iLikePrograms');
 		$generalSettings->setAboutMetaTitle('About | Thomas Coleman |');
 		$generalSettings->setEducationMetaTitle('Education | BSc Web Development |');
+                $generalSettings->setSkillsMetaTitle('Skills |');
 		$generalSettings->setProjectHistoryMetaTitle('Project History |');
 		$generalSettings->setWorkHistoryMetaTitle('Work History |');
 		$generalSettings->setGlobalWorkHistoryMetaTitle('Work Case Study |');
 		$generalSettings->setGlobalProjectHistoryMetaTitle('Project Case Study |');
+                $generalSettings->setTemplateChoice('Default');
+                $generalSettings->setThemeChoice('Default');
 
 		$manager->persist($generalSettings);
 		$manager->flush();

@@ -14,10 +14,11 @@ class LoadWorkHistoryData implements FixtureInterface
 	public function load(ObjectManager $manager)
 	{
 		$workHistory = new WorkHistory();
+                $workHistory->setRowOrder(1);
 		$workHistory->setEmployerName('Grumpy Pants Co');
 		$workHistory->setEmployerAddress('01 Dark Side of the Moon');
 		$workHistory->setStartDate(new \DateTime('01/01/0001'));
-		$workHistory->setDuration(5);
+		$workHistory->setEndDate(new \DateTime('01/01/0003'));
 		$workHistory->setRole('Pants Maker');
 		$workHistory->setDuties('Making pants for people to wear. Hanging around the water cooler. Staring at the secretary.');
 		$workHistory->setFeedbackReceived('Badass at makings pants. Banned from talking to the secretary :(');
