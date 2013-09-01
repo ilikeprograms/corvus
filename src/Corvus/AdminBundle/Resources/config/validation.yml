@@ -34,9 +34,9 @@ Corvus\AdminBundle\Entity\GeneralSettings:
         portfolio_title:
             - NotNull: ~
 
-Corvus\AdminBundle\Entity\Image:
+Corvus\AdminBundle\Entity\File:
     properties:
-        image_title:
+        file_title:
             - NotNull: ~
         description:
             - NotNull: ~
