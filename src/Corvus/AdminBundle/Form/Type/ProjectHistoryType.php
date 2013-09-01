@@ -88,8 +88,8 @@ class ProjectHistoryType extends AbstractType
             ),
             'required' => false,
 		));
-		$builder->add('images', 'collection', array(
-			'type' => new ImageType(),
+		$builder->add('files', 'collection', array(
+			'type' => new FileType(),
 			'allow_add' => true,
 			'prototype' => true,
 			'by_reference' => false,
