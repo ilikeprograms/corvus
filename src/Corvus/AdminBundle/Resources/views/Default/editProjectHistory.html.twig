@@ -40,21 +40,24 @@
 		</fieldset>
 
 		<fieldset>
-			<legend>Images:</legend>
-            <div id="projectHistory_images" data-prototype="{{ form_widget(form.images.vars.prototype) | e }}">
-			{% for image in form.images %}
+			<legend>Files:</legend>
+            <div id="projectHistory_files" data-prototype="{{ form_widget(form.files.vars.prototype) | e }}">
+			{% for file in form.files %}
                 <div>
-    				{{ form_row(image) }}
+                    <p><span class="fontBold">Original Filename:</span> {{ file.vars.value.originalFilename }}</p>
+    				{{ form_row(file) }}
+                    {% if file.vars.value.fileType == 'image' %}
                     <div>
-        				<img src="/uploads/{{ thumbnails[loop.index - 1] }}" alt="{{ image.vars.value.imageTitle }}" style="display: block;" />
+        				<img src="/uploads/{{ thumbnails[file.vars.value.filename] }}" alt="{{ file.vars.value.fileTitle }}" style="display: block;" />
                         <br />
                         <hr />
                         <br />
                     </div>
+                    {% endif %}
                 </div>
 			{% endfor %}
 
-            <div><a href="#" id="add-another-image">Add an Image</a></div>
+            <div><a href="#" id="add-another-file">Add a File</a></div>
             </div>
 		</fieldset>
 
@@ -76,39 +79,37 @@
 		&nbsp;
 		<input type="submit" class="submit" value="Submit" />
 	
-        <script type="text/javascript">
-            // keep track of how many email fields have been rendered
-            var emailCount = '{{ form.images | length }}';
+        <script type="text/javascript">           
+            var fileCount = '{{ form.files | length }}';
 
             jQuery(document).ready(function() {
 
-                // Find all current images
-                var children = jQuery('#projectHistory_images').children('div').children('label');
+                // Find all current files
+                var children = jQuery('#projectHistory_files').children('div').children('label');
 
-                // Add "Image" before each image number
+                // Add "File" before each file number
                 $.each(children, function(index, value){
                     var oldHtml = this.innerHTML;
-                    var newHtml = "Image " + oldHtml;
+                    var newHtml = "File " + oldHtml;
                     this.innerHTML = newHtml;
                     
                 });
 
-                jQuery('#add-another-image').click(function() {
-                    var emailList = jQuery('#projectHistory_images');
+                jQuery('#add-another-file').click(function() {
+                    var fileList = jQuery('#projectHistory_files');
 
                     // grab the prototype template
-                    var newWidget = '<label class="required">Image ' + emailCount.toString() + '</label>';
-                    newWidget += emailList.attr('data-prototype');
+                    var newWidget = '<label class="required">File ' + fileCount.toString() + '</label>';
+                    newWidget += fileList.attr('data-prototype');
                     // replace the "__name__" used in the id and name of the prototype
-                    // with a number that's unique to our emails
-                    // end name attribute looks like name="contact[emails][2]"
-                    newWidget = newWidget.replace(/__name__/g, emailCount);
-                    emailCount++;
+                    // with a number that's unique to our files
+                    newWidget = newWidget.replace(/__name__/g, fileCount);
+                    fileCount++;
 
-                    // create a new list element and add it to our list
+                    // create a new div element and add it to our list
                     var newLi = jQuery('<div></div>').html(newWidget);
                     newLi.append("<hr /><br />");
-                    $('#add-another-image').parent().before(newLi);
+                    $('#add-another-file').parent().before(newLi);
 
                     return false;
                 });

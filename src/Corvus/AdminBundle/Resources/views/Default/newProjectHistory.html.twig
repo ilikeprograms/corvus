@@ -47,9 +47,9 @@
         </fieldset>
 
         <fieldset>
-            <legend>Images:</legend>
+            <legend>Files:</legend>
             <div>
-                {{ form_widget(form.images) }}
+                {{ form_widget(form.files) }}
             </div>
         </fieldset>
 
@@ -74,10 +74,10 @@
 
         <script type="text/javascript">
         // Get the div that holds the collection of tags
-        var collectionHolder = $('#projectHistory_images');
+        var collectionHolder = $('#projectHistory_files');
 
         // setup an "add a tag" link
-        var $addTagLink = $('<a name="addAnImage" href="#">Add an Image</a>');
+        var $addTagLink = $('<a name="addAnFile" href="#">Add an File</a>');
         var $newLinkLi = $('<div></div>').append($addTagLink);
 
         jQuery(document).ready(function() {
@@ -96,7 +96,7 @@
             // Get the data-prototype we explained earlier
             var prototype = collectionHolder.attr('data-prototype');
 
-            var newForm = prototype.replace(/__name__label__/g, "Image " + (collectionHolder.children("div").length -1).toString());
+            var newForm = prototype.replace(/__name__label__/g, "File " + (collectionHolder.children("div").length -1).toString());
             // Replace '$$name$$' in the prototype's HTML to
             // instead be a number based on the current collection's length.
             newForm = newForm.replace(/__name__/g, collectionHolder.children().length -1);
