@@ -242,13 +242,16 @@
 	</header>
 	<div class="boxDecoration">
 		<section id="lightboxThumbnails">
-			{% for thumbnail in thumbnails %}
-				<a href="/uploads/{{ projectHistory.images[loop.index -1].path }}" class="lightbox"
-				data-title="{{ projectHistory.images[loop.index -1].imageTitle}}"
-				data-description="{{ projectHistory.images[loop.index -1].description }}"
+			{% for file in projectHistory.files %}
+                            
+                            {% if file.fileType == 'image' %}
+				<a href="/uploads/{{ file.filename }}" class="lightbox" 
+				data-title="{{ file.fileTitle }}" 
+				data-description="{{ file.description }}" 
 				data-currentNum="{{ loop.index -1 }}">
-					<img src="/uploads/{{ thumbnail }}" alt="{{ projectHistory.images[loop.index -1].imageTitle}}" />
+					<img src="/uploads/{{ thumbnails[file.filename] }}" alt="{{ file.fileTitle}}" />
 				</a>
+                             {% endif %}
 			{% endfor %}
 		</section>
 
@@ -287,7 +290,20 @@
 			<h3>Url</h3>
 			<p><a href="{{ projectHistory.url }}">{{ projectHistory.projectName }} URL</a></p>
 		{% endif %}
-	</div>
+                
+                {% if projectHistory.files %}
+                    <h3>Files</h3>
+                    {% for file in projectHistory.files %}
+                        {% if file.fileType != 'image' %}
+                            <ul class="square-list">
+                                <li>
+                                    <a href="/uploads/{{ file.filename }}" target="_blank">{{ file.originalFilename }}</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+        </div>
 
 
 {% endblock %}
