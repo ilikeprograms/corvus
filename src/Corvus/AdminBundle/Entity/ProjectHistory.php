@@ -2,18 +2,15 @@
 
 // src/Corvus/AdminBundle/Entity/ProjectHistory.php
 namespace Corvus\AdminBundle\Entity;
-
-use Doctrine\Common\Collections\ArrayCollection,
         
-    Corvus\AdminBundle\Model\FileUploadInterface,
-    Corvus\AdminBundle\Entity\FileUpload,
+use Corvus\AdminBundle\Entity\FileUpload,
     Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
 
 
 /**
  * Corvus\AdminBundle\Entity\ProjectHistory
  */
-class ProjectHistory extends FileUpload implements FileUploadInterface, ITableViewEntity
+class ProjectHistory extends FileUpload implements ITableViewEntity
 {
     const ENTITY_NAME = 'projectHistory';
     
@@ -64,11 +61,6 @@ class ProjectHistory extends FileUpload implements FileUploadInterface, ITableVi
     private $url;
 
     /**
-     * @var arrayCollection $images
-     */
-    public $images;
-
-    /**
      * @var datetime $updated
      */
     public $updated;
@@ -85,7 +77,6 @@ class ProjectHistory extends FileUpload implements FileUploadInterface, ITableVi
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
         $this->updated = new \DateTime('now');
     }
 
@@ -258,35 +249,25 @@ class ProjectHistory extends FileUpload implements FileUploadInterface, ITableVi
     {
         return $this->url;
     }
-
+    
     /**
-     * Add images
+     * Set updated
      *
-     * @param Corvus\AdminBundle\Entity\Image $images
+     * @param string $updated
      */
-    public function addImage(\Corvus\AdminBundle\Entity\Image $images)
+    public function setUpdated($updated)
     {
-        $this->images[] = $images;
+        $this->updated = $updated;
     }
 
     /**
-     * Remove images
+     * Get updated
      *
-     * @param Corvus\AdminBundle\Entity\Image $image
+     * @return string 
      */
-    public function removeImage(\Corvus\AdminBundle\Entity\Image $images)
+    public function getUpdated()
     {
-        $this->images = null;
-    }
-
-    /**
-     * Get images
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getImages()
-    {
-        return $this->images;
+        return $this->updated;
     }
 
     /**
