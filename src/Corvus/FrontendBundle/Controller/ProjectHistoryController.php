@@ -14,20 +14,33 @@ class ProjectHistoryController extends Controller
         
         $projectHistory = $this->getDoctrine()->getEntityManager()
             ->getRepository('CorvusAdminBundle:ProjectHistory')->Find($id);
+        
+        if (!$projectHistory) {
+            throw $this->createNotFoundException('No Project History found with id '.$id);
+        }
+        
+        $files = $this->getDoctrine()->getEntityManager()
+            ->getRepository('CorvusAdminBundle:ProjectHistory')
+            ->findEntityFiles($id);
 
         $thumbnails = array();
 
-        if($projectHistory->images) {
-            foreach ($projectHistory->getImages()->getValues() as $key ) {
-                $path = $key->getPath();
-                $extension = substr($path, strrpos($path, '.' ));
-                $thumbnails[] = str_replace($extension, "", $path)."_thumb".$extension;
+        if ($files) {
+            foreach ($files as $file) {
+                if ($file->getFileType() === 'image') {
+                    $filename = $file->getFilename();
+                    $extension = substr($filename, strrpos($filename, '.' ));
+                    $thumbnailFileName = str_replace($extension, "", $filename)."_thumb".$extension;
+                    
+                    if (file_exists($projectHistory->getUploadRootDir() . '/' .$thumbnailFileName)) {
+                        $thumbnails[$filename] = $thumbnailFileName;
+                    } else {
+                        $thumbnails[$filename] = $filename;
+                    }
+                }
+                
+                $projectHistory->addFile($file);
             }
-        }
-
-        if(!$projectHistory)
-        {
-            throw $this->createNotFoundException('No Project History found with id '.$id);
         }
 
         return $this->render('CorvusFrontendBundle:'.$template_choice.':projectHistoryId.html.twig', array(
