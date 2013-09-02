@@ -10,10 +10,45 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**1.2**]
+
+-   Updated Corus version to 1.2
+-   Changed the postRemove event to preRemove, so the Files are removed using the entity_id before the entity is removed
+-   Made several big changed to the FileUploader service. Check extended description for details.
+-   Removed static reference to FileUpload and use $this instead.
+-   Made the Frontend ProjectHistoryController findById action ->findEntityFiles instead of Image's. Then make it find the thumbnails if they exist like in the Backend edit action
+-   Changed portfolio_info.getLogo to portfolio_info.includeLogo in the base frontend views.
+-   Provided caching of GeneralSettings Entity instance. Changed getLogo to includeLogo. Added PHPdoc/APIGen to all methods.
+-   Changed the required attribute in FormType for certain form fields. Stops non required fields from being validated as required by HTML5
+-   Added Accessors for the $path field. Removed unused functions and improved lifecycleCallback functions. Removed ORM annotations. 
+-   Added Accessors for the $path field. Removed unused functions and improved lifecycleCallback functions. Removed ORM annotations.
+-   Added the ul.square-list css, used in the ProjectHistory edit action. Affects the Files unordered list.
+-   Made the ProjectHistoryController new and edit actions enable support for File uploading
+-   Changed the lightbox to use the File Entity instead of Image. Added an unordered list which contains links to Files which arent images at the bottom of view
+-   Added findEntityImages and findEntityFiles methods to BaseEntityRepository and added the $_originalEntityName.
+-   Made the ProjectHistory Entity extend FileUpload which enables it to support managing Files with the Entity. Also added Accessors for the updated field.
+-   Changed the FileUpload Entity to enable it be the base class which enables an Entity to upload files. Implements FileUploadInterface, FileAccessorInterface.
+-   Created FileAccessorInterface which defines method signatures which are used as Accessors for the files ArrayCollection in the FileUpload Entity
+-   Removed the getAbsolutePath and getWebPath methods which are no longer useful
+-   Replaced the Image widget and Script to add new from prototype with the File Entity equivelant
+-   Removed the Relationship between ProjectHistory and Image
+-   Replaced Image Entity with File Entity in validation.yml and changed image_title to file_title
+-   Added Doctrine Migration file to migrate the schema changes with new Entities
+-   Added File Entity, FormType and .orm.yml files to replace Image Entity
+-   Removed Image Entity, FormType and .orm.yml
+-   Updated Doctrine Fixtures to Conform with recent schema changes
+-   Made TableViewController deleteAction notice flash ucfirst the Entity name
+-   Added PHPDoc/ApiGen to ILP classes
+-   Changed both mobile.css files to target iPhone 2-4g+ - *795ba56271bf8fb4dac529ebea6742a6509878b8*
+-   Created distributable version of corvus.yml - eb52e3894f8b6d2051f23feb196bbc8638cb88b5*
+-   Added mobile stylesheet for Basic and Default theme - *57d82d2ad7677b1556351a5ac41b1cf64adc6d12*
+-   Added include of mobile stylesheet, uses media queries to make them theme mobile friendly - *72c8aa848773fbbdbbdbb28fb568deca9810c397*
+-   Made all use statements comma seperated on new lines. Also added two lines between each use declaration and interface/class/PHPdoc declaration - *335a73a98c6ba32cb2adf45134c134bad307c57a*
+-   Added file path above namespace declaration to all affected files - *d86c7e5ee6dc839c36feb0286deb0f56b8ac5d81*
 
 [**1.1**]
 
--   Renamed Changelog to CORVUS-CHANGELOG.md, changed the format from txt to markdown and moved it to the root dir
+-   Renamed Changelog to CORVUS-CHANGELOG.md, changed the format from txt to markdown and moved it to the root dir - *e21effd5ab883b1d6e5a9976c7290863ee7a839d*
 -   Updated changelog with everything that was changed in v1.1 - *096c9a3c4d04bb19700de0af0fb6cb998c24d5c6*
 -   Updated Corvus version to 1.1 - *2fe7226333488c48d5c85d9823a83b7112a37850*
 -   Added repositoryClass definitions to xEntity.orm.yml files to like the EntityRepository's to the Entities - *f21d1e775aa48b06a317f7e30aa03184f37c9cc3*
