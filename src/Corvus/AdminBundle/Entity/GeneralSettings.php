@@ -32,7 +32,7 @@ class GeneralSettings
     /**
      * @var string $path
      */
-    public $path;
+    private $path;
 
     /**
      * @var file $logo
@@ -172,6 +172,24 @@ class GeneralSettings
     public function getDisplaySubtitle()
     {
         return $this->display_subtitle;
+    }
+    
+    /**
+     * Set path
+     * 
+     * @param string path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
+    
+    /**
+     * Get path
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 
     /**
@@ -454,22 +472,15 @@ class GeneralSettings
         return $this->theme_choice;
     }
 
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
+
     public function preUpload()
     {
         if (null !== $this->logo) {
             // do whatever you want to generate a unique name
-            $this->path = 'logo.'.$this->logo->guessExtension();
+            $this->setPath('logo.' . $this->logo->guessExtension());
         }
     }
 
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
     public function upload()
     {
         if (null === $this->logo) {
@@ -484,38 +495,21 @@ class GeneralSettings
         unset($this->logo);
     }
 
-    /**
-     * @ORM\PostRemove()
-     */
     public function removeUpload()
     {
-        if ($logo = $this->getAbsolutePath()) {
+        if (($logo = $this->getUploadRootDir() . $this->path)) {
             unlink($logo);
         }
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
-    }
-
-    public function getWebPath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadDir().'/'.$this->path;
-    }
-
-    protected function getUploadRootDir()
+    private function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
 
-    protected function getUploadDir()
+    private function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
