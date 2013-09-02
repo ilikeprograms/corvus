@@ -25,7 +25,7 @@ class FileUpload implements FileUploadInterface, FileAccessorInterface
     public function getUploadRootDir()
     {
         // the absolute directory path where uploaded files should be saved
-        return __DIR__.'/../../../../web/' . FileUpload::getUploadDir();
+        return __DIR__.'/../../../../web/' . $this->getUploadDir();
     }
 
     /**
