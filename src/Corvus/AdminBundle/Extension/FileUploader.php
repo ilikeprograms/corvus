@@ -1,283 +1,369 @@
 <?php
 
 // src/Corvus/AdminBundle/Extension/FileUploader.php
+
 namespace Corvus\AdminBundle\Extension;
 
 use Doctrine\ORM\Event\LifecycleEventArgs,
     Doctrine\ORM\Event\PreUpdateEventArgs,
-    
-    Corvus\AdminBundle\Entity\FileUpload,
-    Corvus\AdminBundle\Entity\Image;
 
+    Corvus\AdminBundle\Entity\FileUpload,
+    Corvus\AdminBundle\Entity\File;
 
 /**
- * FileUploader service
- *
- * Allows single and multiple file uploads.
- * Each file can be updated and files are removed with the entity
+ * Allows single and multiple file uploads on persist and updated
+ * File Entity is created for each upload and linked to an Entity if part
+ * of an Entity persist/update.
  *
  * @author Thomas Coleman <tom@ilikeprograms.com>
+ * @link http://ilikeprograms.com
  */
 class FileUploader
-{ 
+{
     /**
-     * Called on the prePersist doctrine event
+     * Sets the Files fields before it is persisted to the database,
+     * Can set Single Files or Multiple files if an Entity is persisted first
+     * Once prepared Doctrine UnitOfWork is checked for changes
+     * to make sure the changes here are saved when it is flushed.
+     * 
+     * Called on the prePersist doctrine event.
      *
-     * Sets filename(s) of the file(s)
-     *
-     * @param LifecycleEventArgs $args
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args
+     * 
+     * @return void
      */
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if($entity instanceof Image) {
-            $entity->path = $this->setFilename($entity->ProjectHistory->getUploadRootDir(), $entity->path, $entity->file);
-        }
-        if($entity instanceof FileUpload)
-        {
-            if(count($entity->images) > 0)
-            {
-                if($entity->images->count() > 1) {
-                    $this->setMultipleFilenames($entity);
-                } else {
-                    $entity->images[0]->path = $this->setFilename($entity->getUploadRootDir(), $entity->images[0]->path, $entity->images[0]->file);
-                }
-            }
-        }
-        else
-        {
+        // If single File
+        if ($entity instanceof File) {
+            // Prepare the File for persisting
+            $entity->setFileType($this->_determineFileType($entity));
+            $entity->setFilename($this->_setFilename($entity));
+            $entity->setOriginalFilename($this->_setOriginalFilename($entity));
+        // If an Entity which supports File's
+        } elseif ($entity instanceof FileUpload) {
+            // Perpare multiple Files
+            $this->_handleMultipleFilePreparation($entity);
+        } else {
             return;
         }
     }
 
     /**
-     * Called on the preUpdate doctrine event
+     * Prepares all Files linked to an Entity before updating the Files and
+     * persisting the changes to the database
+     * Once prepared Doctrine UnitOfWork is checked for changes
+     * to make sure the changes here are saved when it is flushed.
+     * 
+     * Called on the preUpdate doctrine event.
      *
-     * Sets filename(s) of the file(s)
-     *
-     * @param PreUpdateEventArgs $args
+     * @param \Doctrine\ORM\Event\PreUpdateEventArgs $args
+     * 
+     * @return void
      */
     public function preUpdate(PreUpdateEventArgs $args)
     {
-        if(!($entity = $args->getEntity()) instanceof FileUpload)
-        {
+        if (!($entity = $args->getEntity()) instanceof FileUpload) {
             return;
         }
 
-        if(count($entity->images) > 0)
-        {
-            $entity->images->count() > 1 ? $this->setMultipleFilenames($entity) : $this->setFilename($entity->getUploadRootDir(), $entity->images[0]->path, $entity->images[0]->file);
-        }
-
-        $em = $args->getEntityManager();
-        $em->getUnitOfWork()->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
+        // Prepare multiple Files
+        $this->_handleMultipleFilePreparation($entity);
+        
+        // Recompute the change set for the Entity and Files. Makes sure the changes are saved properly
+        $this->_recomputeChangeSetForEntity($entity, $args->getEntityManager());
     }
+    
 
     /**
-     * Called on the postPersist doctrine event
+     * Peforms the PostPreparation of all Files, with the now existing Entity details,
+     * then Uploads all of the Files linked to the Entity.
      *
-     * Uploads the file(s) to the upload directory
+     * Called on the postPersist doctrine event.
      *
-     * @param LifecycleEventArgs $args
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args
+     * 
+     * @return void
      */
     public function postPersist(LifecycleEventArgs $args)
     {
-    	if(!($entity = $args->getEntity()) instanceof FileUpload)
-    	{
-    		return;
-    	}
-
-        if (null === $entity->images) {
-        	return;
-        }
-
-        if(count($entity->images) > 0)
-        {
-            if($entity->images->count() > 1) {
-                $entity->images = $this->uploadMultipleFiles($entity);
-            } else {
-                var_dump($entity->images[0]->path);
-                $this->uploadFile($entity, $entity->images[0]->file, $entity->images[0]->path);
-            }
-        }
+        $this->_post($args);
     }
 
+
     /**
+     * Peforms the PostPreparation of all Files, with the existing Entity details,
+     * then Uploads all of the Files linked to the Entity.
+     * 
      * Called on the postUpdate doctrine event
      *
-     * Uploads the file(s) to the upload directory
-     *
-     * @param LifecycleEventArgs $args
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args
+     * 
+     * @return void
      */
     public function postUpdate(LifecycleEventArgs $args)
     {
-    	if(!($entity = $args->getEntity()) instanceof FileUpload)
-    	{
-    		return;
-    	}
-
-        if (null === $entity->images) {
-        	return;
-        }
-
-        if(count($entity->images) > 0)
-        {
-            $entity->images->count() > 1 ? $this->uploadMultipleFiles($entity) : $this->uploadFile($entity, $entity->images[0]->file, $entity->images[0]->path);
-        }
+        $this->_post($args);
     }
 
     /**
-     * Called on the postRemove doctrine event
+     * Removes all Files (including thumbnails) linked to an Entity
+     * and also removes the File Entities.
+     * 
+     * Called on the preRemove doctrine event.
      *
-     * Removes the file(s)
-     *
-     * @param LifecycleEventArgs $args
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args
+     * 
+     * @return void
      */
-    public function postRemove(LifecycleEventArgs $args)
+    public function preRemove(LifecycleEventArgs $args)
     {
-        if(!($entity = $args->getEntity()) instanceof FileUpload)
-        {
+        if (!($entity = $args->getEntity()) instanceof FileUpload) {
+            return;
+        }
+        
+        // Find all the File Entities relating to this Entity
+        $files = $args->getEntityManager()->getRepository('CorvusAdminBundle:' . $entity->getRepoName())
+            ->findEntityFiles($entity->getId());
+
+        /* @var $file \Corvus\AdminBundle\Entity\File */
+        foreach ($files as $file) {
+            // Get the file filename .ie.e filename
+            $filename = $file->getFilename();
+            
+            // Path to file
+            $symfonyFile = $entity->getUploadRootDir() . "/" . $filename;
+            
+            // If the file_type is an image, there may be a thumbnail to remove
+            if ($file->getFileType() === 'image') {
+               // Get the file extension
+               $extension = substr($filename, strrpos($filename, '.'));
+               // Appened _thumb to the file path, before the fie extension
+               $thumbnail = str_replace($extension, "", $symfonyFile) . "_thumb" . $extension;
+              
+               if (file_exists($thumbnail)) {
+                    unlink($thumbnail);         
+               }
+            }
+            
+            
+            if (file_exists($symfonyFile)) {
+                unlink($symfonyFile);
+            }
+            
+            // Remove this File Entity
+            $args->getEntityManager()->remove($file);
+        }
+        
+        // Flush the Removals
+        $args->getEntityManager()->flush();
+        
+    }
+    
+    /**
+     * Performs the PostPreparation of all Files linked to an Entity,
+     * then Uploads all of the Files
+     * Once prepared Doctrine UnitOfWork is checked for changes
+     * to make sure the changes here are saved when it is flushed.
+     * 
+     * @param \Doctrine\ORM\Event\LifecycleEventArgs $args
+     * 
+     * @return void
+     */
+    private function _post(LifecycleEventArgs $args)
+    {
+        if (!($entity = $args->getEntity()) instanceof FileUpload) {
             return;
         }
 
-        $this->removeFiles($entity);
-    }
+        if (count($entity->getFiles()) > 0) {
+            // Upload all of the Files and create thumbnails if applicable
+            $this->_uploadMultipleFiles($entity);
+        } else {
+            return;
+        }
 
+        
+        // Recompute the change set for the Entity and Files. Makes sure the changes are saved properly
+        $this->_recomputeChangeSetForEntity($entity, $args->getEntityManager());
+    }
+    
     /**
-     * Creates a unique filename
-     *
-     * @param $entity The entity which the file belongs to
+     * Performs the PrePersist preparation of multiple Files linked to an Entity.
+     * 
+     * @param \Corvus\AdminBundle\Entity\FileUpload $entity
+     * 
+     * @return void
      */
-    private function setFilename($uploadDir, $path, $file)
+    private function _handleMultipleFilePreparation($entity)
     {
-        if($path == null)
-        {
-            return $path = uniqid().'.'.$file->guessExtension();
+        if (($files = $entity->getFiles()) !== null) {
+            foreach ($files as $file) {
+                if ($file->getFile()) {
+                    $file->setUpdated(new \DateTime('now'));
+                    $file->setFileType($this->_determineFileType($file));
+                    $file->setFilename($this->_setFilename($file));
+                    $file->setOriginalFilename($this->_setOriginalFilename($file));
+                }
+            }
         }
-        else
-        {
-            return $path;
+    }
+    
+    /**
+     * Determins the File type of an File to be uploaded, checks if the File
+     * matches a few image file types and marks as 'image' if so, else as 'file'.
+     * 
+     * @param \Corvus\AdminBundle\Entity\File $entity File to find the Filetype of.
+     * 
+     * @return string The filetype of the File to be uploaded.
+     */
+    private function _determineFileType($entity)
+    {
+        // image file types
+        $imageFileTypes = array('jpeg', 'jpg', 'png', 'gif');
+        
+        // Check the File type is an expected image type
+        if (in_array($entity->getFile()->guessExtension(), $imageFileTypes)) {
+            return 'image';
+        } else {
+            return 'file';
         }
     }
 
     /**
-     * Creates unique filenames for each file
+     * Creates a unique filename (including an extension) for a File.
+     *
+     * @param \Corvus\AdminBundle\Entity\File $entity File to create a filename for
+     * 
+     * @return string The unique filename of the File to be uploaded
+     */
+    private function _setFilename($entity)
+    {
+        if ($entity->getFilename() === null) {
+            return uniqid() . '.' . $entity->getFile()->guessExtension();
+        }
+
+        return $entity->getFilename();
+    }
+    
+    /**
+     * Finds the original filename of a file and Sets the original filename fields.
+     *
+     * @param \Corvus\AdminBundle\Entity\File $entity File to find the original name of
+     * 
+     * @return string The original name of the File to be uploaded
+     */
+    private function _setOriginalFilename($entity)
+    {
+        /* @var $symfonyFile \Symfony\Component\HttpFoundation\File */
+        $symfonyFile = $entity->getFile();
+        if ($entity->getOriginalFilename() !== $symfonyFile->getClientOriginalName()) {
+            return $symfonyFile->getClientOriginalName();
+        }
+
+        return $entity->getOriginalFilename();
+    }
+
+    /**
+     * Uploads multiple Files linked to an Entity.
      *
      * @param $entity The entity the files belong to
+     * 
+     * @return void
      */
-    private function setMultipleFilenames($entity)
+    private function _uploadMultipleFiles($entity)
     {
-        foreach ($entity->images as $image) {
-            if($image->file)
-            {
-                if($image->path == null)
-                {
-                    $image->updated = new \DateTime('now');
-                    $image->path = uniqid().'.'.$image->file->guessExtension();
+        if (($files = $entity->getFiles())) {
+            /* @var $file \Corvus\AdminBundle\Entity\File */
+            foreach ($files as $file) {
+                $file->setEntityId($entity->getId());
+                $file->setEntityName($entity->getRepoName());
+                $file->setUpdated(new \DateTime('now'));
+
+                if (($symfonyFile = $file->getFile()) !== null) {
+                    $filename = $file->getFilename();
+                    $symfonyFile->move($entity->getUploadRootDir(), $filename);
+                    
+                    if ($file->getFileType() === 'image') {
+                        $this->_createThumbnail($entity->getUploadRootDir() . "/" . $filename);
+                    }
                 }
             }
         }
     }
 
     /**
-     * Uploads the file and names it using the filename
-     *
-     * @param $entity The entity the file belong to
+     * Creates and stores thumbnail images using the filename as the filename and extension.
+     * 
+     * @param string $filename The filename (including an extension).
+     * 
+     * @return void
      */
-    private function uploadFile($entity, $file, $path)
+    private function _createThumbnail($filename)
     {
-        if($file)
-        {
-            $entity->images[0]->file->move($entity->getUploadRootDir(), $entity->images[0]->path);
-            $this->createThumbnail($entity->getUploadRootDir()."/".$path);
-        }
-    }
-
-    /**
-     * Uploads the files and names them using the filenames
-     *
-     * @param $entity The entity the files belong to
-     */
-    private function uploadMultipleFiles($entity)
-    {
-        foreach ($entity->images as $image) {
-            if($image->file)
-            {
-                $image->file->move($entity->getUploadRootDir(), $image->path);
-                $this->createThumbnail($entity->getUploadRootDir()."/".$image->path);
-            }
-        }      
-    }
-
-    private function createThumbnail($path)
-    {
-        $imageProperties = getimagesize($path);
+        $imageProperties = getimagesize($filename);
         $originalImageWidth = $imageProperties[0];
         $originalImageHeight = $imageProperties[1];
         $imageType = $imageProperties[2];
 
-        $extension = substr($path, strrpos($path, '.' ) +1);
+        $extension = substr($filename, strrpos($filename, '.') + 1);
+        var_dump($extension);
 
-        if($originalImageWidth > 250 || $originalImageHeight > 250)
-        {
+        if ($originalImageWidth > 250 || $originalImageHeight > 250) {
             $ratio = ($originalImageWidth / $originalImageHeight);
 
             $thumbnailImageWidth = 250;
             $thumbnailImageHeight = 250 / $ratio;
             $thumbnailImage = imagecreatetruecolor($thumbnailImageWidth, $thumbnailImageHeight);
 
-            switch($extension) {
-            case "png":
-                $originalImage = imagecreatefrompng($path);
-                $imageName = str_replace(".png", "", $path)."_thumb.png";
-                imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
-                imagepng($thumbnailImage, $imageName);
-                break;
-            case "jpg":
-                $originalImage = imagecreatefromjpeg($path);
-                $imageName = str_replace(".jpg", "", $path)."_thumb.jpg";
-                imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
-                imagejpeg($thumbnailImage, $imageName);
-                break;
-            case "jpeg":
-                $originalImage = imagecreatefromjpeg($path);
-                $imageName = str_replace(".jpeg", "", $path)."_thumb.jpeg";
-                imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
-                imagejpeg($thumbnailImage, $imageName);
-                break;
-            case "gif":
-                $originalImage = imagecreatefromgif($path);
-                $imageName = str_replace(".gif", "", $path)."_thumb.gif";
-                imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
-                imagegif($thumbnailImage, $imageName);
-                break;
+            switch ($extension) {
+                case "png":
+                    $originalImage = imagecreatefrompng($filename);
+                    $imageName = str_replace(".png", "", $filename) . "_thumb.png";
+                    imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
+                    imagepng($thumbnailImage, $imageName);
+                    break;
+                case "jpg":
+                    $originalImage = imagecreatefromjpeg($filename);
+                    $imageName = str_replace(".jpg", "", $filename) . "_thumb.jpg";
+                    imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
+                    imagejpeg($thumbnailImage, $imageName);
+                    break;
+                case "jpeg":
+                    $originalImage = imagecreatefromjpeg($filename);
+                    $imageName = str_replace(".jpeg", "", $filename) . "_thumb.jpeg";
+                    imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
+                    imagejpeg($thumbnailImage, $imageName);
+                    break;
+                case "gif":
+                    $originalImage = imagecreatefromgif($filename);
+                    $imageName = str_replace(".gif", "", $filename) . "_thumb.gif";
+                    imagecopyresampled($thumbnailImage, $originalImage, 0, 0, 0, 0, $thumbnailImageWidth, $thumbnailImageHeight, $originalImageWidth, $originalImageHeight);
+                    imagegif($thumbnailImage, $imageName);
+                    break;
             }
         }
     }
-
+    
     /**
-     * Removes the files associated with the entity
-     *
-     * @param $entity The entity the files belong to
+     * Uses the Doctrine UnitOfWork to check the FileUpload Entity for any changes during,
+     * the FileUpload service process and recompute the change set, this makes sure that any
+     * changes between the persist call and the FileUploader are saved correcttly,
+     * also performs this for all Files linked to the Entity.
+     * 
+     * @param \Corvus\AdminBundle\Entity\FileUpload $entity The entity to check for changes
+     * @param \Doctrine\ORM\EntityManager $em Doctrine Entity manager instance
+     * 
+     * @return void
      */
-    private function removeFiles($entity)
+    private function _recomputeChangeSetForEntity($entity, $em)
     {
-        if(!$entity instanceof FileUpload)
-        {
-            return;
-        }
-
-        foreach ($entity->images as $image) {
-            $path = $image->getPath();
-            $extension = substr($path, strrpos($path, '.' ));
-
-            $file = $entity->getUploadRootDir()."/".$path;
-            $thumbnail = str_replace($extension, "", $file)."_thumb".$extension;
-            
-            if(file_exists($file))
-            {
-                unlink($file);
-                unlink($thumbnail);
+        $em->getUnitOfWork()->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
+        
+        if (($files = $entity->getFiles())) {
+            foreach ($files as $file) {
+                $em->getUnitOfWork()->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($file)), $file);
             }
         }
     }
