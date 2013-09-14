@@ -30,16 +30,30 @@ class NavigationController extends TableViewController
         $form->remove('check');
 
         if ($request->getMethod() == 'POST') {
+             // Find the Max row order for this Entity
+            $maxRowOrder = $this->getDoctrine()
+                ->getRepository('CorvusAdminBundle:' . $this->_entity->getRepoName())
+                ->findMaxRowOrder();
+            
+            // Increase the row_order by 1
+            $this->_entity->setRowOrder($maxRowOrder + 1);
             $navigationRequest = $request->get($this->_formType->getName());
 
             if($navigationRequest['internalRoutes'] != null)
             {
-                $navigationArray = array('_token' => $navigationRequest['_token'], 'row_order' => $navigationRequest['row_order'], 'href' => $navigationRequest['internalRoutes'], 'title' => $navigationRequest['title'], 'alt' => $navigationRequest['alt'], 'internalRoutes' => $navigationRequest['internalRoutes']);    
+                $navigationArray = array(
+                    '_token' => $navigationRequest['_token'],
+                    'row_order' => $this->_entity->getRowOrder(),
+                    'href' => $navigationRequest['internalRoutes'],
+                    'title' => $navigationRequest['title'],
+                    'alt' => $navigationRequest['alt'],
+                    'internalRoutes' => $navigationRequest['internalRoutes']
+                );    
 
                 $request->request->set('navigation', $navigationArray);
             }
 
-            $form->bind($request);
+            $form->bindRequest($request);
 
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getEntityManager();
@@ -71,7 +85,6 @@ class NavigationController extends TableViewController
         }
 
         $form = $this->createForm($this->_formType, $this->_entity);
-        $form->remove('row_order');
         $form->remove('check');
 
         if ($request->getMethod() == 'POST') {
@@ -81,7 +94,7 @@ class NavigationController extends TableViewController
             if($internalRoute != null) {
                 $navigationArray = array(
                     '_token' => $form->get('_token')->getData(),
-                    'row_order' => $form->get('row_order')->getData(),
+                    'row_order' => $this->_entity->getRowOrder(),
                     'href' => $internalRoute,
                     'title' => $form->get('title')->getData(),
                     'alt' => $form->get('alt')->getData(),
