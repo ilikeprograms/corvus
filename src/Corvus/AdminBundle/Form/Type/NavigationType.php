@@ -14,15 +14,6 @@ class NavigationType extends AbstractType
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('row_order', 'number', array(
-			'label' => 'Order:',
-			'attr' => array(
-				'placeholder' => 'E.g 1',
-			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
-		));
 		$builder->add('href', 'text', array(
 			'label' => 'Href (Link address):',
 			'attr' => array(
