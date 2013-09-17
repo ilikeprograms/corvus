@@ -30,11 +30,11 @@
                             {% if loop.first == true %}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             {% else %}
-                                <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : loop.index }) }}">
+                                <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}">
                                 <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
                             {% endif %}
                             {% if loop.last == false %}
-                                <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : loop.index }) }}">
+                                <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}">
                                 <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
                             {% else %}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
