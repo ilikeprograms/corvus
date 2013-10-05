@@ -10,6 +10,16 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**1.2.1**]
+
+-	Updated Corvus version to 1.2.1
+-	Added .corvusdb to .gitignore and remove it from upstream
+-   Changed the paramaters sent to the Order Up/Down routes in the TableViewController Templates (skills.html.twig etc). Now uses the Entity Id instead of loop index.
+-   Removed the row_order field from all of the new Entity form templates as it is no longer needed to be set manually
+-   Removed the row_order field from all Entity form types which are managed by a TableViewController
+-   Same as last commit, but with the NavigationController, which is custom.
+-   Added a new method findMaxRowOrder to find the MAX(row_order) of a repository. Used this to fix a bug with row_order after migrating up to that column. See extended desc for details. Also added more comments!
+
 [**1.2**]
 
 -   Updated Corus version to 1.2
