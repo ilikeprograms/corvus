@@ -1,6 +1,6 @@
 twig:
     globals:
-        corvus_version: 1.2
+        corvus_version: 1.2.1
 
 assetic:
     bundles:        [CorvusFrontendBundle, CorvusAdminBundle]
