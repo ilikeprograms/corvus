@@ -10,6 +10,11 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**1.2.2**]
+
+-	Updated Corvus version to 1.2.2
+-	Added a method to find the closest Entity when changing the row order of an Entity.
+
 [**1.2.1**]
 
 -	Updated Corvus version to 1.2.1
