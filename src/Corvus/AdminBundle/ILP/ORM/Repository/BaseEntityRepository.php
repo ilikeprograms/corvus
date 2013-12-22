@@ -75,6 +75,13 @@ class BaseEntityRepository extends EntityRepository
      * in the direction the row_order will be swapped. So if two Entities have
      * row_order 1 and row_order 2, the Entities will swap row_order's, making
      * them appear before/after each other when the Entities are queried.
+	 * 
+	 * Alternatively, if there is a row_order gap of 2 or more, the Entity which we
+	 * are trying to change will remain the same, but the closest Entity in the
+	 * specified direction will be fixed so its row_order is either +1 or -1 from
+	 * the row_order of the Entity we are trying to change.
+	 * So if Entity a.row_order = 1 AND Entity b.row_order = 4, Entity a would
+	 * then be a.row_order = 1 AND Entity b.row_order = 2.
      * 
      * This methods checks to see if all the row_orders are 0, if so it will
      * automaticaly increment all the row_orders starting at 1. Fixes a problem
@@ -119,22 +126,63 @@ class BaseEntityRepository extends EntityRepository
             return;
         }
         
+		// Row order[0] = row_order of the Entity to reorder
     	$rowOrders[] = $entity->getRowOrder();
-        $otherRowOrder = $rowOrders[0] + $rowOrderDir;
         
-    	$otherEntity = $this->findOneBy(array('row_order' => $otherRowOrder));
-        
-    	$rowOrders[] = $otherEntity->getRowOrder();
+		// Find the closest Entity in terms of row_order to the above Entity, either Up or Down
+		$otherEntity = $this->findClosestEntityInDirection($rowOrders[0], $rowOrderDir);
 
-        // Swap the row orders with each other
-        $entity->setRowOrder($rowOrders[1]);
-        $otherEntity->setRowOrder($rowOrders[0]);
+		if ($otherEntity) {
+			$rowOrders[] = $otherEntity->getRowOrder();
+			
+			// Increase/Decrement the row_order, this row_order should be next
+			$nextOrder = $rowOrders[0] + $rowOrderDir;
+			
+			/* If the $otherEntity row_order does not match, we know there must be atleast
+			 * 2 difference between the row_orders, so we can fix this
+			 */
+			if ($nextOrder !== $rowOrders[1]) {
+				// Set the row_order to be -1/+1 of the row_order of the Entity we are trying to reorder
+				$otherEntity->setRowOrder($nextOrder);
+			} else {
+				// Otherwise they are next to each other, so swap the row_orders
+				$otherEntity->setRowOrder($rowOrders[0]);
+				$entity->setRowOrder($rowOrders[1]);
+			}
 
-        // Persist and flush the entities with the now swapped row orders
-    	$this->_em->persist($entity);
-    	$this->_em->persist($otherEntity);
-    	$this->_em->flush();
+			// Persist and flush the entities with the now swapped row orders
+			$this->_em->persist($entity);
+			$this->_em->persist($otherEntity);
+			$this->_em->flush();
+		}
     }
+	
+	/**
+	 * Finds the Closest Entity to the Entity with $rowOrder, in the direction given,
+	 * where direction is either -1 or 1.
+	 * 
+	 * @param int $rowOrder The row order to start finding an Entity with the closest row_order
+	 * @param int $direction The direction to find the Entity, -1 for DESC, 1 for ASC
+	 * 
+	 * @return Object
+	 */
+	private function findClosestEntityInDirection($rowOrder, $direction)
+	{		
+		// Set the operator to Less than or Greater than based on Direction
+		$operator = $direction === -1 ? '<' : '>';
+		// Set the Sort direction, makes sure we are finding the closest result in the right direction
+		$sortDir = $direction === -1 ? 'DESC' : 'ASC';
+
+		$qb = $this->_em->createQueryBuilder('p')
+            ->select('p')
+			->setMaxResults('1') // Find 1st closest Entity
+			->where('p.row_order ' . $operator . ' :order') // Use < || > depending on $direction
+			->setParameter('order', $rowOrder)
+			->orderBy('p.row_order',  $sortDir) // Set the ORDER BY, find rows in right direction
+			->from('CorvusAdminBundle:' . $this->_originalEntityName . ' p');
+
+		return $qb->getQuery()->getResult()[0];
+	}
     
     /**
      * Find the Max row_order for all Entities managed by this repository.
@@ -163,7 +211,7 @@ class BaseEntityRepository extends EntityRepository
      * Find all Files which are linked to the Entity matching $entity_id
      * Where the file_type is 'images' (Finds all images).
      * 
-     * @param type $entity_id The id of the Entity to find the 'image' File(s)
+     * @param int $entity_id The id of the Entity to find the 'image' File(s)
      * 
      * @return array All of the Files of file_type image linked to the Entity
      */
