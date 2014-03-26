@@ -24,30 +24,30 @@ abstract class AbstractTableViewController extends Controller
     /**
      * Entity object that the TableViewContoller manages.
      * 
-     * @var object $_entity
+     * @var object $oGntity
      */
-    protected $_entity;
+    protected $ogEntity;
     
     /**
      * The formType object that the TableViewController manages.
      * 
-     * @var object $_formType
+     * @var object $formType
      */
-    protected $_formType;
+    protected $formType;
     
     /**
      * The DataName of the entity, use when recieving the Entity data from a Request.
      * 
-     * @var string $_tableViewDataName
+     * @var string $tableViewDataName
      */
-    protected $_tableViewDataName;
+    protected $tableViewDataName;
     
     /**
      * The TypeName of the xTableViewType, used when receiving the TableView data from Description.
      * 
      * @var string $_tableViewTypeName
      */
-    protected $_tableViewTypeName;
+    protected $tableViewTypeName;
 
 
     /**

@@ -13,10 +13,10 @@ abstract class TableViewController extends AbstractTableViewController
     public function __construct($entity, $formType, $tableViewDataName, $tableViewTypeName)
     {
         // Explicitly Construct the variables here. More clear when editing methods here which use these.
-        $this->_entity = $entity;
-        $this->_formType = $formType;
-        $this->_tableViewDataName = $tableViewDataName;
-        $this->_tableViewTypeName = $tableViewTypeName;
+        $this->ogEntity = $entity;
+        $this->formType = $formType;
+        $this->tableViewDataName = $tableViewDataName;
+        $this->tableViewTypeName = $tableViewTypeName;
     }
 
     /**
@@ -24,36 +24,38 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm($this->_formType, $this->_entity);
+        $form = $this->createForm($this->formType, $this->ogEntity);
         $form->remove('check');
 
-        if ($request->getMethod() == 'POST') {            
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
             // Find the Max row order for this Entity
             $maxRowOrder = $this->getDoctrine()
-                ->getRepository('CorvusAdminBundle:' . $this->_entity->getRepoName())
+                ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
                 ->findMaxRowOrder();
             
             // Increase the row_order by 1
-            $this->_entity->setRowOrder($maxRowOrder + 1);
+            $this->ogEntity->setRowOrder($maxRowOrder + 1);
             /* Rebind the Request, the row order is now set and validated
              * without the user needing to set it
              */
-            $form->bindRequest($request);
+//            $form->bindRequest($request);
 
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($this->_entity);
-                $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->ogEntity);
+            $em->flush();
 
-                $this->get('session')->setFlash('notice', 'New ' . ucfirst($this->_entity->getName()) . ' was added!');
+            $this->get('session')->getFlashBag()->add('notice', 'New ' . ucfirst($this->ogEntity->getName()) . ' was added!');
 
-                return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->_entity->getRepoName()));
-            } else {
-                $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+        } else {
+            if ($form->isSubmitted()) {
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
             }
         }
 
-        return $this->render('CorvusAdminBundle:Default:new' . $this->_entity->getRepoName() . '.html.twig', array(
+        return $this->render('CorvusAdminBundle:Default:new' . $this->ogEntity->getRepoName() . '.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -65,33 +67,33 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function editAction($id, Request $request)
     {
-        $this->_entity = $this->getDoctrine()
-            ->getRepository('CorvusAdminBundle:' . $this->_entity->getRepoName())
+        $this->ogEntity = $this->getDoctrine()
+            ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
             ->find($id);
 
-        if (!$this->_entity) {
-            throw $this->createNotFoundException('No ' . $this->_entity->getName() . ' found with id ' . $id);
+        if (!$this->ogEntity) {
+            throw $this->createNotFoundException('No ' . $this->ogEntity->getName() . ' found with id ' . $id);
         }
 
-        $form = $this->createForm($this->_formType, $this->_entity);
+        $form = $this->createForm($this->formType, $this->ogEntity);
         $form->remove('check');
         
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($this->ogEntity);
+            $em->flush();
 
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($this->_entity);
-                $em->flush();
-
-                $this->get('session')->setFlash('notice', 'Your changes were saved!');
-                return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->_entity->getRepoName()));
-            } else {
-                $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
+            $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+        } else {
+            if ($form->isSubmitted()) {
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
             }
         }
 
-        return $this->render('CorvusAdminBundle:Default:edit' . $this->_entity->getRepoName() . '.html.twig', array(
+        return $this->render('CorvusAdminBundle:Default:edit' . $this->ogEntity->getRepoName() . '.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -102,7 +104,7 @@ abstract class TableViewController extends AbstractTableViewController
     public function orderUpAction($id)
     {
         $this->_swapRowOrder($id, 'Up');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->_entity->getRepoName()));
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
     }
 
     /**
@@ -111,7 +113,7 @@ abstract class TableViewController extends AbstractTableViewController
     public function orderDownAction($id)
     {
     	$this->_swapRowOrder($id, 'Down');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->_entity->getRepoName()));
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
     }
 
     protected function _swapRowOrder($id, $direction)
@@ -121,11 +123,11 @@ abstract class TableViewController extends AbstractTableViewController
          * 
          * @link \Corvus\AdminBundle\ILP\ORM\Repository\BaseEntityRepository
          */
-        $this->getDoctrine()->getEntityManager()
-            ->getRepository('CorvusAdminBundle:' . $this->_entity->getRepoName())
+        $this->getDoctrine()->getManager()
+            ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
             ->changeRowOrder($id, $direction);
 
-        $this->get('session')->setFlash('notice', 'Order has been updated!');
+        $this->get('session')->getFlashBag()->add('notice', 'Order has been updated!');
     }
 
     /**
@@ -133,7 +135,7 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function deleteAction($id, Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $tableView = $request->request->get($this->_tableViewTypeName);
 
@@ -145,7 +147,7 @@ abstract class TableViewController extends AbstractTableViewController
                 if(is_int((int)$entity['check']) == true)
                 {
                     $entityToRemove = $em
-                       ->getRepository('CorvusAdminBundle:' . $this->_entity->getRepoName())
+                       ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
                        ->Find($entity['check']);
 
                     if(isset($entityToRemove))
@@ -160,7 +162,7 @@ abstract class TableViewController extends AbstractTableViewController
         if(!$id == null)
         {
             // Find the single entity by the Id
-            $entityToRemove = $em->getRepository('CorvusAdminBundle:' . $this->_entity->getRepoName())
+            $entityToRemove = $em->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
                 ->Find($id);
 
             // Remove it
@@ -170,7 +172,7 @@ abstract class TableViewController extends AbstractTableViewController
         // Flush the Entity manager to save all deletions
         $em->flush();
 
-        $this->get('session')->setFlash('notice', 'Selected ' . ucfirst($this->_entity->getName()) . ' was deleted!');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->_entity->getRepoName()));
+        $this->get('session')->getFlashBag()->add('notice', 'Selected ' . ucfirst($this->ogEntity->getName()) . ' was deleted!');
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
     }
 }

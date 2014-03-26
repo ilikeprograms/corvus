@@ -1,4 +1,3 @@
-CorvusAdminBundle_homepage:
 CorvusAdminBundle_Home:
     pattern:  /
     defaults: { _controller: CorvusAdminBundle:Default:index }
@@ -6,6 +5,14 @@ CorvusAdminBundle_Home:
 CorvusAdminBundle_GeneralSettings:
     pattern: /GeneralSettings
     defaults: { _controller: CorvusAdminBundle:Default:generalSettings }
+
+CorvusAdminBundle_Analytics:
+    pattern: /Analytics
+    defaults: { _controller: CorvusAdminBundle:Default:analytics }
+
+CorvusAdminBundle_Security:
+    pattern: /Security
+    defaults: { _controller: CorvusAdminBundle:Default:security }
 
 CorvusAdminBundle_SiteDesign:
     pattern: /SiteDesign
