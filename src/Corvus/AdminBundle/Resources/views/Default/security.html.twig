@@ -1,0 +1,37 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_GeneralSettings') }}">General Settings</a></li>
+	<li class="active">Account Security</li>
+{% endblock %}
+
+{% block mainContent %}
+	<h2>Account Security</h2>
+	<p class="well">Use the form below to change your password. This needs to be done to make sure your installation of Corvus is secure.</p>
+	<form role="form" action="{{ path('CorvusAdminBundle_Security') }}" method="post" {{ form_enctype(form) }}>
+		<p> Enter the current password and a matching new password and confirmation.</p>
+
+		<div class="form-group">
+			{{ form_label(form.currentPassword) }}
+			{{ form_widget(form.currentPassword) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.plainPassword.first) }}
+			<sup>[1]</sup>
+			{{ form_widget(form.plainPassword.first) }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.plainPassword.second) }}
+			<sup>[1]</sup>
+			{{ form_widget(form.plainPassword.second) }}
+		</div>
+		
+		<p class="help-block"><sup>[1]</sup> Make sure the New Password and Repeat Password fields match</p>
+		
+		{{ form_rest(form) }}
+		
+		<input type="submit" class="btn btn-primary" value="Save!" />
+	</form>
+{% endblock %}

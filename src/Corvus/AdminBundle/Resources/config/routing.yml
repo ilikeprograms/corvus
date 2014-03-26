@@ -1,4 +1,5 @@
 CorvusAdminBundle_homepage:
+CorvusAdminBundle_Home:
     pattern:  /
     defaults: { _controller: CorvusAdminBundle:Default:index }
 

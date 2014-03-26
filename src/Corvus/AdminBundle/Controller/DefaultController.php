@@ -15,15 +15,14 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Entity\About,
 
     Corvus\AdminBundle\Form\Type\GeneralSettingsType,
+    Corvus\AdminBundle\Form\Type\AnalyticsType,
     Corvus\AdminBundle\Form\Type\EducationTableViewType,
     Corvus\AdminBundle\Form\Type\ProjectHistoryTableViewType,
     Corvus\AdminBundle\Form\Type\WorkHistoryTableViewType,
     Corvus\AdminBundle\Form\Type\SkillsTableViewType,
     Corvus\AdminBundle\Form\Type\NavigationTableViewType,
     Corvus\AdminBundle\Form\Type\AboutType,
-    Corvus\AdminBundle\Form\Type\ChangePasswordType,
-
-    Corvus\AdminBundle\Model\ChangePasswordModel as ChangePassword;
+    Corvus\AdminBundle\Form\Type\ChangePasswordType;
 
 
 class DefaultController extends Controller
@@ -95,6 +94,65 @@ class DefaultController extends Controller
         return $this->render('CorvusAdminBundle:Default:generalSettings.html.twig', array(
             'form' => $form->createView(),
             'changePForm' => $changePForm->createView(),
+        ));
+    }
+    
+    public function securityAction(Request $request)
+    {
+        $securityContext = $this->container->get('security.context');
+        $user  = $securityContext->getToken()->getUser();
+
+        $form = $this->createForm(new ChangePasswordType, $user);
+
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            $encoder = $this->container
+                ->get('security.encoder_factory')
+                ->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($user->getPlainPassword(), $user->getSalt()));
+            $user->setPlainPassword('');
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            
+            $this->get('session')->getFlashBag()->add('notice', 'New password has been Set!');
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_Security'));
+        } else {
+            if ($form->isSubmitted()) {
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+            }
+        }
+
+        return $this->render('CorvusAdminBundle:Default:security.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+    
+    public function analyticsAction(Request $request)
+    {
+        $analytics = $this->getDoctrine()->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1);
+        
+        $form = $this->createForm(new AnalyticsType, $analytics);
+        
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($analytics);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('notice', 'The Analytics has been Updated!');
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_Analytics'));
+        } else {
+            if ($form->isSubmitted()) {
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+            }
+        }
+
+        return $this->render('CorvusAdminBundle:Default:analytics.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 

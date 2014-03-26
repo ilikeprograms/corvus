@@ -4,42 +4,41 @@
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface;
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\Security\Core\Validator\Constraints\UserPassword,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class ChangePasswordType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('current_password', 'password', array(
-            'required' => false,
-            'label' => 'Current Password:',
-            'label_attr' => array(
-            'class' => 'fontBold',
-            ),
+        $builder->add('currentPassword', 'password', array(
+            'required' => true,
+            'label' => 'Current Password',
+            'attr' => array('class' => 'form-control'),
+            'mapped' => false,
+            'constraints' => new UserPassword(),
         ));
-        $builder->add('new_password', 'password', array(
-            'required' => false,
-            'label' => 'New Password:',
-            'label_attr' => array(
-            'class' => 'fontBold',
-        ),
-        ));
-        $builder->add('confirm_password', 'password', array(
-            'required' => false,
-            'label' => 'Confirm Password:',
-            'label_attr' => array(
-            'class' => 'fontBold',
+        $builder->add('plainPassword', 'repeated', array(
+            'required' => true,
+            'type' => 'password',
+            'first_options' => array(
+                'label' => 'New Password',
+                'attr' => array('class' => 'form-control')
             ),
+            'second_options' => array(
+                'label' => 'Confirm New Password',
+                'attr' => array('class' => 'form-control')
+            )
         ));
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'data_class' => 'Corvus\AdminBundle\Model\ChangePasswordModel',
-        );
+        $resolver->setDefaults(array(
+            'data_class' => 'Corvus\AdminBundle\Entity\User',
+        ));
     }
 
     public function getName()
