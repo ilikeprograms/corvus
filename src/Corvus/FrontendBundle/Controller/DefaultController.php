@@ -3,13 +3,7 @@
 // src/Corvus/FrontendBundle/Controller/DefaultController.php
 namespace Corvus\FrontendBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle,
-
-    Corvus\AdminBundle\Entity\Contact,
-    Corvus\AdminBundle\Form\Type\ContactType;
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
@@ -43,39 +37,15 @@ class DefaultController extends Controller
         ));
     }
 
-    public function aboutAction(Request $request)
+    public function aboutAction()
     {
         $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
-    	$em = $this->getDoctrine()->getEntityManager();
-    	$about = $em->getRepository('CorvusAdminBundle:About')->Find(1);
-
-        $defaultData = array('message' => 'Type your message here');
-        $form = $this->createFormBuilder($defaultData)
-        ->add('name', 'text')
-        ->add('email', 'email')
-        ->add('subject', 'text')
-        ->add('message', 'textarea')
-        ->getForm();
-
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-
-            $data = $form->getData();
-
-            $message = \Swift_Message::newInstance()
-                ->setSubject('Email from iLikePrograms.com')
-                ->setFrom('tomc2k3@googlemail.com')
-                ->setTo('tomc_2k3@hotmail.com')
-                ->setBody($this->renderView('CorvusFrontendBundle:'.$template_choice.':contact.txt.twig', array('contact' => $data)));
-
-            $this->get('mailer')->send($message);
-
-            return $this->redirect($this->generateUrl('CorvusFrontendBundle_About'));
-        }
+    	$about = $this->getDoctrine()
+			->getRepository('CorvusAdminBundle:About')
+			->Find(1);
 
     	return $this->render('CorvusFrontendBundle:'.$template_choice.':about.html.twig', array(
     		'about' => $about,
-            'form' => $form->createView()
     	));
     }
 
@@ -83,7 +53,8 @@ class DefaultController extends Controller
     {
         $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
         $workHistory = $this->getDoctrine()
-            ->getRepository('CorvusAdminBundle:WorkHistory')->FindAll();
+            ->getRepository('CorvusAdminBundle:WorkHistory')
+			->FindAll();
 
         return $this->render('CorvusFrontendBundle:'.$template_choice.':workHistory.html.twig', array(
             'workHistory' => $workHistory
@@ -94,7 +65,8 @@ class DefaultController extends Controller
     {
         $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
         $projectHistory = $this->getDoctrine()
-            ->getRepository('CorvusAdminBundle:ProjectHistory')->FindAll();
+            ->getRepository('CorvusAdminBundle:ProjectHistory')
+			->FindAll();
 
         return $this->render('CorvusFrontendBundle:'.$template_choice.':projectHistory.html.twig', array(
             'projectHistory' => $projectHistory
