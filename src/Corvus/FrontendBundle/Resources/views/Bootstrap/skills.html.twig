@@ -1,0 +1,69 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.skillsMetaTitle }}{% endblock %}
+
+{% block mainContent %}
+	<div class="well clearfix">
+		<img src="{{ asset('bundles/corvusfrontend/images/icons/skills-64.png') }}" class="wellImg pull-left" alt="Small Skills Icon" />
+		<hgroup class="pull-left">
+			<h2>Skills</h2>
+			<p>This is a list of my skills</p>
+		</hgroup>
+	</div>
+	<div>
+		<h2>Quick list of skills</h2>
+		<br />
+		{% if skill.length > 0 %}
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Experience</td>
+						<td>Competency</td>
+					</tr>
+				</thead>
+				<tbody>
+				{% for skill in skills %}
+					<tr>
+						<td>{{ skill.skillName }}</td>
+						<td>{{ skill.yearsExperience }}</td>
+						<td>{{ skill.competency }}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</p>
+		{% endif %}
+		<hr />
+		<br />
+
+		{% for skill in skills %}
+			<h2>{{ skill.skillName }}</h2>
+			<br />
+
+			<h3 class="displayInline">Competency -</h3>
+			<p class="displayInline">{{ skill.competency }}</p>
+
+			<br />
+			<br />
+
+			<h3 class="displayInline">Years Experience -</h3>
+			<p class="displayInline">{{ skill.yearsExperience }}</p>
+
+			<br />
+			<br />
+
+			<h3>Description</h3>
+			<p>{{ skill.description }}</p>
+
+			{% if loop.last == false %}
+				<br />
+				<hr />
+				<br />
+			{% endif %}
+
+
+		{% endfor %}
+		
+	</div>
+{% endblock %}

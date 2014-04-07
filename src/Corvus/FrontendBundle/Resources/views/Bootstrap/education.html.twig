@@ -1,0 +1,44 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.educationMetaTitle }}{% endblock %}
+{% block mainContent %}
+	<div class="well clearfix">
+		<i class="fa fa-book fa-5x wellImg pull-left" alt="Large Education Icon"></i>
+		<hgroup class="pull-left">
+			<h2>Education</h2>
+			<p>This is a list of my education</p>
+		</hgroup>
+	</div>
+	<div>
+		
+		{% for edu in education %}
+			<h3>Education Institute</h3>
+			<p>{{ edu.educationInstitute }}</p>
+			
+			<h3>Qualification</h3>
+			<p>{{ edu.qualification }}</p>
+
+			<h3 class="displayInline">Time Period -</h3>
+			<p class="displayInline">{{ edu.startDate | date("d/m/y") }}</p>
+
+			<br />
+			<br />
+
+			<h3 class="displayInline">Years -</h3>
+			<p class="displayInline">{{ edu.duration }}</p>
+
+			<br />
+			<br />
+
+			<h3>Result</h3>
+			<p>{{ edu.result }}</p>
+
+			{% if loop.last == false %}
+				<br />
+				<hr />
+				<br />
+			{% endif %}
+
+		{% endfor %}
+	</div>
+{% endblock %}

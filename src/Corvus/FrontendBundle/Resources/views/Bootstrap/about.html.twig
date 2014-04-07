@@ -1,0 +1,40 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.aboutMetaTitle }}{% endblock %}
+
+{% block mainContent %}
+	<div class="well clearfix">
+		<i class="fa fa-user fa-5x wellImg pull-left" alt="Large About Icon"></i>
+		<hgroup class="pull-left">
+			<h2>About Me</h2>
+			<p>Some more info about good ol' me!</p>
+		</hgroup>
+	</div>
+	<div>
+		<h3>A little about me</h3>
+		<p>
+			Firstname: {{ about.firstname }} <br />
+			Lastname: {{ about.lastname }} <br />
+			Age: {{ about.age }}
+		</p>
+		
+
+		<h3>Bio</h3>
+		<p>{{ about.bio }}</p>
+
+		{% if about.address %}
+			<h3>Address</h3>
+			<p>{{ about.address }}</p>
+		{% endif %}
+
+		{% if about.location %}
+			<h3>Location</h3>
+			<p>{{ about.location }}</p>
+		{% endif %}
+
+		{% if about.interestsHobbies %}
+			<h3>Interests & Hobbies</h3>
+			<p>{{ about.interestsHobbies }}</p>
+		{% endif %}
+	</div>
+{% endblock %}

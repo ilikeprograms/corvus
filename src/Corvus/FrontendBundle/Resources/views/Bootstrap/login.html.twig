@@ -1,0 +1,46 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block mainContent %}
+	<div class="well">
+		<hgroup>
+			<h2>Login</h2>
+			<p>Please enter a username/password combination below to login</p>
+		</hgroup>
+	</div>
+	<div class="container">
+		<form action="{{ path('login_check') }}" method="post" class="form-horizontal" role="form">
+			<div class="form-group">
+				<label for="username" class="col-sm-2 control-label">Username:</label>
+				<div class="col-sm-4 input-group">
+					<span class="input-group-addon"><i class="fa fa-user"></i></span>
+					<input type="text" class="form-control" id="username" name="_username" placeholder="foo@bar.com" required="required" value="{{ last_username }}" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">Password:</label>
+				<div class="col-sm-4 input-group">
+					<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				  <input type="password" class="form-control" id="password" name="_password" placeholder="Password" required="required" />
+				</div>
+			</div>
+			
+			<input type="hidden" name="_target_path" value="/Admin" />
+
+			{% if error %}
+				<div>{{ error.message }}</div>
+			{% endif %}
+
+
+			<div class="form-group">
+			  <div class="col-sm-offset-2 col-sm-4">
+				<button type="submit" class="btn btn-primary">Login</button>
+			  </div>
+			</div>
+		
+			<footer>
+				<p class="text-info">You will be redirected to the Dashboard on successful login.</p>
+			</footer>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,306 @@
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':index.html.twig' %}
+
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.globalProjectHistoryMetaTitle }} {{ projectHistory.metaTitle }}{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('a.lightbox').click(function(e) {
+			var currentImageNum = $(this).attr('data-currentNum');
+			var currentImage = $(this);
+			$('body').css('overflow-y', 'hidden');
+
+			
+			createLightbox(currentImageNum);
+			createLightboxContent(currentImage);
+
+			$('.lightboxDecoration')
+				.css('max-width', '100%');
+
+			$('<a href="#" id="goPrev">&laquo;</a>')
+				.attr('class', 'lightboxleft')
+				.css({
+					'top': '50%',
+					'left': '50px'
+				})
+				.appendTo('#overlay')
+				.click(loadPreviousImage)
+				.fadeIn();
+
+			$('<a href="#" id="goNext">&raquo;</a>')
+				.attr('class', 'lightboxright')
+				.css({
+					'top': '50%',
+					'right': '50px'
+				})
+				.appendTo('#overlay')
+				.click(loadNextImage)
+				.fadeIn();
+			
+
+			return false;
+		})
+	});
+
+	function loadImage(event)
+	{
+		var key = event.keyCode || event.charCode || event.which;
+  		var keychar = String.fromCharCode(key);
+
+  		switch(key)
+  		{
+  			case 37:
+  				loadPreviousImage();
+  			break;
+  			case 39:
+  				loadNextImage();
+  			break;
+  		}
+	}
+
+	function loadPreviousImage()
+	{
+		var currentImageNum = null;
+		currentImageNum = $('#lightbox').attr('data-currentImage');
+
+		if(currentImageNum == 0)
+		{
+			var prevImage = $('#lightboxThumbnails a:last');
+		}
+		else
+		{
+			var prevImage = $('#lightboxThumbnails a').eq(currentImageNum - 1);
+		}
+
+		var prevImageNum = prevImage.attr('data-currentNum');
+
+		$('#lightbox').attr('data-currentImage', prevImageNum);
+
+		createLightboxContent(prevImage);
+	}
+
+	function loadNextImage()
+	{
+		var currentImageNum = null;
+		currentImageNum = $('#lightbox').attr('data-currentImage');
+		var lastImage = $('#lightboxThumbnails a:last').attr('data-currentNum');
+
+		if(currentImageNum == lastImage)
+		{
+			var nextImage = $('#lightboxThumbnails a:first');
+		}
+		else
+		{
+			currentImageNum++;
+			var nextImage = $('#lightboxThumbnails a').eq(currentImageNum);
+		}
+
+		var nextImageNum = nextImage.attr('data-currentNum');
+
+		$('#lightbox').attr('data-currentImage', nextImageNum);
+
+		createLightboxContent(nextImage);
+	}
+
+	function positionImageCount() {
+		var top = ($(window).height() - $('#imageCount').height()) / 2;
+		var left = ($(window).width() - $('#imageCount').width()) / 2;
+
+		$('#imageCount')
+			.css({
+				'top': '0',
+				'margin-top': '10%',
+				'left': left
+			})
+			.fadeIn();
+	}
+
+	function positionLightboxImage() {
+		var top = ($(window).height() - $('#lightbox').height()) / 2;
+		var left = ($(window).width() - $('#lightbox').width()) / 2;
+
+		$('#lightbox')
+			.css({
+				'top': '0',
+				'margin-top': '20%',
+				'left': left
+			})
+			.fadeIn();
+	}
+
+	function removeLightbox() {
+		$('#overlay, #lightbox, #imageCount')
+			.fadeOut('slow', function() {
+				$(this).remove();
+				$('body').css('overflow-y', 'auto');
+			});
+	}
+
+	function createLightbox(currentImageNum) {
+		$('<div id="overlay"></div>')
+			.css({
+				'top': '0',
+				'opacity': 0
+			})
+			.animate({'opacity': '0.8'}, 'slow')
+			.appendTo('body');
+
+		$('<div id="imageCount">Egg</div>')
+			.appendTo('body');
+		positionImageCount();
+
+		$('<div id="lightbox"></div>')
+			.attr('data-currentImage', currentImageNum)
+			.hide()
+			.css({
+				'max-height': '80%',
+				'max-width': '80%'
+			})
+			.appendTo('body');
+	}
+
+	function createLightboxContent(currentImage)
+	{
+		var numOfImages = $('#lightboxThumbnails a').length;
+		var currentImageNum = parseInt($(currentImage).attr('data-currentNum')) +1;
+		$('#imageCount').html('Image ' + currentImageNum + ' of ' + numOfImages);
+
+		$('.image, .lightboxDecoration')
+			.animate(
+				{
+					height: '0px',
+					opacity: 0.5
+                },
+				{
+					duration: 1500,
+					complete: function() { $(this).remove(); }
+				});
+
+		$('<div>')
+			.append($(currentImage).attr('data-title'))
+			.append('</div>')
+			.addClass('lightboxDecoration')
+			.appendTo('#lightbox')
+			.hide();
+
+		$('<img/>')
+			.css({
+				'max-height' : '100%',
+				'max-width' : '100%'
+			})
+			.attr('src', $(currentImage).attr('href'))
+			.attr('class', 'image')
+			.load(function() {
+				positionLightboxImage();
+			})
+			.click(function() {
+				removeLightbox();
+			})
+			.appendTo('#lightbox')
+			.hide();
+
+		$('<div>')
+			.append($(currentImage).attr('data-description'))
+			.append('</div>')
+			.addClass('lightboxDecoration')
+			.appendTo('#lightbox')
+			.height();
+
+			$('.image, .lightboxDecoration')
+				.animate(
+				{
+					opacity: 0,
+					'max-height': '0px'
+				},
+				{
+					duration: '0',
+					complete: function () {
+						$(this).show().animate(
+							{
+								opacity: 1,
+								'max-height' : '100%',
+								'max-width' : '100%'
+							}, 1500);
+					},
+					queue: true
+				});
+				
+	}
+
+</script>
+{% endblock %}
+
+{% block metaDescription %}<meta name="description" content="{{ projectHistory.metaDescription }}" />{% endblock %}
+
+{% block mainContent %}
+	<div class="well clearfix">
+		<i class="fa fa-rocket fa-2x wellImg pull-left" alt="Small Project History Icon"></i>
+		<hgroup class="pull-left">
+			<h2>{{ projectHistory.projectName }}</h2>
+		</hgroup>
+	</div>
+	<div>
+		<section id="lightboxThumbnails">
+			{% for file in projectHistory.files %}
+                            
+                            {% if file.fileType == 'image' %}
+				<a href="/uploads/{{ file.filename }}" class="lightbox" 
+				data-title="{{ file.fileTitle }}" 
+				data-description="{{ file.description }}" 
+				data-currentNum="{{ loop.index -1 }}">
+					<img src="/uploads/{{ thumbnails[file.filename] }}" alt="{{ file.fileTitle}}" />
+				</a>
+                             {% endif %}
+			{% endfor %}
+		</section>
+
+		<h3>Project Description</h3>
+		<p>
+			{{ projectHistory.projectDescription }}
+		</p>
+
+		<h3>Role</h3>
+		<p>
+			{{ projectHistory.role }}
+		</p>
+
+		{% if projectHistory.process %}
+			<h3>Process</h3>
+			<p>
+				{{ projectHistory.process }}
+			</p>
+		{% endif %}
+
+		{% if projectHistory.feedbackReceived %}
+			<h3>Feedback Received</h3>
+			<blockquote><p>{{ projectHistory.feedbackReceived }}</p></blockquote>
+		{% endif %}
+
+		{% if projectHistory.reflection %}
+			<h3>Reflection</h3>
+			<p>
+				{{ projectHistory.reflection }}
+			</p>
+		{% endif %}
+
+		{% if projectHistory.url %}
+			<h3>Url</h3>
+			<p><a href="{{ projectHistory.url }}" target="_blank">{{ projectHistory.projectName }} URL</a></p>
+		{% endif %}
+                
+                {% if projectHistory.files %}
+                    <h3>Files</h3>
+                    {% for file in projectHistory.files %}
+                        {% if file.fileType != 'image' %}
+                            <ul class="square-list">
+                                <li>
+                                    <a href="/uploads/{{ file.filename }}" target="_blank">{{ file.originalFilename }}</a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+        </div>
+{% endblock %}
