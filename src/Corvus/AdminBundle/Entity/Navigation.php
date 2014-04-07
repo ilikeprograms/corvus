@@ -3,14 +3,15 @@
 // src/Corvus/AdminBundle/Entity/Navigation.php
 namespace Corvus\AdminBundle\Entity;
 
-use Corvus\AdminBundle\ILP\Entity\ITableViewEntity;
+use Corvus\AdminBundle\ILP\Entity\TableViewEntity;
 
 
 /**
  * Corvus\AdminBundle\Entity\Navigation
  */
-class Navigation implements ITableViewEntity
+class Navigation extends TableViewEntity
 {
+    // Entity Name is needed to use Late static binding with TableViewEntity
     const ENTITY_NAME = 'navigation';
 
     
@@ -18,11 +19,6 @@ class Navigation implements ITableViewEntity
      * @var integer $id
      */
     private $id;
-
-    /**
-     * @var integer $row_order
-     */
-    private $row_order;
 
     /**
      * @var string $href
@@ -48,26 +44,6 @@ class Navigation implements ITableViewEntity
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set row_order
-     *
-     * @param integer $rowOrder
-     */
-    public function setRowOrder($rowOrder)
-    {
-        $this->row_order = $rowOrder;
-    }
-
-    /**
-     * Get row_order
-     *
-     * @return integer 
-     */
-    public function getRowOrder()
-    {
-        return $this->row_order;
     }
 
     /**
@@ -128,15 +104,5 @@ class Navigation implements ITableViewEntity
     public function getAlt()
     {
         return $this->alt;
-    }
-
-    public static function getName()
-    {
-        return self::ENTITY_NAME;
-    }
-
-    public static function getRepoName()
-    {
-        return ucfirst(self::ENTITY_NAME);
     }
 }
