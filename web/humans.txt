@@ -1,0 +1,19 @@
+/* TEAM */
+
+Corvus Creator and Owner: Thomas Coleman                        
+Site: http://ilikeprograms.com
+Twitter: @ilikeprograms
+Email: tom@ilikeprograms.com
+Location: Basingstoke, United Kingdom
+GitHub: https://github.com/ilikeprograms
+GitTip: https://www.gittip.com/ilikeprograms/
+
+/* Corvus */
+
+Standards: HTML5, CSS3, ECMAscript 5+ (Javascript), PHP 5.4+, PSR
+Framework: Symfony 2 (http://symfony.com/)
+CI: Travis CI (https://travis-ci.org/ilikeprograms/corvus)
+IDE: Netbeans
+
+/* Special Thanks */
+Project Supervisor at University: James Williams
