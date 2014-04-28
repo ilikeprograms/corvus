@@ -6,63 +6,58 @@ namespace Corvus\AdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface,
     Symfony\Component\Config\FileLocator,
-    Symfony\Component\Routing\Loader\YamlFileLoader;
+    Symfony\Component\Routing\Loader\YamlFileLoader,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class NavigationType extends AbstractType
 {
-
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('href', 'text', array(
-			'label' => 'Href (Link address):',
+			'label' => 'Href (Link address)',
 			'attr' => array(
 				'placeholder' => 'E.g http://ilikeprograms.com',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('title', 'text', array(
-			'label' => 'Title:',
+			'label' => 'Title',
 			'attr' => array(
 				'placeholder' => 'E.g ilikeprograms',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('alt', 'text', array(
-			'label' => 'Alternative Text:',
+			'label' => 'Alternative Text',
 			'attr' => array(
 				'placeholder' => 'E.g ilikeprograms.com link',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('check', 'checkbox', array(
-			'property_path' => false,
+			'mapped' => false,
+            'required' => false,
 			'attr' => array(
 				'class' => 'case',
 			),
 		));
 		$builder->add('internalRoutes', 'choice', array(
 			'choices' => $this->getRouteChoices(),
-			'property_path' => false,
+			'mapped' => false,
 			'required' => false,
 			'empty_data' => null,
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+            'attr' => array(
+                'class' => 'form-control',
+            )
 		));
 	}
 
-	public function getDefaultOptions(array $options)
-	{
-		return array(
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
 			'data_class' => 'Corvus\AdminBundle\Entity\Navigation',
-		);
+		));
 	}
 
 	public function getName()

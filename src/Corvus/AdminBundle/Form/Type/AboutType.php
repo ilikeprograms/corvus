@@ -4,7 +4,8 @@
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface;
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class AboutType extends AbstractType
@@ -13,107 +14,87 @@ class AboutType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 	 	$builder->add('firstname', 'text', array(
-            'label' => 'Firstname:',
+            'label' => 'Firstname',
             'attr' => array(
                 'placeholder' => 'E.g John',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+                'class' => 'form-control'
+            )
         ));
         $builder->add('lastname', 'text', array(
-            'label' => 'Lastname:',
+            'label' => 'Lastname',
             'attr' => array(
                 'placeholder' => 'E.g Doe',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+                'class' => 'form-control'
+            )
         ));
         $builder->add('age', 'number', array(
-            'label' => 'Age:',
+            'label' => 'Age',
             'attr' => array(
                 'placeholder' => 'E.g 21',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+                'class' => 'form-control'
+            )
         ));
         $builder->add('bio', 'textarea', array(
-            'label' => 'Bio:',
+            'label' => 'Bio',
             'attr' => array(
                 'placeholder' => 'E.g My name is John Doe and I come from a lovely small town.',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+                'class' => 'form-control'
+            )
         ));
         $builder->add('address', 'textarea', array(
-            'label' => 'Address:',
+            'label' => 'Address',
             'attr' => array(
                 'placeholder' => 'E.g 20 Corvus Road, Crow City, Crowland',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
             'required' => false,
         ));
         $builder->add('location', 'text', array(
-            'label' => 'Location:',
+            'label' => 'Location',
             'attr' => array(
                 'placeholder' => 'E.g Crowcity',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
             'required' => false,
         ));
         $builder->add('interests_hobbies', 'textarea', array(
-            'label' => 'Interests/Hobbies:',
+            'label' => 'Interests/Hobbies',
             'attr' => array(
                 'placeholder' => 'E.g I love programming and going for walks',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
             'required' => false,
         ));
         $builder->add('email_address', 'email', array(
-            'label' => 'Email Address:',
+            'label' => 'Email Address',
             'attr' => array(
                 'placeholder' => 'E.g johndoe@crowland.com',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+                'class' => 'form-control'
+            )
         ));
         $builder->add('twitter', 'text', array(
-            'label' => 'Twitter:',
+            'label' => 'Twitter',
             'attr' => array(
                 'placeholder' => 'E.g @xxxxx',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
             'required' => false,
         ));
         $builder->add('facebook', 'text', array(
-            'label' => 'Facebook:',
+            'label' => 'Facebook',
             'attr' => array(
                 'placeholder' => 'E.g johndoe.1',
-            ),
-            'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
             'required' => false,
         ));
 	}
 
-	public function getDefaultOptions(array $options)
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
-		return array(
+		$resolver->setDefaults(array(
 			'data_class' => 'Corvus\AdminBundle\Entity\About',
-		);
+		));
 	}
 
 	public function getName()

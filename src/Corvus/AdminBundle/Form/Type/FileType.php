@@ -4,7 +4,8 @@
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface;
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class FileType extends AbstractType
@@ -34,11 +35,11 @@ class FileType extends AbstractType
         ));
 	}
 
-	public function getDefaultOptions(array $options)
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
-		return array(
+		$resolver->setDefaults(array(
 			'data_class' => 'Corvus\AdminBundle\Entity\File',
-		);
+		));
 	}
 
 	public function getName()

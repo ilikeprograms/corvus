@@ -4,7 +4,8 @@
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface;
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class ProjectHistoryType extends AbstractType
@@ -13,113 +14,95 @@ class ProjectHistoryType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('project_name', 'text', array(
-			'label' => 'Project Name:',
+			'label' => 'Project Name',
 			'attr' => array(
 				'placeholder' => 'E.g Corvus',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('project_description', 'textarea', array(
-			'label' => 'Project Description:',
+			'label' => 'Project Description',
 			'attr' => array(
 				'placeholder' => 'E.g Corvus is a Portfolio Content Management System. I was responsible for making it etc',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('role', 'text', array(
-			'label' => 'Role:',
+			'label' => 'Role',
 			'attr' => array(
 				'placeholder' => 'E.g Creator',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('process', 'textarea', array(
-			'label' => 'Process:',
+			'label' => 'Process',
 			'attr' => array(
 				'placeholder' => 'E.g I used Symfony 2 and slowly built the project using two prototypes',
-			),
-			'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
             'required' => false,
 		));
 		$builder->add('feedback_received', 'textarea', array(
-			'label' => 'Feedback Received:',
+			'label' => 'Feedback Received',
 			'attr' => array(
 				'placeholder' => 'E.g The project was well received by the university staff and was praised for its excellence',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
             'required' => false,
 		));
 		$builder->add('reflection', 'textarea', array(
-			'label' => 'Reflection:',
+			'label' => 'Reflection',
 			'attr' => array(
 				'placeholder' => 'E.g The whole experience of building a complete CMS was difficult but very rewarding',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
             'required' => false,
 		));
 		$builder->add('url', 'url', array(
-			'label' => 'Url:',
+			'label' => 'Url',
 			'attr' => array(
 				'placeholder' => 'E.g ilikeprograms.com',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
             'required' => false,
 		));
-		$builder->add('files', 'collection', array(
-			'type' => new FileType(),
-			'allow_add' => true,
-			'prototype' => true,
-			'by_reference' => false,
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
-		));
+//		$builder->add('files', 'collection', array(
+//			'type' => new FileType(),
+//			'allow_add' => true,
+//			'prototype' => true,
+//			'by_reference' => false,
+//			'label_attr' => array(
+//                'class' => 'fontBold',
+//            ),
+//		));
 		$builder->add('meta_title', 'text', array(
-			'label' => 'Meta Title:',
+			'label' => 'Meta Title',
 			'attr' => array(
 				'placeholder' => 'E.g Corvus |',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('meta_description', 'textarea', array(
-			'label' => 'Meta Description:',
+			'label' => 'Meta Description',
 			'attr' => array(
 				'placeholder' => 'E.g The Corvus project is a Portfolio Content Management system that allows users to manage their personal portfolio information',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
             'required' => false,
 		));
 		$builder->add('check', 'checkbox', array(
-			'property_path' => false,
+			'mapped' => false,
 			'attr' => array(
 				'class' => 'case',
 			),
 		));
 	}
 
-	public function getDefaultOptions(array $options)
-	{
-		return array(
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
 			'data_class' => 'Corvus\AdminBundle\Entity\ProjectHistory',
-		);
+		));
 	}
 
 	public function getName()

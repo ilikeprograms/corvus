@@ -4,7 +4,8 @@
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface;
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class ProjectHistoryTableViewType extends AbstractType
@@ -17,11 +18,11 @@ class ProjectHistoryTableViewType extends AbstractType
 		));
 	}
 
-	public function getDefaultOptions(array $options)
-	{
-		return array(
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
 			'data_class' => 'Corvus\AdminBundle\Entity\ProjectHistoryTableView',
-		);
+		));
 	}
 
 	public function getName()

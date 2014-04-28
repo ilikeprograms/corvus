@@ -4,71 +4,60 @@
 namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilderInterface;
+    Symfony\Component\Form\FormBuilderInterface,
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class EducationType extends AbstractType
 {
-
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('education_institute', 'text', array(
-			'label' => 'Education Institute:',
+			'label' => 'Education Institute',
 			'attr' => array(
 				'placeholder' => 'E.g Corvus University',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('qualification', 'text', array(
-			'label' => 'Qualification:',
+			'label' => 'Qualification',
 			'attr' => array(
 				'placeholder' => 'E.g. Web Development',
-			),
-			'label_attr' => array(
-                'class' => 'fontBold',
+                'class' => 'form-control'
             ),
 		));
 		$builder->add('start_date', 'date', array(
-			'label' => 'Start Date:',
+			'label' => 'Start Date',
 			'input' => 'datetime',
-			'widget' => 'choice',
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
+			'widget' => 'choice',           
 		));
 		$builder->add('duration', 'number', array(
-			'label' => 'Duration:',
+			'label' => 'Duration',
 			'attr' => array(
 				'placeholder' => 'E.g 2',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('result', 'text', array(
-			'label' => 'Result:',
+			'label' => 'Result',
 			'attr' => array(
 				'placeholder' => 'E.g Honors Degree With a 1st',
+                'class' => 'form-control'
 			),
-			'label_attr' => array(
-                'class' => 'fontBold',
-            ),
 		));
 		$builder->add('check', 'checkbox', array(
-			'property_path' => false,
+			'mapped' => false,
 			'attr' => array(
 				'class' => 'case',
 			),
-		));	
+		));
 	}
 
-	public function getDefaultOptions(array $options)
-	{
-		return array(
+	public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
 			'data_class' => 'Corvus\AdminBundle\Entity\Education',
-		);
+		));
 	}
 
 	public function getName()
