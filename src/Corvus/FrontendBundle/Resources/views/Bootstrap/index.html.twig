@@ -31,18 +31,6 @@
 	%}
 		<link rel="stylesheet" href="{{ asset_url }}">
 	{% endstylesheets %}
-
-	{% block javascript %}
-	{% endblock %}
-		
-	{% javascripts
-		'%kernel.root_dir%/Resources/js/jquery.min.js'
-		'%kernel.root_dir%/../vendor/twbs/bootstrap/js/*'
-		'%kernel.root_dir%/Resources/public/js/common.js'  %}
-		<script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
-    {{ portfolio_info.includeAnalyticsTracking }}
-
 </head>
 <body>
 	<nav class="navbar navbar-inverse" role="navigation">
@@ -51,8 +39,8 @@
 			{{ portfolio_info.createNavigation }}
 		</ul>
 	</nav>
-    <div class="page-header">
-		<div id="logo">
+    <div class="page-header" class="clearfix">
+		<div id="logo" class="pull-left">
             {% if portfolio_info.generalSettings.displayLogo == true %}
                 {{ portfolio_info.includeLogo }}
             {% endif %}
@@ -78,10 +66,19 @@
 		Powered by <strong><a href='https://github.com/ilikeprograms/corvus' target='_blank'>Corvus</a></strong>
 		</div>
 		<div class="col-md-6 text-right">
-{#		<ul class="nav navbar-right">#}
 			<a href="{{ path('CorvusFrontendBundle_Login') }}" alt="Corvus Backend Login Link">Login</a>
 		</div>
-{#		</ul>#}
 	</div>
+
+{% block javascript %}
+{% endblock %}
+
+{% javascripts
+	'%kernel.root_dir%/Resources/js/jquery.min.js'
+	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/*'
+	'%kernel.root_dir%/Resources/public/js/common.js'  %}
+	<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{{ portfolio_info.includeAnalyticsTracking }}
 </body>
 </html>
