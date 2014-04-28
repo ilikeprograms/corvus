@@ -42,58 +42,34 @@ class DefaultController extends Controller
             $generalSettings = new GeneralSettings();
         }
 
-        $changePassword = new ChangePassword();
-
         $form = $this->createForm(new GeneralSettingsType(), $generalSettings);
-        $changePForm = $this->createForm(new ChangePasswordType(), $changePassword);
-        if($request->getMethod() == 'POST')
-        {
-            $form->bind($request);
-            $changePForm->bind($request);
+
+        $form->handleRequest($request);
+
+        if($form->isValid()) {
+            $logo = $form['logo']->getData();
             
-            $newPassword = $changePForm['new_password']->getData();
-            if($changePForm['current_password']->getData() != null)
-            {
-                $errors = $this->get('validator')->validate($changePassword);
-                if(count($errors) == 0)
-                {
-                    $securityContext = $this->container->get('security.context');
-                    $user  = $securityContext->getToken()->getUser();
-                    $encoder = $this->container
-                        ->get('security.encoder_factory')
-                        ->getEncoder($user);
-                    $user->setPassword($encoder->encodePassword($newPassword, $user->getSalt()));
-                    $userEm = $this->getDoctrine()->getEntityManager();
-                    $userEm->persist($user);
-                    $userEm->flush();
-                    $this->get('session')->setFlash('notice', 'New password has been saved.');
-                    return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
-                }
-                else
-                {
-                    $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
-                }
+            if ($logo) {
+                $filepath = 'logo.' . $logo->guessExtension();
+                $logo->move('uploads', $filepath);
+                $generalSettings->setPath($filepath);
             }
-            else
-            {
-                if($form->isValid())
-                {
-                    $em = $this->getDoctrine()->getEntityManager();
 
-                    $em->persist($generalSettings);
-                    $em->flush();
+            $em = $this->getDoctrine()->getManager();
 
-                    $this->get('session')->setFlash('notice', 'General Settings have been saved.');
-                    return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
-                } else {
-                    $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
-                }
+            $em->persist($generalSettings);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('notice', 'General Settings have been saved.');
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
+        } else {
+            if ($form->isSubmitted()) {
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
             }
         }
 
         return $this->render('CorvusAdminBundle:Default:generalSettings.html.twig', array(
             'form' => $form->createView(),
-            'changePForm' => $changePForm->createView(),
         ));
     }
     
@@ -173,7 +149,7 @@ class DefaultController extends Controller
             $educationTableView->getEducation()->add($edu);
         }
 
-        $form = $this->createForm(New EducationTableViewType(), $educationTableView);
+        $form = $this->createForm(new EducationTableViewType(), $educationTableView);
 
         return $this->render('CorvusAdminBundle:Default:education.html.twig', array(
             'form' => $form->createView(),
@@ -192,7 +168,7 @@ class DefaultController extends Controller
             $projectHistoryTableView->getProjectHistory()->add($ph);
         }
 
-        $form = $this->createForm(New ProjectHistoryTableViewType(), $projectHistoryTableView);
+        $form = $this->createForm(new ProjectHistoryTableViewType(), $projectHistoryTableView);
 
         return $this->render('CorvusAdminBundle:Default:projectHistory.html.twig', array(
             'form' => $form->createView(),
@@ -282,10 +258,10 @@ class DefaultController extends Controller
                 $em->persist($about);
                 $em->flush();
 
-                $this->get('session')->setFlash('notice', 'Your changes were saved!');
+                $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
                 return $this->redirect($this->generateUrl('CorvusAdminBundle_About'));
             } else {
-                $this->get('session')->setFlash('notice', 'Please correct the errors to continue!');
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
             }
         }
         
