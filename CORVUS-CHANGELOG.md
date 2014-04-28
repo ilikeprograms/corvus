@@ -10,6 +10,21 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**0.1.0**]
+
+-	Created a proper README and LICENCE files
+-	Performed alot of Imporvements and some bug fixes
+-	Changes the Whole project to start using Twitter Bootstrap and Font Awesome
+-	Updated the Project to conform to Symfony 2.4, PSR-0 standards (or started to)
+
+---
+
+These changes were from before Corvus was reset to version [0.1.0] the reason for doing so is detailed in the final commit when
+the first tag as [0.1.0] was introduced.
+Thee changelog below was kept only in the interest of history and may be removed in the future.
+
+---
+
 [**1.2.2**]
 
 -	Updated Corvus version to 1.2.2
