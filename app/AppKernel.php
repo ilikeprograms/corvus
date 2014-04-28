@@ -35,4 +35,19 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+    
+    /**
+     * {inheritDoc}
+     */
+    protected function initializeContainer() {
+        parent::initializeContainer();
+        
+        // If running from the Command Line
+        if (PHP_SAPI == 'cli') {
+
+            // Enter the request scope, this stops a bug with PortfolioInfoExtension when trying to access the request
+            $this->getContainer()->enterScope('request');
+            $this->getContainer()->set('request', new \Symfony\Component\HttpFoundation\Request(), 'request');
+        }
+    }
 }

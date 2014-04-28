@@ -45,9 +45,3 @@ Corvus\AdminBundle\Entity\GeneralSettings:
       type: string
     theme_choice:
       type: string
-  lifecycleCallbacks:
-    prePersist: [preUpload]
-    preUpdate: [preUpload]
-    postPersist: [upload]
-    postUpdate: [upload]
-    postRemove: [removeUpload]

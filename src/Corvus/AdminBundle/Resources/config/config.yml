@@ -9,17 +9,12 @@ assetic:
 services:
     portfolioinforepository:
         class: Corvus\FrontendBundle\Extension\PortfolioInfoRepository
-        arguments: [@doctrine.orm.default_entity_manager]
+        arguments: [@service_container, @doctrine.orm.default_entity_manager]
     corvus.twig.extension.portfolio_info:
         class: Corvus\FrontendBundle\Extension\PortfolioInfoRepositoryExtension
         arguments: [@portfolioinforepository]
         tags:
             - { name: twig.extension }
-    validator.corvus.change_password:
-        class: Corvus\AdminBundle\Validator\Constraints\ChangePasswordValidator
-        arguments: [@service_container]
-        tags:
-            - { name: validator.constraint_validator, alias: cpassword_validator }
     kernel.listener.covus_admin_exception_listener:
         class: Corvus\AdminBundle\EventListener\CorvusAdminExceptionListener
         arguments: [@twig]
