@@ -1,0 +1,89 @@
+.nav-stacked {
+	li {
+		> ul {
+			background-color: #C6E7EE;
+			box-shadow: inset 0px 0px 3px #999;
+			border-top: 1px solid #428bca;
+
+			> li {
+				color: #000;
+
+				> a {
+					padding-left: 30px;
+					color: #000;
+					background: none;
+					
+					&:hover {
+						background: #A7E2EE;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+/*.nav-stacked {
+	li {
+		> ul {
+			> li.active {
+				color: #333;
+
+				> a, > a:hover, > a:focus {
+					color: #fff;
+					background-color: #428bca;
+					padding-left: 30px;
+				}
+			}
+		}
+	}
+}*/
+
+.brandLogo {
+	height: 36px;
+	width: 36px;
+}
+
+.navbar:first-of-type {
+	margin-bottom: 0;
+}
+
+.navbar-header {
+	border-right: 1px solid #525252;
+
+	.navbar-brand {
+		color: #FFF;
+		padding: 7px 15px 7px 15px;
+		
+		img {
+			vertical-align: middle;
+		}
+	}
+}
+
+.breadcrumb {
+	margin-top: 0;
+	
+	first-child+li:before {
+		content: '';
+	}
+	> li+li:before {
+		content: ' > ';
+	}
+}
+
+navigation {
+	> ul {
+		> li.active {
+			border-top: 1px solid #000;
+			-webkit-box-shadow: 0px 0px 8px 0px rgba(121, 125, 255, 0.62);
+			-moz-box-shadow:    0px 0px 8px 0px rgba(121, 125, 255, 0.62);
+			box-shadow:         0px 0px 8px 0px rgba(121, 125, 255, 0.62);
+
+			a {
+				border-radius: 0px;
+			}
+		}
+	}
+}

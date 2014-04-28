@@ -12,13 +12,6 @@ p {
     margin-bottom: 1%;
 }
 
-
-#corvusBar {
-    padding: 5px;
-    display: table;
-    width: 100%;
-}
-
 #logo, #flashes, #version {
     display: table-cell;
     padding-right: 10px;

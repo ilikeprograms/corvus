@@ -1,0 +1,29 @@
+assetic:
+  java: /usr/bin/java
+  use_controller: false
+  bundles: [ CorvusFrontendBundle, CorvusAdminBundle ]
+  assets:
+#      font-awesome:
+#          '%kernel.root_dir%/Resources/public/css/font-awesome.css'
+      font-awesome-otf:
+        inputs: '%kernel.root_dir%/Resources/public/fonts/FontAwesome.otf'
+        output: 'fonts/FontAwesome.otf'
+      font-awesome-eot:
+        inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.eot'
+        output: 'fonts/fontawesome-webfont.eot'
+      font-awesome-svg:
+        inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.svg'
+        output: 'fonts/fontawesome-webfont.svg'
+      font-awesome-ttf:
+        inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.ttf'
+        output: 'fonts/fontawesome-webfont.ttf'
+      font-awesome-woff:
+        inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff'
+        output: 'fonts/fontawesome-webfont.woff'
+  filters:
+    cssrewrite: ~
+    yui_js:
+      jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar
+    lessphp:
+      file: "%kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php"
+      apply_to: "\.less$"
