@@ -1,11 +1,14 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_WorkHistory') }}">WorkHistory</a></li>
+	<li class="active">Edit</li>
+{% endblock %}
 
+{% block mainContent %}
 	<h2>Edit "{{ form.vars.value.employerName }} - {{ form.vars.value.role }}"</h2>
-	<p>
-		Use this form to update the work history details.<br />
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	<p class="well">
+		Use this form to update the Work history details for the employer/role.
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_EditWorkHistory', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
@@ -13,37 +16,32 @@
 		<fieldset>
 			<legend>Work History Fields:</legend>
 
-			<div>
+			<div class="form-group">
                 {{ form_label(form.employer_name) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.employer_name) }}
                 {{ form_widget(form.employer_name) }}
             </div>
 
-			<div>
+			<div class="form-group">
                 {{ form_label(form.employer_address) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.employer_address) }}
                 {{ form_widget(form.employer_address) }}
             </div>
 
-			<div>
+			<div class="form-group">
                 {{ form_label(form.start_date) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.start_date) }}
                 {{ form_widget(form.start_date) }}
             </div>
             
-			<div>
+			<div class="form-group">
                 {{ form_label(form.end_date) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.end_date) }}
                 {{ form_widget(form.end_date) }}
             </div>
 
-			<div>
+			<div class="form-group">
                 {{ form_label(form.role) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.role) }}
                 {{ form_widget(form.role) }}
             </div>
@@ -57,9 +55,8 @@
 		<fieldset>
             <legend>Meta Info:</legend>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.meta_title) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.meta_title) }}
                 {{ form_widget(form.meta_title) }}
             </div>
@@ -69,10 +66,11 @@
 
     	{{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_WorkHistory') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-	
+		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
-
+	
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
 {% endblock %}

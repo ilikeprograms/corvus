@@ -1,67 +1,79 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
+{% block breadcrumbs %}
+	<li class="active">Education</li>
+{% endblock %}
+
 {% block mainContent %}
     <h2>Education</h2>
-    <p>These are all the education details stored in your corvus record. This will be used to display details of your education on the frontend of the website. It will also be included in the downloadable CV. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
-    
-    <div>
+    <div class="well">
+		These are all the education details stored in Corvus. This will be used to display details of your Education in the portfolio.
+		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
+	</div>
     
     <form action="{{ path('CorvusAdminBundle_DeleteEducation') }}" method="post" id="educationform" name="educationform">
+		<table class="table table-bordered table-hover table-striped">
+			<tfoot>
+				<tr><td colspan="6"><a href="{{ path('CorvusAdminBundle_NewEducation') }}" class="btn btn-primary">New</a></td></tr>
+			</tfoot>
+			<thead>
+				<tr><th><input type="checkbox" id="selectAll" /></th>
+				<th>Order</th>
+				<th>Education Institute</th>
+				<th>Qualification</th>
+				<th>Result</th>
+				<th>Actions</th></tr>
+			</thead>
+			<tbody>
+				{% for item in form.education %}
+					<tr>
+						<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+						<td>{{ item.vars.value.rowOrder }}
+							 {% if form.education|length > 1 %}
+								{% if loop.first == true %}
+									<a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}" class="disabled">
+										<i class="fa fa-arrow-level-up"></i>
+									</a>
+								{% else %}
+									<a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}">
+										<i class="fa fa-arrow-level-up"></i>
+									</a>
+								{% endif %}
+								{% if loop.last == false %}
+									<a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}">
+										<i class="fa fa-arrow-level-up"></i>
+									</a>
+								{% else %}
+									<a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}" class="disabled">
+										<i class="fa fa-arrow-level-up"></i>
+									</a>
+								{% endif %}
+								|
+							{% endif %}
+						</td>
+						<td>{{ item.vars.value.educationinstitute }}</td>
+						<td>{{ item.vars.value.qualification }}</td>
+						<td>{{ item.vars.value.result }}</td>
+						<td>
+							<a href="{{ path('CorvusAdminBundle_EditEducation', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
+								<i class="fa fa-pencil-square-o"></i> Edit
+							</a>
+							<a href="{{ path('CorvusAdminBundle_DeleteEducationId', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
+								<i class="fa fa-trash-o"></i> Delete
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br />
+		<h3>Other Actions</h3>
+		<select>
+			<option>Delete Selected</option>
+		</select>
+		<input type="submit" class="btn btn-danger fa" value="&#xf014; Delete" />
+		<a class="btn btn-default" href="{{ path('CorvusFrontendBundle_Education') }}" target="_blank"><i class="fa fa-eye"></i> View on Portfolio</a>
 
-    <table class="fancyTable">
-    	<thead>
-    		<tr><th><input type="checkbox" id="selectAll" /></th>
-            <th>Order</th>
-            <th>Education Institute</th>
-            <th>Qualification</th>
-            <th>Result</th>
-            <th>Actions</th></tr>
-    	</thead>
-    	<tbody>
-		    {% for item in form.education %}
-		    	<tr>
-        	    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
-                    <td>{{ item.vars.value.rowOrder }}</td>
-        	    	<td>{{ item.vars.value.educationinstitute }}</td>
-                    <td>{{ item.vars.value.qualification }}</td>
-                    <td>{{ item.vars.value.result }}</td>
-        	    	<td>
-                        {% if form.education|length > 1 %}
-                            {% if loop.first == true %}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% else %}
-                                <a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}">
-                                <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
-                            {% endif %}
-                            {% if loop.last == false %}
-                                <a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}">
-                                <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
-                            {% else %}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% endif %}
-                            |
-                        {% endif %}
-                        <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_EditEducation', { id : item.vars.value.id }) }}">
-                            Edit</a>
-                        |
-                        <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_DeleteEducationId', { id : item.vars.value.id }) }}">
-                            Delete</a>
-                    </td>
-                </tr>
-		    {% endfor %}
-    	</tbody>
-    </table>
-    <br />
-    <p>Multiple Actions</p>
-    <select>
-    	<option>Delete Selected</option>
-    </select>
-    <input type="submit" value="Go" />
-    <a href="{{ path('CorvusAdminBundle_NewEducation') }}">New</a>
-
-    {{ form_widget(form._token) }}
-    </form>
-    </div>
+		{{ form_widget(form._token) }}
+	</form>
 {% endblock %}

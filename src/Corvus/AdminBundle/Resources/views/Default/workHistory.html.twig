@@ -1,67 +1,82 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
+{% block breadcrumbs %}
+	<li class="active">WorkHistory</li>
+{% endblock %}
+
 {% block mainContent %}
     <h2>Work History</h2>
-    <p>From here you can change the work history on your website. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
-    
-    <div>
-    
-    <form action="{{ path('CorvusAdminBundle_DeleteWorkHistory') }}" method="post" id="workHistoryform" name="workHistoryform">
+    <div class="well">
+		This is your work history. Its what people will most likely look for when they want to find out your current experience.
+		This Work history will be displayed on the portfolio frontend.<br />
+		There will also be a Work breakdown which will give a detailed overview of that Work.<br />
+		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
+	</div>
 
-    <table class="fancyTable">
-    	<thead>
-    		<tr><th><input type="checkbox" id="selectAll" /></th>
-            <th>Order</th>
-            <th>Employer Name</th>
-            <th>Role</th>
-            <th>Start Date</th>
-            <th>Actions</th></tr>
-    	</thead>
-    	<tbody>
-		    {% for item in form.workHistory %}
-		    	<tr>
-    		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
-                    <td>{{ item.vars.value.rowOrder }}</td>
-    		    	<td>{{ item.vars.value.employername }}</td>
-                    <td>{{ item.vars.value.role }}</td>
-                    <td>{{ item.vars.value.startDate|date("d/m/y") }}</td>
-    		    	<td>
-                        {% if form.workHistory|length > 1 %}
-                            {% if loop.first == true %}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% else %}
-                                <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}">
-                                <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
-                            {% endif %}
-                            {% if loop.last == false %}
-                                <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}">
-                                <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
-                            {% else %}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% endif %}
-                            |
-                        {% endif %}
-                        <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_EditWorkHistory', { id : item.vars.value.id }) }}">
-                            Edit</a>
-                        |
-                        <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_DeleteWorkHistoryId', { id : item.vars.value.id }) }}">
-                            Delete</a>
-                    </td>
-                </tr>
-		    {% endfor %}
-    	</tbody>
-    </table>
-    <br />
-    <p>Multiple Actions</p>
-    <select>
-    	<option>Delete Selected</option>
-    </select>
-    <input type="submit" value="Go" />
-    <a href="{{ path('CorvusAdminBundle_NewWorkHistory') }}">New</a>
+    <form action="{{ path('CorvusAdminBundle_DeleteWorkHistory') }}" method="post" id="workHistoryform" name="workHistoryform">
+		<table class="table table-bordered table-hover table-striped">
+			<tfoot>
+				<tr><td colspan="6"><a href="{{ path('CorvusAdminBundle_NewWorkHistory') }}" class="btn btn-primary">New</a></td></tr>
+			</tfoot>
+			<thead>
+				<tr><th><input type="checkbox" id="selectAll" /></th>
+				<th>Order</th>
+				<th>Employer Name</th>
+				<th>Role</th>
+				<th>Start Date</th>
+				<th>Actions</th></tr>
+			</thead>
+			<tbody>
+				{% for item in form.workHistory %}
+					<tr>
+						<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+						<td>{{ item.vars.value.rowOrder }}
+							{% if form.workHistory|length > 1 %}
+								<div class="btn-group btn-group-xs">
+									{% if loop.first == true %}
+										<a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% else %}
+										<a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% endif %}
+									{% if loop.last == false %}
+										<a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% else %}
+										<a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% endif %}
+								</div>
+							{% endif %}
+						</td>
+						<td>{{ item.vars.value.employername }}</td>
+						<td>{{ item.vars.value.role }}</td>
+						<td>{{ item.vars.value.startDate|date("d/m/y") }}</td>
+						<td>
+							<a href="{{ path('CorvusAdminBundle_EditWorkHistory', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
+								<i class="fa fa-pencil-square-o"></i> Edit
+							</a>
+							<a href="{{ path('CorvusAdminBundle_DeleteWorkHistoryId', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
+								<i class="fa fa-trash-o"></i> Delete
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br />
+		<h3>Other Actions</h3>
+		<select>
+			<option>Delete Selected</option>
+		</select>
+		<input type="submit" class="btn btn-danger fa" value="&#xf014; Delete" />
+		<a class="btn btn-default" href="{{ path('CorvusFrontendBundle_WorkHistory') }}" target="_blank"><i class="fa fa-eye"></i> View on Portfolio</a>
 
     {{ form_widget(form._token) }}
     </form>
-    </div>
 {% endblock %}

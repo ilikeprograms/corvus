@@ -1,65 +1,78 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
+{% block breadcrumbs %}
+	<li class="active">ProjectHistory</li>
+{% endblock %}
+
 {% block mainContent %}
     <h2>Project History</h2>
-    <p>From here you can change the work history on your website. Use the actions section to edit/delete or select multiple and apply a batch action.</p>
-    
-    <div>
+	<div class="well">
+		These are all the Projects you have worked on. This will be used to display a Project overview in the portfolio.<br />
+		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
+	</div>
     
     <form action="{{ path('CorvusAdminBundle_DeleteProjectHistory') }}" method="post" id="projectHistoryform" name="projectHistoryform">
+		<table class="table table-bordered table-hover table-striped">
+			<tfoot>
+				<tr><td colspan="5"><a href="{{ path('CorvusAdminBundle_NewProjectHistory') }}" class="btn btn-primary">New</a></td></tr>
+			</tfoot>
+			<thead>
+				<tr><th><input type="checkbox" id="selectAll" /></th>
+				<th>Order</th>
+				<th>Project Name</th>
+				<th>Role</th>
+				<th>Actions</th></tr>
+			</thead>
+			<tbody>
+				{% for item in form.projectHistory %}
+					<tr>
+						<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}
+							{% if form.projectHistory|length > 1 %}
+								<div class="btn-group btn-group-xs">
+									{% if loop.first == true %}
+										<a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% else %}
+										<a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% endif %}
+									{% if loop.last == false %}
+										<a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% else %}
+										<a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
+											<i class="fa fa-arrow-level-up"></i>
+										</a>
+									{% endif %}
+								</div>
+							{% endif %}
+						</td>
+						<td>{{ item.vars.value.rowOrder }}</td>
+						<td>{{ item.vars.value.projectName }}</td>
+						<td>{{ item.vars.value.role }}</td>
+						<td>
+							<a href="{{ path('CorvusAdminBundle_EditProjectHistory', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
+								<i class="fa fa-pencil-square-o"></i> Edit
+							</a>
+							<a href="{{ path('CorvusAdminBundle_DeleteProjectHistoryId', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
+								<i class="fa fa-trash-o"></i> Delete
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br />
+		<h3>Other Actions</h3>
+		<select>
+			<option>Delete Selected</option>
+		</select>
+		<input type="submit" class="btn btn-danger fa" value="&#xf014; Delete" />
+		<a class="btn btn-default" href="{{ path('CorvusFrontendBundle_ProjectHistory') }}" target="_blank"><i class="fa fa-eye"></i> View on Portfolio</a>
 
-    <table class="fancyTable">
-    	<thead>
-    		<tr><th><input type="checkbox" id="selectAll" /></th>
-            <th>Order</th>
-            <th>Project Name</th>
-            <th>Role</th>
-            <th>Actions</th></tr>
-    	</thead>
-    	<tbody>
-		    {% for item in form.projectHistory %}
-		    	<tr>
-    		    	<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
-                    <td>{{ item.vars.value.rowOrder }}</td>
-    		    	<td>{{ item.vars.value.projectName }}</td>
-                    <td>{{ item.vars.value.role }}</td>  
-    		    	<td>
-                        {% if form.projectHistory|length > 1 %}
-                            {% if loop.first == true %}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% else %}
-                                <a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}">
-                                <img src="{{ asset('/bundles/corvusadmin/images/icons/up.png') }}" alt="UpArrow" /></a>
-                            {% endif %}
-                            {% if loop.last == false %}
-                                <a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}">
-                                <img src="{{ asset('/bundles/corvusadmin/images/icons/down.png') }}" alt="DownArrow" /></a>
-                            {% else %}
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            {% endif %}
-                            |
-                        {% endif %}
-                        <img src="{{ asset('bundles/corvusadmin/images/icons/edit.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_EditProjectHistory', { id : item.vars.value.id }) }}">
-                            Edit</a>
-                        |
-                        <img src="{{ asset('bundles/corvusadmin/images/icons/delete.png') }}" />
-                        <a href="{{ path('CorvusAdminBundle_DeleteProjectHistoryId', { id : item.vars.value.id }) }}">
-                            Delete</a>
-                    </td>
-                </tr>
-		    {% endfor %}
-    	</tbody>
-    </table>
-    <br />
-    <p>Multiple Actions</p>
-    <select>
-    	<option>Delete Selected</option>
-    </select>
-    <input type="submit" value="Go" />
-    <a href="{{ path('CorvusAdminBundle_NewProjectHistory') }}">New</a>
-
-    {{ form_widget(form._token) }}
+		{{ form_widget(form._token) }}
     </form>
-    </div>
 {% endblock %}

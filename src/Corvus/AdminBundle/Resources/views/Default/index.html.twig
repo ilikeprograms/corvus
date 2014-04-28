@@ -1,30 +1,83 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block mainContent %}
+	<div class="jumbotron clearfix">
+		<h1>Welcome to Corvus</h1>
+		
+		<img src="{{ asset('bundles/corvusadmin/images/corvusV2-256.png') }}" class="pull-left" />
+		<div>
+			<p>Corvus is an opinionated, self hosted and free Portfolio Content Management System.</p>
+			<p>Corvus was created as an alternative to Hosted portfolios, which provide a way to create and customise a portfolio,
+				but for advanced options/extras require paying.</p><br />
 
-    <h2>Admin Dashboard</h2>
+			<p>Create a simple portfolio, link to resources, and show the world what you can do with Corvus.</p>
+		</div>
+	</div>
+		
+	<ul class="nav nav-tabs nav-pills">
+		<li class="active"><a href="#corvus-features" data-toggle="tab">Features</a></li>
+		<li><a href="#corvus-why" data-toggle="tab">Why</a></li>
+		<li><a href="#corvus-coming" data-toggle="tab">Coming Soon</a></li>
+		<li><a href="#corvus-support" data-toggle="tab">Support</a></li>
+	</ul>
 
-    <h3>Welcome to Corvus</h3>
-    <p>
-        This is the backend control panel for your installation of Corvus. Corvus is a Portfolio Content Management System (PCMS). This is tailored to provide an easy and efficient way to manage portfolio information, aswell as provide some elements of Personal Development Planning (PDP).
-    </p>
-    <p>
-        This project was created for several reasons:
-        <ol>
-        	<li>To fill a gap in Portfolio Management software and Personal Development aiding software. Several solutions exist for either, but not many systems have much of a merge between the two.</li>
-        	<li>To serve as a portfolio section for my own website</li>
-        	<li>Last but not least, to be created as part of my 3rd year university project.
-        </ol>
-    </p>
-    <h3>Features of Corvus</h3>
-    <p>
-    	Easily allows the following to be recorded and edited:
-        <ul class="square-list">
-        	<li>Education/Skills</li>
-        	<li>Work History - Past work experience</li>
-        	<li>Project History - Previous projects which you have had some contribution</li>
-        </ul>
-        Other stuff.....
-    </p>
+	<div class="tab-content">
+		<div id="corvus-features" class="tab-pane active fade in">
+			<h3>Features of Corvus</h3>
+			
+			Easily allows the following to be recorded and edited:
+			<ul class="square-list">
+				<li>Corvus can be easily customised to make your portfolio Unique. The info, the styles, the showcase.</li>
+				<li>Made to easy to use and tailored to provide what a portfolio needs to. No other bloat</li>
+				<li>Navigation is pre created, but you can link to anything your portfolio needs to compliment</li>
+				<li>Project and Work history provided a good way to showcase yourself</li>
+				<li>Downloads let you gift people your creations <span class="label label-info">Coming Soon</span></li>
+				<li>You can add your Education and Skills to prove your skillset</li>
+			</ul>
+		</div>
+		
+		<div id="corvus-why" class="tab-pane fade">
+			<h3>Why choose Corvus?</h3>
 
+			<ul class='square-list'>
+				<li>Corvus is Free, Open source, and Self hosted. You can do virtually anything you want with it.</li>
+				<li>You will never have to pay for Corvus, for upgrades or extras or support. If you value the product, then Contribute or Donate <sup>(see the Support tab)</sup></li>
+				<li>Corvus was designed to manage portfolios, nothing else. You dont need 100's of plugins to make a portfolio. If it cant do what you want, <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Feature Suggestion">Make a suggesting</a></li>
+				<li>I developed Corvus to use as my Portfolio, because I didn't like Hosted ones. If it needs new features, I will develop them.</li>			
+				<li>Im better at programming than I am at writing this stuff <span class="label label-primary">I Hope</span></li>
+			</ul>
+		</div>
+		
+		<div id="corvus-coming" class="tab-pane fade">
+			<h3>Features Proposed/Working on</h3>
+
+			<ul class='square-list'>
+				<li>Allow the Portfolio to export as a CV in PDF format</li>
+				<li>Implement the Site Design section, to allow Themes/Templates</li>
+				<li>Add the Downloads section and Create an Uploader</li>
+			</ul>
+			
+			<h4>For the Devs/Curious</h4>
+
+			<ul class='square-list'>
+				<li>Re create the Testing Suite properly</li>
+				<li>Decouple the Forms from the Controller more</li>
+				<li>Create a CoreBundle and Move things to it. AdminBundle/ILP for a start.</li>
+				<li>Change the Configuration of the Bundles to follow best practices</li>
+				<li>Enable the Entities to be able to upload/link Files/Images again. Properly.</li>
+				<li>Improve the Javascript and Write an Alert mini library for displaying Notification/Flashes.</li>
+			</ul>
+		</div>
+
+		<div id="corvus-support" class="tab-pane fade">
+			<ul class='square-list'>
+				<li><i class="fa fa-github"></i> <a href="https://github.com/ilikeprograms/corvus" target="_blank">Github</a> <sup>(View or Fork Corvus)</sup></li>
+				<li><i class="fa fa-globe"></i> <a href="http://corvus.ilikeprograms.com" target="_blank">Corvus Website</a></li>
+				<li><i class="fa fa-envelope"></i> <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Corvus Support">Send us an Email</a> <sup>(corvus-support@ilikeprograms.com)</sup></li>
+				<li><i class="fa fa-stack-overflow"></i> <a href="http://stackoverflow.com/questions/tagged/corvus" target="_blank">Stack Overflow</a></li>
+				<li><i class="fa fa-gittip"></i> <a href="https://www.gittip.com/ilikeprograms" target="_blank">Gittip</a> <sup>(Help support the project)</sup></li>
+				<li>Need Webhosting? We recommend using <a href="https://secure.servergrove.com/clients/aff.php?aff=113" target="_blank">ServerGrove</a>. If you sign up from the <a href="https://secure.servergrove.com/clients/aff.php?aff=113" target="_blank">Affiliate link</a> we get credit which pays for our Hosting.</li>
+			</ul>
+		</div>
+	</div>
 {% endblock %}

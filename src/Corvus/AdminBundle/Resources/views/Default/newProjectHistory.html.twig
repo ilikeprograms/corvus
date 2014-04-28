@@ -1,33 +1,35 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_ProjectHistory') }}">Project History</a></li>
+	<li class="active">New</li>
+{% endblock %}
 
-	<h2>Add a New Project.</h2>
-	<p>
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+{% block mainContent %}
+	<h2>Add a New Project</h2>
+	<p class="well">
+		The Project history added with this form will display a detailed breakdown of the project on the frontend.<br />
+		The Project details can be a great way for people to see what you have been working on/showcase your talent!
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_NewProjectHistory') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
             <legend>Project History Fields:</legend>             
             
-            <div>
+            <div class="form-group">
                 {{ form_label(form.project_name) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.project_name) }}
                 {{ form_widget(form.project_name) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.project_description) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.project_description) }}
                 {{ form_widget(form.project_description) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.role) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.role) }}
                 {{ form_widget(form.role) }}
             </div>
@@ -36,21 +38,13 @@
             {{ form_row(form.feedback_received) }}
             {{ form_row(form.reflection) }}
             {{ form_row(form.url) }}
-
-        </fieldset>
-
-        <fieldset>
-            <legend>Files:</legend>
-            <div>
-                {{ form_widget(form.files) }}
-            </div>
         </fieldset>
 
         <fieldset>
             <legend>Meta Info:</legend>
-            <div>
+            <div class="form-group">
                 {{ form_label(form.meta_title) }}
-                <span class="asterix">*</span>
+                
                 {{ form_errors(form.meta_title) }}
                 {{ form_widget(form.meta_title) }}
             </div>
@@ -59,51 +53,11 @@
 
         {{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_ProjectHistory') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-
-
-
-        <script type="text/javascript">
-        // Get the div that holds the collection of tags
-        var collectionHolder = $('#projectHistory_files');
-
-        // setup an "add a tag" link
-        var $addTagLink = $('<a name="addAnFile" href="#">Add an File</a>');
-        var $newLinkLi = $('<div></div>').append($addTagLink);
-
-        jQuery(document).ready(function() {
-            // add the "add a tag" anchor and li to the tags ul
-            collectionHolder.append($newLinkLi);
-
-            $addTagLink.on('click', function(e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
-
-                // add a new tag form (see next code block)
-                addTagForm(collectionHolder, $newLinkLi);
-            });
-
-            function addTagForm(collectionHolder, $newLinkLi) {
-            // Get the data-prototype we explained earlier
-            var prototype = collectionHolder.attr('data-prototype');
-
-            var newForm = prototype.replace(/__name__label__/g, "File " + (collectionHolder.children("div").length -1).toString());
-            // Replace '$$name$$' in the prototype's HTML to
-            // instead be a number based on the current collection's length.
-            newForm = newForm.replace(/__name__/g, collectionHolder.children().length -1);
-            newForm += "<hr /><br />";
-
-            // Display the form in the page in an li, before the "Add a tag" link li
-            var $newFormLi = $('<div></div>').append(newForm);
-            $newLinkLi.before(newForm);
-        }
-        });
-
-
-        </script>
-
+		<input type="submit" class="btn btn-primary" value="Save" />
     </form>
-
+	
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
 {% endblock %}

@@ -1,34 +1,35 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_Navigation') }}">Navigation</a></li>
+	<li class="active">Edit</li>
+{% endblock %}
 
+{% block mainContent %}
 	<h2>Editing "{{ form.vars.value.title }} Link"</h2>
-	<p>
-		Use this form to update the navigation item.<br />
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	<p class="well">
+		Use this form to update the Navigation item.<br />
+		<span class="label label-warning">Dont forget!</span> You can still swap the Navigation between an external/internal link.
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_EditNavigation', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.href) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.href) }}
                 {{ form_widget(form.href) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.title) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.title) }}
                 {{ form_widget(form.title) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.alt) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.alt) }}
                 {{ form_widget(form.alt) }}
             </div>
@@ -39,28 +40,29 @@
 
 		{{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_Navigation') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-	
+		<input type="submit" class="btn btn-primary" value="Save" />	
 	</form>
 
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
+{% endblock %}
+
+{% block javascript %}
 	<script type="text/javascript">
 		jQuery(function(){
 			var navSelect = $("#navigation_internalRoutes");
 			var navHref = $("#navigation_href");
-			$(navSelect).change(function() {
+			$("#navigation_internalRoutes").change(function() {
 				if(navSelect.val() != "")
 				{
 					$(navHref).parent().slideUp();
-				}
-				else
-				{
-					
+					$(navHref).val(navSelect.val());
+				} else {
 					$(navHref).parent().slideDown();
 				}
-			})
+			});
 		});
 	</script>
-
 {% endblock %}

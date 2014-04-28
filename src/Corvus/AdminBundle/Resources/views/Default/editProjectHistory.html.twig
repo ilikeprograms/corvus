@@ -1,71 +1,49 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_ProjectHistory') }}">Project History</a></li>
+	<li class="active">Edit</li>
+{% endblock %}
 
+{% block mainContent %}
 	<h2>Edit "{{ form.vars.value.projectName }} - {{ form.vars.value.role }}"</h2>
-	<p>
-		Use this form to update the project details.<br />
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	<p class="well">
+		Use this form to update the Project details.<br />
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_EditProjectHistory', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Project History Fields:</legend>			 
 
-    		<div>
+    		<div class="form-group">
                 {{ form_label(form.project_name) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.project_name) }}
                 {{ form_widget(form.project_name) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.project_description) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.project_description) }}
                 {{ form_widget(form.project_description) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.role) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.role) }}
                 {{ form_widget(form.role) }}
             </div>
+
     		{{ form_row(form.process) }}
     		{{ form_row(form.feedback_received) }}
     		{{ form_row(form.reflection) }}
     		{{ form_row(form.url) }}
-
-		</fieldset>
-
-		<fieldset>
-			<legend>Files:</legend>
-            <div id="projectHistory_files" data-prototype="{{ form_widget(form.files.vars.prototype) | e }}">
-			{% for file in form.files %}
-                <div>
-                    <p><span class="fontBold">Original Filename:</span> {{ file.vars.value.originalFilename }}</p>
-    				{{ form_row(file) }}
-                    {% if file.vars.value.fileType == 'image' %}
-                    <div>
-        				<img src="/uploads/{{ thumbnails[file.vars.value.filename] }}" alt="{{ file.vars.value.fileTitle }}" style="display: block;" />
-                        <br />
-                        <hr />
-                        <br />
-                    </div>
-                    {% endif %}
-                </div>
-			{% endfor %}
-
-            <div><a href="#" id="add-another-file">Add a File</a></div>
-            </div>
 		</fieldset>
 
         <fieldset>
             <legend>Meta Info:</legend>
             <div>
                 {{ form_label(form.meta_title) }}
-                <span class="asterix">*</span>
+                
                 {{ form_errors(form.meta_title) }}
                 {{ form_widget(form.meta_title) }}
             </div>
@@ -74,48 +52,11 @@
 
 		{{ form_row(form._token) }}
 		
-
-		<a href="{{ path('CorvusAdminBundle_ProjectHistory') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-	
-        <script type="text/javascript">           
-            var fileCount = '{{ form.files | length }}';
-
-            jQuery(document).ready(function() {
-
-                // Find all current files
-                var children = jQuery('#projectHistory_files').children('div').children('label');
-
-                // Add "File" before each file number
-                $.each(children, function(index, value){
-                    var oldHtml = this.innerHTML;
-                    var newHtml = "File " + oldHtml;
-                    this.innerHTML = newHtml;
-                    
-                });
-
-                jQuery('#add-another-file').click(function() {
-                    var fileList = jQuery('#projectHistory_files');
-
-                    // grab the prototype template
-                    var newWidget = '<label class="required">File ' + fileCount.toString() + '</label>';
-                    newWidget += fileList.attr('data-prototype');
-                    // replace the "__name__" used in the id and name of the prototype
-                    // with a number that's unique to our files
-                    newWidget = newWidget.replace(/__name__/g, fileCount);
-                    fileCount++;
-
-                    // create a new div element and add it to our list
-                    var newLi = jQuery('<div></div>').html(newWidget);
-                    newLi.append("<hr /><br />");
-                    $('#add-another-file').parent().before(newLi);
-
-                    return false;
-                });
-            });
-        </script>
-
+		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
-
+	
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
 {% endblock %}

@@ -1,41 +1,40 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_Skills') }}">Skills</a></li>
+	<li class="active">Edit</li>
+{% endblock %}
 
+{% block mainContent %}
 	<h2>Editing "{{ form.vars.value.skillName }}"</h2>
-	<p>
-		Use this form to update the skill details. <br />
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	<p class="well">
+		Use this form to update the Skill details.
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_EditSkills', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Skill Fields:</legend>
 
-			<div>
+			<div class="form-group">
                 {{ form_label(form.skill_name) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.skill_name) }}
                 {{ form_widget(form.skill_name) }}
             </div>
 
-            <div>
+			<div class="form-group">
                 {{ form_label(form.competency) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.competency) }}
                 {{ form_widget(form.competency) }}
             </div>
 
-            <div>
+            <div class="form-goup">
                 {{ form_label(form.years_experience) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.years_experience) }}
                 {{ form_widget(form.years_experience) }}
             </div>
 
-            <div>
+            <div class="form-goup">
                 {{ form_label(form.description) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.description) }}
                 {{ form_widget(form.description) }}
             </div>
@@ -44,10 +43,11 @@
 
 		{{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_Skills') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-	
+		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
-
+	
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
 {% endblock %}

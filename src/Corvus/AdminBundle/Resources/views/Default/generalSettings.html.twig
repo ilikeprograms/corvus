@@ -1,35 +1,61 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li class="active">General Settings</li>
+{% endblock %}
 
+{% block mainContent %}
     <h2>Portfolio General Settings</h2>
-    <p>
-        Here you can customise information about your corvus installation. This will be displayed on the frontend (If told to display). It will also be included in the downloadable CV.
+    <p class="well">
+        Here you can customise information about your corvus installation.<br />
+		Such as the Title for your site, an optional subtitle and logo and more!
     </p>
     {{ form_errors(form) }}
     <form action="{{ path('CorvusAdminBundle_GeneralSettings') }}" method="post" {{ form_enctype(form) }}>
         <fieldset>
 			<legend>General Settings Fields:</legend>
 			
-			<div>
+			<div class="form-group">
                 {{ form_label(form.portfolio_title) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.portfolio_title) }}
                 {{ form_widget(form.portfolio_title) }}
             </div>
 
-			{{ form_row(form.portfolio_subtitle) }}
-			{{ form_row(form.display_subtitle) }}
-			{{ form_row(form.logo) }}
-			{{ form_row(form.display_logo) }}
-			{{ form_row(form.footer_text) }}
-			{{ form_row(form.template_choice) }}
-			{{ form_row(form.theme_choice) }}
-			
+			<div class="form-group">
+				{{ form_row(form.portfolio_subtitle) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(form.display_subtitle) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(form.logo) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(form.display_logo) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(form.footer_text) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(form.template_choice) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(form.theme_choice) }}
+			</div>
 		</fieldset>
 
 		<fieldset>
 			<legend>Meta Title Fields:</legend>
+			<div class="well">
+				The Meta fields are used for search engine optimisation aswell as the titles for the pages (The bar at the top of the screen).<br />
+				They use the titles here, aswell as the extra parts in the education/skills records etc.
+			</div>
 			{{ form_row(form.global_general_meta_title) }}
 			{{ form_row(form.about_meta_title) }}
 			{{ form_row(form.education_meta_title) }}
@@ -38,30 +64,15 @@
 			{{ form_row(form.project_history_meta_title) }}
 			{{ form_row(form.global_work_history_meta_title) }}
 			{{ form_row(form.global_project_history_meta_title) }}
-			<footer><div>Field Notes<br/>
-			Meta Title: This is used as part of the title of all the pages on the frontend. By default it is usually appended to the end of the title of pages, for example with the title as "Hello Site", a page title could be "My Home Page | Hello Site".</div>
-			</footer>
-		</fieldset>
-
-		<fieldset>
-			<legend>Google Analytics:</legend>
-			<p>Enter your Google Analytics Tracking ID to add analytics to corvus. Leave blank or remove to stop tracking.</p>
-			{{ form_row(form.analytics) }}
-		</fieldset>
-
-		<fieldset>
-			<legend>Change Password Fields:</legend>
-			<p>To change the password for the admin. Enter the current password and a matching new password and confirmation.</p>
-			{{ form_row(changePForm.current_password) }}
-			{{ form_row(changePForm.new_password) }}
-			{{ form_row(changePForm.confirm_password) }}
 		</fieldset>
 
 		{{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_homepage') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
+		<input type="submit" class="btn btn-primary" value="Save" />
     </form>
 
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
 {% endblock %}

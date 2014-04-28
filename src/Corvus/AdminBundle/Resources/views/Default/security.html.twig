@@ -9,7 +9,7 @@
 	<h2>Account Security</h2>
 	<p class="well">Use the form below to change your password. This needs to be done to make sure your installation of Corvus is secure.</p>
 	<form role="form" action="{{ path('CorvusAdminBundle_Security') }}" method="post" {{ form_enctype(form) }}>
-		<p> Enter the current password and a matching new password and confirmation.</p>
+		<p>Enter the current password and a matching new password and confirmation.</p>
 
 		<div class="form-group">
 			{{ form_label(form.currentPassword) }}
@@ -27,11 +27,15 @@
 			<sup>[1]</sup>
 			{{ form_widget(form.plainPassword.second) }}
 		</div>
-		
-		<p class="help-block"><sup>[1]</sup> Make sure the New Password and Repeat Password fields match</p>
-		
+
 		{{ form_rest(form) }}
 		
-		<input type="submit" class="btn btn-primary" value="Save!" />
+		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
+		
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+		<p class="help-block"><sup>[1]</sup> Make sure the New Password and Repeat Password fields match</p>
+	</aside>
 {% endblock %}

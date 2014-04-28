@@ -1,67 +1,65 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
+{% block breadcrumbs %}
+	<li class="active">About</li>
+{% endblock %}
+
 {% block mainContent %}
 
     <h2>About</h2>
-    <p>
-        These are all the personal/contact details stored in your corvus record. This will be displayed on the frontend. It will also be included in the downloadable CV. It will also be included in the downloadable CV.
-    </p>
+    <div class="well">
+        These are all the personal/contact details stored in your corvus record. This will be displayed on the frontend.<br />
+		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
+    </div>
     
-    {{ form_errors(form) }}
+	<div class="row">
+		<div class="col-md-12">
+		{{ form_errors(form) }}
+			<form action="{{ path('CorvusAdminBundle_About') }}" method="post" {{ form_enctype(form) }} role="form">
+				<fieldset>
+					<legend><span>About Fields:</span></legend>
 
-    <form action="{{ path('CorvusAdminBundle_About') }}" method="post" {{ form_enctype(form) }}>
-        <fieldset>
-			<legend><span>About Fields:</span></legend>
-			
-            <div>
-                {{ form_label(form.firstname) }}
-                <span class="asterix">*</span>
-                {{ form_errors(form.firstname) }}
-                {{ form_widget(form.firstname) }}
-            </div>
+						{{ form_label(form.firstname) }}
+						{{ form_errors(form.firstname) }}
+						{{ form_widget(form.firstname) }}
 
-            <div>
-                {{ form_label(form.lastname) }}
-                <span class="asterix">*</span>
-                {{ form_errors(form.lastname) }}
-                {{ form_widget(form.lastname) }}
-            </div>
+					<div>
+						{{ form_label(form.lastname) }}
+						{{ form_errors(form.lastname) }}
+						{{ form_widget(form.lastname) }}
+					</div>
 
-            <div>
-                {{ form_label(form.age) }}
-                <span class="asterix">*</span>
-                {{ form_errors(form.age) }}
-                {{ form_widget(form.age) }}
-            </div>
+					<div>
+						{{ form_label(form.age) }}
+						{{ form_errors(form.age) }}
+						{{ form_widget(form.age) }}
+					</div>
 
-            <div>
-                {{ form_label(form.bio) }}
-                <span class="asterix">*</span>
-                {{ form_errors(form.bio) }}
-                {{ form_widget(form.bio) }}
-            </div>
-			
-            {{ form_row(form.address) }}
-            {{ form_row(form.location) }}
-            {{ form_row(form.interests_hobbies) }}
+					<div>
+						{{ form_label(form.bio) }}
+						{{ form_errors(form.bio) }}
+						{{ form_widget(form.bio) }}
+					</div>
 
-            <div>
-                {{ form_label(form.email_address) }}
-                <span class="asterix">*</span>
-                {{ form_errors(form.email_address) }}
-                {{ form_widget(form.email_address) }}
-            </div>
+					{{ form_row(form.address) }}
+					{{ form_row(form.location) }}
+					{{ form_row(form.interests_hobbies) }}
 
-            {{ form_row(form.twitter) }}
-            {{ form_row(form.facebook) }}
+					<div>
+						{{ form_label(form.email_address) }}
+						{{ form_errors(form.email_address) }}
+						{{ form_widget(form.email_address) }}
+					</div>
 
-		</fieldset>
+					{{ form_row(form.twitter) }}
+					{{ form_row(form.facebook) }}
 
-        {{ form_row(form._token) }}
+				</fieldset>
 
-		<a href="{{ path('CorvusAdminBundle_homepage') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-    </form>
+				{{ form_row(form._token) }}
 
+				<input type="submit" class="btn btn-primary" value="Save" />
+			</form>
+		</div>
+	</div>
 {% endblock %}

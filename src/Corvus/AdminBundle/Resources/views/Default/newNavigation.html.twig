@@ -1,33 +1,37 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_Navigation') }}">Navigation</a></li>
+	<li class="active">New</li>
+{% endblock %}
+
 {% block mainContent %}
 
-	<h2>Add a New Navigation item.</h2>
-	<p>
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+	<h2>Add new Navigation</h2>
+	<p class="well">
+		A new Navigation item will display another link in the Navigation on the frontend.<br />
+		Enter the HREF to link to an external resource, or use the Internal Routes to link to a page
+		in the portfolio.
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_NewNavigation') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 			
-            <div>
+            <div class="form-group">
                 {{ form_label(form.href) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.href) }}
                 {{ form_widget(form.href) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.title) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.title) }}
                 {{ form_widget(form.title) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.alt) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.alt) }}
                 {{ form_widget(form.alt) }}
             </div>
@@ -38,27 +42,30 @@
 
 		{{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_Navigation') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
+		<input type="submit" class="btn btn-primary" value="Save" />
 	
 	</form>
+	
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
+{% endblock %}
 
+{% block javascript %}
 	<script type="text/javascript">
 		jQuery(function(){
 			var navSelect = $("#navigation_internalRoutes");
 			var navHref = $("#navigation_href");
-			$(navSelect).change(function() {
+			$("#navigation_internalRoutes").change(function() {
 				if(navSelect.val() != "")
 				{
 					$(navHref).parent().slideUp();
-				}
-				else
-				{
-					
+					$(navHref).val(navSelect.val());
+				} else {
 					$(navHref).parent().slideDown();
 				}
-			})
+			});
 		});
 	</script>
 {% endblock %}

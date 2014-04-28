@@ -2,69 +2,141 @@
 <html>
 <head>
     <title>{% block title%}Corvus Dashboard{% endblock %}</title>
+	
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed "href="/apple-touch-icon.png" />
 
-    {% stylesheets filter="cssrewrite"
-        'bundles/corvusadmin/css/layout.css'
+	{% stylesheets filter="?cssrewrite"
+		'%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less'
+		'bundles/corvusadmin/css/layout.less'
+		'bundles/corvusadmin/css/layout.css'
         'bundles/corvusadmin/css/design.css'
-    %}
-    <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-    {% endstylesheets %}
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-    {% javascripts output="js/compiled/main.js"
-        'bundles/corvusadmin/js/noticeScript.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}" /></script>
-    {% endjavascripts %}
-    {% block javascript %}
-    {% endblock %}
+		'%kernel.root_dir%/Resources/public/css/font-awesome.css'
+	%}
+		<link rel="stylesheet" href="{{ asset_url }}">
+	{% endstylesheets %}
 </head>
 <body>
-<div id="container">
-    <div id="corvusBar">
-        <div id="logo">
-            <img src="{{ asset('bundles/corvusadmin/images/logo.png') }}" /> &nbsp; Corvus
-            &raquo; Hello {{ portfolio_info.about.firstname }}
-        </div>
-        <div id="flashes">
-            {% if app.session.hasFlash('notice') %}
-                <div id="flash-notice">
-                    {{ app.session.flash('notice') }}
-                </div>
-            {% endif %}
-        </div>
-        <div id="version">
-            {% if corvus_version %}Version {{ corvus_version }} &laquo;{% endif %}
-            <a href="{{ path('CorvusFrontendBundle_Logout') }}">Logout</a>
-        </div>
-    </div>
-    
+<div class="container-fluid">
+	<nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="corvusBar">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="{{ path('CorvusAdminBundle_Home') }}">
+				<img src="{{ asset('bundles/corvusadmin/images/corvusV2-64.png') }}" class="brandLogo" /> &nbsp; Corvus &nbsp;
+				{% if corvus_version %}<sup><small>V. {{ corvus_version }}</small></sup>{% endif %}
+			</a>
+		</div>
 
-    <div id="mainContainer">
-        <navigation id="mainNavigation">
-            <ul id="logoNav">
-                <li class="dashboard"><a href="{{ path('CorvusAdminBundle_homepage') }}">Dashboard</a></li>
-                <li class="generalSettings"><a href="{{ path('CorvusAdminBundle_GeneralSettings') }}">General Settings</a></li>
-                <li class="siteDesign"><a href="{{ path('CorvusAdminBundle_SiteDesign') }}">Site Design</a></li>
-                <li class="education"><a href="{{ path('CorvusAdminBundle_Education') }}">Education</a></li>
-                <li class="workHistory"><a href="{{ path('CorvusAdminBundle_WorkHistory') }}">Work History</a></li>
-                <li class="projectHistory"><a href="{{ path('CorvusAdminBundle_ProjectHistory') }}">Project History</a></li>
-                <li class="skills"><a href="{{ path('CorvusAdminBundle_Skills') }}">Skills</a></li>
-                <li class="navigation"><a href="{{ path('CorvusAdminBundle_Navigation') }}">Navigation</a></li>
-                <li class="downloads"><a href="{{ path('CorvusAdminBundle_Downloads') }}">Downloads</a></li>
-                <li class="about"><a href="{{ path('CorvusAdminBundle_About') }}">About</a></li>
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<a href="{{ path('CorvusFrontendBundle_Logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+			</li>
+		</ul>
+		<p class="navbar-text navbar-right">
+			Logged in as {{ portfolio_info.about.firstname }}
+		</p>
+	</nav>
+    <div class="row">
+        <navigation class="col-md-2">
+            <ul class="nav nav-pills nav-stacked">
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_Home', 'Home', 'Home Link', 'fa-home') }}
+				{{ portfolio_info.createNavStack([
+						'CorvusAdminBundle_GeneralSettings',
+						'General Settings',
+						'General Settings Link',
+						'fa-cogs'
+					],
+					[[
+						'CorvusAdminBundle_Security',
+						'Account Security',
+						'Account Security Link',
+						'fa-lock'
+					], [
+						'CorvusAdminBundle_Analytics',
+						'Analytics',
+						'Analytics Link',
+						'fa-eye'
+					]
+					])
+				}}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_SiteDesign', 'Site Design', 'Site Design Link', 'fa-tint') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_Education', 'Education', 'Education Link', 'fa-book') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_WorkHistory', 'Work History', 'Work History Link', 'fa-briefcase') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_ProjectHistory', 'Project History', 'Project History Link', 'fa-rocket') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_Skills', 'Skills', 'Skills Link', 'fa-magic') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_Navigation', 'Navigation', 'Navigation Link', 'fa-sitemap') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_Downloads', 'Downloads', 'Downloads Link', 'fa-gift') }}
+				{{ portfolio_info.createNavItem('CorvusAdminBundle_About', 'About', 'About Link', 'fa-user') }}
             </ul>
         </navigation>
-        <div id="mainContent">
+		
+		<div class="col-md-10">
+			<ol class="breadcrumb">
+				<li><a href="{{ path('CorvusAdminBundle_Home') }}">Home</a></li>
+				{% block breadcrumbs %}{% endblock %}
+			</ol>
             {% block mainContent %}
             
             {% endblock %}
         </div>
-        <br class="clear" />
     </div>
 
     <footer id="pageFooter">
-        <p>&copy; 2012 Thomas Coleman</p>
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-fixed no-list">
+					<li><i class="fa fa-github"></i> <a href="https://github.com/ilikeprograms/corvus" target="_blank">Github</a> <sup>(View or Fork Corvus)</sup></li>
+					<li><i class="fa fa-globe"></i> <a href="http://corvus.ilikeprograms.com" target="_blank">Corvus Website</a></li>
+					<li><i class="fa fa-envelope"></i> <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Corvus Support">Send us an Email</a> <sup>(corvus-support@ilikeprograms.com)</sup></li>
+					<li><i class="fa fa-stack-overflow"></i> <a href="http://stackoverflow.com/questions/tagged/corvus" target="_blank">Stack Overflow</a></li>
+				</ul>
+			</div>
+			<div class="col-md-6 text-right">
+				<ul class="list-fixed no-list">
+					<li><i class="fa fa-home"></i> <a href="{{ path('CorvusFrontendBundle_homepage') }}">View Portfolio</a></li>
+					<li><i class="fa fa-arrow-up"></i> <a href="#corvusBar">Back to top</a></li>
+				</ul>
+			</div>
+		</div>
+		<p class='text-center'><sub>Corvus is released under the GPL v3 Licence, see LICENCE.txt under the project root for the full licence.</sub></p>
     </footer>
+	
+	<div id='alert-template' class="alert alert-dismissable" aria-hidden="true" style="display: none;">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong></strong>
+		<p></p>
+	</div>
 </div>
+
+{% javascripts
+	'%kernel.root_dir%/Resources/js/jquery.min.js'
+	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/*'
+	'%kernel.root_dir%/Resources/public/js/common.js'
+	'bundles/corvusadmin/js/noticeScript.js'
+	filter='?uglifyjs2' %}
+	<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% block javascript %}
+{% endblock %}
+
+{% if app.session.flashbag.has('notice') %}
+			
+{#			<div id="flash-notice">#}
+{#				{% notice = app.session.flashbag.get('notice')[0] %}#}
+	<script type='text/javascript'>
+		$(function () {
+			Corvus.displayAlert('Alert', '{{ app.session.flashbag.get('notice')[0] }}', 'warning');
+		});
+	</script>
+				
+{#			</div>#}
+{% endif %}
 </body>
 </html>

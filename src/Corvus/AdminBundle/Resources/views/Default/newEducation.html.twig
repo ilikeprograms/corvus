@@ -1,40 +1,41 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
-{% block mainContent %}
+{% block breadcrumbs %}
+	<li><a href="{{ path('CorvusAdminBundle_Education') }}">Education</a></li>
+	<li class="active">New</li>
+{% endblock %}
 
-	<h2>Add a New Education record.</h2>
-	<p>
-		Please enter all the fields, Alternate text is highly usefull for people with screenreaders :)
+{% block mainContent %}
+	<h2>Add new Education</h2>
+	<p class="well">
+		An Education record will be displayed on the Education page. Where people can view
+		all of your Education to date.
 	</p>
 
 	<form action="{{ path('CorvusAdminBundle_NewEducation') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Education Fields:</legend>
             
-            <div>
+            <div class="form-group">
                 {{ form_label(form.education_institute) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.education_institute) }}
                 {{ form_widget(form.education_institute) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.qualification) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.qualification) }}
                 {{ form_widget(form.qualification) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.start_date) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.start_date) }}
                 {{ form_widget(form.start_date) }}
             </div>
 
-            <div>
+            <div class="form-group">
                 {{ form_label(form.duration) }}
-                <span class="asterix">*</span>
                 {{ form_errors(form.duration) }}
                 {{ form_widget(form.duration) }}
             </div>
@@ -45,10 +46,11 @@
 
 		{{ form_rest(form) }}
 
-		<a href="{{ path('CorvusAdminBundle_Education') }}" class="cancel">Cancel</a>
-		&nbsp;
-		<input type="submit" class="submit" value="Submit" />
-	
+		<input type="submit" class="btn btn-primary" value="Save" />
 	</form>
-
+		
+	<aside>
+		<h3>Help</h3>
+		<p>Fields marked with <span class="required-hint"></span> are required</p>
+	</aside>
 {% endblock %}
