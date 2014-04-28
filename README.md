@@ -1,174 +1,78 @@
-Symfony Standard Edition
-========================
+Corvus
+======
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+[![Build Status](https://travis-ci.org/ilikeprograms/corvus.svg?branch=master)](https://travis-ci.org/ilikeprograms/corvus)
+[![Gittip](http://img.shields.io/gittip/ilikeprograms.svg)](https://www.gittip.com/ilikeprograms/)
 
-This document contains information on how to download, install, and start
-using Symfony. For a more detailed explanation, see the [Installation][1]
-chapter of the Symfony Documentation.
+Corvus is an opinionated, self hosted and free Portfolio Content Management System.
+Corvus was created as an alternative to Hosted portfolios, which provide a way to create and customise a portfolio,
+but for advanced options/extras require paying.
 
-1) Installing the Standard Edition
-----------------------------------
+Create a simple portfolio, link to resources, and show the world what you can do with Corvus.
 
-When it comes to installing the Symfony Standard Edition, you have the
-following options.
+## **Features**
 
-### Use Composer (*recommended*)
+* Corvus can be easily customised to make your portfolio Unique. The info, the styles, the showcase.
+* Made to easy to use and tailored to provide what a portfolio needs to. No other bloat
+* Navigation is pre created, but you can link to anything your portfolio needs to compliment
+* Project and Work history provided a good way to showcase yourself
+* Downloads let you gift people your creations *(Coming Soon)*
+* You can add your Education and Skills to prove your skillset
 
-As Symfony uses [Composer][2] to manage its dependencies, the recommended way
-to create a new project is to use it.
+## **Why choose Corvus?**
 
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+* Corvus is Free, Open source, and Self hosted. You can do virtually anything you want with it.
+* You will never have to pay for Corvus, for upgrades or extras or support. If you value the product, then Contribute or Donate.
+* Corvus was designed to manage portfolios, nothing else. You dont need 100's of plugins to make a portfolio. If it cant do what you want, <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Feature Suggestion">Make a suggesting</a>
+* I developed Corvus to use as my Portfolio, because I didn't like Hosted ones. If it needs new features, I will develop them.
+* Im better at programming than I am at writing this stuff *(I Hope)*
 
-    curl -s https://getcomposer.org/installer | php
+## Installation
 
-Then, use the `create-project` command to generate a new Symfony application:
+### Cloning the Repo
 
-    php composer.phar create-project symfony/framework-standard-edition path/to/install
+To begin using Corvus, it needs to be downloaded. The easiest way to do this would be to use git:
 
-Composer will install Symfony and all its dependencies under the
-`path/to/install` directory.
+```Shell
+git clone https://github.com/ilikeprograms/corvus
+```
 
-### Download an Archive File
+### Installing Dependencies
 
-To quickly test Symfony, you can also download an [archive][3] of the Standard
-Edition and unpack it somewhere under your web server root directory.
+When the project is finished downloading, the project dependencies need to be installed.
 
-If you downloaded an archive "without vendors", you also need to install all
-the necessary dependencies. Download composer (see above) and run the
-following command:
+To do that Composer is used to install the depencencies, by running:
 
-    php composer.phar install
+```Shell
+composer.phar install
+```
 
-2) Checking your System Configuration
--------------------------------------
+### Configuring the Database
 
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
+To automatically create the database and insert the dummy data, **DoctrineMigrations** are used. Run the following command to migrate the Corvus database:
 
-Execute the `check.php` script from the command line:
+```Shell
+php app/console doctrine:migrations:migrate
+```
 
-    php app/check.php
+## Start using Corvus
 
-Access the `config.php` script from a browser:
+Everything should now be setup to start using the Application.
 
-    http://localhost/path/to/symfony/app/web/config.php
+In your browser go to:
+http://localhost/app.php
 
-If you get any warnings or recommendations, fix them before moving on.
+By default, there is only one user account and that should have been created in the Configuring the Database section. To login and manage your Corvus installation, use the following account details:
 
-3) Browsing the Demo Application
---------------------------------
+**User**: Admin
 
-Congratulations! You're now ready to use Symfony.
+**Password**: password
 
-From the `config.php` page, click the "Bypass configuration and go to the
-Welcome page" link to load up your first Symfony page.
+To access the backend go to: http://localhost/app.dev/Admin
 
-You can also use a web-based configurator by clicking on the "Configure your
-Symfony Application online" link of the `config.php` page.
+## Support/Contact
 
-To see a real-live Symfony page in action, access the following page:
-
-    web/app_dev.php/demo/hello/Fabien
-
-4) Getting started with Symfony
--------------------------------
-
-This distribution is meant to be the starting point for your Symfony
-applications, but it also contains some sample code that you can learn from
-and play with.
-
-A great way to start learning Symfony is via the [Quick Tour][4], which will
-take you through all the basic features of Symfony2.
-
-Once you're feeling good, you can move onto reading the official
-[Symfony2 book][5].
-
-A default bundle, `AcmeDemoBundle`, shows you Symfony2 in action. After
-playing with it, you can remove it by following these steps:
-
-  * delete the `src/Acme` directory;
-
-  * remove the routing entries referencing AcmeBundle in
-    `app/config/routing_dev.yml`;
-
-  * remove the AcmeBundle from the registered bundles in `app/AppKernel.php`;
-
-  * remove the `web/bundles/acmedemo` directory;
-
-  * remove the `security.providers`, `security.firewalls.login` and
-    `security.firewalls.secured_area` entries in the `security.yml` file or
-    tweak the security configuration to fit your needs.
-
-What's inside?
----------------
-
-The Symfony Standard Edition is configured with the following defaults:
-
-  * Twig is the only configured template engine;
-
-  * Doctrine ORM/DBAL is configured;
-
-  * Swiftmailer is configured;
-
-  * Annotations for everything are enabled.
-
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * [**JMSSecurityExtraBundle**][13] - Allows security to be added via
-    annotations
-
-  * [**JMSDiExtraBundle**][14] - Adds more powerful dependency injection
-    features
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][15] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.1/book/installation.html
-[2]:  http://getcomposer.org/
-[3]:  http://symfony.com/download
-[4]:  http://symfony.com/doc/2.1/quick_tour/the_big_picture.html
-[5]:  http://symfony.com/doc/2.1/index.html
-[6]:  http://symfony.com/doc/2.1/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.1/book/doctrine.html
-[8]:  http://symfony.com/doc/2.1/book/templating.html
-[9]:  http://symfony.com/doc/2.1/book/security.html
-[10]: http://symfony.com/doc/2.1/cookbook/email.html
-[11]: http://symfony.com/doc/2.1/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.1/cookbook/assetic/asset_management.html
-[13]: http://jmsyst.com/bundles/JMSSecurityExtraBundle/master
-[14]: http://jmsyst.com/bundles/JMSDiExtraBundle/master
-[15]: http://symfony.com/doc/2.1/bundles/SensioGeneratorBundle/index.html
+* [View or Fork Corvus](https://github.com/ilikeprograms/corvus)
+* [Corvus Website](http://corvus.ilikeprograms.com)
+* <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Corvus Support">Send us an Email</a> <sup>(corvus-support@ilikeprograms.com)</sup>
+* [Stack Overflow](http://stackoverflow.com/questions/tagged/corvus)

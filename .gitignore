@@ -8,3 +8,6 @@
 /app/config/parameters.yml
 .DS_Store
 src/Corvus/AdminBundle/Resources/config/corvusdb.yml
+/web/js
+/web/fonts/
+/web/assetic/
