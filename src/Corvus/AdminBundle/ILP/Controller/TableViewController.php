@@ -137,12 +137,12 @@ abstract class TableViewController extends AbstractTableViewController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tableView = $request->request->get($this->_tableViewTypeName);
+        $tableView = $request->request->get($this->tableViewTypeName);
 
         // TableView would ve submitted to the request if its a batch action
         if(isset($tableView)) {
             // Attempt to delete every 'check'ed entity
-            foreach ($tableView[$this->_tableViewDataName] as $entity) {
+            foreach ($tableView[$this->tableViewDataName] as $entity) {
                 // The check field holds the ID of the entity
                 if(is_int((int)$entity['check']) == true)
                 {

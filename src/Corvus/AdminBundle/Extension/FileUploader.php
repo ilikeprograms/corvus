@@ -38,13 +38,13 @@ class FileUploader
         // If single File
         if ($entity instanceof File) {
             // Prepare the File for persisting
-            $entity->setFileType($this->_determineFileType($entity));
-            $entity->setFilename($this->_setFilename($entity));
-            $entity->setOriginalFilename($this->_setOriginalFilename($entity));
+            $entity->setFileType($this->determineFileType($entity));
+            $entity->setFilename($this->generateUniqueFilename($entity));
+            $entity->setOriginalFilename($this->getOriginalFilename($entity));
         // If an Entity which supports File's
         } elseif ($entity instanceof FileUpload) {
             // Perpare multiple Files
-            $this->_handleMultipleFilePreparation($entity);
+            $this->prePersistFilePreparation($entity);
         } else {
             return;
         }
@@ -69,7 +69,7 @@ class FileUploader
         }
 
         // Prepare multiple Files
-        $this->_handleMultipleFilePreparation($entity);
+        $this->prePersistFilePreparation($entity);
         
         // Recompute the change set for the Entity and Files. Makes sure the changes are saved properly
         $this->_recomputeChangeSetForEntity($entity, $args->getEntityManager());
@@ -88,7 +88,7 @@ class FileUploader
      */
     public function postPersist(LifecycleEventArgs $args)
     {
-        $this->_post($args);
+        $this->postPersistUploadandChangeset($args);
     }
 
 
@@ -104,7 +104,7 @@ class FileUploader
      */
     public function postUpdate(LifecycleEventArgs $args)
     {
-        $this->_post($args);
+        $this->postPersistUploadandChangeset($args);
     }
 
     /**
@@ -171,7 +171,7 @@ class FileUploader
      * 
      * @return void
      */
-    private function _post(LifecycleEventArgs $args)
+    private function postPersistUploadandChangeset(LifecycleEventArgs $args)
     {
         if (!($entity = $args->getEntity()) instanceof FileUpload) {
             return;
@@ -179,7 +179,7 @@ class FileUploader
 
         if (count($entity->getFiles()) > 0) {
             // Upload all of the Files and create thumbnails if applicable
-            $this->_uploadMultipleFiles($entity);
+            $this->uploadMultipleFiles($entity);
         } else {
             return;
         }
@@ -196,15 +196,15 @@ class FileUploader
      * 
      * @return void
      */
-    private function _handleMultipleFilePreparation($entity)
+    private function prePersistFilePreparation($entity)
     {
         if (($files = $entity->getFiles()) !== null) {
             foreach ($files as $file) {
                 if ($file->getFile()) {
                     $file->setUpdated(new \DateTime('now'));
-                    $file->setFileType($this->_determineFileType($file));
-                    $file->setFilename($this->_setFilename($file));
-                    $file->setOriginalFilename($this->_setOriginalFilename($file));
+                    $file->setFileType($this->determineFileType($file));
+                    $file->setFilename($this->generateUniqueFilename($file));
+                    $file->setOriginalFilename($this->getOriginalFilename($file));
                 }
             }
         }
@@ -218,7 +218,7 @@ class FileUploader
      * 
      * @return string The filetype of the File to be uploaded.
      */
-    private function _determineFileType($entity)
+    private function determineFileType($entity)
     {
         // image file types
         $imageFileTypes = array('jpeg', 'jpg', 'png', 'gif');
@@ -238,7 +238,7 @@ class FileUploader
      * 
      * @return string The unique filename of the File to be uploaded
      */
-    private function _setFilename($entity)
+    private function generateUniqueFilename($entity)
     {
         if ($entity->getFilename() === null) {
             return uniqid() . '.' . $entity->getFile()->guessExtension();
@@ -254,7 +254,7 @@ class FileUploader
      * 
      * @return string The original name of the File to be uploaded
      */
-    private function _setOriginalFilename($entity)
+    private function getOriginalFilename($entity)
     {
         /* @var $symfonyFile \Symfony\Component\HttpFoundation\File */
         $symfonyFile = $entity->getFile();
@@ -272,7 +272,7 @@ class FileUploader
      * 
      * @return void
      */
-    private function _uploadMultipleFiles($entity)
+    private function uploadMultipleFiles($entity)
     {
         if (($files = $entity->getFiles())) {
             /* @var $file \Corvus\AdminBundle\Entity\File */
@@ -286,7 +286,7 @@ class FileUploader
                     $symfonyFile->move($entity->getUploadRootDir(), $filename);
                     
                     if ($file->getFileType() === 'image') {
-                        $this->_createThumbnail($entity->getUploadRootDir() . "/" . $filename);
+                        $this->createThumbnail($entity->getUploadRootDir() . "/" . $filename);
                     }
                 }
             }
@@ -300,15 +300,13 @@ class FileUploader
      * 
      * @return void
      */
-    private function _createThumbnail($filename)
+    private function createThumbnail($filename)
     {
         $imageProperties = getimagesize($filename);
         $originalImageWidth = $imageProperties[0];
         $originalImageHeight = $imageProperties[1];
-        $imageType = $imageProperties[2];
 
         $extension = substr($filename, strrpos($filename, '.') + 1);
-        var_dump($extension);
 
         if ($originalImageWidth > 250 || $originalImageHeight > 250) {
             $ratio = ($originalImageWidth / $originalImageHeight);
