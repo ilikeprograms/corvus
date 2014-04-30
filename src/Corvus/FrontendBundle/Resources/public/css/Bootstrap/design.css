@@ -1,4 +1,4 @@
-body {
+/*body {
     font: 16px/24px Tahoma, Arial, sans-serif;
 }
 
@@ -16,7 +16,7 @@ h3 {
 
 h2, h3 {
     font-family: ‘Courier New’, Courier, monospace;
-}
+}*/
 
 p {
     margin-bottom: 16px;
@@ -123,21 +123,10 @@ p {
     color: #EEEEEE;
 }
 
-#footerNav a {
-    color: #DDDDDD;
-    text-decoration: underline;
-}
-
-#footerNav a:hover {
-    color: #FFFFFF;
-    text-decoration: none;
-    -webkit-transition: color 1s ease-out;
-    -moz-transiton: color 1s ease-out;
-}
-
 #subFooter {
     border-top: 1px solid #FFFFFF;
     background: #252B64;
+	color: #EEEEEE;
 }
 
 .corvusFooter {
