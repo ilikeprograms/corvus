@@ -178,10 +178,11 @@ class BaseEntityRepository extends EntityRepository
 			->setMaxResults('1') // Find 1st closest Entity
 			->where('p.row_order ' . $operator . ' :order') // Use < || > depending on $direction
 			->setParameter('order', $rowOrder)
-			->orderBy('p.row_order',  $sortDir) // Set the ORDER BY, find rows in right direction
-			->from('CorvusAdminBundle:' . $this->_originalEntityName . ' p');
+            ->orderBy('p.row_order',  $sortDir) // Set the ORDER BY, find rows in right direction
+            ->from('CorvusAdminBundle:' . $this->_originalEntityName . ' p');
 
-		return $qb->getQuery()->getResult()[0];
+            $res = $qb->getQuery()->getResult();
+            return $res[0];
 	}
     
     /**
