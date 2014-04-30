@@ -155,16 +155,17 @@ class PortfolioInfoRepository
 	{
         // Get the current Environment and the appropriate index
 		$env = $this->container->getParameter('kernel.environment');
-		$urlPrepend = $env === 'dev' ? '/app_dev.php' : '/';
+		$urlPrepend = $env === 'dev' ? '/app_dev.php' : '/app.php';
 
         // Get any Paramaters in the Route of the Current page
-		$routeParams = $this->request->get('_route_params');
+        $routeId = $this->request->attributes->get('id');
+        $route = $this->request->get('_route');
 
         // Find the Current route of the page, including any id params
-		if (array_key_exists('id', $routeParams)) {
-			$currentRoute = $this->router->generate($this->request->get('_route'), array('id' => $routeParams['id']));
+		if ($routeId) {
+			$currentRoute = $this->router->generate($route, array('id' => $routeId));
 		} else {
-			$currentRoute = $this->router->generate($this->request->get('_route'));
+			$currentRoute = $this->router->generate($route);
 		}
         
         // Create a Navigation list item for each Navigation Entity in Corvus
