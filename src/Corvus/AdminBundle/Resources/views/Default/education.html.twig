@@ -29,26 +29,27 @@
 					<tr>
 						<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
 						<td>{{ item.vars.value.rowOrder }}
-							 {% if form.education|length > 1 %}
-								{% if loop.first == true %}
-									<a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}" class="disabled">
-										<i class="fa fa-arrow-level-up"></i>
-									</a>
-								{% else %}
-									<a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}">
-										<i class="fa fa-arrow-level-up"></i>
-									</a>
-								{% endif %}
-								{% if loop.last == false %}
-									<a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}">
-										<i class="fa fa-arrow-level-up"></i>
-									</a>
-								{% else %}
-									<a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}" class="disabled">
-										<i class="fa fa-arrow-level-up"></i>
-									</a>
-								{% endif %}
-								|
+							{% if form.education|length > 1 %}
+								<div class="btn-group btn-group-xs">
+									{% if loop.first == true %}
+										<a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+											<i class="fa fa-level-up"></i>
+										</a>
+									{% else %}
+										<a href="{{ path('CorvusAdminBundle_UpEducationOrder', { id : item.vars.value.id }) }}" class="btn btn-default"> 
+											<i class="fa fa-level-up"></i>
+										</a>
+									{% endif %}
+									{% if loop.last == false %}
+										<a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+											<i class="fa fa-level-down"></i>
+										</a>
+									{% else %}
+										<a href="{{ path('CorvusAdminBundle_DownEducationOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+											<i class="fa fa-level-down"></i>
+										</a>
+									{% endif %}
+								</div>
 							{% endif %}
 						</td>
 						<td>{{ item.vars.value.educationinstitute }}</td>
