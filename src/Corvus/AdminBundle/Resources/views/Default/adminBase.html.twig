@@ -116,10 +116,10 @@
 
 {% javascripts
 	'%kernel.root_dir%/Resources/js/jquery.min.js'
-	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/*'
 	'%kernel.root_dir%/Resources/public/js/common.js'
+	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js'
 	'bundles/corvusadmin/js/noticeScript.js'
-	filter='?uglifyjs2' %}
+%}
 	<script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
