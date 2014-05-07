@@ -12,4 +12,4 @@ parameters:
     mailer_password:   ~
 
     locale:            ~
-    secret:            aac2785f6ad517a6bd471573e33d1af8
+    secret:            ThisSecretWillBeChanged

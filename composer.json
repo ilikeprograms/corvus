@@ -24,7 +24,12 @@
 	"license": "GPL-3.0+",
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
+        "symfony-web-dir": "web",
+		"incenteev-parameters": [{
+			"file": "app/config/parameters.yml"
+		}, {
+			"file": "src/Corvus/AdminBundle/Resources/config/corvusdb.yml"
+		}]
     },
     "minimum-stability": "stable",
     "name": "ilikeprograms/corvus",
@@ -44,16 +49,19 @@
         "symfony/swiftmailer-bundle": "2.3.*",
         "symfony/symfony": "2.4.*",
         "twbs/bootstrap": "v3.0.0",
-        "twig/extensions": "1.0.*"
+        "twig/extensions": "1.0.*",
+		"incenteev/composer-parameter-handler": "~2.0"
     },
     "scripts": {
         "post-install-cmd": [
+			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
