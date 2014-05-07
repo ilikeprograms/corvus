@@ -4,7 +4,24 @@
             "": "src/"
         }
     },
-    "description": "Corvus, Portfolio CMS",
+	"description": "Corvus, Portfolio CMS",
+	"authors": [
+		{
+			"name": "Thomas Coleman",
+			"email": "tom@ilikeprograms.com",
+			"homepage": "http://ilikeprograms.com",
+			"role": "Creator and Lead Developer"
+		}
+	],
+    "homepage": "http://corvus.ilikeprograms.com",
+	"support": {
+		"email": "corvus-support@ilikeprograms.com",
+		"issues": "https://github.com/ilikeprograms/corvus/issues",
+		"github": "https://github.com/ilikeprograms/corvus",
+		"stackoverflow": "http://stackoverflow.com/questions/tagged/corvus",
+		"gittip": "https://www.gittip.com/ilikeprograms"
+	},
+	"license": "GPL-3.0+",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
@@ -13,9 +30,9 @@
     "name": "ilikeprograms/corvus",
     "require": {
         "doctrine/doctrine-bundle": "1.2.*",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/migrations": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.x-dev",
+        "doctrine/doctrine-migrations-bundle": "2.1.x-dev",
+        "doctrine/migrations": "1.0.x-dev",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "leafo/lessphp": "v0.4.0",
         "php": ">=5.3.3",
