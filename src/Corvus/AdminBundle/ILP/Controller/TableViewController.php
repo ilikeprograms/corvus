@@ -37,10 +37,6 @@ abstract class TableViewController extends AbstractTableViewController
             
             // Increase the row_order by 1
             $this->ogEntity->setRowOrder($maxRowOrder + 1);
-            /* Rebind the Request, the row order is now set and validated
-             * without the user needing to set it
-             */
-//            $form->bindRequest($request);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($this->ogEntity);
@@ -103,7 +99,7 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function orderUpAction($id)
     {
-        $this->_swapRowOrder($id, 'Up');
+        $this->swapRowOrder($id, 'Up');
         return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
     }
 
@@ -112,11 +108,11 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function orderDownAction($id)
     {
-    	$this->_swapRowOrder($id, 'Down');
+    	$this->swapRowOrder($id, 'Down');
         return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
     }
 
-    protected function _swapRowOrder($id, $direction)
+    protected function swapRowOrder($id, $direction)
     {
         /* Call the changeRowOrder method on this entity's repository
          * Send the direction and Id.

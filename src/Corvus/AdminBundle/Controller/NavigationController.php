@@ -3,9 +3,7 @@
 // src/Corvus/AdminBundle/Controller/NavigationController.php
 namespace Corvus\AdminBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request,
-
-    Corvus\AdminBundle\Entity\Navigation,
+use Corvus\AdminBundle\Entity\Navigation,
     Corvus\AdminBundle\Form\Type\NavigationType,
     Corvus\AdminBundle\Entity\NavigationTableView,
     Corvus\AdminBundle\ILP\Controller\TableViewController;

@@ -106,14 +106,14 @@ class GeneralSettingsType extends AbstractType
         ));
         $builder->add('template_choice', 'choice', array(
             'label' => 'Template Choice',
-            'choices'   => $this->_getTemplateFolders(),
+            'choices'   => $this->getTemplateFolders(),
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
         ));
         $builder->add('theme_choice', 'choice', array(
             'label' => 'Theme Choice',
-            'choices'   => $this->_getThemeFolders(),
+            'choices'   => $this->getThemeFolders(),
             'label_attr' => array(
                 'class' => 'fontBold',
             ),
@@ -132,19 +132,19 @@ class GeneralSettingsType extends AbstractType
         return 'generalSettings';
     }
     
-    private function _getTemplateFolders()
+    private function getTemplateFolders()
     {
         $dir = __DIR__."/../../../FrontendBundle/Resources/views";
-        return $this->_scanFolderNamesInDirectory($dir);
+        return $this->scanFolderNamesInDirectory($dir);
     }
 
-    private function _getThemeFolders()
+    private function getThemeFolders()
     {
         $dir = __DIR__."/../../../FrontendBundle/Resources/public/css";
-        return $this->_scanFolderNamesInDirectory($dir);
+        return $this->scanFolderNamesInDirectory($dir);
     }
 
-    private function _scanFolderNamesInDirectory($dir)
+    private function scanFolderNamesInDirectory($dir)
     {
         $folders = array();
         if ($handle = opendir($dir)) {

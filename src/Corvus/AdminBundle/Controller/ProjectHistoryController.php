@@ -3,9 +3,7 @@
 // src/Corvus/AdminBundle/Controller/ProjectHistoryController.php
 namespace Corvus\AdminBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request,
-
-    Corvus\AdminBundle\Entity\ProjectHistory,
+use Corvus\AdminBundle\Entity\ProjectHistory,
     Corvus\AdminBundle\Form\Type\ProjectHistoryType,
     Corvus\AdminBundle\Entity\ProjectHistoryTableView,
     Corvus\AdminBundle\ILP\Controller\TableViewController;

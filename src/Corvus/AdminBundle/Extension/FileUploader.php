@@ -72,7 +72,7 @@ class FileUploader
         $this->prePersistFilePreparation($entity);
         
         // Recompute the change set for the Entity and Files. Makes sure the changes are saved properly
-        $this->_recomputeChangeSetForEntity($entity, $args->getEntityManager());
+        $this->recomputeChangeSetForEntity($entity, $args->getEntityManager());
     }
     
 
@@ -186,7 +186,7 @@ class FileUploader
 
         
         // Recompute the change set for the Entity and Files. Makes sure the changes are saved properly
-        $this->_recomputeChangeSetForEntity($entity, $args->getEntityManager());
+        $this->recomputeChangeSetForEntity($entity, $args->getEntityManager());
     }
     
     /**
@@ -355,7 +355,7 @@ class FileUploader
      * 
      * @return void
      */
-    private function _recomputeChangeSetForEntity($entity, $em)
+    private function recomputeChangeSetForEntity($entity, $em)
     {
         $em->getUnitOfWork()->recomputeSingleEntityChangeSet($em->getClassMetadata(get_class($entity)), $entity);
         
