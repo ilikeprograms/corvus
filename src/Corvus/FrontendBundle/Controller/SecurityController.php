@@ -1,6 +1,5 @@
 <?php
 
-// src/Corvus/FrontendBundle/Controller/SecurityController.php;
 namespace Corvus\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
