@@ -11,14 +11,15 @@ use Doctrine\ORM\EntityManager,
     Symfony\Component\Routing\Loader\YamlFileLoader,
     Symfony\Component\Routing\Exception\ResourceNotFoundException,
     Symfony\Component\Routing\Exception\RouteNotFoundException,
-    Symfony\Component\DependencyInjection\ContainerInterface;
+    Symfony\Component\HttpFoundation\RequestStack,
+    Symfony\Component\Routing\Router;
 
 
 class PortfolioInfoRepository
 {
 	protected $em;
 	protected $router;
-	protected $request;
+	protected $requestStack;
 	protected $container;
 	private $generalSettings;
 
@@ -29,18 +30,36 @@ class PortfolioInfoRepository
         '/WorkHistory' => 'fa-briefcase',
         '/About' => 'fa-user'
     );
-
-	
-	public function __construct(ContainerInterface $container, EntityManager $entityManager)
-	{
-		$this->em = $entityManager;
-
-		if ($container != null) {
-			$this->container = $container;
-			$this->router = $container->get('router');
-			$this->request = $container->get('request');
-		}
-	}
+    
+    /**
+     * Sets the Entity Manager.
+     * 
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
+    public function setEntityManager(EntityManager $entityManager)
+    {
+        $this->em = $entityManager;
+    }
+    
+    /**
+     * Sets the RequestStack.
+     * 
+     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
+     */
+    public function setRequestStack(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+    
+    /**
+     * Sets the Router.
+     * 
+     * @param \Symfony\Component\Routing\Router $router
+     */
+    public function setRouter(Router $router)
+    {
+        $this->router = $router;
+    }
 	
     /**
      * Gets the current Frontend ThemeChoice.
@@ -79,7 +98,7 @@ class PortfolioInfoRepository
     /**
      * Gets all of the Navigation Entities.
      * 
-     * @return array
+     * @return \Corvus\AdminBundle\Entity\Navigation[]
      */
 	private function getNavigation()
 	{
@@ -149,17 +168,19 @@ class PortfolioInfoRepository
      * Creates a set of Navigation items for each of the Navigation Entitys,
      * also adds an active class to the Active page and Displays Icons if specified.
      * 
-     * @param type $displayIcons Displays Font awesome Icons if set to true, see top of class.
+     * @param boolean $displayIcons Displays Font awesome Icons if set to true, see top of class.
      */
 	public function createNavigation($displayIcons = false)
 	{
+        $request = $this->requestStack->getCurrentRequest();
+
         // Get the current Environment and the appropriate index
-		$env = $this->container->getParameter('kernel.environment');
+		$env = $request->server->get('SCRIPT_NAME');
 		$urlPrepend = $env === 'dev' ? '/app_dev.php' : '/app.php';
 
         // Get any Paramaters in the Route of the Current page
-        $routeId = $this->request->attributes->get('id');
-        $route = $this->request->get('_route');
+        $routeId = $request->attributes->get('id');
+        $route = $request->attributes->get('_route');
 
         // Find the Current route of the page, including any id params
 		if ($routeId) {
@@ -212,6 +233,8 @@ class PortfolioInfoRepository
      */
 	public function createNavItem($route, $text, $alt, $faicon = null, $endItem = true)
 	{
+        $request = $this->requestStack->getCurrentRequest();
+
         // Load the RouteCollection and create a URL matcher, to match the
         // Navigation Entities in Corvus to the RouteCollection
         $routeCollection = $this->loadRouteCollection();
@@ -225,7 +248,7 @@ class PortfolioInfoRepository
             $path = $this->router->generate($route, array(), false);
 
             // If the Route provided is the Active route, add the Active class
-            $active = $this->request->get('_route') === $route ? " class='active'" : "";
+            $active = $request->get('_route') === $route ? " class='active'" : "";
 
             // Create the List item with the URL path, Active class and Alt attribute
             $listItem = '<li ' . $active . '><a href="'.$path.'" alt="'.$alt.'">';
