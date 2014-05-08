@@ -1,6 +1,6 @@
 twig:
     globals:
-        corvus_version: 0.1.0
+        corvus_version: 0.1.1
 
 assetic:
     bundles:        [CorvusFrontendBundle, CorvusAdminBundle]
@@ -8,10 +8,15 @@ assetic:
 services:
     portfolioinforepository:
         class: Corvus\FrontendBundle\Extension\PortfolioInfoRepository
-        arguments: [@service_container, @doctrine.orm.default_entity_manager]
+        calls:
+            - [setEntityManager, ['@doctrine.orm.default_entity_manager']]
+            - [setRequestStack, ['@request_stack']]
+            - [setRouter, ['@router']]
+#        strict: false
     corvus.twig.extension.portfolio_info:
         class: Corvus\FrontendBundle\Extension\PortfolioInfoRepositoryExtension
-        arguments: [@portfolioinforepository]
+        calls:
+            - [setPortfolioInfoRepository, ['@portfolioinforepository']]
         tags:
             - { name: twig.extension }
     kernel.listener.covus_admin_exception_listener:
