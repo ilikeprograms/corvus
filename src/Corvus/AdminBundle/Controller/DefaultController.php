@@ -5,8 +5,8 @@ namespace Corvus\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
 
-    Corvus\AdminBundle\Entity\GeneralSettings,
     Corvus\AdminBundle\Entity\EducationTableView,
     Corvus\AdminBundle\Entity\ProjectHistoryTableView,
     Corvus\AdminBundle\Entity\WorkHistoryTableView,
@@ -14,129 +14,35 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Entity\NavigationTableView,
     Corvus\AdminBundle\Entity\About,
 
-    Corvus\AdminBundle\Form\Type\GeneralSettingsType,
-    Corvus\AdminBundle\Form\Type\AnalyticsType,
     Corvus\AdminBundle\Form\Type\EducationTableViewType,
     Corvus\AdminBundle\Form\Type\ProjectHistoryTableViewType,
     Corvus\AdminBundle\Form\Type\WorkHistoryTableViewType,
     Corvus\AdminBundle\Form\Type\SkillsTableViewType,
     Corvus\AdminBundle\Form\Type\NavigationTableViewType,
-    Corvus\AdminBundle\Form\Type\AboutType,
-    Corvus\AdminBundle\Form\Type\ChangePasswordType;
+    Corvus\AdminBundle\Form\Type\AboutType;
 
 
 class DefaultController extends Controller
 {
+    /**
+     * @Template
+     */
     public function indexAction()
     {
         return $this->render('CorvusAdminBundle:Default:index.html.twig');
     }
 
-    public function generalSettingsAction(Request $request)
-    {
-        $generalSettings = $this->getDoctrine()
-            ->getRepository('CorvusAdminBundle:GeneralSettings')
-            ->Find(1);
-
-        if($generalSettings == null) {
-            $generalSettings = new GeneralSettings();
-        }
-
-        $form = $this->createForm(new GeneralSettingsType(), $generalSettings);
-
-        $form->handleRequest($request);
-
-        if($form->isValid()) {
-            $logo = $form['logo']->getData();
-            
-            if ($logo) {
-                $filepath = 'logo.' . $logo->guessExtension();
-                $logo->move('uploads', $filepath);
-                $generalSettings->setPath($filepath);
-            }
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($generalSettings);
-            $em->flush();
-
-            $this->get('session')->getFlashBag()->add('notice', 'General Settings have been saved.');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
-        } else {
-            if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
-            }
-        }
-
-        return $this->render('CorvusAdminBundle:Default:generalSettings.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-    
-    public function securityAction(Request $request)
-    {
-        $securityContext = $this->container->get('security.context');
-        $user  = $securityContext->getToken()->getUser();
-
-        $form = $this->createForm(new ChangePasswordType, $user);
-
-        $form->handleRequest($request);
-        
-        if ($form->isValid()) {
-            $encoder = $this->container
-                ->get('security.encoder_factory')
-                ->getEncoder($user);
-            $user->setPassword($encoder->encodePassword($user->getPlainPassword(), $user->getSalt()));
-            $user->setPlainPassword('');
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            
-            $this->get('session')->getFlashBag()->add('notice', 'New password has been Set!');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_Security'));
-        } else {
-            if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
-            }
-        }
-
-        return $this->render('CorvusAdminBundle:Default:security.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
-    
-    public function analyticsAction(Request $request)
-    {
-        $analytics = $this->getDoctrine()->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1);
-        
-        $form = $this->createForm(new AnalyticsType, $analytics);
-        
-        $form->handleRequest($request);
-        
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($analytics);
-            $em->flush();
-
-            $this->get('session')->getFlashBag()->add('notice', 'The Analytics has been Updated!');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_Analytics'));
-        } else {
-            if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
-            }
-        }
-
-        return $this->render('CorvusAdminBundle:Default:analytics.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
-
+    /**
+     * @Template
+     */
     public function siteDesignAction()
     {
         return $this->render('CorvusAdminBundle:Default:siteDesign.html.twig');
     }
 
+    /**
+     * @Template
+     */
     public function educationAction()
     {
         $educationTableView = new EducationTableView();
@@ -151,11 +57,14 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new EducationTableViewType(), $educationTableView);
 
-        return $this->render('CorvusAdminBundle:Default:education.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 
+    /**
+     * @Template
+     */
     public function projectHistoryAction()
     {
         $projectHistoryTableView = new ProjectHistoryTableView();
@@ -170,11 +79,14 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new ProjectHistoryTableViewType(), $projectHistoryTableView);
 
-        return $this->render('CorvusAdminBundle:Default:projectHistory.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 
+    /**
+     * @Template
+     */
     public function workHistoryAction()
     {
         $workHistoryTableView = new WorkHistoryTableView();
@@ -189,11 +101,14 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new WorkHistoryTableViewType(), $workHistoryTableView);
 
-        return $this->render('CorvusAdminBundle:Default:workHistory.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 
+    /**
+     * @Template
+     */
     public function skillsAction()
     {
         $skillsTableView = new SkillsTableView();
@@ -208,18 +123,21 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new SkillsTableViewType(), $skillsTableView);
 
-        return $this->render('CorvusAdminBundle:Default:skills.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 
+    /**
+     * @Template
+     */
     public function navigationAction()
     {
         $navigationTableView = new NavigationTableView();
 
         $navigation = $this->getDoctrine()
             ->getRepository('CorvusAdminBundle:Navigation')
-            ->findBy(array(), array('row_order' => 'ASC'));
+            ->FindAll();
 
         foreach ($navigation as $navItem) {
             $navigationTableView->getNavItems()->add($navItem);
@@ -227,16 +145,23 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new NavigationTableViewType(), $navigationTableView); 
 
-        return $this->render('CorvusAdminBundle:Default:navigation.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 
+    /**
+     * @Template
+     */
     public function downloadsAction()
     {
         return $this->render('CorvusAdminBundle:Default:downloads.html.twig');
     }
 
+    /**
+     * @Template
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     */
     public function aboutAction(Request $request)
     {
         $about = $this->getDoctrine()
@@ -249,24 +174,24 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new AboutType(), $about);
 
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-
-            if ($form->isValid()) {
                 
                 $em->persist($about);
                 $em->flush();
 
                 $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
                 return $this->redirect($this->generateUrl('CorvusAdminBundle_About'));
-            } else {
+        } else {
+            if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
             }
         }
         
-        return $this->render('CorvusAdminBundle:Default:about.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 }

@@ -4,15 +4,15 @@ CorvusAdminBundle_Home:
 
 CorvusAdminBundle_GeneralSettings:
     pattern: /GeneralSettings
-    defaults: { _controller: CorvusAdminBundle:Default:generalSettings }
+    defaults: { _controller: CorvusAdminBundle:GeneralSettings:generalSettings }
 
 CorvusAdminBundle_Analytics:
     pattern: /Analytics
-    defaults: { _controller: CorvusAdminBundle:Default:analytics }
+    defaults: { _controller: CorvusAdminBundle:GeneralSettings:analytics }
 
 CorvusAdminBundle_Security:
     pattern: /Security
-    defaults: { _controller: CorvusAdminBundle:Default:security }
+    defaults: { _controller: CorvusAdminBundle:GeneralSettings:security }
 
 CorvusAdminBundle_SiteDesign:
     pattern: /SiteDesign
