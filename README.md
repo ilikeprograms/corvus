@@ -44,8 +44,11 @@ When the project is finished downloading, the project dependencies need to be in
 To do that Composer is used to install the depencencies, by running:
 
 ```Shell
-composer.phar install
+php composer.phar install
 ```
+
+Note: If you dont have composer installed you can install it using the instructions on the Composer download page:
+https://getcomposer.org/download/
 
 ### Configuring the Database
 

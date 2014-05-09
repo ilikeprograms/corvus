@@ -10,10 +10,21 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**0.1.1**]
+
+-	Added GeneralSettingsController, Template Annotations
+-	Services use Setter Injection, no request scope in AppKernel
+-	File Entity removed from view, and JS for Lightbox
+-	Removed NavTop and Default templates.
+-	Using incenteev-parameters to manage Configs dist
+-	PSR-1 compliance, removed unused use statements
+-	Stabilised Composer deps versions. Added more info to Composer such as Support links and Licence/Authors
+-	Fixed some file permissions to remove executable permissions
+
 [**0.1.0**]
 
 -	Created a proper README and LICENCE files
--	Performed alot of Imporvements and some bug fixes
+-	Performed alot of Improvements and some bug fixes
 -	Changes the Whole project to start using Twitter Bootstrap and Font Awesome
 -	Updated the Project to conform to Symfony 2.4, PSR-0 standards (or started to)
 
