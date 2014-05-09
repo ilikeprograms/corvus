@@ -12,33 +12,20 @@ class BaseEntityRepository extends EntityRepository
     /**
      * The name of the Entity that the EntityRepository provides Data Access for.
      * 
-     * @var string $_entityName 
+     * @var string $entityName 
      */
-    protected $_entityName;
-    
-    /**
-     * The original name of the Entity, e.g ProjectHistory.
-     * 
-     * @var string $_originalEntityName
-     */
-    protected $_originalEntityName;
+    protected $entityName;
 
     
     /**
      * Sets up an EntityRepository for xEntity, which has custom functionality for TableViews.
      * 
-     * Dont forget to provide a value for $_entityName before calling parent::__construct().
+     * Dont forget to provide a value for $entityName before calling parent::__construct().
      * 
      * @param \Doctrine\ORM\EntityManager $em
      */
     public function __construct(EntityManager $em)
-    {
-        /* Store the OriginalEntityName before it gets transformed by the parent constructor
-         * Turns from ProjectHistory to Corvus\AdminBundle\Entity\ProjectHistory etc
-         * when the parent is constructed.
-         */
-        $this->_originalEntityName = $this->_entityName;
-        
+    {        
         /* Get the Class metadata for the Entity Repository that is inheriting from this class
          * _entityName should be setup in the constructor of the child class
          * 
@@ -46,11 +33,11 @@ class BaseEntityRepository extends EntityRepository
          * 
          * public function __construct(EntityManager $em)
          * {
-         *      $this->_entityName = Education::getRepoName();
+         *      $this->originalEntityName = Education::getRepoName();
          *      parent::__construct($em);
          * }
          */
-        $entityClassMetaData = $em->getClassMetadata('Corvus\AdminBundle\Entity\\' . $this->_entityName);
+        $entityClassMetaData = $em->getClassMetadata('Corvus\AdminBundle\Entity\\' . $this->originalEntityName);
 
         // Construct the parent, fixes the problem with a child class inheriting from this class.
         parent::__construct($em, $entityClassMetaData);
@@ -95,6 +82,8 @@ class BaseEntityRepository extends EntityRepository
      */
     public function changeRowOrder($rowOrderId, $direction)
     {
+        $em = $this->getEntityManager();
+        
         // -1 for UP and 1 for Down. Add/removes 1 from row_order to find the other entity
     	$rowOrderDir = $direction == 'Up' ? -1 : 1;
 
@@ -117,12 +106,12 @@ class BaseEntityRepository extends EntityRepository
             foreach ($entities as $entity) {
                 // Start increasing the row_orders, by 1
                 $entity->setRowOrder($i);
-                $this->_em->persist($entity);
+                $em->persist($entity);
                 $i++;
             }
             
             // Save the now fixed row_orders and return
-            $this->_em->flush();
+            $em->flush();
             return;
         }
         
@@ -151,9 +140,9 @@ class BaseEntityRepository extends EntityRepository
 			}
 
 			// Persist and flush the entities with the now swapped row orders
-			$this->_em->persist($entity);
-			$this->_em->persist($otherEntity);
-			$this->_em->flush();
+			$em->persist($entity);
+			$em->persist($otherEntity);
+			$em->flush();
 		}
     }
 	
@@ -167,19 +156,19 @@ class BaseEntityRepository extends EntityRepository
 	 * @return Object
 	 */
 	private function findClosestEntityInDirection($rowOrder, $direction)
-	{		
+	{
 		// Set the operator to Less than or Greater than based on Direction
 		$operator = $direction === -1 ? '<' : '>';
 		// Set the Sort direction, makes sure we are finding the closest result in the right direction
 		$sortDir = $direction === -1 ? 'DESC' : 'ASC';
 
-		$qb = $this->_em->createQueryBuilder('p')
+		$qb = $this->getEntityManager()->createQueryBuilder('p')
             ->select('p')
 			->setMaxResults('1') // Find 1st closest Entity
 			->where('p.row_order ' . $operator . ' :order') // Use < || > depending on $direction
 			->setParameter('order', $rowOrder)
             ->orderBy('p.row_order',  $sortDir) // Set the ORDER BY, find rows in right direction
-            ->from('CorvusAdminBundle:' . $this->_originalEntityName . ' p');
+            ->from('CorvusAdminBundle:' . $this->originalEntityName, 'p');
 
             $res = $qb->getQuery()->getResult();
             return $res[0];
@@ -195,7 +184,7 @@ class BaseEntityRepository extends EntityRepository
         /* Query written like this allows the attribute to be added
          * using $stmt->bindValue/bindParamater wouldnt work.
          */
-        $sql = 'SELECT MAX(row_order) as max FROM ' . $this->_originalEntityName;
+        $sql = 'SELECT MAX(row_order) as max FROM ' . $this->originalEntityName;
         // Get the Entity manager DB con and prepare the RAW SQL and execute
         $stmt = $this->getEntityManager()
             ->getConnection()
@@ -221,7 +210,7 @@ class BaseEntityRepository extends EntityRepository
         $images = $this->getEntityManager()->getRepository('CorvusAdminBundle:File')
             ->findBy(array(
                 'file_type'   => 'image',
-                'entity_name' => $this->_originalEntityName,
+                'entity_name' => $this->originalEntityName,
                 'entity_id'   => $entity_id)
             );
 
@@ -238,7 +227,7 @@ class BaseEntityRepository extends EntityRepository
     public function findEntityFiles($entity_id) {
         $files = $this->getEntityManager()->getRepository('CorvusAdminBundle:File')
             ->findBy(array(
-                'entity_name' => $this->_originalEntityName,
+                'entity_name' => $this->originalEntityName,
                 'entity_id'   => $entity_id)
             );
         

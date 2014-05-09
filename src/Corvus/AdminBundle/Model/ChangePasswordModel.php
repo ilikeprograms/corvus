@@ -4,7 +4,8 @@
 namespace Corvus\AdminBundle\Model;
 
 
-class ChangePasswordModel {
+class ChangePasswordModel
+{
 	protected $current_password;
 	protected $new_password;
 	protected $confirm_password;

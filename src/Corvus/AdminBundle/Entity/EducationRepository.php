@@ -12,7 +12,7 @@ class EducationRepository extends BaseEntityRepository
 {
     public function __construct(EntityManager $em)
     {
-        $this->_entityName = Education::getRepoName();
+        $this->originalEntityName = Education::getRepoName();
         parent::__construct($em);
     }
 }

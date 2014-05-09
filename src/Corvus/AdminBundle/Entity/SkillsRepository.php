@@ -12,7 +12,7 @@ class SkillsRepository extends BaseEntityRepository
 {
     public function __construct(EntityManager $em)
     {
-            $this->_entityName = Skills::getRepoName();
-            parent::__construct($em);
+        $this->originalEntityName = Skills::getRepoName();
+        parent::__construct($em);
     }
 }

@@ -7,10 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Request;
 
 /**
- * @property-readonly  object  $_entity             Entity object that the TableViewContoller manages
- * @property-readonly  object  $_formType           The formType object that the TableViewController manages
- * @property-readonly  string  $_tableViewDataName  The DataName of the entity, use when recieving the Entity data from a Request
- * @property-readonly  string  $_tableViewTypeName  The TypeName of the xTableViewType, used when receiving the TableView data from a Request
+ * @property-readonly  object  $entity             Entity object that the TableViewContoller manages
+ * @property-readonly  object  $formType           The formType object that the TableViewController manages
+ * @property-readonly  string  $tableViewDataName  The DataName of the entity, use when recieving the Entity data from a Request
+ * @property-readonly  string  $tableViewTypeName  The TypeName of the xTableViewType, used when receiving the TableView data from a Request
  * 
  * @author Thomas Coleman <tom@ilikeprograms.com>
  */

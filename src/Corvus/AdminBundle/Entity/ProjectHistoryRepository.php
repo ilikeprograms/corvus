@@ -12,7 +12,7 @@ class ProjectHistoryRepository extends BaseEntityRepository
 {
     public function __construct(EntityManager $em)
     {
-        $this->_entityName = ProjectHistory::getRepoName();
+        $this->originalEntityName = ProjectHistory::getRepoName();
         parent::__construct($em);
     }
 }

@@ -12,7 +12,7 @@ class WorkHistoryRepository extends BaseEntityRepository
 {
     public function __construct(EntityManager $em)
     {
-        $this->_entityName = WorkHistory::getRepoName();
+        $this->originalEntityName = WorkHistory::getRepoName();
         parent::__construct($em);
     }
 }
