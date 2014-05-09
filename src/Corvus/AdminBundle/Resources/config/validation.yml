@@ -7,8 +7,9 @@ Corvus\AdminBundle\Entity\About:
             - NotNull: ~
         age:
             - NotNull: ~
-            - Min: 0
-            - Max: 130
+            - Length:
+                min: 0
+                max: 130
         bio:
             - NotNull: ~
         email_address:

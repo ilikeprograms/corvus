@@ -175,15 +175,15 @@ class DefaultController extends Controller
         $form = $this->createForm(new AboutType(), $about);
 
         $form->handleRequest($request);
-        
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-                
-                $em->persist($about);
-                $em->flush();
 
-                $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
-                return $this->redirect($this->generateUrl('CorvusAdminBundle_About'));
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($about);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_About'));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
