@@ -71,7 +71,7 @@ By default, there is only one user account and that should have been created in 
 
 **Password**: password
 
-To access the backend go to: http://localhost/app.dev/Admin
+To access the backend go to: http://localhost/app.php/Admin
 
 ## Support/Contact
 
