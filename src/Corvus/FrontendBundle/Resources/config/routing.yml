@@ -1,49 +1,56 @@
 CorvusFrontendBundle_homepage:
     pattern:  /
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:index }
 
 CorvusFrontendBundle_Education:
     pattern: /Education
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:education }
 
 CorvusFrontendBundle_Skills:
     pattern: /Skills
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:skills }
 
 CorvusFrontendBundle_About:
     pattern: /About
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:about }
 
 CorvusFrontendBundle_WorkHistory:
     pattern: /WorkHistory
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:workHistory }
 
 CorvusFrontendBundle_WorkHistoryId:
     pattern: /WorkHistory/id/{id}
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:WorkHistory:findById }
     requirements:
         id: \d+
 
 CorvusFrontendBundle_ProjectHistory:
     pattern: /ProjectHistory
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:projectHistory }
 
 CorvusFrontendBundle_ProjectHistoryId:
     pattern: /ProjectHistory/id/{id}
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:ProjectHistory:findById }
     requirements:
         id: \d+
 
-CorvusFrontendBundle_ContactForm:
-    pattern: /About/Contact
-    defaults: { _controller: CorvusFrontendBundle:About:contact }
-
 CorvusFrontendBundle_Login:
     pattern: /Login
+    methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Security:login }
 
 login_check:
     pattern: /login_check
+    methods: [POST]
 
 CorvusFrontendBundle_Logout:
     pattern: /logout
+    methods: [GET]
