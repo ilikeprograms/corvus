@@ -5,11 +5,14 @@ namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolverInterface;
+    Symfony\Component\OptionsResolver\OptionsResolverInterface,
+    Symfony\Component\Finder\Finder;
 
 
 class GeneralSettingsType extends AbstractType
 {
+    CONST FRONTEND_RESOURCES_FOLDER = '/../../../FrontendBundle/Resources';
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('portfolio_title', 'text', array(
@@ -132,29 +135,44 @@ class GeneralSettingsType extends AbstractType
         return 'generalSettings';
     }
     
+    /**
+     * Find the names of the Frontend template folders.
+     * @return type
+     */
     private function getTemplateFolders()
     {
-        $dir = __DIR__."/../../../FrontendBundle/Resources/views";
-        return $this->scanFolderNamesInDirectory($dir);
+        $path = self::FRONTEND_RESOURCES_FOLDER . 'views';
+        return $this->scanFolderNamesInDirectory($path);
     }
 
+    /**
+     * Find the names of the Frontend theme folders.
+     * 
+     * @return array
+     */
     private function getThemeFolders()
     {
-        $dir = __DIR__."/../../../FrontendBundle/Resources/public/css";
-        return $this->scanFolderNamesInDirectory($dir);
+        $path = self::FRONTEND_RESOURCES_FOLDER . 'public/css';
+        return $this->scanFolderNamesInDirectory($path);
     }
 
-    private function scanFolderNamesInDirectory($dir)
+    /**
+     * Scans the Given directory relative to this file for directory names.
+     * 
+     * @param string $path The path to a folder to scan, which is relative to this file.
+     * @return array
+     */
+    private function scanFolderNamesInDirectory($path)
     {
+        $finder = new Finder(); // Create a Finder
+        // Find all Directories in the Folder
+        $finder->directories()->in(__DIR__ . $path);
+
         $folders = array();
-        if ($handle = opendir($dir)) {
-            while (false !== ($folder = readdir($handle))) {
-                // Ignore '.' and '..'
-                if (strstr($folder, ".") == false) {
-                    $folders[$folder] = $folder;
-                }
-            }
-            closedir($handle);
+
+        // Find all the Directory names and store them
+        foreach (iterator_to_array($finder) as $dir) {
+            array_push($folders, $dir->getRelativePathname());
         }
 
         // Return the array of folder names
