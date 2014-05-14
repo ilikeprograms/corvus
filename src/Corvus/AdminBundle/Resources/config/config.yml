@@ -9,7 +9,7 @@ services:
     portfolioinforepository:
         class: Corvus\FrontendBundle\Extension\PortfolioInfoRepository
         calls:
-            - [setEntityManager, ['@doctrine.orm.default_entity_manager']]
+            - [setEntityManager, ['@doctrine']]
             - [setRequestStack, ['@request_stack']]
             - [setRouter, ['@router']]
 #        strict: false

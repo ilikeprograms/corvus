@@ -6,8 +6,8 @@ namespace Corvus\FrontendBundle\Extension;
 
 class PortfolioInfoRepositoryExtension extends \Twig_Extension
 {
-	protected $portfolioInfoRepository;
-    
+    protected $portfolioInfoRepository;
+
     /**
      * Sets the PortfolioInfoRepository.
      * 
@@ -21,18 +21,18 @@ class PortfolioInfoRepositoryExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-	public function getGlobals()
+    public function getGlobals()
     {
-		return array(
+        return array(
             'portfolio_info' => $this->portfolioInfoRepository
         );
-	}
+    }
 
     /**
      * {@inheritdoc}
      */
-	public function getName()
-	{
-		return 'portfolio_info';
-	}
+    public function getName()
+    {
+        return 'portfolio_info';
+    }
 }

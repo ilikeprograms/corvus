@@ -3,7 +3,7 @@
 // src/Corvus/FontendBundle/Extension/PortfolioInfoRepository.php
 namespace Corvus\FrontendBundle\Extension;
 
-use Doctrine\ORM\EntityManager,
+use Doctrine\Bundle\DoctrineBundle\Registry,
 
     Symfony\Component\Routing\Matcher\UrlMatcher,
     Symfony\Component\Routing\RequestContext,
@@ -17,11 +17,11 @@ use Doctrine\ORM\EntityManager,
 
 class PortfolioInfoRepository
 {
-	protected $em;
-	protected $router;
-	protected $requestStack;
-	protected $container;
-	private $generalSettings;
+    protected $em;
+    protected $router;
+    protected $requestStack;
+    protected $container;
+    private $generalSettings;
 
     private static $navigationIcons = array(
         '/' => 'fa-home',
@@ -30,17 +30,17 @@ class PortfolioInfoRepository
         '/WorkHistory' => 'fa-briefcase',
         '/About' => 'fa-user'
     );
-    
+
     /**
      * Sets the Entity Manager.
      * 
-     * @param \Doctrine\ORM\EntityManager $entityManager
+     * @param \Doctrine\Bundle\DoctrineBundle\Registry $entityManager
      */
-    public function setEntityManager(EntityManager $entityManager)
+    public function setEntityManager(Registry $entityManager)
     {
         $this->em = $entityManager;
     }
-    
+
     /**
      * Sets the RequestStack.
      * 
@@ -50,7 +50,7 @@ class PortfolioInfoRepository
     {
         $this->requestStack = $requestStack;
     }
-    
+
     /**
      * Sets the Router.
      * 
@@ -60,77 +60,77 @@ class PortfolioInfoRepository
     {
         $this->router = $router;
     }
-	
+
     /**
      * Gets the current Frontend ThemeChoice.
      * 
      * @return string
      */
-	public function getThemeChoice()
-	{
+    public function getThemeChoice()
+    {
         return $this->getGeneralSettings()->getThemeChoice();
-	}
+    }
 
     /**
      * Gets the current Frontend TemplateChoice.
      * 
      * @return string
      */
-	public function getTemplateChoice()
-	{
+    public function getTemplateChoice()
+    {
         return $this->getGeneralSettings()->getTemplateChoice();
-	}
+    }
 
     /**
      * Finds the stored instance of GeneralSettinggs, or loads it if it doesnt exist.
      * 
      * @return \Corvus\AdminBundle\Entity\GeneralSettings
      */
-	public function getGeneralSettings()
-	{
+    public function getGeneralSettings()
+    {
         if (NULL === $this->generalSettings) {
             $this->generalSettings = $this->em->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1);
         }
 
         return $this->generalSettings;
-	}
+    }
 
     /**
      * Gets all of the Navigation Entities.
      * 
      * @return \Corvus\AdminBundle\Entity\Navigation[]
      */
-	private function getNavigation()
-	{
+    private function getNavigation()
+    {
         return $this->em->getRepository('CorvusAdminBundle:Navigation')->findAll();
-	}
+    }
 
     /**
      * Gets the About Entity instance.
      * 
      * @return \Corvus\AdminBundle\Entity\About
      */
-	public function getAbout()
-	{
+    public function getAbout()
+    {
         return $this->em->getRepository('CorvusAdminBundle:About')->Find(1);
-	}
+    }
 
     /**
      * Echo's out the Image tag containing the site logo.
      */
-	public function includeLogo()
-	{
+    public function includeLogo()
+    {
         $path = $this->getGeneralSettings()->getPath();
 
         $portfolioTitle = $this->getGeneralSettings()->getPortfolioTitle();
         echo '<img src="/uploads/' . $path . '" alt="'.$portfolioTitle.' logo" />';
-	}
+    }
 
     /**
      * Echo's out all of the stylesheets included in the frontend by default.
      */
-	public function includeStylesheets()
-	{
+    public function includeStylesheets()
+    {
         $themeChoice = $this->getThemeChoice();
         echo @'
             <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/design.css" rel="stylesheet" type="text/css" />
@@ -138,13 +138,13 @@ class PortfolioInfoRepository
             <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/navigation.css" rel="stylesheet" type="text/css" />
             <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/mobile.css" rel="stylesheet" type="text/css" />
             ';
-	}
+    }
 
     /**
      * Echo's out the GoogleAnalytics tracking code script, if the field is set.
      */
-	public function includeAnalyticsTracking()
-	{
+    public function includeAnalyticsTracking()
+    {
         $analytics = $this->getGeneralSettings()->getAnalytics();
 
         if ($analytics) {
@@ -162,7 +162,7 @@ class PortfolioInfoRepository
                 </script>
                 ";
         }
-	}
+    }
 
     /**
      * Creates a set of Navigation items for each of the Navigation Entitys,
@@ -170,37 +170,37 @@ class PortfolioInfoRepository
      * 
      * @param boolean $displayIcons Displays Font awesome Icons if set to true, see top of class.
      */
-	public function createNavigation($displayIcons = false)
-	{
+    public function createNavigation($displayIcons = false)
+    {
         $request = $this->requestStack->getCurrentRequest();
 
         // Get the current Environment and the appropriate index
-		$env = $request->server->get('SCRIPT_NAME');
-		$urlPrepend = $env === 'dev' ? '/app_dev.php' : '/app.php';
+        $env = $request->server->get('SCRIPT_NAME');
+        $urlPrepend = $env === 'dev' ? '/app_dev.php' : '/app.php';
 
         // Get any Paramaters in the Route of the Current page
         $routeId = $request->attributes->get('id');
         $route = $request->attributes->get('_route');
 
         // Find the Current route of the page, including any id params
-		if ($routeId) {
-			$currentRoute = $this->router->generate($route, array('id' => $routeId));
-		} else {
-			$currentRoute = $this->router->generate($route);
-		}
-        
+        if ($routeId) {
+            $currentRoute = $this->router->generate($route, array('id' => $routeId));
+        } else {
+            $currentRoute = $this->router->generate($route);
+        }
+
         // Create a Navigation list item for each Navigation Entity in Corvus
         $navigation = $this->getNavigation();
-		foreach ($navigation as $nav) {
+        foreach ($navigation as $nav) {
             // The Navigation HREF including the current symfony env
             $localUrl = $urlPrepend . $nav->getHref();
-            
+
             // Adds the Active class if the navigation being created is also the Current page
             $active = $currentRoute === $localUrl ? " class='active'" : "";
-            
+
             // Start the List item, and add the active class if current page
             echo '<li' . $active . '>';
-            
+
             // Store a refrence to all the Link variables we will use
             $navHref = $nav->getHref();
             $navTitle = $nav->getTitle();
@@ -214,11 +214,11 @@ class PortfolioInfoRepository
                 // Create a Navigation item without an Icon
                 $this->createNavItem($navHref, $navTitle, $navAlt);
             }			
-            
+
             // Close the List item
             echo '</li>';
-		}
-	}
+        }
+    }
 
     /**
      * Creates a Navigation item out of the provided Inputs, there are a few ways in which the output
@@ -231,14 +231,14 @@ class PortfolioInfoRepository
      * @param string $faicon The names of font awesome classes to used to create an icon to prepend before the text.
      * @param boolean $endItem To end the list item or not
      */
-	public function createNavItem($route, $text, $alt, $faicon = null, $endItem = true)
-	{
+    public function createNavItem($route, $text, $alt, $faicon = null, $endItem = true)
+    {
         $request = $this->requestStack->getCurrentRequest();
 
         // Load the RouteCollection and create a URL matcher, to match the
         // Navigation Entities in Corvus to the RouteCollection
         $routeCollection = $this->loadRouteCollection();
-		$matcher = new UrlMatcher($routeCollection, new RequestContext());
+        $matcher = new UrlMatcher($routeCollection, new RequestContext());
 
         // The Route provided was a Symfony Route
         // So we know we want to create a List item from the Route
@@ -274,7 +274,7 @@ class PortfolioInfoRepository
                 $parameters = $matcher->match($route);
 
                 // The Symfony Route url
-				$fullUrl = $this->router->generate($parameters['_route'], array(), true);
+                $fullUrl = $this->router->generate($parameters['_route'], array(), true);
 
                 echo '<a href="' . $fullUrl . '" alt="' . $alt . '">';
 
@@ -288,7 +288,7 @@ class PortfolioInfoRepository
                 echo '<a href="' . $route . '" alt="' . $alt . '" target="_blank">' . $text . '</a>';
             }     
         }
-	}
+    }
 
     /**
      * Creates a Navigation stack which has a list item which is the Group, with an
@@ -297,10 +297,10 @@ class PortfolioInfoRepository
      * @param array $stack The details to use to create a Grouping Navigation item.
      * @param array $children Navigation item children to create as Sub Navigation.
      */
-	public function createNavStack($stack, $children)
-	{
+    public function createNavStack($stack, $children)
+    {
         // Create a Grouping Navigation item
-		$this->createNavItem($stack[0], $stack[1], $stack[2], $stack[3], false); // Provide false as last argument to not close the list item
+        $this->createNavItem($stack[0], $stack[1], $stack[2], $stack[3], false); // Provide false as last argument to not close the list item
         echo '<ul class="nav nav-pills nav-stacked">'; // Start Sub Navigation
 
         // Create a Navigation item for each child provided
@@ -309,9 +309,9 @@ class PortfolioInfoRepository
         }
 
         echo '</ul>'; // End Sub Navigation
-		echo '</li>'; // Close the Grouping item
-	}
-    
+        echo '</li>'; // Close the Grouping item
+    }
+
     /**
      * Loads the RouteCollection of Corvus.
      * 
@@ -320,8 +320,8 @@ class PortfolioInfoRepository
     private function loadRouteCollection()
     {
         $locator = new FileLocator(__DIR__.'/../Resources/config');
-		$loader = new YamlFileLoader($locator);
+        $loader = new YamlFileLoader($locator);
 
-		return $loader->load('routing.yml');
+        return $loader->load('routing.yml');
     }
 }
