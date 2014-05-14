@@ -57,7 +57,7 @@ class File
     /**
      * @var datetime $updated
      */
-    public $updated;
+    private $updated;
 
     public function __construct()
     {

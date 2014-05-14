@@ -58,7 +58,7 @@ class ProjectHistory extends TableViewEntity
     /**
      * @var datetime $updated
      */
-    public $updated;
+    private $updated;
 
     /**
      * @var string $meta_title
@@ -250,7 +250,7 @@ class ProjectHistory extends TableViewEntity
     /**
      * Set meta_title
      *
-     * @param string $meta_title
+     * @param string $metaTitle
      */
     public function setMetaTitle($metaTitle)
     {
@@ -270,7 +270,7 @@ class ProjectHistory extends TableViewEntity
     /**
      * Set meta_description
      *
-     * @param string $meta_description
+     * @param string $metaDescription
      */
     public function setMetaDescription($metaDescription)
     {

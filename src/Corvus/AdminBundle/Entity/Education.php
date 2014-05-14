@@ -45,15 +45,6 @@ class Education extends TableViewEntity
      */
     private $result;
 
-    /**
-     * @var string $meta_title
-     */
-    private $meta_title;
-
-    /**
-     * @var string $meta_description
-     */
-    private $meta_description;
 
     /**
      * Get id
