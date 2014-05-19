@@ -1,12 +1,8 @@
-parameters:
-#    corvus_frontend.example.class: Corvus\FrontendBundle\Example
-
 services:
-    portfolioinforepository:
-        class: Corvus\FrontendBundle\Extension\PortfolioInfoRepository
-        arguments: [@doctrine.orm.entity_manager]
-    corvus.twig.extension.portfolio_info:
-        class: Corvus\FrontendBundle\Extension\PortfolioInfoRepositoryExtension
-        arguments: [@portfolioinforepository]
+    controller.pre_execute_listener:
+        class: Corvus\FrontendBundle\EventListener\ControllerListener
+        arguments: ["@=service('portfolioinforepository').getTemplateChoice()"]
+        calls: 
+            - [ setTemplatingEngine, [ @templating ]] 
         tags:
-            - { name: twig.extension }
+            - { name: kernel.event_listener, event: kernel.view, method: preExecute }
