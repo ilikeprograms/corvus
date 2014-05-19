@@ -1,85 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>
-	{% spaceless %}
-        {% block metaTitleStart %}{% endblock %} {{ portfolio_info.generalSettings.globalGeneralMetaTitle }}{% block metaTitleEnd %}{% endblock %}
-    {% endspaceless %}
-	</title>
-	
-	<link rel="shortcut icon" href="/favicon.ico?v=2" type="image/x-icon" />
-	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
-	<link rel="apple-touch-icon-precomposed "href="/apple-touch-icon.png" />
-	
-    {% block metaDescription %}{% endblock %}
-    {% if corvus_version %}
-		<meta name="generator" content="Corvus V. {{ corvus_version }}" />
-    {% endif %}
+{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':base.html.twig' %}
 
-    {{ portfolio_info.includeStylesheets }}
-		
-	{% stylesheets filter="?cssrewrite"
-		'%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less'
-		'%kernel.root_dir%/Resources/public/css/font-awesome.css'
-	%}
-		<link rel="stylesheet" href="{{ asset_url }}">
-	{% endstylesheets %}
-</head>
-<body>
-	<nav class="navbar navbar-inverse" role="navigation">
-		<p class="navbar-text">{{ portfolio_info.generalSettings.portfolioTitle }}</p>
-		<ul class="nav navbar-nav">
-			{{ portfolio_info.createNavigation }}
-		</ul>
-	</nav>
-    <div class="page-header" class="clearfix">
-		<div id="logo" class="pull-left">
-            {% if portfolio_info.generalSettings.displayLogo == true %}
-                {{ portfolio_info.includeLogo }}
-            {% endif %}
-        </div>
-		<h1>{{ portfolio_info.generalSettings.portfolioTitle }}
+{% block metaTitleStart %}Home | {% endblock %}
 
-		{% if portfolio_info.generalSettings.displaySubtitle == true %}
-			<small>{{ portfolio_info.generalSettings.portfolioSubtitle }}</small>
-		{% endif %}
-		</h1>
-    </div>
-    <div id="mainContainer">
-        {% block mainContent %}
-        {% endblock %}
-    </div>
-
-    <footer>
-        <div id="subFooter">{{ portfolio_info.generalSettings.footerText }}</div>
-{#		<p><a href="#container" alt="Back to top of page Link">Back To Top</a></p>#}
-    </footer>
-	<div class="corvusFooter row">
-		<div class="col-md-6">
-		Powered by <strong><a href='https://github.com/ilikeprograms/corvus' target='_blank'>Corvus</a></strong>
-		</div>
-		<div class="col-md-6 text-right">
-			<a href="{{ path('CorvusFrontendBundle_Login') }}" alt="Corvus Backend Login Link">Login</a>
-		</div>
+{% block mainContent %}
+	<div class="jumbotron">
+		<h2>Welcome to my Portfolio</h2>
+		<p>This is the portfolio site of {{ portfolio_info.getAbout.firstname }} {{ portfolio_info.getAbout.lastname }}</p>
+		<a class="btn btn-primary btn-lg" href="{{ path('CorvusFrontendBundle_About') }}" role="button">Find out more about me</a>
 	</div>
-
-{% block javascript %}
 {% endblock %}
-
-{% javascripts
-	'%kernel.root_dir%/Resources/js/jquery.min.js'
-	'%kernel.root_dir%/Resources/public/js/common.js'
-	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js'
-%}
-	<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{{ portfolio_info.includeAnalyticsTracking }}
-</body>
-</html>
