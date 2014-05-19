@@ -44,7 +44,7 @@ CorvusFrontendBundle_ProjectHistoryId:
 
 CorvusFrontendBundle_Login:
     pattern: /Login
-    methods: [GET]
+    methods: [GET|POST]
     defaults: { _controller: CorvusFrontendBundle:Security:login }
 
 login_check:
