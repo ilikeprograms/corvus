@@ -19,11 +19,6 @@ services:
             - [setPortfolioInfoRepository, ['@portfolioinforepository']]
         tags:
             - { name: twig.extension }
-    kernel.listener.covus_admin_exception_listener:
-        class: Corvus\AdminBundle\EventListener\CorvusAdminExceptionListener
-        arguments: [@twig]
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
     fileuploader:
         class: Corvus\AdminBundle\Extension\FileUploader
         tags:
