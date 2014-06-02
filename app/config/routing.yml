@@ -1,3 +1,7 @@
+corvus_core:
+    resource: "@CorvusCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
 CorvusFrontendBundle:
     resource: "@CorvusFrontendBundle/Resources/config/routing.yml"
     prefix:   /

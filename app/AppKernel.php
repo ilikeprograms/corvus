@@ -18,7 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Corvus\AdminBundle\CorvusAdminBundle(),
             new Corvus\FrontendBundle\CorvusFrontendBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle()
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Corvus\CoreBundle\CorvusCoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
