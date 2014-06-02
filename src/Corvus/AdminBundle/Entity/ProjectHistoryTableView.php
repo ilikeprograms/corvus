@@ -5,7 +5,7 @@ namespace Corvus\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection,
 
-    Corvus\AdminBundle\ILP\Entity\ITableView;
+    Corvus\CoreBundle\Entity\ITableView;
 
 
 class ProjectHistoryTableView implements ITableView

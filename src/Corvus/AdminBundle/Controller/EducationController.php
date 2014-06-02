@@ -6,7 +6,7 @@ namespace Corvus\AdminBundle\Controller;
 use Corvus\AdminBundle\Entity\Education,
     Corvus\AdminBundle\Form\Type\EducationType,
     Corvus\AdminBundle\Entity\EducationTableView,
-    Corvus\AdminBundle\ILP\Controller\TableViewController;
+    Corvus\CoreBundle\Controller\TableViewController;
 
 
 class EducationController extends TableViewController

@@ -5,7 +5,7 @@ namespace Corvus\AdminBundle\Entity;
 
 use Doctrine\ORM\EntityManager,
 
-    Corvus\AdminBundle\ILP\ORM\Repository\BaseEntityRepository;
+    Corvus\CoreBundle\ORM\Repository\BaseEntityRepository;
 
 
 class EducationRepository extends BaseEntityRepository

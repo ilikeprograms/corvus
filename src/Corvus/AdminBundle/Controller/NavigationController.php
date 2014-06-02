@@ -6,7 +6,7 @@ namespace Corvus\AdminBundle\Controller;
 use Corvus\AdminBundle\Entity\Navigation,
     Corvus\AdminBundle\Form\Type\NavigationType,
     Corvus\AdminBundle\Entity\NavigationTableView,
-    Corvus\AdminBundle\ILP\Controller\TableViewController;
+    Corvus\CoreBundle\Controller\TableViewController;
 
 
 class NavigationController extends TableViewController

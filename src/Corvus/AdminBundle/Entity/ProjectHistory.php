@@ -3,7 +3,7 @@
 // src/Corvus/AdminBundle/Entity/ProjectHistory.php
 namespace Corvus\AdminBundle\Entity;
         
-use Corvus\AdminBundle\ILP\Entity\TableViewEntity;
+use Corvus\CoreBundle\Entity\TableViewEntity;
 
 
 /**

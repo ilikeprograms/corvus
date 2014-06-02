@@ -6,7 +6,7 @@ namespace Corvus\AdminBundle\Controller;
 use Corvus\AdminBundle\Entity\ProjectHistory,
     Corvus\AdminBundle\Form\Type\ProjectHistoryType,
     Corvus\AdminBundle\Entity\ProjectHistoryTableView,
-    Corvus\AdminBundle\ILP\Controller\TableViewController;
+    Corvus\CoreBundle\Controller\TableViewController;
 
 
 class ProjectHistoryController extends TableViewController

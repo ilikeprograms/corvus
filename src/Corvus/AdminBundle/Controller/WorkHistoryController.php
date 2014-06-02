@@ -6,7 +6,7 @@ namespace Corvus\AdminBundle\Controller;
 use Corvus\AdminBundle\Entity\WorkHistory,
     Corvus\AdminBundle\Form\Type\WorkHistoryType,
     Corvus\AdminBundle\Entity\WorkHistoryTableView,
-    Corvus\AdminBundle\ILP\Controller\TableViewController;
+    Corvus\CoreBundle\Controller\TableViewController;
 
 
 class WorkHistoryController extends TableViewController

@@ -5,7 +5,7 @@ namespace Corvus\AdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection,
 
-    Corvus\AdminBundle\ILP\Entity\ITableView;
+    Corvus\CoreBundle\Entity\ITableView;
 
 
 class WorkHistoryTableView implements ITableView
@@ -29,6 +29,7 @@ class WorkHistoryTableView implements ITableView
     public static function getDataName() {
         return self::TYPE_NAME;
     }
+
     public static function getTypeName() {
         return self::DATA_NAME;
     }

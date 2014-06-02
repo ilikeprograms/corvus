@@ -6,7 +6,7 @@ namespace Corvus\AdminBundle\Controller;
 use Corvus\AdminBundle\Entity\Skills,
     Corvus\AdminBundle\Form\Type\SkillsType,
     Corvus\AdminBundle\Entity\SkillsTableView,
-    Corvus\AdminBundle\ILP\Controller\TableViewController;
+    Corvus\CoreBundle\Controller\TableViewController;
 
 
 class SkillsController extends TableViewController
