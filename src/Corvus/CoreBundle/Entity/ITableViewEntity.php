@@ -1,13 +1,13 @@
 <?php
 
-// src/Corvus/AdminBundle/ILP/Entity/ITableViewEntity.php
-namespace Corvus\AdminBundle\ILP\Entity;
+// src/Corvus/CoreBundle/Entity/ITableViewEntity.php
+namespace Corvus\CoreBundle\Entity;
 
 
 /**
  * Interface which defines static methods that xEntity must implement to comform with TableViewController.
  * 
- * @see \Corvus\AdminBundle\ILP\Controller\TableViewController
+ * @see \CorvusCoreBundle\Controller\TableViewController
  */
 interface ITableViewEntity
 {

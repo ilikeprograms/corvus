@@ -1,7 +1,7 @@
 <?php
 
-// src/Corvus/FontendBundle/Extension/PortfolioInfoRepository.php
-namespace Corvus\FrontendBundle\Extension;
+// src/Corvus/CoreBundle/Extension/PortfolioInfoRepository.php
+namespace Corvus\CoreBundle\Extension;
 
 use Doctrine\Bundle\DoctrineBundle\Registry,
 

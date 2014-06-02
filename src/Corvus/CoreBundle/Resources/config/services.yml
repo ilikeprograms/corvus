@@ -1,0 +1,28 @@
+services:
+    controller.pre_execute_listener:
+        class: Corvus\CoreBundle\EventListener\ControllerListener
+        arguments: ["@=service('portfolioinforepository').getTemplateChoice()"]
+        calls: 
+            - [ setTemplatingEngine, [ @templating ]] 
+        tags:
+            - { name: kernel.event_listener, event: kernel.view, method: preExecute }
+    portfolioinforepository:
+        class: Corvus\CoreBundle\Extension\PortfolioInfoRepository
+        calls:
+            - [setEntityManager, ['@doctrine']]
+            - [setRequestStack, ['@request_stack']]
+            - [setRouter, ['@router']]
+    corvus.twig.extension.portfolio_info:
+        class: Corvus\CoreBundle\Extension\PortfolioInfoRepositoryExtension
+        calls:
+            - [setPortfolioInfoRepository, ['@portfolioinforepository']]
+        tags:
+            - { name: twig.extension }
+    fileuploader:
+        class: Corvus\CoreBundle\Extension\FileUploader
+        tags:
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preRemove }

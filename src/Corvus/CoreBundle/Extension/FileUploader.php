@@ -1,8 +1,8 @@
 <?php
 
-// src/Corvus/AdminBundle/Extension/FileUploader.php
+// src/Corvus/CoreBundle/Extension/FileUploader.php
 
-namespace Corvus\AdminBundle\Extension;
+namespace Corvus\CoreBundle\Extension;
 
 use Doctrine\ORM\Event\LifecycleEventArgs,
     Doctrine\ORM\Event\PreUpdateEventArgs,

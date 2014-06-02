@@ -1,11 +1,11 @@
 <?php
 
-// src/Corvus/AdminBundle/ILP/Controller/TableViewController.php
-namespace Corvus\AdminBundle\ILP\Controller;
+// src/Corvus/CoreBundle/Controller/TableViewController.php
+namespace Corvus\CoreBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request,
 
-    Corvus\AdminBundle\ILP\Controller\AbstractTableViewController;
+    Corvus\CoreBundle\Controller\AbstractTableViewController;
 
 
 abstract class TableViewController extends AbstractTableViewController

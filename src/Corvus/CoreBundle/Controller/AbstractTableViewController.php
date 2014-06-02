@@ -1,7 +1,7 @@
 <?php
 
-// src/Corvus/AdminBundle/ILP/Controller/AbstractTableViewController.php
-namespace Corvus\AdminBundle\ILP\Controller;
+// src/Corvus/CoreBundle/Controller/AbstractTableViewController.php
+namespace Corvus\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Request;

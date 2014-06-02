@@ -1,7 +1,7 @@
 <?php
 
-// src/Corvus/AdminBundle/ILP/ORM/Repository/BaseEntityRepository.php
-namespace Corvus\AdminBundle\ILP\ORM\Repository;
+// src/Corvus/CoreBundle/ORM/Repository/BaseEntityRepository.php
+namespace Corvus\CoreBundle\ORM\Repository;
 
 use Doctrine\ORM\EntityRepository,
     Doctrine\ORM\EntityManager;

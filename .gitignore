@@ -9,4 +9,4 @@
 /web/js
 /web/fonts/
 /web/assetic/
-src/Corvus/AdminBundle/Resources/config/corvusdb.yml
+src/Corvus/CoreBundle/Resources/config/corvusdb.yml

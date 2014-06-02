@@ -1,6 +1,6 @@
 <?php
 
-namespace Corvus\AdminBundle\ILP\Entity;
+namespace Corvus\CoreBundle\Entity;
 
 class TableViewEntity implements ITableViewEntity
 {

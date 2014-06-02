@@ -1,7 +1,7 @@
 <?php
 
-// src/Corvus/FrontendBundle/Extension/PortfolioInfoRepositoryExtension
-namespace Corvus\FrontendBundle\Extension;
+// src/Corvus/CoreBundle/Extension/PortfolioInfoRepositoryExtension
+namespace Corvus\CoreBundle\Extension;
 
 
 class PortfolioInfoRepositoryExtension extends \Twig_Extension

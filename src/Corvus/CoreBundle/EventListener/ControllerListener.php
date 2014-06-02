@@ -1,6 +1,6 @@
 <?php
 
-namespace Corvus\FrontendBundle\EventListener;
+namespace Corvus\CoreBundle\EventListener;
 
 class ControllerListener
 {
@@ -26,14 +26,20 @@ class ControllerListener
         // Get the Template details from the Template annotation
         $request = $event->getRequest();
         $template = $request->get('_template');
-        
+
+        // Set the Controller to the Chosen Template
         if ($template->get('bundle') === 'CorvusFrontendBundle') {
-            // Set the Controller to the Chosen Template
+            
             $template->set('controller', $this->templateChoice);
         }
+        
+        if ($template->get('bundle') === 'CorvusAdminBundle') {
+            $template->set('controller', 'Default');
+        }        
 
         // Now render the chosen Template and set the Controller response to a response object with the data
         $response = $this->templating->renderResponse($template, $controllerResult);
+
         $event->setResponse($response);
     }
 }

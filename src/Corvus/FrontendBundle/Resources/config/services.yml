@@ -1,8 +1,0 @@
-services:
-    controller.pre_execute_listener:
-        class: Corvus\FrontendBundle\EventListener\ControllerListener
-        arguments: ["@=service('portfolioinforepository').getTemplateChoice()"]
-        calls: 
-            - [ setTemplatingEngine, [ @templating ]] 
-        tags:
-            - { name: kernel.event_listener, event: kernel.view, method: preExecute }

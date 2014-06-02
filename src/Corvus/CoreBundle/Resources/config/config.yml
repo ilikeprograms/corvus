@@ -1,0 +1,9 @@
+imports:
+    - { resource: 'corvusdb.yml' }
+
+twig:
+    globals:
+        corvus_version: 0.2
+
+assetic:
+    bundles: [CorvusFrontendBundle, CorvusAdminBundle]
