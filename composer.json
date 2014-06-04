@@ -28,7 +28,7 @@
 		"incenteev-parameters": [{
 			"file": "app/config/parameters.yml"
 		}, {
-			"file": "src/Corvus/AdminBundle/Resources/config/corvusdb.yml"
+			"file": "src/Corvus/CoreBundle/Resources/config/corvusdb.yml"
 		}]
     },
     "minimum-stability": "stable",
