@@ -160,6 +160,7 @@ class DefaultController extends Controller
 
     /**
      * @Template
+     * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
     public function aboutAction(Request $request)

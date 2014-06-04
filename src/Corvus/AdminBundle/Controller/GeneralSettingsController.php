@@ -17,7 +17,8 @@ use Symfony\Component\HttpFoundation\Request,
 class GeneralSettingsController extends Controller
 {
     /**
-     * @Template("CorvusAdminBundle:Default:generalSettings.html.twig")
+     * @Template
+     * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
     public function generalSettingsAction(Request $request)
@@ -62,7 +63,8 @@ class GeneralSettingsController extends Controller
     }
     
     /**
-     * @Template("CorvusAdminBundle:Default:security.html.twig")
+     * @Template
+     * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
     public function securityAction(Request $request)
@@ -99,7 +101,8 @@ class GeneralSettingsController extends Controller
     }
     
     /**
-     * @Template("CorvusAdminBundle:Default:analytics.html.twig")
+     * @Template
+     * 
      * @param \Symfony\Component\HttpFoundation\Request $request
      */
     public function analyticsAction(Request $request)
