@@ -176,7 +176,8 @@ class PortfolioInfoRepository
 
         // Get the current Environment and the appropriate index
         $env = $request->server->get('SCRIPT_NAME');
-        $urlPrepend = $env === 'dev' ? '/app_dev.php' : '/app.php';
+        
+        $urlPrepend = $env === '/app.php' ? '' : $env;
 
         // Get any Paramaters in the Route of the Current page
         $routeId = $request->attributes->get('id');
@@ -319,7 +320,7 @@ class PortfolioInfoRepository
      */
     private function loadRouteCollection()
     {
-        $locator = new FileLocator(__DIR__.'/../Resources/config');
+        $locator = new FileLocator(__DIR__.'/../../FrontendBundle/Resources/config');
         $loader = new YamlFileLoader($locator);
 
         return $loader->load('routing.yml');
