@@ -4,4 +4,4 @@ parameters:
     corvus.database_port:     3306
     corvus.database_name:     corvus
     corvus.database_user:     root
-    corvus.database_password: root
+    corvus.database_password: ''
