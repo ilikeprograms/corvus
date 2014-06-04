@@ -9,6 +9,9 @@ php:
   - "5.4"
   - "5.3"
 
-before_script: composer install -n
+before_script:
+  - composer install -n
+  - mysql -e 'CREATE DATABASE corvus;'
+  - app/console doctrine:migrations:migrate
 
 script: phpunit -c app
