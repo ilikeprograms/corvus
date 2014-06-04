@@ -10,8 +10,18 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**0.2.0**]
+
+-	Made Travis CI only run when commiting to master branch
+-	Removed default DB password in .dist files, causes problems with .travis builds
+-	PortfolioInfoRepository loads routes from Frontend and Active Nav works with Prod/Dev
+-	Updated .htaccess to remove app.php properly
+-	Moved key files to the Core Bundle
+-	Created the Corvus Core Bundle
+
 [**0.1.1**]
 
+-	Created a Controller Listener to handle Rendering the correct response, based on Template choice
 -	Added GeneralSettingsController, Template Annotations
 -	Services use Setter Injection, no request scope in AppKernel
 -	File Entity removed from view, and JS for Lightbox
