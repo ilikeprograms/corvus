@@ -141,7 +141,7 @@ class GeneralSettingsType extends AbstractType
      */
     private function getTemplateFolders()
     {
-        $path = self::FRONTEND_RESOURCES_FOLDER . 'views';
+        $path = self::FRONTEND_RESOURCES_FOLDER . '/views';
         return $this->scanFolderNamesInDirectory($path);
     }
 
@@ -152,7 +152,7 @@ class GeneralSettingsType extends AbstractType
      */
     private function getThemeFolders()
     {
-        $path = self::FRONTEND_RESOURCES_FOLDER . 'public/css';
+        $path = self::FRONTEND_RESOURCES_FOLDER . '/public/css';
         return $this->scanFolderNamesInDirectory($path);
     }
 
