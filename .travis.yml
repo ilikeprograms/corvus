@@ -12,6 +12,6 @@ php:
 before_script:
   - composer install -n
   - mysql -e 'CREATE DATABASE corvus;'
-  - app/console doctrine:migrations:migrate
+  - php app/console doctrine:migrations:migrate
 
 script: phpunit -c app
