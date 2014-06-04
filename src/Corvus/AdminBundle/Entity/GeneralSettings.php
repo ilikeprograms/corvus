@@ -157,7 +157,7 @@ class GeneralSettings
     /**
      * Set display_subtitle
      *
-     * @param boolean $displaySubTitle
+     * @param boolean $displaySubtitle
      */
     public function setDisplaySubtitle($displaySubtitle)
     {
@@ -375,7 +375,7 @@ class GeneralSettings
     /**
      * Set global_project_history_meta_title
      *
-     * @param string $globalWorkHistoryMetaTitle
+     * @param string $globalProjectHistoryMetaTitle
      */
     public function setGlobalProjectHistoryMetaTitle($globalProjectHistoryMetaTitle)
     {
