@@ -24,7 +24,9 @@
     {% endif %}
 
     {{ portfolio_info.includeStylesheets }}
-		
+
+	{% block stylesheets %}{% endblock %}
+
 	{% stylesheets filter="?cssrewrite"
 		'%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less'
 		'%kernel.root_dir%/Resources/public/css/font-awesome.css'
@@ -70,7 +72,7 @@
 		</div>
 	</div>
 
-{% block javascript %}
+{% block javascripts %}
 {% endblock %}
 
 {% javascripts
