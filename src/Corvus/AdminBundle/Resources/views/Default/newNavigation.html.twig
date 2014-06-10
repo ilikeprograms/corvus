@@ -51,21 +51,3 @@
 		<p>Fields marked with <span class="required-hint"></span> are required</p>
 	</aside>
 {% endblock %}
-
-{% block javascript %}
-	<script type="text/javascript">
-		jQuery(function(){
-			var navSelect = $("#navigation_internalRoutes");
-			var navHref = $("#navigation_href");
-			$("#navigation_internalRoutes").change(function() {
-				if(navSelect.val() != "")
-				{
-					$(navHref).parent().slideUp();
-					$(navHref).val(navSelect.val());
-				} else {
-					$(navHref).parent().slideDown();
-				}
-			});
-		});
-	</script>
-{% endblock %}
