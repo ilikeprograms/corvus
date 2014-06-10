@@ -14,3 +14,31 @@ jQuery(function() {
 		}
 	});
 });
+
+(function () {
+	var internalRoutes = document.getElementById('navigation_internalRoutes'),
+		navigationHref = document.getElementById('navigation_href'),
+		hrefValue = null;
+	
+	if (!navigationHref) { return }
+	
+	internalRoutes.addEventListener('change', function (e) {
+		var selected = internalRoutes.selectedIndex,
+			selectedRoute = internalRoutes.options[selected].value;
+
+		if (selected === 0) {
+			$(navigationHref).slideDown();
+			navigationHref.value = hrefValue;
+			hrefValue = null;
+		} else {
+			if (hrefValue === null) {
+				hrefValue = navigationHref.value;
+			}
+
+			navigationHref.value = selectedRoute;
+		
+			$(navigationHref).slideUp();
+		}
+
+	}, false);
+}());
