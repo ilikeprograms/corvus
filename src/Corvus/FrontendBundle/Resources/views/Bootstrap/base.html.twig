@@ -40,12 +40,28 @@
 	<link href="{{ asset(frontendcsspath ~ portfolio_info.getThemeChoice ~ "/layout.css") }}" rel="stylesheet" media="screen" />
 </head>
 <body>
+	<!-- Main Navigation -->
 	<nav class="navbar navbar-inverse" role="navigation">
-		<p class="navbar-text">{{ portfolio_info.generalSettings.portfolioTitle }}</p>
-		<ul class="nav navbar-nav">
-			{{ portfolio_info.createNavigation }}
-		</ul>
-	</nav>
+		<div class="container-fluid">
+			<!-- Portfolio Title and Collapse element -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavigation">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">{{ portfolio_info.generalSettings.portfolioTitle }}</a>
+			</div>
+			
+			<div class="collapse navbar-collapse" id="mainNavigation">
+				<ul class="nav navbar-nav">
+					{{ portfolio_info.createNavigation }}
+				</ul>
+			</div>
+		</div>
+	</nav> <!-- Main Navigation End -->
+
     <div class="page-header" class="clearfix">
 		<div id="logo" class="pull-left">
             {% if portfolio_info.generalSettings.displayLogo == true %}
@@ -77,16 +93,17 @@
 		</div>
 	</div>
 
-{% block javascripts %}
-{% endblock %}
+	{% block javascripts %}
+	{% endblock %}
 
-{% javascripts
-	'%kernel.root_dir%/Resources/js/jquery.min.js'
-	'bundles/corvuscore/js/common.js'
-	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js'
-%}
-	<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{{ portfolio_info.includeAnalyticsTracking }}
+	{% javascripts
+		'%kernel.root_dir%/Resources/js/jquery.min.js'
+		'bundles/corvuscore/js/common.js'
+		'%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js'
+		'%kernel.root_dir%/../vendor/twbs/bootstrap/js/collapse.js'
+	%}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	{{ portfolio_info.includeAnalyticsTracking }}
 </body>
 </html>
