@@ -23,16 +23,21 @@
 		<meta name="generator" content="Corvus V. {{ corvus_version }}" />
     {% endif %}
 
-    {{ portfolio_info.includeStylesheets }}
-
+	{# Page specific Stylesheets #}
 	{% block stylesheets %}{% endblock %}
 
+	{# Common Stylesheets #}
 	{% stylesheets filter="?cssrewrite"
 		'%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less'
 		'%kernel.root_dir%/Resources/public/css/font-awesome.css'
 	%}
 		<link rel="stylesheet" href="{{ asset_url }}">
 	{% endstylesheets %}
+	
+	{# Theme Specific CSS #}
+	{% set frontendcsspath = 'bundles/corvusfrontend/css/' %}
+	<link href="{{ asset(frontendcsspath ~ portfolio_info.getThemeChoice ~ "/design.css") }}" rel="stylesheet" media="screen" />
+	<link href="{{ asset(frontendcsspath ~ portfolio_info.getThemeChoice ~ "/layout.css") }}" rel="stylesheet" media="screen" />
 </head>
 <body>
 	<nav class="navbar navbar-inverse" role="navigation">

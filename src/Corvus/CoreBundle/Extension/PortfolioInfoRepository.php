@@ -127,20 +127,6 @@ class PortfolioInfoRepository
     }
 
     /**
-     * Echo's out all of the stylesheets included in the frontend by default.
-     */
-    public function includeStylesheets()
-    {
-        $themeChoice = $this->getThemeChoice();
-        echo @'
-            <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/design.css" rel="stylesheet" type="text/css" />
-            <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/layout.css" rel="stylesheet" type="text/css" />
-            <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/navigation.css" rel="stylesheet" type="text/css" />
-            <link href="/bundles/corvusfrontend/css/'.$themeChoice.'/mobile.css" rel="stylesheet" type="text/css" />
-            ';
-    }
-
-    /**
      * Echo's out the GoogleAnalytics tracking code script, if the field is set.
      */
     public function includeAnalyticsTracking()
