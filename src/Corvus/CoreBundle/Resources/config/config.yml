@@ -3,7 +3,7 @@ imports:
 
 twig:
     globals:
-        corvus_version: 0.2.4
+        corvus_version: 0.2.5
 
 assetic:
     bundles: [CorvusFrontendBundle, CorvusAdminBundle]
