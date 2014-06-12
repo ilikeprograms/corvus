@@ -11,6 +11,4 @@ $(function () {
 		link.appendChild(spacer.cloneNode(true));
 		link.appendChild(extIcon.cloneNode(true));
 	});
-	
-	$('*[data-toggle="tooltip"]').tooltip();
 });
