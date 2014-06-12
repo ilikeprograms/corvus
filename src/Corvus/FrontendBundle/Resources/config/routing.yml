@@ -43,11 +43,11 @@ CorvusFrontendBundle_ProjectHistoryId:
         id: \d+
 
 CorvusFrontendBundle_Login:
-    pattern: /Login
+    pattern: /login
     methods: [GET|POST]
     defaults: { _controller: CorvusFrontendBundle:Security:login }
 
-login_check:
+CorvusFrontendBundle_LoginCheck:
     pattern: /login_check
     methods: [POST]
 

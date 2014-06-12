@@ -19,17 +19,20 @@ security:
             security: false
 
         login:
-            pattern:  ^/Login
+            pattern:  ^/login$
             security: false
 
         secured_area:
             pattern:    ^/
             anonymous:  ~
             form_login:
-                login_path: /Login
+                login_path: /login
                 check_path: /login_check
+                default_target_path: /admin
+                csrf_provider: form.csrf_provider
+                csrf_parameter: _corvus_csfr_token
             logout: ~
 
     access_control:
-        - { path: ^/Login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/Admin, roles: ROLE_ADMIN }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
