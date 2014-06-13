@@ -20,6 +20,8 @@ Corvus\AdminBundle\Entity\GeneralSettings:
       type: boolean
     global_general_meta_title:
       type: string
+    home_meta_title:
+      type: string
     about_meta_title:
       type: string
     education_meta_title:

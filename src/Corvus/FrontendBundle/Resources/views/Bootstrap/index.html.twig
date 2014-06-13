@@ -1,6 +1,6 @@
 {% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':base.html.twig' %}
 
-{% block metaTitleStart %}Home | {% endblock %}
+{% block metaTitleStart %}{{ portfolio_info.generalSettings.homeMetaTitle }}{% endblock %}
 
 {% block mainContent %}
 	<div class="jumbotron">

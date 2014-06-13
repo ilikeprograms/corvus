@@ -50,6 +50,13 @@ class GeneralSettingsType extends AbstractType
                 'class' => 'form-control'
             ),
         ));
+        $builder->add('home_meta_title', 'text', array(
+            'label' => 'Home Meta Title',
+            'attr' => array(
+                'placeholder' => 'Home |',
+                'class' => 'form-control'
+            ),
+        ));
         $builder->add('about_meta_title', 'text', array(
             'label' => 'About Meta Title',
             'attr' => array(
@@ -172,7 +179,8 @@ class GeneralSettingsType extends AbstractType
 
         // Find all the Directory names and store them
         foreach (iterator_to_array($finder) as $dir) {
-            array_push($folders, $dir->getRelativePathname());
+            $directoryName = $dir->getRelativePathname();
+            $folders[$directoryName] = $dir->getRelativePathname();
         }
 
         // Return the array of folder names

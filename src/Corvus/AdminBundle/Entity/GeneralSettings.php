@@ -50,6 +50,11 @@ class GeneralSettings
     private $global_general_meta_title;
 
     /**
+     * @var string $home_meta_title
+     */
+    private $home_meta_title;
+
+    /**
      * @var string $about_meta_title
      */
     private $about_meta_title;
@@ -251,6 +256,16 @@ class GeneralSettings
     {
         return $this->global_general_meta_title;
     }
+    
+    /**
+     * Get about_meta_title
+     *
+     * @return string
+     */
+    public function getAboutMetaTitle()
+    {
+        return $this->about_meta_title;
+    }
 
     /**
      * Set about_meta_title
@@ -263,13 +278,23 @@ class GeneralSettings
     }
 
     /**
-     * Get about_meta_title
+     * Get home_meta_title
      *
      * @return string
      */
-    public function getAboutMetaTitle()
+    public function getHomeMetaTitle()
     {
-        return $this->about_meta_title;
+        return $this->home_meta_title;
+    }
+
+    /**
+     * Set home_meta_title
+     *
+     * @param string $homeMetaTitle
+     */
+    public function setHomeMetaTitle($homeMetaTitle)
+    {
+        $this->home_meta_title = $homeMetaTitle;
     }
 
     /**
