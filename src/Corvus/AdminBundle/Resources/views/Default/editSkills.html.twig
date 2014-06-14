@@ -38,7 +38,22 @@
                 {{ form_errors(form.description) }}
                 {{ form_widget(form.description) }}
             </div>
-
+			
+			<div class="form-group">
+                {{ form_label(form.can_display_skill) }}
+                {{ form_errors(form.can_display_skill) }}
+                {{ form_widget(form.can_display_skill) }}
+            </div>
+			
+			<p class="help-block">Display skill controls if all details about a Skill will be displayed</p>
+			
+			<div class="form-group">
+                {{ form_label(form.is_quick_skill) }}
+                {{ form_errors(form.is_quick_skill) }}
+                {{ form_widget(form.is_quick_skill) }}
+            </div>
+			
+			<p class="help-block">Display skill controls if all Skill will be displayed in the Quick Skills section</p>
 		</fieldset>
 
 		{{ form_rest(form) }}

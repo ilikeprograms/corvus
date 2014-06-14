@@ -19,4 +19,8 @@ Corvus\AdminBundle\Entity\Skills:
     description:
       type: string
       length: 2500
+    can_display_skill:
+      type: boolean
+    is_quick_skill:
+      type: boolean
   lifecycleCallbacks: {  }

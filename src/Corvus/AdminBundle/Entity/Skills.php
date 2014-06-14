@@ -40,6 +40,16 @@ class Skills extends TableViewEntity
      */
     private $description;
 
+    /**
+     * @var boolean $can_display_skill
+     */
+    private $can_display_skill;
+
+    /**
+     * @var boolean $is_quick_skill
+     */
+    private $is_quick_skill;
+
 
     public function __construct()
     {
@@ -134,5 +144,45 @@ class Skills extends TableViewEntity
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set can_display_skill
+     *
+     * @param boolean $canDisplaySkill
+     */
+    public function setCanDisplaySkill($canDisplaySkill)
+    {
+        $this->can_display_skill = $canDisplaySkill;
+    }
+
+    /**
+     * Get can_display_skill
+     *
+     * @return boolean 
+     */
+    public function getCanDisplaySkill()
+    {
+        return $this->can_display_skill;
+    }
+    
+    /**
+     * Set is_quick_skill
+     *
+     * @param boolean $isQuickSkill
+     */
+    public function setIsQuickSkill($isQuickSkill)
+    {
+        $this->is_quick_skill = $isQuickSkill;
+    }
+
+    /**
+     * Get is_quick_skill
+     *
+     * @return boolean 
+     */
+    public function getIsQuickSkill()
+    {
+        return $this->is_quick_skill;
     }
 }

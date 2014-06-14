@@ -41,6 +41,14 @@ class SkillsType extends AbstractType
                 'class' => 'form-control'
 			),
 		));
+        $builder->add('can_display_skill', 'checkbox', array(
+            'label' => 'Display full Skill details?',
+            'required' => false,
+        ));
+        $builder->add('is_quick_skill', 'checkbox', array(
+            'label' => 'Display in Quick Skills?',
+            'required' => false,
+        ));
 		$builder->add('check', 'checkbox', array(
 			'mapped' => false,
 			'attr' => array(
