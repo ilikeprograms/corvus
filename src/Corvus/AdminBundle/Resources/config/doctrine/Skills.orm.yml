@@ -14,11 +14,14 @@ Corvus\AdminBundle\Entity\Skills:
       type: string
     competency:
       type: string
+      nullable: true
     years_experience:
       type: decimal
+      nullable: true
     description:
       type: string
       length: 2500
+      nullable: true
     can_display_skill:
       type: boolean
     is_quick_skill:

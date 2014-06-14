@@ -19,13 +19,13 @@ class SkillsType extends AbstractType
                 'class' => 'form-control'
 			),
 		));
-
 		$builder->add('competency', 'text', array(
 			'label' => 'Competency',
 			'attr' => array(
 				'placeholder' => 'E.g Average',
                 'class' => 'form-control'
 			),
+            'required' => false,
 		));
 		$builder->add('years_experience', 'number', array(
 			'label' => 'Years Experience',
@@ -33,6 +33,7 @@ class SkillsType extends AbstractType
 				'placeholder' => 'E.g 5',
                 'class' => 'form-control'
 			),
+            'required' => false,
 		));
 		$builder->add('description', 'textarea', array(
 			'label' => 'Description',
@@ -40,6 +41,7 @@ class SkillsType extends AbstractType
 				'placeholder' => 'E.g I have been using PHP for 5 years and really enjoy using it as a language and used it for my university project',
                 'class' => 'form-control'
 			),
+            'required' => false,
 		));
         $builder->add('can_display_skill', 'checkbox', array(
             'label' => 'Display full Skill details?',

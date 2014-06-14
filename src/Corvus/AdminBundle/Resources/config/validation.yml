@@ -74,12 +74,6 @@ Corvus\AdminBundle\Entity\Skills:
             - NotNull: ~
         skill_name:
             - NotNull: ~
-        competency:
-            - NotNull: ~
-        years_experience:
-            - NotNull: ~
-        description:
-            - NotNull: ~
 
 Corvus\AdminBundle\Entity\WorkHistory:
     properties:
