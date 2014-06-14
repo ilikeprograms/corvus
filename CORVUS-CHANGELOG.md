@@ -10,6 +10,19 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**0.3.0**]
+
+-	[JS] Added workHistory.js to toggle disabling end_date when is_current_position field is checked.
+-	[Entity] Made employer_address and employer_phone_number fields not required
+-	[Entity] Added is_current_position field to WorkHistory
+-	[Entity] Made competency, years_experience and description fields optional in Skills Entity
+-	[Entity] Added is_quick_skill and can_display_skill fields to Skills Entity
+-	[Entity] Added homeMetaTitle field, used in Frontend
+-	[DB] Added migration file to support Entity changes
+-	[JS] Wrapped external icons in <sup>
+-	[Route] Changed to normal urls and - separator for dual words (e.g. WorkHistory = work-history)
+-	[Security] Added CSFR protection
+
 [**0.2.0**]
 
 -	Made Travis CI only run when commiting to master branch
