@@ -38,6 +38,11 @@ class WorkHistory extends TableViewEntity
      * @var date $end_date
      */
     private $end_date;
+    
+    /**
+     * @var boolean $is_current_position
+     */
+    private $is_current_position;
 
     /**
      * @var string $role
@@ -168,6 +173,26 @@ class WorkHistory extends TableViewEntity
     public function getEndDate()
     {
         return $this->end_date;
+    }
+    
+    /**
+     * Get is_current_position
+     *
+     * @return boolean 
+     */
+    public function getIsCurrentPosition()
+    {
+        return $this->is_current_position;
+    }
+
+    /**
+     * Set is_current_position
+     *
+     * @param boolean $isCurrentPosition
+     */
+    public function setIsCurrentPosition($isCurrentPosition)
+    {
+        $this->is_current_position = $isCurrentPosition;
     }
 
     /**

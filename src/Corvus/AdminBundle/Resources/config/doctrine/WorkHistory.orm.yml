@@ -18,6 +18,9 @@ Corvus\AdminBundle\Entity\WorkHistory:
       type: date
     end_date:
       type: date
+    is_current_position:
+      type: boolean
+      default: 0
     role:
       type: string
     duties:

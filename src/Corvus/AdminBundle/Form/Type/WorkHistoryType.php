@@ -5,13 +5,16 @@ namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolverInterface;
+    Symfony\Component\OptionsResolver\OptionsResolverInterface,
+    Symfony\Component\Form\FormEvents,
+    Symfony\Component\Form\FormEvent;
 
 
 class WorkHistoryType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+        // Employer Fields
 		$builder->add('employer_name', 'text', array(
 			'label' => 'Employer Name',
 			'attr' => array(
@@ -36,6 +39,11 @@ class WorkHistoryType extends AbstractType
 			'input' => 'datetime',
 			'widget' => 'choice',
 		));
+        $builder->add('is_current_position', 'checkbox', array(
+            'required' => false
+        ));
+
+        // Job details fields
 		$builder->add('role', 'text', array(
 			'label' => 'Role',
 			'attr' => array(
@@ -96,6 +104,17 @@ class WorkHistoryType extends AbstractType
 				'class' => 'case',
 			),
 		));
+        
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $workHistory = $event->getData();
+
+            if (array_key_exists('is_current_position', $workHistory)) {
+                if ($workHistory['is_current_position'] === '1') {
+                    $workHistory['end_date'] = null;
+                    $event->setData($workHistory);
+                }
+            }
+        });
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
