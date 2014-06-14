@@ -14,10 +14,15 @@ Corvus\AdminBundle\Entity\WorkHistory:
       type: string
     employer_address:
       type: string
+      nullable: true
+    employer_phone_number:
+      type: string
+      nullable: true
     start_date:
       type: date
     end_date:
       type: date
+      nullable: true
     is_current_position:
       type: boolean
       default: 0
@@ -34,9 +39,6 @@ Corvus\AdminBundle\Entity\WorkHistory:
     reflection:
       type: string
       length: 2000
-      nullable: true
-    employer_phone_number:
-      type: string
       nullable: true
     meta_title:
       type: string

@@ -81,11 +81,7 @@ Corvus\AdminBundle\Entity\WorkHistory:
             - NotNull: ~
         employer_name:
             - NotNull: ~
-        employer_address:
-            - NotNull: ~
         start_date:
-            - NotNull: ~
-        end_date:
             - NotNull: ~
         role:
             - NotNull: ~

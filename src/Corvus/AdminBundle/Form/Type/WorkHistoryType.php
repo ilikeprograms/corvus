@@ -28,16 +28,28 @@ class WorkHistoryType extends AbstractType
 				'placeholder' => 'E.g 29 Corvus Street, Crvs',
                 'class' => 'form-control'
 			),
+            'required' => false,
 		));
+        $builder->add('employer_phone_number', 'number', array(
+			'label' => 'Employer Phone Number',
+			'attr' => array(
+				'placeholder' => 'E.g 01792 xxxxxx',
+                'class' => 'form-control'
+			),
+            'required' => false,
+		));
+
+        // Date/Current position fields
 		$builder->add('start_date', 'date', array(
-			'label' => 'Start Dates',
+			'label' => 'Start Date',
 			'input' => 'datetime',
 			'widget' => 'choice',
 		));
 		$builder->add('end_date', 'date', array(
-			'label' => 'End Dates',
+			'label' => 'End Date',
 			'input' => 'datetime',
 			'widget' => 'choice',
+            'required' => false,
 		));
         $builder->add('is_current_position', 'checkbox', array(
             'required' => false
@@ -75,14 +87,8 @@ class WorkHistoryType extends AbstractType
 			),
             'required' => false,
 		));
-		$builder->add('employer_phone_number', 'number', array(
-			'label' => 'Employer Phone Number',
-			'attr' => array(
-				'placeholder' => 'E.g 01792 xxxxxx',
-                'class' => 'form-control'
-			),
-            'required' => false,
-		));
+        
+        // Meta Fields
 		$builder->add('meta_title', 'text', array(
 			'label' => 'Meta Title',
 			'attr' => array(
