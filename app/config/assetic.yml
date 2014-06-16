@@ -3,8 +3,6 @@ assetic:
   use_controller: false
   bundles: [ CorvusFrontendBundle, CorvusAdminBundle ]
   assets:
-#      font-awesome:
-#          '%kernel.root_dir%/Resources/public/css/font-awesome.css'
       font-awesome-otf:
         inputs: '%kernel.root_dir%/Resources/public/fonts/FontAwesome.otf'
         output: 'fonts/FontAwesome.otf'
