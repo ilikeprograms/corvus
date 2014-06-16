@@ -77,5 +77,6 @@ To access the backend go to: http://localhost/app.php/Admin
 
 * [View or Fork Corvus](https://github.com/ilikeprograms/corvus)
 * [Corvus Website](http://corvus.ilikeprograms.com)
+* <a href="irc://irc.freenode.net/corvus">#corvus on irc.freenode</a>
 * <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Corvus Support">Send us an Email</a> <sup>(corvus-support@ilikeprograms.com)</sup>
 * [Stack Overflow](http://stackoverflow.com/questions/tagged/corvus)
