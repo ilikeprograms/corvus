@@ -1,50 +1,48 @@
-{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':base.html.twig' %}
+{% extends 'CorvusFrontendBundle:' ~ theme_manager.getTemplateChoice ~ ':base.html.twig' %}
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.globalWorkHistoryMetaTitle}} {{ workHistory.metaTitle }}{% endblock %}
 
 {% block metaDescription %}<meta name="description" content="{{ workHistory.metaDescription }}" />{% endblock %}
 
-{% block mainContent %}
-	<div class="well clearfix">
-		<i class="fa fa-briefcase fa-2x wellImg pull-left" alt="Small Work History Icon"></i>
-		<hgroup class="pull-left">
+{% block mainContentBlock %}
+	<article id="mainContainer">
+		<header class="well clearfix">
+			<i class="fa fa-briefcase fa-2x wellImg pull-left hidden-xs" title="Small Work History Icon"></i>
 			<h2>{{ workHistory.employerName }}</h2>
-		</hgroup>
-	</div>
-	<div>
-		<h3>Role</h3>
-		<p>{{ workHistory.role }}</p>
+			<p>{{ workHistory.role }} - {{ workHistory.startDate | date('F j, Y') }} to {{ workHistory.isCurrentPosition == true ? 'Current' : workHistory.endDate | date('F j, Y') }}</p>
+		</header>
+		<section>
+			{% if workHistory.duties %}
+				<h3>Duties</h3>
+				<p>{{ workHistory.duties | markdown }}</p>
+			{% endif %}
 
-		{% if workHistory.duties %}
-			<h3>Duties</h3>
-			<p>{{ workHistory.duties }}</p>
-		{% endif %}
+			{% if workHistory.feedbackReceived %}
+				<h3>Feedback Received</h3>
+				<p>{{ workHistory.feedbackReceived | markdown }}</p>
+			{% endif %}
 
-		{% if workHistory.feedbackReceived %}
-			<h3>Feedback Received</h3>
-			<p>{{ workHistory.feedbackReceived }}</p>
-		{% endif %}
-
-		{% if workHistory.reflection %}
-			<h3>Reflection</h3>
-			<p>{{ workHistory.reflection }}</p>
-		{% endif %}
-		
+			{% if workHistory.reflection %}
+				<h3>Reflection</h3>
+				<p>{{ workHistory.reflection | markdown }}</p>
+			{% endif %}
+		<section>	
 		<br />
-
 		{% if (workHistory.employerAddress or workHistory.employerPhoneNumber) %}
-			<h2>Additional Employer Details</h2>
+		<section>
+			<h3>Additional Employer Details</h3>
 			<hr/>
 
 			{% if workHistory.employerAddress %}
-				<h3>Address</h3>
+				<h4>Address</h4>
 				<p>{{ workHistory.employerAddress }}</p>
 			{% endif %}
 
 			{% if workHistory.employerPhoneNumber %}
-				<h3>Phone Number</h3>
+				<h4>Phone Number</h4>
 				<p>{{ workHistory.employerPhoneNumber }}</p>
 			{% endif %}
+		</section>
 		{% endif %}
-	</div>
+	</article>
 {% endblock %}

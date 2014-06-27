@@ -32,11 +32,17 @@
                 {{ form_errors(form.start_date) }}
                 {{ form_widget(form.start_date) }}
             </div>
-
-            <div class="form-group">
-                {{ form_label(form.duration) }}
-                {{ form_errors(form.duration) }}
-                {{ form_widget(form.duration) }}
+            
+			<div class="form-group">
+                {{ form_label(form.end_date) }}
+                {{ form_errors(form.end_date) }}
+                {{ form_widget(form.end_date) }}
+            </div>
+			
+			<div class="form-group">
+                {{ form_label(form.is_current_position) }}
+                {{ form_errors(form.is_current_position) }}
+                {{ form_widget(form.is_current_position) }}
             </div>
 
             {{ form_row(form.result) }}

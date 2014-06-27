@@ -16,8 +16,11 @@ Corvus\AdminBundle\Entity\Education:
       type: string
     start_date:
       type: date
-    duration:
-      type: decimal
+    end_date:
+      type: date
+    is_current_position:
+      type: boolean
+      default: 0
     result:
       type: string
   lifecycleCallbacks: {  }

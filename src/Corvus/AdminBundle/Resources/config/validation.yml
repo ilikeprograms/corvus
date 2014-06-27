@@ -27,8 +27,6 @@ Corvus\AdminBundle\Entity\Education:
         start_date:
             - NotNull: ~
             - Date: ~
-        duration:
-            - NotNull: ~
 
 Corvus\AdminBundle\Entity\GeneralSettings:
     properties:
@@ -87,7 +85,3 @@ Corvus\AdminBundle\Entity\WorkHistory:
             - NotNull: ~
         meta_title:
             - NotNull: ~
-
-Corvus\AdminBundle\Model\ChangePasswordModel:
-    constraints:
-        - Corvus\AdminBundle\Validator\Constraints\ChangePassword: ~

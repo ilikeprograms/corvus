@@ -36,9 +36,14 @@ class Education extends TableViewEntity
     private $start_date;
 
     /**
-     * @var decimal $duration
+     * @var date $end_date
      */
-    private $duration;
+    private $end_date;
+    
+    /**
+     * @var boolean $is_current_position
+     */
+    private $is_current_position;
 
     /**
      * @var string $result
@@ -117,23 +122,44 @@ class Education extends TableViewEntity
     }
 
     /**
-     * Set duration
+     * Set end_date
      *
-     * @param decimal $duration
+     * @param date $endDate
      */
-    public function setDuration($duration)
+    public function setEndDate($endDate)
     {
-        $this->duration = $duration;
+        $this->end_date = $endDate;
     }
 
     /**
-     * Get duration
+     * Get end_date
      *
-     * @return decimal 
+     * @return date
      */
-    public function getDuration()
+    public function getEndDate()
     {
-        return $this->duration;
+        return $this->end_date;
+    }
+    
+        
+    /**
+     * Get is_current_position
+     *
+     * @return boolean 
+     */
+    public function getIsCurrentPosition()
+    {
+        return $this->is_current_position;
+    }
+
+    /**
+     * Set is_current_position
+     *
+     * @param boolean $isCurrentPosition
+     */
+    public function setIsCurrentPosition($isCurrentPosition)
+    {
+        $this->is_current_position = $isCurrentPosition;
     }
 
     /**
