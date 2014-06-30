@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+	{% if corvus_version %}
+		<meta name="generator" content="Corvus V. {{ corvus_version }}" />
+    {% endif %}
+
 	{% spaceless %}
         {% block metaTitleStart %}{% endblock %} {{ portfolio_info.generalSettings.globalGeneralMetaTitle }}{% block metaTitleEnd %}{% endblock %}
     {% endspaceless %}
@@ -19,9 +23,6 @@
 	<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
 	
     {% block metaDescription %}{% endblock %}
-    {% if corvus_version %}
-		<meta name="generator" content="Corvus V. {{ corvus_version }}" />
-    {% endif %}
 
 	{# Page specific Stylesheets #}
 	{% block stylesheets %}{% endblock %}
