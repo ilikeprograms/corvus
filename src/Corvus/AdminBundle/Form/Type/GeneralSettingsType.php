@@ -5,13 +5,11 @@ namespace Corvus\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface,
-    Symfony\Component\OptionsResolver\OptionsResolverInterface,
-    Symfony\Component\Finder\Finder;
+    Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class GeneralSettingsType extends AbstractType
 {
-    CONST FRONTEND_RESOURCES_FOLDER = '/../../../FrontendBundle/Resources';
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -126,50 +124,5 @@ class GeneralSettingsType extends AbstractType
     public function getName()
     {
         return 'generalSettings';
-    }
-    
-    /**
-     * Find the names of the Frontend template folders.
-     * @return type
-     */
-    private function getTemplateFolders()
-    {
-        $path = self::FRONTEND_RESOURCES_FOLDER . '/views';
-        return $this->scanFolderNamesInDirectory($path);
-    }
-
-    /**
-     * Find the names of the Frontend theme folders.
-     * 
-     * @return array
-     */
-    private function getThemeFolders()
-    {
-        $path = self::FRONTEND_RESOURCES_FOLDER . '/public/css';
-        return $this->scanFolderNamesInDirectory($path);
-    }
-
-    /**
-     * Scans the Given directory relative to this file for directory names.
-     * 
-     * @param string $path The path to a folder to scan, which is relative to this file.
-     * @return array
-     */
-    private function scanFolderNamesInDirectory($path)
-    {
-        $finder = new Finder(); // Create a Finder
-        // Find all Directories in the Folder
-        $finder->directories()->in(__DIR__ . $path);
-
-        $folders = array();
-
-        // Find all the Directory names and store them
-        foreach (iterator_to_array($finder) as $dir) {
-            $directoryName = $dir->getRelativePathname();
-            $folders[$directoryName] = $dir->getRelativePathname();
-        }
-
-        // Return the array of folder names
-        return $folders;
     }
 }
