@@ -1,4 +1,4 @@
-{% extends 'CorvusFrontendBundle:' ~ portfolio_info.templateChoice ~ ':base.html.twig' %}
+{% extends 'CorvusFrontendBundle:' ~ theme_manager.getTemplateChoice ~ ':base.html.twig' %}
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.educationMetaTitle }}{% endblock %}
 {% block mainContent %}

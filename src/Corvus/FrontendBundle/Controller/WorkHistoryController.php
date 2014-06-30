@@ -12,7 +12,7 @@ class WorkHistoryController extends Controller
 {
     public function findByIdAction(WorkHistory $workHistory)
     {
-        $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
+        $template_choice = $this->container->get('ilp_bootstrap_theme.theme_manager')->getTemplateChoice();
 
         return $this->render('CorvusFrontendBundle:'.$template_choice.':workHistoryId.html.twig', array(
             'workHistory' => $workHistory,

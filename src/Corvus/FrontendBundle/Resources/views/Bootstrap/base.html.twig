@@ -36,8 +36,7 @@
 	
 	{# Theme Specific CSS #}
 	{% set frontendcsspath = 'bundles/corvusfrontend/css/' %}
-	<link href="{{ asset(frontendcsspath ~ portfolio_info.getThemeChoice ~ "/design.css") }}" rel="stylesheet" media="screen" />
-	<link href="{{ asset(frontendcsspath ~ portfolio_info.getThemeChoice ~ "/layout.css") }}" rel="stylesheet" media="screen" />
+	<link href="{{ asset(frontendcsspath ~ theme_manager.getThemeChoice ~ "/theme.css") }}" rel="stylesheet" media="screen" />
 </head>
 <body>
 	<!-- Main Navigation -->

@@ -12,7 +12,7 @@ class ProjectHistoryController extends Controller
 {
     public function findByIdAction(ProjectHistory $projectHistory)
     {
-        $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
+        $template_choice = $this->container->get('ilp_bootstrap_theme.theme_manager')->getTemplateChoice();
 
         return $this->render('CorvusFrontendBundle:'.$template_choice.':projectHistoryId.html.twig', array(
             'projectHistory' => $projectHistory

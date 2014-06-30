@@ -1,7 +1,7 @@
 services:
     controller.pre_execute_listener:
         class: Corvus\CoreBundle\EventListener\ControllerListener
-        arguments: ["@=service('portfolioinforepository').getTemplateChoice()"]
+        arguments: ["@=service('ilp_bootstrap_theme.theme_manager').getTemplateChoice()"]
         calls: 
             - [ setTemplatingEngine, [ @templating ]] 
         tags:

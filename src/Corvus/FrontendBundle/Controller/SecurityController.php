@@ -10,8 +10,8 @@ class SecurityController extends Controller
 {
     public function loginAction()
     {
-        $template_choice = $this->container->get('portfolioinforepository')->getTemplateChoice();
-        
+        $template_choice = $this->container->get('ilp_bootstrap_theme.theme_manager')->getTemplateChoice();
+
         $request = $this->getRequest();
         $session = $request->getSession();
 
