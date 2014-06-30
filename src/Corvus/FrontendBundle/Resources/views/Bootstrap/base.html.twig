@@ -29,8 +29,9 @@
 	{# Common Stylesheets #}
 	{% stylesheets filter="?cssrewrite"
 		'%kernel.root_dir%/Resources/public/css/font-awesome.min.css'
+        '@CorvusCoreBundle/Resources/public/css/common.less'
 	%}
-		<link rel="stylesheet" href="{{ asset_url }}">
+		<link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
 
 	{# Theme Specific CSS #}
