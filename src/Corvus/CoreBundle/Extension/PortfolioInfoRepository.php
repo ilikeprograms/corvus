@@ -62,26 +62,6 @@ class PortfolioInfoRepository
     }
 
     /**
-     * Gets the current Frontend ThemeChoice.
-     * 
-     * @return string
-     */
-    public function getThemeChoice()
-    {
-        return $this->getGeneralSettings()->getThemeChoice();
-    }
-
-    /**
-     * Gets the current Frontend TemplateChoice.
-     * 
-     * @return string
-     */
-    public function getTemplateChoice()
-    {
-        return $this->getGeneralSettings()->getTemplateChoice();
-    }
-
-    /**
      * Finds the stored instance of GeneralSettinggs, or loads it if it doesnt exist.
      * 
      * @return \Corvus\AdminBundle\Entity\GeneralSettings
@@ -214,11 +194,11 @@ class PortfolioInfoRepository
      * 
      * @param string $route Route to be used to create the Navigation item (expected to be either a Symfony name route, route pattern or an external url).
      * @param string $text Text to display in the Navigation item.
-     * @param string $alt Alternative text for the link.
+     * @param string $title Title text for the link.
      * @param string $faicon The names of font awesome classes to used to create an icon to prepend before the text.
      * @param boolean $endItem To end the list item or not
      */
-    public function createNavItem($route, $text, $alt, $faicon = null, $endItem = true)
+    public function createNavItem($route, $text, $title, $faicon = null, $endItem = true)
     {
         $request = $this->requestStack->getCurrentRequest();
 
@@ -238,7 +218,7 @@ class PortfolioInfoRepository
             $active = $request->get('_route') === $route ? " class='active'" : "";
 
             // Create the List item with the URL path, Active class and Alt attribute
-            $listItem = '<li ' . $active . '><a href="'.$path.'" alt="'.$alt.'">';
+            $listItem = '<li '. $active .'><a href="'. $path .'" title="'. $title .'">';
 
             // If an Icon is specified, append the Icon to the Anchor element
             if ($faicon !== null) {
@@ -263,7 +243,7 @@ class PortfolioInfoRepository
                 // The Symfony Route url
                 $fullUrl = $this->router->generate($parameters['_route'], array(), true);
 
-                echo '<a href="' . $fullUrl . '" alt="' . $alt . '">';
+                echo '<a href="' . $fullUrl . '" title="' . $title . '">';
 
                 // If a Fa icon name was provided, add a Fa icon
                 if ($faicon !== null) {
@@ -272,7 +252,7 @@ class PortfolioInfoRepository
 
                 echo $text . '</a>';
             } catch (ResourceNotFoundException $e) { // Must be an External link
-                echo '<a href="' . $route . '" alt="' . $alt . '" target="_blank">' . $text . '</a>';
+                echo '<a href="' . $route . '" title="' . $title . '" target="_blank">' . $text . '</a>';
             }     
         }
     }
