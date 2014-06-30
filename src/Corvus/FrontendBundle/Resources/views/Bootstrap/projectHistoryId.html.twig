@@ -4,46 +4,36 @@
 
 {% block metaDescription %}<meta name="description" content="{{ projectHistory.metaDescription }}" />{% endblock %}
 
-{% block mainContent %}
-	<div class="well clearfix">
-		<i class="fa fa-rocket fa-2x wellImg pull-left" alt="Small Project History Icon"></i>
-		<hgroup class="pull-left">
-			<h2>{{ projectHistory.projectName }}</h2>
-		</hgroup>
-	</div>
-	<div>
-		<h3>Project Description</h3>
-		<p>
-			{{ projectHistory.projectDescription }}
-		</p>
+{% block mainContentBlock %}
+	<article id="mainContainer">
+		<header class="well clearfix">
+			<i class="fa fa-rocket fa-2x wellImg pull-left hidden-xs" title="Small Project History Icon"></i>
+			<h2>{{ projectHistory.projectName | markdown }}</h2>
+			<p>{{ projectHistory.role }}</p>
+		</header>
+		<section>
+			<h3>Project Description</h3>
+			<p>{{ projectHistory.projectDescription | markdown }}</p>
 
-		<h3>Role</h3>
-		<p>
-			{{ projectHistory.role }}
-		</p>
+			{% if projectHistory.process %}
+				<h3>Process</h3>
+				<p>{{ projectHistory.process | markdown }}</p>
+			{% endif %}
 
-		{% if projectHistory.process %}
-			<h3>Process</h3>
-			<p>
-				{{ projectHistory.process }}
-			</p>
-		{% endif %}
+			{% if projectHistory.feedbackReceived %}
+				<h3>Feedback Received</h3>
+				<blockquote><p>{{ projectHistory.feedbackReceived | markdown }}</p></blockquote>
+			{% endif %}
 
-		{% if projectHistory.feedbackReceived %}
-			<h3>Feedback Received</h3>
-			<blockquote><p>{{ projectHistory.feedbackReceived }}</p></blockquote>
-		{% endif %}
+			{% if projectHistory.reflection %}
+				<h3>Reflection</h3>
+				<p>{{ projectHistory.reflection | markdown }}</p>
+			{% endif %}
 
-		{% if projectHistory.reflection %}
-			<h3>Reflection</h3>
-			<p>
-				{{ projectHistory.reflection }}
-			</p>
-		{% endif %}
-
-		{% if projectHistory.url %}
-			<h3>Url</h3>
-			<p><a href="{{ projectHistory.url }}" target="_blank">{{ projectHistory.projectName }} URL</a></p>
-		{% endif %}
-	</div>
+			{% if projectHistory.url %}
+				<h3>Url</h3>
+				<p><a href="{{ projectHistory.url }}" target="_blank" title="Corvus Project Link">{{ projectHistory.projectName }} URL</a></p>
+			{% endif %}
+		</section>
+	</article>
 {% endblock %}

@@ -2,16 +2,15 @@
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.skillsMetaTitle }}{% endblock %}
 
-{% block mainContent %}
-	<div class="well clearfix">
-		<i class="fa fa-magic fa-5x wellImg pull-left" alt="Large Skills Icon"></i>
-		<hgroup class="pull-left">
+{% block mainContentBlock %}
+	<article id="mainContainer">
+		<header class="well clearfix">
+			<i class="fa fa-magic fa-5x wellImg pull-left hidden-xs" title="Large Skills Icon"></i>
 			<h2>Skills</h2>
-			<p>This is a list of my skills</p>
-		</hgroup>
-	</div>
-	<div>
+			<p>This is a list of my skills.</p>
+		</header>
 		{% if skills | length > 0 %}
+		<aside>
 			<h2>Quick list of skills</h2>
 			<br />
 				<ul class="list-inline">
@@ -20,35 +19,27 @@
 						<li>{{ skill.skillName }}</li>
 					{% endif %}
 				{% endfor %}
-				</ul>
-			<hr />
+				</ul>	
+		</aside>
+		<hr />
 		{% endif %}
+		<section>
+			<h3>Top Skills</h3>
+			{% for skill in skills %}
+                <br />
+				{% if skill.canDisplaySkill %}
+					<h4>{{ skill.skillName }}</h4>
 
-		{% for skill in skills %}
-			{% if skill.canDisplaySkill %}
-				<h3>{{ skill.skillName }}</h3>
-				<br />
-
-				<h4 class="displayInline">Competency -</h4>
-				<p class="displayInline">{{ skill.competency }}</p>
-
-				<br />
-				<br />
-
-				<h4 class="displayInline">Years Experience -</h4>
-				<p class="displayInline">{{ skill.yearsExperience }}</p>
-
-				<br />
-				<br />
-
-				<h4>Description</h4>
-				<p>{{ skill.description }}</p>
-
-				{% if not loop.last %}
-					<br />
-					<hr />
+                    <h5>Competency</h5>
+                    <p>{{ skill.competency }}</p>
+                    
+                    <h5>Years Experience</h5>
+                    <p>{{ skill.yearsExperience }}</p>
+                    
+                    <h5>Description</h5>
+                    <p>{{ skill.description }}</p>
 				{% endif %}
-			{% endif %}
-		{% endfor %}
-	</div>
+			{% endfor %}
+		</section>
+	</article>
 {% endblock %}

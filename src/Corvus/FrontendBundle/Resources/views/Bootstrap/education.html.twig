@@ -1,44 +1,29 @@
 {% extends 'CorvusFrontendBundle:' ~ theme_manager.getTemplateChoice ~ ':base.html.twig' %}
 
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.educationMetaTitle }}{% endblock %}
-{% block mainContent %}
-	<div class="well clearfix">
-		<i class="fa fa-book fa-5x wellImg pull-left" alt="Large Education Icon"></i>
-		<hgroup class="pull-left">
+
+{% block mainContentBlock %}
+	<article id="mainContainer">
+		<header class="well clearfix">
+			<i class="fa fa-book fa-5x wellImg pull-left hidden-xs" title="Large Education Icon"></i>
 			<h2>Education</h2>
-			<p>This is a list of my education</p>
-		</hgroup>
-	</div>
-	<div>
-		
+			<p>This is a list of my education, lets test to make sure that it can blah blah</p>
+		</header>
 		{% for edu in education %}
-			<h3>Education Institute</h3>
-			<p>{{ edu.educationInstitute }}</p>
-			
-			<h3>Qualification</h3>
-			<p>{{ edu.qualification }}</p>
+			<section>
+				<header>
+					<h3>{{ edu.educationInstitute }}</h3>
+					<p><b>{{ edu.startDate | date('F j, Y') }} to {{ edu.isCurrentPosition == true ? 'Current' : edu.endDate | date('F j, Y') }}</b></p>
+				</header>
+				<p>{{ edu.qualification }}</p>
 
-			<h3 class="displayInline">Time Period -</h3>
-			<p class="displayInline">{{ edu.startDate | date("d/m/y") }}</p>
-
-			<br />
-			<br />
-
-			<h3 class="displayInline">Years -</h3>
-			<p class="displayInline">{{ edu.duration }}</p>
-
-			<br />
-			<br />
-
-			<h3>Result</h3>
-			<p>{{ edu.result }}</p>
+				<h4>Result</h4>
+				<p>{{ edu.result }}</p>
+			</section>
 
 			{% if loop.last == false %}
 				<br />
-				<hr />
-				<br />
 			{% endif %}
-
 		{% endfor %}
-	</div>
+	</article>
 {% endblock %}
