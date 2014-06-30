@@ -114,20 +114,6 @@ class GeneralSettingsType extends AbstractType
                 'class' => 'form-control'
             ),
         ));
-        $builder->add('template_choice', 'choice', array(
-            'label' => 'Template Choice',
-            'choices'   => $this->getTemplateFolders(),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
-        ));
-        $builder->add('theme_choice', 'choice', array(
-            'label' => 'Theme Choice',
-            'choices'   => $this->getThemeFolders(),
-            'label_attr' => array(
-                'class' => 'fontBold',
-            ),
-        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
