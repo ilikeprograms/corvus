@@ -74,10 +74,12 @@
 		{% endif %}
 		</h1>
     </div>
+	{% block mainContentBlock %}
     <div id="mainContainer">
         {% block mainContent %}
         {% endblock %}
     </div>
+	{% endblock %}
 
     <footer>
         <div id="subFooter">{{ portfolio_info.generalSettings.footerText }}</div>
