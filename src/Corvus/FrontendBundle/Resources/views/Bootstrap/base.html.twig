@@ -63,19 +63,18 @@
 		</div>
 	</nav> <!-- Main Navigation End -->
 
-    <div class="page-header" class="clearfix">
+    <header class="page-header clearfix">
 		<div id="logo" class="pull-left">
             {% if portfolio_info.generalSettings.displayLogo == true %}
                 {{ portfolio_info.includeLogo }}
             {% endif %}
         </div>
-		<h1>{{ portfolio_info.generalSettings.portfolioTitle }}
-
+		<h1>{{ portfolio_info.generalSettings.portfolioTitle }}</h1>
 		{% if portfolio_info.generalSettings.displaySubtitle == true %}
 			<small>{{ portfolio_info.generalSettings.portfolioSubtitle }}</small>
 		{% endif %}
-		</h1>
-    </div>
+    </header>
+
 	{% block mainContentBlock %}
     <div id="mainContainer">
         {% block mainContent %}
