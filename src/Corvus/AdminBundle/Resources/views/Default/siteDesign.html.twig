@@ -6,15 +6,28 @@
 
 {% block mainContent %}
     <h2>Site Design</h2>
-    <p>This part of the system has not been implemented yet. The plan with this section will be to enable the CorvusFrontendbundle to be customised.</p>
     
-    <p>This customisation will be split into two parts:
-    <ol><li>Themes</li><li>Templates</li></ol></p>
-    
-    <p>The theme would just be concerned with the colour scheme/fonts etc. So changing the theme would appear to just change the appearance of HOW the frontend look.</p>
+    <div class="well">
+        The Site Design section allows you to choose the currently active template/theme choice.<br />
+        You can also Edit the current theme by clicking the "Edit Theme" button below.
+    </div>
 
-    <p>The template system will just be concerned with the layout and structure of the frontend. So when then template is changed, the theme would still be the same. The structure such as the positioning of elements as well adding/removing parts of the structure would change. 
-    </p>
+    <form action="{{ path('CorvusAdminBundle_SiteDesign') }}" method="post" {{ form_enctype(form) }}>
+        <div class="form-group">
+            {{ form_row(form.template_choice) }}
+        </div>
 
-    <p>This seperation of concern would hopefully lead to the frontend being highly customisable, and easy to change. Someone could like the current look of the theme they are using, but not like where things are postions, so they could change the template or vice-versa.</p>
+        <div class="form-group">
+            {{ form_row(form.theme_choice) }}
+        </div>
+
+        <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+            {{ form_widget(form.generate_button, { "label": "Compile Theme", "attr": { "class": "btn btn-info"}}) }}
+            <a href="{{ path('CorvusAdminBundle_ThemeEditor') }}" class="btn btn-warning">Edit Theme</a>
+        </div>
+        
+        <p class="help-block">Compiling the theme takes a while!<br />Editing edits the current theme</p>
+        {{ form_row(form._token) }}
+    </form>
 {% endblock %}
