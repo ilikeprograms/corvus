@@ -1,3 +1,7 @@
+ilp_bootstrap_theme:
+    resource: "@ILPBootstrapThemeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 corvus_core:
     resource: "@CorvusCoreBundle/Resources/config/routing.yml"
     prefix:   /

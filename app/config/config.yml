@@ -4,6 +4,8 @@ imports:
     - { resource: security.yml }
     - { resource: ../../src/Corvus/AdminBundle/Resources/config/config.yml }
     - { resource: ../../src/Corvus/CoreBundle/Resources/config/config.yml }
+    - { resource: @ILPBootstrapThemeBundle/Resources/config/config.yml }
+
 
 framework:
     #esi:             ~
