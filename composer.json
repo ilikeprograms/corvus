@@ -4,32 +4,33 @@
             "": "src/"
         }
     },
-	"description": "Corvus, Portfolio CMS",
-	"authors": [
-		{
-			"name": "Thomas Coleman",
-			"email": "tom@ilikeprograms.com",
-			"homepage": "http://ilikeprograms.com",
-			"role": "Creator and Lead Developer"
-		}
-	],
+    "description": "Corvus, Portfolio CMS",
+    "authors": [
+        {
+            "name": "Thomas Coleman",
+            "email": "tom@ilikeprograms.com",
+            "homepage": "http://ilikeprograms.com",
+            "role": "Creator and Lead Developer"
+        }
+    ],
     "homepage": "http://corvus.ilikeprograms.com",
-	"support": {
-		"email": "corvus-support@ilikeprograms.com",
-		"issues": "https://github.com/ilikeprograms/corvus/issues",
-		"github": "https://github.com/ilikeprograms/corvus",
-		"stackoverflow": "http://stackoverflow.com/questions/tagged/corvus",
-		"gittip": "https://www.gittip.com/ilikeprograms"
-	},
-	"license": "GPL-3.0+",
+    "support": {
+        "email": "corvus-support@ilikeprograms.com",
+        "issues": "https://github.com/ilikeprograms/corvus/issues",
+        "irc": "irc://irc.freenode.net/corvus",
+        "github": "https://github.com/ilikeprograms/corvus",
+        "stackoverflow": "http://stackoverflow.com/questions/tagged/corvus",
+        "gittip": "https://www.gittip.com/ilikeprograms"
+    },
+    "license": "GPL-3.0+",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-		"incenteev-parameters": [{
-			"file": "app/config/parameters.yml"
-		}, {
-			"file": "src/Corvus/CoreBundle/Resources/config/corvusdb.yml"
-		}]
+        "incenteev-parameters": [{
+            "file": "app/config/parameters.yml"
+        }, {
+            "file": "src/Corvus/CoreBundle/Resources/config/corvusdb.yml"
+        }]
     },
     "minimum-stability": "stable",
     "name": "ilikeprograms/corvus",
@@ -50,18 +51,20 @@
         "symfony/symfony": "2.4.*",
         "twbs/bootstrap": "v3.0.0",
         "twig/extensions": "1.0.*",
-		"incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "ilp/bootstrap-theme-bundle": "dev-master",
+        "oyejorge/less.php": "~1.7.0"
     },
     "scripts": {
         "post-install-cmd": [
-			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
-			"Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
