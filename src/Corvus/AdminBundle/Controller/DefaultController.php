@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Entity\NavigationTableView,
     Corvus\AdminBundle\Entity\About,
 
+    ILP\BootstrapThemeBundle\Form\Type\TemplatingType,
     Corvus\AdminBundle\Form\Type\EducationTableViewType,
     Corvus\AdminBundle\Form\Type\ProjectHistoryTableViewType,
     Corvus\AdminBundle\Form\Type\WorkHistoryTableViewType,
@@ -35,9 +36,52 @@ class DefaultController extends Controller
     /**
      * @Template
      */
-    public function siteDesignAction()
+    public function siteDesignAction(Request $request)
     {
-        return $this->render('CorvusAdminBundle:Default:siteDesign.html.twig');
+        $theme = $this->getDoctrine()
+            ->getRepository('ILPBootstrapThemeBundle:Theme')
+            ->Find(1);
+
+        if ($theme == null) {
+            $theme = new \ILP\BootstrapThemeBundle\Entity\Theme();
+        }
+
+        $form = $this->createForm('templating', $theme);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($theme);
+            $em->flush();
+
+            // Generate the Theme files, install them to web/bundles/* and dump the assets
+            $themeManager = $this->get('ilp_bootstrap_theme.theme_manager');
+            if ($form->get('generate_button')->isClicked()) {
+                $returnCode = $themeManager->generateTheme();
+            } else {
+                $returnCode = $themeManager->installTheme();
+            }
+            
+            
+            if ($returnCode === 0) { // $returnCode === 0 means success
+                $this->get('session')->getFlashBag()->add('notice', 'Theme Choice has been saved. The theme has also been compiled.');
+            } else {
+                $this->get('session')->getFlashBag()->add('notice', 'An error occured selecting/compiling the theme.');
+            }
+
+            return $this->redirect($this->generateUrl('CorvusAdminBundle_SiteDesign'));
+        } else {
+            if ($form->isSubmitted()) {
+                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
     
     /**
      * @Template
