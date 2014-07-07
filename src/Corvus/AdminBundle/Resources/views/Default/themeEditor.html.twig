@@ -1,0 +1,33 @@
+{% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
+
+{% block breadcrumbs %}
+    <li><a href="{{ path('CorvusAdminBundle_SiteDesign') }}">Site Design</a></li>
+	<li class="active">Theme Editor</li>
+{% endblock %}
+
+{% block mainContent %}
+    {% include 'ILPBootstrapThemeBundle:Default:editor.html.twig' %}
+{% endblock %}
+
+{% block stylesheets %}
+    <link type="text/css" href="{{ asset('bundles/ilpbootstraptheme/BootstrapThemeEditor/build/less/bootstrap.less') }}" rel="stylesheet/less" />
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'ILPBootstrapThemeBundle:Default:editor-js.html.twig' %}
+
+    <script>
+    var themeEditor = new ThemeEditor(less, {
+        theme: {
+            src: '{{ asset('bundles/corvusfrontend/css/' ~ theme_manager.getThemeChoice ~ '/theme.json') }}'
+        },
+        download: {
+            append: '#download-panel-footer'
+        },
+        save: {
+            append: "#download-panel-footer",
+            url: '{{ path('ilp_bootstrap_theme_EditorSaveModifications') }}'
+        }
+    });
+    </script>
+{% endblock %}

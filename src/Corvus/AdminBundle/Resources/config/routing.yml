@@ -23,6 +23,11 @@ CorvusAdminBundle_SiteDesign:
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Default:siteDesign }
 
+CorvusAdminBundle_ThemeEditor:
+    pattern: /theme-editor
+    methods: [GET|POST]
+    defaults: { _controller: CorvusAdminBundle:Default:themeEditor }
+
 CorvusAdminBundle_Education:
     pattern: /education
     methods: [GET]
