@@ -866,12 +866,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilikeprograms/BootstrapThemeBundle.git",
-                "reference": "435e7c0b061a96744d1f73475c5870987426f4b7"
+                "reference": "3c44b54babb7a0b247e26ee74cb1a3ffc65633e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilikeprograms/BootstrapThemeBundle/zipball/435e7c0b061a96744d1f73475c5870987426f4b7",
-                "reference": "435e7c0b061a96744d1f73475c5870987426f4b7",
+                "url": "https://api.github.com/repos/ilikeprograms/BootstrapThemeBundle/zipball/3c44b54babb7a0b247e26ee74cb1a3ffc65633e1",
+                "reference": "3c44b54babb7a0b247e26ee74cb1a3ffc65633e1",
                 "shasum": ""
             },
             "require": {
@@ -898,7 +898,7 @@
             ],
             "description": "Symfony2 Boostrap Theme/Template management bundle, with theme live editing",
             "homepage": "https://github.com/ilikeprograms/BootstrapThemeBundle",
-            "time": "2014-07-07 14:10:50"
+            "time": "2014-07-07 15:18:12"
         },
         {
             "name": "incenteev/composer-parameter-handler",
