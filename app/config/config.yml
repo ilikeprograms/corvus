@@ -6,6 +6,9 @@ imports:
     - { resource: ../../src/Corvus/CoreBundle/Resources/config/config.yml }
     - { resource: @ILPBootstrapThemeBundle/Resources/config/config.yml }
 
+ilp_bootstrap_theme:
+    theme_base: 'src/Corvus/FrontendBundle/Resources/public/css'
+    template_base: 'src/Corvus/FrontendBundle/Resources/views'
 
 framework:
     #esi:             ~
