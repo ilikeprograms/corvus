@@ -38,6 +38,14 @@ class DefaultController extends Controller
     public function siteDesignAction()
     {
         return $this->render('CorvusAdminBundle:Default:siteDesign.html.twig');
+    
+    /**
+     * @Template
+     */
+    public function themeEditorAction()
+    {
+        return array(
+        );
     }
 
     /**
