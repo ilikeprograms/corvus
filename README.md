@@ -13,6 +13,7 @@ Create a simple portfolio, link to resources, and show the world what you can do
 ## **Features**
 
 * Corvus can be easily customised to make your portfolio Unique. The info, the styles, the showcase.
+* A Site Design section to choose themes/templates and a Fully integrated theme editor
 * Made to easy to use and tailored to provide what a portfolio needs to. No other bloat
 * Navigation is pre created, but you can link to anything your portfolio needs to compliment
 * Project and Work history provided a good way to showcase yourself
