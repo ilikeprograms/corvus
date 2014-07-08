@@ -23,5 +23,5 @@ assetic:
     yui_js:
       jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.8.jar
     lessphp:
-      file: "%kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php"
+      file: "%kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php"
       apply_to: "\.less$"
