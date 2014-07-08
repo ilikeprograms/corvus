@@ -10,9 +10,24 @@ The format of this ChangeLog is the following:
 
 ---
 
+[**0.4.0**]
+
+-   [Composer] Using KnpMarkdownBundle for markdown support
+-   [Theme] Added Bright Theme
+-   [Theme] Added Bootstrap theme files (Default)
+-   [Migrations] Added migrations file which migrates the Fields from BootstrapThemeBundle
+-   [View] SiteDesign page now allows themes/templates to be chosen and provided compile/edit buttons
+-   [View] Added themeEditor view which allow themes to be edited
+-   [Composer] Added dependency on ILPBootstrapThemeBundle
+-   [View] Using Core common.less in Assetic
+-   [View] Improved HTML structure of frontend
+-   [Form/Service] Moved theme/template choice fields and service getters to BootstrapThemeBundle
+-   [Entity] Changed Education duration to end date, added is_current_position field
+-   [Migrations] Added migrations to alter Educations Fields
+
 [**0.3.0**]
 
--	[JS] Added workHistory.js to toggle disabling end_date when is_current_position field is checked.
+-	[JS] Added workHistory.js to toggle disabling end_date when is_current_position field is checked
 -	[Entity] Made employer_address and employer_phone_number fields not required
 -	[Entity] Added is_current_position field to WorkHistory
 -	[Entity] Made competency, years_experience and description fields optional in Skills Entity
