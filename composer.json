@@ -53,7 +53,8 @@
         "twig/extensions": "1.0.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "ilp/bootstrap-theme-bundle": "dev-master",
-        "oyejorge/less.php": "~1.7.0"
+        "oyejorge/less.php": "~1.7.0",
+        "knplabs/knp-markdown-bundle": "~1.3"
     },
     "scripts": {
         "post-install-cmd": [

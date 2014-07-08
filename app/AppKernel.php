@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Corvus\CoreBundle\CorvusCoreBundle(),
             new ILP\BootstrapThemeBundle\ILPBootstrapThemeBundle(),
+            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
