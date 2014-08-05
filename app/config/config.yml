@@ -10,8 +10,9 @@ imports:
     - { resource: @ILPBootstrapThemeBundle/Resources/config/config.yml }
 
 ilp_bootstrap_theme:
-    theme_base: 'src/Corvus/FrontendBundle/Resources/public/css'
-    template_base: 'src/Corvus/FrontendBundle/Resources/views'
+    theme_base: '%FrontendBundleResourcePath%/public/css'
+    template_base: '%FrontendBundleResourcePath%/views'
+    bundle: 'CorvusFrontend'
 
 framework:
     #esi:             ~
