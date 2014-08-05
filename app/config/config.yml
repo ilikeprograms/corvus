@@ -1,3 +1,6 @@
+parameters:
+    FrontendBundleResourcePath: 'src/Corvus/FrontendBundle/Resources'
+
 imports:
     - { resource: assetic.yml }
     - { resource: parameters.yml }
