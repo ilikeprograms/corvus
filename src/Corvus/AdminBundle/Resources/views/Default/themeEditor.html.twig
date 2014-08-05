@@ -17,17 +17,25 @@
     {% include 'ILPBootstrapThemeBundle:Default:editor-js.html.twig' %}
 
     <script>
-    var themeEditor = new ThemeEditor(less, {
-        theme: {
-            src: '{{ asset('bundles/corvusfrontend/css/' ~ theme_manager.getThemeChoice ~ '/theme.json') }}'
-        },
-        download: {
-            append: '#download-panel-footer'
-        },
-        save: {
-            append: "#download-panel-footer",
-            url: '{{ path('ilp_bootstrap_theme_EditorSaveModifications') }}'
-        }
-    });
+        var themeEditor = new ThemeEditor(less, {
+            theme: {
+                src: '{{ asset(theme_manager.getCurrentThemeJsonPath) }}'
+            },
+            export: {
+                target: '#download-panel-footer',
+
+                css: {},
+                json: {},
+
+                save: {
+                    formats: ['css', 'json'],
+                    append: "#download-panel-footer",
+                    url: '{{ path('ilp_bootstrap_theme_EditorSaveModifications') }}',
+                    callback: function () {
+                        alert('Theme Changes have been Saved');
+                    }
+                }
+            }
+        });
     </script>
 {% endblock %}
