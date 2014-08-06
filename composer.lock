@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "893c69686c9f757d9ef783bf51d1f9bf",
+    "hash": "b883b02aadbf6cab10da78748be58cc2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -861,17 +861,17 @@
         },
         {
             "name": "ilp/bootstrap-theme-bundle",
-            "version": "dev-master",
+            "version": "0.1.0",
             "target-dir": "ILP/BootstrapThemeBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilikeprograms/BootstrapThemeBundle.git",
-                "reference": "3c44b54babb7a0b247e26ee74cb1a3ffc65633e1"
+                "reference": "c8cb6ea591b2dbe59af7257789be44eedb958362"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilikeprograms/BootstrapThemeBundle/zipball/3c44b54babb7a0b247e26ee74cb1a3ffc65633e1",
-                "reference": "3c44b54babb7a0b247e26ee74cb1a3ffc65633e1",
+                "url": "https://api.github.com/repos/ilikeprograms/BootstrapThemeBundle/zipball/c8cb6ea591b2dbe59af7257789be44eedb958362",
+                "reference": "c8cb6ea591b2dbe59af7257789be44eedb958362",
                 "shasum": ""
             },
             "require": {
@@ -896,9 +896,9 @@
                     "role": "Creator and Lead Developer"
                 }
             ],
-            "description": "Symfony2 Boostrap Theme/Template management bundle, with theme live editing",
+            "description": "Symfony2 Boostrap Theme/Template management bundle, with live theme editing",
             "homepage": "https://github.com/ilikeprograms/BootstrapThemeBundle",
-            "time": "2014-07-07 15:18:12"
+            "time": "2014-08-06 10:22:07"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2096,9 +2096,9 @@
     "stability-flags": {
         "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
-        "doctrine/migrations": 20,
-        "ilp/bootstrap-theme-bundle": 20
+        "doctrine/migrations": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
