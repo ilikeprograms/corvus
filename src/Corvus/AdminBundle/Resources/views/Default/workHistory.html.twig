@@ -31,29 +31,28 @@
 					<tr>
 						<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
 						<td>{{ item.vars.value.rowOrder }}
-							{% if form.workHistory|length > 1 %}
-								<div class="btn-group btn-group-xs">
-									{% if loop.first == true %}
-										<a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
-											<i class="fa fa-arrow-level-up"></i>
-										</a>
-									{% else %}
-										<a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}">
-											<i class="fa fa-arrow-level-up"></i>
-										</a>
-									{% endif %}
-									{% if loop.last == false %}
-										<a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}">
-											<i class="fa fa-arrow-level-up"></i>
-										</a>
-									{% else %}
-										<a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
-											<i class="fa fa-arrow-level-up"></i>
-										</a>
-									{% endif %}
-								</div>
-							{% endif %}
-						</td>
+                            <div class="btn-group btn-group-xs">
+                                {% if form.workHistory|length > 1 %}
+                                    {% if loop.first == true %}
+                                        <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+                                            <i class="fa fa-level-up"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+                                            <i class="fa fa-level-up"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if loop.last == false %}
+                                        <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+                                            <i class="fa fa-level-down"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+                                            <i class="fa fa-level-down"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                        </td>
 						<td>{{ item.vars.value.employername }}</td>
 						<td>{{ item.vars.value.role }}</td>
 						<td>{{ item.vars.value.startDate|date("d/m/y") }}</td>

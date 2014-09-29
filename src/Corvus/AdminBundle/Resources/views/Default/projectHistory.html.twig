@@ -26,31 +26,31 @@
 			<tbody>
 				{% for item in form.projectHistory %}
 					<tr>
-						<td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}
-							{% if form.projectHistory|length > 1 %}
-								<div class="btn-group btn-group-xs">
+                        <td>{{ form_widget(item.check, { 'value' : item.vars.value.id }) }}</td>
+                        <td>{{ item.vars.value.rowOrder }}
+                            <div class="btn-group btn-group-xs">
+                                {% if form.projectHistory|length > 1 %}
 									{% if loop.first == true %}
-										<a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
-											<i class="fa fa-arrow-level-up"></i>
+										<a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+											<i class="fa fa-level-up"></i>
 										</a>
 									{% else %}
-										<a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}">
-											<i class="fa fa-arrow-level-up"></i>
+										<a href="{{ path('CorvusAdminBundle_UpProjectHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+											<i class="fa fa-level-up"></i>
 										</a>
 									{% endif %}
 									{% if loop.last == false %}
-										<a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}">
-											<i class="fa fa-arrow-level-up"></i>
+										<a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+											<i class="fa fa-level-down"></i>
 										</a>
 									{% else %}
-										<a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}" class="disabled">
-											<i class="fa fa-arrow-level-up"></i>
+										<a href="{{ path('CorvusAdminBundle_DownProjectHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+											<i class="fa fa-level-down"></i>
 										</a>
-									{% endif %}
-								</div>
-							{% endif %}
+									{% endif %}								
+                                {% endif %}
+                            </div>
 						</td>
-						<td>{{ item.vars.value.rowOrder }}</td>
 						<td>{{ item.vars.value.projectName }}</td>
 						<td>{{ item.vars.value.role }}</td>
 						<td>
