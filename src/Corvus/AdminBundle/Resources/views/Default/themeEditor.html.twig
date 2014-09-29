@@ -17,7 +17,8 @@
     {% include 'ILPBootstrapThemeBundle:Default:editor-js.html.twig' %}
 
     <script>
-        var themeEditor = new ThemeEditor(less, {
+        var clucklesEditor = new ClucklesEditor(less, {
+            scope: "#mainContainer",
             theme: {
                 src: '{{ asset(theme_manager.getCurrentThemeJsonPath) }}'
             },
