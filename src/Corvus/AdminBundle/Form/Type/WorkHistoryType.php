@@ -14,6 +14,12 @@ class WorkHistoryType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+        $builder->add('slug', 'text', array(
+            'required' => false,
+            'attr' => array(
+                'class' => 'form-control'
+            )
+        ));
         // Employer Fields
 		$builder->add('employer_name', 'text', array(
 			'label' => 'Employer Name',

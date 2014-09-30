@@ -16,6 +16,12 @@
 		<fieldset>
 			<legend>Work History Fields:</legend>
 
+            <div class="form-group">
+                {{ form_label(form.slug) }}
+                {{ form_errors(form.slug) }}
+                {{ form_widget(form.slug) }}
+            </div>
+
 			<div class="form-group">
                 {{ form_label(form.employer_name) }}
                 {{ form_errors(form.employer_name) }}

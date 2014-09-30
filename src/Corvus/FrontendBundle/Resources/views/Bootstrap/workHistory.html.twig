@@ -22,7 +22,15 @@
                     </div>
 
                     <br />
-                    <a href="{{ path('CorvusFrontendBundle_WorkHistoryId', { 'id' : work.id }) }}" class="btn btn-primary">Read More</a>
+                    {% if work.slug is not null %}
+                        {% set path = "frontend_work_history_slug" %}
+                        {% set params = { "slug": work.slug } %}
+                    {% else %}
+                        {% set path = "frontend_work_history_id" %}
+                        {% set params = { "id": work.id } %}
+                    {% endif %}
+
+                    <a href="{{ path(path, params) }}" class="btn btn-primary">Read More</a>
                 </section>
 
                 {% if loop.last == false %}

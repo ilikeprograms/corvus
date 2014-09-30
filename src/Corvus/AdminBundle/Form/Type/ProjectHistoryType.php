@@ -13,6 +13,12 @@ class ProjectHistoryType extends AbstractType
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+        $builder->add('slug', 'text', array(
+            'required' => false,
+            'attr' => array(
+                'class' => 'form-control'
+            )
+        ));
 		$builder->add('project_name', 'text', array(
 			'label' => 'Project Name',
 			'attr' => array(

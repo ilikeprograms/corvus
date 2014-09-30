@@ -8,6 +8,9 @@ Corvus\AdminBundle\Entity\WorkHistory:
       id: true
       generator:
         strategy: AUTO
+    slug:
+      type: string
+      nullable: true
     row_order:
       type: integer
     employer_name:

@@ -17,6 +17,12 @@
             <legend>Project History Fields:</legend>             
             
             <div class="form-group">
+                {{ form_label(form.slug) }}
+                {{ form_errors(form.slug) }}
+                {{ form_widget(form.slug) }}
+            </div>
+
+            <div class="form-group">
                 {{ form_label(form.project_name) }}
                 {{ form_errors(form.project_name) }}
                 {{ form_widget(form.project_name) }}

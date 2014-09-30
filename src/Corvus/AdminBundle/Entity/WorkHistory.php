@@ -20,6 +20,11 @@ class WorkHistory extends TableViewEntity
     private $id;
 
     /**
+     * @var string $slug
+     */
+    private $slug;
+
+    /**
      * @var string $employer_name
      */
     private $employer_name;
@@ -98,6 +103,32 @@ class WorkHistory extends TableViewEntity
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set slug.
+     * 
+     * @param string $slug
+     * 
+     * @return \Corvus\AdminBundle\Entity\WorkHistory
+     */
+    public function setSlug($slug)
+    {
+        if ($slug !== NULL) {
+            $this->slug = $slug;
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Get slug.
+     * 
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

@@ -23,24 +23,10 @@ CorvusFrontendBundle_WorkHistory:
     methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:workHistory }
 
-CorvusFrontendBundle_WorkHistoryId:
-    pattern: /work-history/id/{id}
-    methods: [GET]
-    defaults: { _controller: CorvusFrontendBundle:WorkHistory:findById }
-    requirements:
-        id: \d+
-
 CorvusFrontendBundle_ProjectHistory:
     pattern: /project-history
     methods: [GET]
     defaults: { _controller: CorvusFrontendBundle:Default:projectHistory }
-
-CorvusFrontendBundle_ProjectHistoryId:
-    pattern: /project-history/id/{id}
-    methods: [GET]
-    defaults: { _controller: CorvusFrontendBundle:ProjectHistory:findById }
-    requirements:
-        id: \d+
 
 CorvusFrontendBundle_Login:
     pattern: /login

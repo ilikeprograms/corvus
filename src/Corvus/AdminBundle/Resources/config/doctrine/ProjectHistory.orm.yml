@@ -8,6 +8,9 @@ Corvus\AdminBundle\Entity\ProjectHistory:
       id: true
       generator:
         strategy: AUTO
+    slug:
+      type: string
+      nullable: true
     row_order:
       type: integer
     project_name:

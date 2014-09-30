@@ -21,6 +21,11 @@ class ProjectHistory extends TableViewEntity
     private $id;
 
     /**
+     * @var string $slug
+     */
+    private $slug;
+
+    /**
      * @var string $project_name
      */
     private $project_name;
@@ -90,6 +95,32 @@ class ProjectHistory extends TableViewEntity
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set slug.
+     * 
+     * @param string $slug
+     * 
+     * @return \Corvus\AdminBundle\Entity\ProjectHistory
+     */
+    public function setSlug($slug)
+    {
+        if ($slug !== NULL) {
+            $this->slug = $slug;
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Get slug.
+     * 
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
