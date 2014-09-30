@@ -17,18 +17,18 @@ use Doctrine\Bundle\DoctrineBundle\Registry,
 
 class PortfolioInfoRepository
 {
-    protected $em;
-    protected $router;
-    protected $requestStack;
-    protected $container;
-    private $generalSettings;
+    protected   $em;
+    protected   $router;
+    protected   $requestStack;
+    protected   $container;
+    private     $generalSettings;
 
     private static $navigationIcons = array(
-        '/' => 'fa-home',
-        '/ProjectHistory' => 'fa-rocket',
-        '/Education' => 'fa-book',
-        '/WorkHistory' => 'fa-briefcase',
-        '/About' => 'fa-user'
+        '/'                 => 'fa-home',
+        '/ProjectHistory'   => 'fa-rocket',
+        '/Education'        => 'fa-book',
+        '/WorkHistory'      => 'fa-briefcase',
+        '/About'            => 'fa-user'
     );
 
     /**
@@ -142,18 +142,20 @@ class PortfolioInfoRepository
 
         // Get the current Environment and the appropriate index
         $env = $request->server->get('SCRIPT_NAME');
-        
+
         $urlPrepend = $env === '/app.php' ? '' : $env;
 
         // Get any Paramaters in the Route of the Current page
-        $routeId = $request->attributes->get('id');
-        $route = $request->attributes->get('_route');
+        $routeId        = $request->attributes->get('id');
+        $route          = $request->attributes->get('_route');
+        $routeParams    = $request->attributes->get('_route_params');
+        
 
         // Find the Current route of the page, including any id params
         if ($routeId) {
             $currentRoute = $this->router->generate($route, array('id' => $routeId));
         } else {
-            $currentRoute = $this->router->generate($route);
+            $currentRoute = $this->router->generate($route, $routeParams);
         }
 
         // Create a Navigation list item for each Navigation Entity in Corvus
