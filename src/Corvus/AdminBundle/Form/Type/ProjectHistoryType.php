@@ -75,6 +75,9 @@ class ProjectHistoryType extends AbstractType
 //                'class' => 'fontBold',
 //            ),
 //		));
+        $builder->add('is_published', 'checkbox', array(
+            'required' => false,
+        ));
 		$builder->add('meta_title', 'text', array(
 			'label' => 'Meta Title',
 			'attr' => array(

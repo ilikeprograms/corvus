@@ -93,6 +93,20 @@ CorvusAdminBundle_DownProjectHistoryOrder:
     requirements:
         id: \d+
 
+CorvusAdminBundle_PublishProjectHistory:
+    pattern: /project-history/publish/{id}
+    methods: [GET]
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:publish }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DepublishProjectHistory:
+    pattern: /project-history/depublish/{id}
+    methods: [GET]
+    defaults: { _controller: CorvusAdminBundle:ProjectHistory:depublish }
+    requirements:
+        id: \d+
+
 CorvusAdminBundle_EditProjectHistory:
     pattern: /project-history/edit/id/{id}
     methods: [GET|POST]
@@ -131,6 +145,20 @@ CorvusAdminBundle_DownWorkHistoryOrder:
     pattern: /work-history/order/down/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:orderDown }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_PublishWorkHistory:
+    pattern: /work-history/publish/{id}
+    methods: [GET]
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:publish }
+    requirements:
+        id: \d+
+
+CorvusAdminBundle_DepublishWorkHistory:
+    pattern: /work-history/depublish/{id}
+    methods: [GET]
+    defaults: { _controller: CorvusAdminBundle:WorkHistory:depublish }
     requirements:
         id: \d+
 

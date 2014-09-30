@@ -70,6 +70,11 @@ class WorkHistory extends TableViewEntity
     private $employer_phone_number;
 
     /**
+     * @var string $isPublished;
+     */
+    private $isPublished;
+
+    /**
      * @var string $meta_title
      */
     private $meta_title;
@@ -293,6 +298,30 @@ class WorkHistory extends TableViewEntity
     public function getEmployerPhoneNumber()
     {
         return $this->employer_phone_number;
+    }
+
+    /**
+     * Set isPublished.
+     * 
+     * @param string $isPublished If this entity should be published or not.
+     * 
+     * @return \Corvus\AdminBundle\Entity\ProjectHistory
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+    
+    /**
+     * Get isPublished.
+     * 
+     * @return string
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
     }
 
     /**

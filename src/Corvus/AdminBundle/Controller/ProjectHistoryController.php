@@ -21,4 +21,50 @@ class ProjectHistoryController extends TableViewController
             ProjectHistoryTableView::getTypeName()
         );
     }
+
+    /**
+     * Publishes the Work History which matches the id submitted with the route.
+     * 
+     * @param ProjectHistory $projectHistory The Project History to publish.
+     * 
+     * @return Response
+     */
+    public function publishAction(ProjectHistory $projectHistory)
+    {
+        $this->changePublishState($projectHistory, true);
+
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_ProjectHistory'));
+    }
+    
+    /**
+     * De-Publishes the Project History which matches the id submitted with the route.
+     * 
+     * @param ProjectHistory $projectHistory The Project History to publish.
+     * 
+     * @return Response
+     */
+    public function depublishAction(ProjectHistory $projectHistory)
+    {
+        $this->changePublishState($projectHistory, false);
+
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_ProjectHistory'));
+    }
+
+    /**
+     * Sets the isPublished state of this entity, to the $publishState provided.
+     * 
+     * @param ProjectHistory $projectHistory The Project History to update published state.
+     * 
+     * @param boolean $publishState True/False state.
+     */
+    private function changePublishState(ProjectHistory $projectHistory, $publishState)
+    {
+        $projectHistory->setIsPublished($publishState);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($projectHistory);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('Published state has been updated!');
+    }
 }

@@ -49,6 +49,15 @@
 										</a>
 									{% endif %}								
                                 {% endif %}
+                                {% if item.vars.value.isPublished == true %}
+                                    <a href="{{ path('CorvusAdminBundle_DepublishProjectHistory', { id: item.vars.value.id }) }}" class="btn btn-default">
+                                        <i class="fa fa-check text-success"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('CorvusAdminBundle_PublishProjectHistory', { id: item.vars.value.id }) }}" class="btn btn-default">
+                                        <i class="fa fa-times text-danger"></i>
+                                    </a>
+                                {% endif %}
                             </div>
 						</td>
 						<td>{{ item.vars.value.projectName }}</td>

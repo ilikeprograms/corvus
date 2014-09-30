@@ -87,6 +87,9 @@ class WorkHistoryType extends AbstractType
 			),
             'required' => false,
 		));
+        $builder->add('is_published', 'checkbox', array(
+            'required' => false,
+        ));
         
         // Meta Fields
 		$builder->add('meta_title', 'text', array(

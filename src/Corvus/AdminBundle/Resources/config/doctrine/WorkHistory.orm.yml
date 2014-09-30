@@ -45,4 +45,7 @@ Corvus\AdminBundle\Entity\WorkHistory:
     meta_description:
       type: string
       nullable: true
+    isPublished:
+      type: boolean
+      default: 0
   lifecycleCallbacks: {  }

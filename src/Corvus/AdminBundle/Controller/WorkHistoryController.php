@@ -21,4 +21,50 @@ class WorkHistoryController extends TableViewController
             WorkHistoryTableView::getTypeName()
         );
     }
+    
+    /**
+     * Publishes the Work History which matches the id submitted with the route.
+     * 
+     * @param WorkHistory $workHistory The Work History to publish.
+     * 
+     * @return Response
+     */
+    public function publishAction(WorkHistory $workHistory)
+    {
+        $this->changePublishState($workHistory, true);
+
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_WorkHistory'));
+    }
+    
+    /**
+     * De-Publishes the Work History which matches the id submitted with the route.
+     * 
+     * @param WorkHistory $workHistory The Work History to publish.
+     * 
+     * @return Response
+     */
+    public function depublishAction(WorkHistory $workHistory)
+    {
+        $this->changePublishState($workHistory, false);
+
+        return $this->redirect($this->generateUrl('CorvusAdminBundle_WorkHistory'));
+    }
+
+    /**
+     * Sets the isPublished state of this entity, to the $publishState provided.
+     * 
+     * @param WorkHistory $workHistory The Work History to update published state.
+     * 
+     * @param boolean $publishState True/False state.
+     */
+    private function changePublishState(WorkHistory $workHistory, $publishState)
+    {
+        $workHistory->setIsPublished($publishState);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($workHistory);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('Published state has been updated!');
+    }
 }

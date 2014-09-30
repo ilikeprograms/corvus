@@ -12,22 +12,23 @@
 	</div>
 	<div>
 		{% for project in projectHistory %}
-			
-			<section>
-				<h3>{{ project.projectName }}</h3>
-				<div>
-					{{ project.projectDescription }}
-				</div>
-				
-				<br />
-				<a href="{{ path('CorvusFrontendBundle_ProjectHistoryId', { 'id' : project.id }) }}" class="btn btn-primary">Read More</a>
-			</section>
+            {% if project.isPublished == true or is_granted('IS_AUTHENTICATED_FULLY') %}
+                <section>
+                    <h3>{{ project.projectName }}</h3>
+                    <div>
+                        {{ project.projectDescription }}
+                    </div>
 
-			{% if loop.last == false %}
-			<br />
-			<hr />
-			<br />
-			{% endif %}
+                    <br />
+                    <a href="{{ path('CorvusFrontendBundle_ProjectHistoryId', { 'id' : project.id }) }}" class="btn btn-primary">Read More</a>
+                </section>
+
+                {% if loop.last == false %}
+                <br />
+                <hr />
+                <br />
+                {% endif %}
+            {% endif %}
 		{% endfor %}
 	</div>
 {% endblock %}

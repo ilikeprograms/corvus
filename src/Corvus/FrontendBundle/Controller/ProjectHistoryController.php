@@ -14,6 +14,13 @@ class ProjectHistoryController extends Controller
     {
         $template_choice = $this->container->get('ilp_bootstrap_theme.theme_manager')->getTemplateChoice();
 
+        $securityContext = $this->container->get('security.context');
+        if (!$securityContext->isGranted('IS_AUTHENTICATED_FULLY')) {
+            if (!$projectHistory->getIsPublished()) {
+                throw $this->createNotFoundException('The Project Record you are looking for was not found.');
+            }
+        }
+
         return $this->render('CorvusFrontendBundle:'.$template_choice.':projectHistoryId.html.twig', array(
             'projectHistory' => $projectHistory
         ));

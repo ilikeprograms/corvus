@@ -12,24 +12,25 @@
 	</div>
 	<div>
 		{% for work in workHistory %}
-			
-			<section>
-				<h3>{{ work.employerName }}</h3>
-				<div class="description">
-					{{ work.role }}
-					<br />
-					Started: {{ work.startDate | date("d/m/y") }}
-				</div>
-				
-				<br />
-				<a href="{{ path('CorvusFrontendBundle_WorkHistoryId', { 'id' : work.id }) }}" class="btn btn-primary">Read More</a>
-			</section>
+			{% if work.isPublished == true or is_granted('IS_AUTHENTICATED_FULLY') %}
+                <section>
+                    <h3>{{ work.employerName }}</h3>
+                    <div class="description">
+                        {{ work.role }}
+                        <br />
+                        Started: {{ work.startDate | date("d/m/y") }}
+                    </div>
 
-			{% if loop.last == false %}
-			<br />
-			<hr />
-			<br />
-			{% endif %}
+                    <br />
+                    <a href="{{ path('CorvusFrontendBundle_WorkHistoryId', { 'id' : work.id }) }}" class="btn btn-primary">Read More</a>
+                </section>
+
+                {% if loop.last == false %}
+                <br />
+                <hr />
+                <br />
+                {% endif %}
+            {% endif %}
 		{% endfor %}
 	</div>
 {% endblock %}

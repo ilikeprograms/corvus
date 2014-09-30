@@ -58,6 +58,12 @@
 			{{ form_row(form.duties) }}
 			{{ form_row(form.feedback_received) }}
 			{{ form_row(form.reflection) }}
+            
+            <div class="form-group">
+                {{ form_label(form.is_published) }}
+                {{ form_errors(form.is_published) }}
+                {{ form_widget(form.is_published) }}
+            </div>
 		</fieldset>
 
 		<fieldset>
