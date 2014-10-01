@@ -114,6 +114,7 @@ class WorkHistoryType extends AbstractType
             'required' => false,
 		));
 		$builder->add('check', 'checkbox', array(
+            'required' => false,
 			'mapped' => false,
 			'attr' => array(
 				'class' => 'case',

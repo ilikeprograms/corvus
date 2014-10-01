@@ -54,6 +54,7 @@ class EducationType extends AbstractType
 		));
 		$builder->add('check', 'checkbox', array(
 			'mapped' => false,
+            'required' => false,
 			'attr' => array(
 				'class' => 'case',
 			),
