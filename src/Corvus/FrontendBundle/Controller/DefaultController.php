@@ -5,11 +5,16 @@ namespace Corvus\FrontendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends Controller
 {
     /**
+     * @Route("/", name="frontend_homepage")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function indexAction()
@@ -18,6 +23,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/education", name="frontend_education")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function educationAction()
@@ -32,6 +40,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/skills", name="frontend_skills")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function skillsAction()
@@ -46,6 +57,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/about", name="frontend_about")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function aboutAction()
@@ -60,6 +74,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/work-history", name="frontend_work_history")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function workHistoryAction()
@@ -74,6 +91,9 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/project-history", name="frontend_project_history")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function projectHistoryAction()
