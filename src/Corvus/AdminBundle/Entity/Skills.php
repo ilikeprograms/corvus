@@ -13,6 +13,7 @@ class Skills extends TableViewEntity
 {
     // Entity Name is needed to use Late static binding with TableViewEntity
     const ENTITY_NAME = 'skills';
+    const ROUTE_STEM    = 'skills';
 
 
     /**

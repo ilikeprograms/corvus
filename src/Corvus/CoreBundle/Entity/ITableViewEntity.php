@@ -13,4 +13,5 @@ interface ITableViewEntity
 {
     public static function getName();
     public static function getRepoName();
+    public static function getRouteStem();
 }

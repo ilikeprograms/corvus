@@ -13,6 +13,7 @@ class Navigation extends TableViewEntity
 {
     // Entity Name is needed to use Late static binding with TableViewEntity
     const ENTITY_NAME = 'navigation';
+    const ROUTE_STEM    = 'navigation';
 
     
     /**

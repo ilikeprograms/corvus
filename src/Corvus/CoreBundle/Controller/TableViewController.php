@@ -44,7 +44,7 @@ abstract class TableViewController extends AbstractTableViewController
 
             $this->get('session')->getFlashBag()->add('notice', 'New ' . ucfirst($this->ogEntity->getName()) . ' was added!');
 
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+            return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
@@ -82,7 +82,7 @@ abstract class TableViewController extends AbstractTableViewController
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+            return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
@@ -100,7 +100,7 @@ abstract class TableViewController extends AbstractTableViewController
     public function orderUpAction($id)
     {
         $this->swapRowOrder($id, 'Up');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
 
     /**
@@ -109,7 +109,7 @@ abstract class TableViewController extends AbstractTableViewController
     public function orderDownAction($id)
     {
     	$this->swapRowOrder($id, 'Down');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
 
     protected function swapRowOrder($id, $direction)
@@ -134,7 +134,7 @@ abstract class TableViewController extends AbstractTableViewController
         $em = $this->getDoctrine()->getManager();
 
         $tableView = $request->request->get($this->tableViewTypeName);
-
+        
         // TableView would ve submitted to the request if its a batch action
         if(isset($tableView)) {
             // Attempt to delete every 'check'ed entity
@@ -169,6 +169,6 @@ abstract class TableViewController extends AbstractTableViewController
         $em->flush();
 
         $this->get('session')->getFlashBag()->add('notice', 'Selected ' . ucfirst($this->ogEntity->getName()) . ' was deleted!');
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_' . $this->ogEntity->getRepoName()));
+        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
 }

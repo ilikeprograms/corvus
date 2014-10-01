@@ -31,9 +31,7 @@ class ProjectHistoryController extends TableViewController
      */
     public function publishAction(ProjectHistory $projectHistory)
     {
-        $this->changePublishState($projectHistory, true);
-
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_ProjectHistory'));
+        return $this->changePublishState($projectHistory, true);
     }
     
     /**
@@ -45,9 +43,7 @@ class ProjectHistoryController extends TableViewController
      */
     public function depublishAction(ProjectHistory $projectHistory)
     {
-        $this->changePublishState($projectHistory, false);
-
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_ProjectHistory'));
+        return $this->changePublishState($projectHistory, false);
     }
 
     /**
@@ -66,5 +62,7 @@ class ProjectHistoryController extends TableViewController
         $em->flush();
 
         $this->get('session')->getFlashBag()->add('Published state has been updated!');
+
+        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
 }

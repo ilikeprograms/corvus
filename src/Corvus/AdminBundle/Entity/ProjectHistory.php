@@ -15,6 +15,8 @@ class ProjectHistory extends TableViewEntity
     const ENTITY_NAME = 'projectHistory';
     
     
+    const ROUTE_STEM    = 'project_history';
+
     /**
      * @var integer $id
      */

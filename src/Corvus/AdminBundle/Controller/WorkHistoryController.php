@@ -31,9 +31,7 @@ class WorkHistoryController extends TableViewController
      */
     public function publishAction(WorkHistory $workHistory)
     {
-        $this->changePublishState($workHistory, true);
-
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_WorkHistory'));
+        return $this->changePublishState($workHistory, true);
     }
     
     /**
@@ -45,9 +43,7 @@ class WorkHistoryController extends TableViewController
      */
     public function depublishAction(WorkHistory $workHistory)
     {
-        $this->changePublishState($workHistory, false);
-
-        return $this->redirect($this->generateUrl('CorvusAdminBundle_WorkHistory'));
+        return $this->changePublishState($workHistory, false);
     }
 
     /**
@@ -66,5 +62,7 @@ class WorkHistoryController extends TableViewController
         $em->flush();
 
         $this->get('session')->getFlashBag()->add('Published state has been updated!');
+
+        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
 }
