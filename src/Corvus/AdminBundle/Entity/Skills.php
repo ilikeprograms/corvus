@@ -12,7 +12,7 @@ use Corvus\CoreBundle\Entity\TableViewEntity;
 class Skills extends TableViewEntity
 {
     // Entity Name is needed to use Late static binding with TableViewEntity
-    const ENTITY_NAME = 'skills';
+    const ENTITY_NAME   = 'Skills';
     const ROUTE_STEM    = 'skills';
 
 

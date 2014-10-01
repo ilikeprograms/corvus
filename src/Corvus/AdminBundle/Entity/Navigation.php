@@ -12,7 +12,7 @@ use Corvus\CoreBundle\Entity\TableViewEntity;
 class Navigation extends TableViewEntity
 {
     // Entity Name is needed to use Late static binding with TableViewEntity
-    const ENTITY_NAME = 'navigation';
+    const ENTITY_NAME   = 'Navigation';
     const ROUTE_STEM    = 'navigation';
 
     

@@ -42,7 +42,7 @@ abstract class TableViewController extends AbstractTableViewController
             $em->persist($this->ogEntity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'New ' . ucfirst($this->ogEntity->getName()) . ' was added!');
+            $this->get('session')->getFlashBag()->add('notice', 'New ' . $this->ogEntity->getName() . ' was added!');
 
             return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
         } else {
@@ -168,7 +168,7 @@ abstract class TableViewController extends AbstractTableViewController
         // Flush the Entity manager to save all deletions
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('notice', 'Selected ' . ucfirst($this->ogEntity->getName()) . ' was deleted!');
+        $this->get('session')->getFlashBag()->add('notice', 'Selected ' . $this->ogEntity->getName() . ' was deleted!');
         return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
 }

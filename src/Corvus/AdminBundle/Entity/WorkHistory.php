@@ -11,7 +11,7 @@ use Corvus\CoreBundle\Entity\TableViewEntity;
 class WorkHistory extends TableViewEntity
 {
     // Entity Name is needed to use Late static binding with TableViewEntity
-    const ENTITY_NAME = 'workHistory';
+    const ENTITY_NAME   = 'Work History';
     const ROUTE_STEM    = 'work_history';
 
     

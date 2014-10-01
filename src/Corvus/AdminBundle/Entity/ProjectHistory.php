@@ -12,9 +12,7 @@ use Corvus\CoreBundle\Entity\TableViewEntity;
 class ProjectHistory extends TableViewEntity
 {
     // Entity Name is needed to use Late static binding with TableViewEntity
-    const ENTITY_NAME = 'projectHistory';
-    
-    
+    const ENTITY_NAME   = 'Project History';
     const ROUTE_STEM    = 'project_history';
 
     /**
