@@ -55,7 +55,10 @@ class TableViewEntity implements ITableViewEntity
      */
     public static function getRepoName()
     {
-        return ucfirst(static::ENTITY_NAME);
+        // Remove any spaces
+        return str_replace(' ','', static::ENTITY_NAME);
+    }
+
     public static function getRouteStem()
     {
         return static::ROUTE_STEM;
