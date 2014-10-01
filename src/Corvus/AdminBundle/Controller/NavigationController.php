@@ -4,7 +4,6 @@
 namespace Corvus\AdminBundle\Controller;
 
 use Corvus\AdminBundle\Entity\Navigation,
-    Corvus\AdminBundle\Form\Type\NavigationType,
     Corvus\AdminBundle\Entity\NavigationTableView,
     Corvus\CoreBundle\Controller\TableViewController;
 
@@ -16,7 +15,7 @@ class NavigationController extends TableViewController
         // Give the TableViewController parent the data it needs to construct the table view and methods
         parent::__construct(
             new Navigation(),
-            new NavigationType(),
+            'navigation',
             NavigationTableView::getDataName(),
             NavigationTableView::getTypeName()
         );

@@ -13,7 +13,7 @@ class NavigationTableViewType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('navItems', 'collection', array(
-			'type' => new NavigationType(),
+			'type' => 'navigation',
 			'allow_delete' => true,
 		));
 	}

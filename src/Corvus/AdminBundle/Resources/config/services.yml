@@ -1,0 +1,7 @@
+services:
+    navigation.form.type:
+        class: Corvus\AdminBundle\Form\Type\NavigationType
+        calls:
+            - [setPortfolioInfoRepository, ['@portfolioinforepository']]
+        tags:
+            - { name: form.type, alias: navigation }
