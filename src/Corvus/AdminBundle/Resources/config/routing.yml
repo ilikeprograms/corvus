@@ -1,276 +1,226 @@
-CorvusAdminBundle_Home:
-    pattern:  /
-    methods: [GET]
-    defaults: { _controller: CorvusAdminBundle:Default:index }
+# Education Routes
 
-CorvusAdminBundle_GeneralSettings:
-    pattern: /general-settings
-    methods: [GET|POST]
-    defaults: { _controller: CorvusAdminBundle:GeneralSettings:generalSettings }
-
-CorvusAdminBundle_Analytics:
-    pattern: /analytics
-    methods: [GET|POST]
-    defaults: { _controller: CorvusAdminBundle:GeneralSettings:analytics }
-
-CorvusAdminBundle_Security:
-    pattern: /security
-    methods: [GET|POST]
-    defaults: { _controller: CorvusAdminBundle:GeneralSettings:security }
-
-CorvusAdminBundle_SiteDesign:
-    pattern: /site-design
-    methods: [GET|POST]
-    defaults: { _controller: CorvusAdminBundle:Default:siteDesign }
-
-CorvusAdminBundle_ThemeEditor:
-    pattern: /theme-editor
-    methods: [GET|POST]
-    defaults: { _controller: CorvusAdminBundle:Default:themeEditor }
-
-CorvusAdminBundle_Education:
-    pattern: /education
-    methods: [GET]
-    defaults: { _controller: CorvusAdminBundle:Default:education }
-
-CorvusAdminBundle_NewEducation:
+admin_education_new:
     pattern: /education/new
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:Education:new }
 
-CorvusAdminBundle_UpEducationOrder:
+admin_education_order_up:
     pattern: /education/order/up/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Education:orderUp }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DownEducationOrder:
+admin_education_order_down:
     pattern: /education/order/down/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Education:orderDown }
     requirements:
         id: \d+
 
-CorvusAdminBundle_EditEducation:
+admin_education_edit:
     pattern: /education/edit/id/{id}
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:Education:edit }
 
-CorvusAdminBundle_DeleteEducationId:
+admin_education_delete_id:
     pattern: /education/delete/id/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Education:delete }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteEducation:
+admin_education_delete:
     pattern: /education/delete
-    methods: [GET]
+    methods: [DELETE]
     defaults: { _controller: CorvusAdminBundle:Education:delete, id: null }
 
-CorvusAdminBundle_ProjectHistory:
-    pattern: /project-history
-    methods: [GET]
-    defaults: { _controller: CorvusAdminBundle:Default:projectHistory }
+# Project History Routes
 
-CorvusAdminBundle_NewProjectHistory:
+admin_project_history_new:
     pattern: /project-history/new
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:new }
 
-CorvusAdminBundle_UpProjectHistoryOrder:
+admin_project_history_order_up:
     pattern: /project-history/order/up/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:orderUp }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DownProjectHistoryOrder:
+admin_project_history_order_down:
     pattern: /project-history/order/down/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:orderDown }
     requirements:
         id: \d+
 
-CorvusAdminBundle_PublishProjectHistory:
+admin_project_history_publish:
     pattern: /project-history/publish/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:publish }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DepublishProjectHistory:
+admin_project_history_depublish:
     pattern: /project-history/depublish/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:depublish }
     requirements:
         id: \d+
 
-CorvusAdminBundle_EditProjectHistory:
+admin_project_history_edit:
     pattern: /project-history/edit/id/{id}
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:edit }
 
-CorvusAdminBundle_DeleteProjectHistoryId:
+admin_project_history_delete_id:
     pattern: /project-history/delete/id/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:delete }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteProjectHistory:
+admin_project_history_delete:
     pattern: /project-history/delete
-    methods: [GET]
+    methods: [DELETE]
     defaults: { _controller: CorvusAdminBundle:ProjectHistory:delete, id: null }
 
-CorvusAdminBundle_WorkHistory:
+# Work History Routes
+
+admin_work_history:
     pattern: /work-history
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Default:workHistory }
 
-CorvusAdminBundle_NewWorkHistory:
+admin_work_history_new:
     pattern: /work-history/new
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:new }
 
-CorvusAdminBundle_UpWorkHistoryOrder:
+admin_work_history_order_up:
     pattern: /work-history/order/up/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:orderUp }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DownWorkHistoryOrder:
+admin_work_history_order_down:
     pattern: /work-history/order/down/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:orderDown }
     requirements:
         id: \d+
 
-CorvusAdminBundle_PublishWorkHistory:
+admin_work_history_publish:
     pattern: /work-history/publish/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:publish }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DepublishWorkHistory:
+admin_work_history_depublish:
     pattern: /work-history/depublish/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:depublish }
     requirements:
         id: \d+
 
-CorvusAdminBundle_EditWorkHistory:
+admin_work_history_edit:
     pattern: /work-history/edit/id/{id}
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:edit }
 
-CorvusAdminBundle_DeleteWorkHistoryId:
+admin_work_history_delete_id:
     pattern: /work-history/delete/id/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:delete }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteWorkHistory:
+admin_work_history_delete:
     pattern: /work-history/delete
-    methods: [GET]
+    methods: [DELETE]
     defaults: { _controller: CorvusAdminBundle:WorkHistory:delete, id: null }
 
-CorvusAdminBundle_Downloads:
-    pattern: /downloads
-    methods: [GET]
-    defaults: { _controller: CorvusAdminBundle:Default:downloads }
+# Skills Routes
 
-CorvusAdminBundle_About:
-    pattern: /about
-    methods: [GET|POST]
-    defaults: { _controller: CorvusAdminBundle:Default:about }
-
-CorvusAdminBundle_Skills:
-    pattern: /skills
-    methods: [GET]
-    defaults: { _controller: CorvusAdminBundle:Default:skills }
-
-CorvusAdminBundle_NewSkills:
+admin_skills_new:
     pattern: /skills/new
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:Skills:new }
 
-CorvusAdminBundle_UpSkillsOrder:
+admin_skills_order_up:
     pattern: /skills/order/up/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Skills:orderUp }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DownSkillsOrder:
+admin_skills_order_down:
     pattern: /skills/order/down/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Skills:orderDown }
     requirements:
         id: \d+
 
-CorvusAdminBundle_EditSkills:
+admin_skills_edit:
     pattern: /skills/edit/id/{id}
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:Skills:edit }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteSkillsId:
+admin_skills_delete_id:
     pattern: /skills/delete/id/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Skills:delete }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteSkills:
+admin_skills_delete:
     pattern: /skills/delete
-    methods: [GET]
+    methods: [DELETE]
     defaults: { _controller: CorvusAdminBundle:Skills:delete, id: null }
 
-CorvusAdminBundle_Navigation:
-    pattern: /navigation
-    methods: [GET]
-    defaults: { _controller: CorvusAdminBundle:Default:navigation }
+# Navigation Routes
 
-CorvusAdminBundle_NewNavigation:
+admin_navigation_new:
     pattern: /navigation/new
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:Navigation:new }
 
-CorvusAdminBundle_UpNavigationOrder:
+admin_navigation_order_up:
     pattern: /navigation/order/up/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Navigation:orderUp }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DownNavigationOrder:
+admin_navigation_order_down:
     pattern: /navigation/order/down/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Navigation:orderDown }
     requirements:
         id: \d+
 
-CorvusAdminBundle_EditNavigation:
+admin_navigation_edit:
     pattern: /navigation/edit/id/{id}
     methods: [GET|POST]
     defaults: { _controller: CorvusAdminBundle:Navigation:edit }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteNavigationId:
+admin_navigation_delete_id:
     pattern: /navigation/delete/id/{id}
     methods: [GET]
     defaults: { _controller: CorvusAdminBundle:Navigation:delete }
     requirements:
         id: \d+
 
-CorvusAdminBundle_DeleteNavigation:
+admin_navigation_delete:
     pattern: /navigation/delete
-    methods: [GET]
+    methods: [DELETE]
     defaults: { _controller: CorvusAdminBundle:Navigation:delete, id: null }

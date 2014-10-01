@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_ProjectHistory') }}">Project History</a></li>
+	<li><a href="{{ path('admin_project_history') }}">Project History</a></li>
 	<li class="active">New</li>
 {% endblock %}
 
@@ -12,7 +12,7 @@
 		The Project details can be a great way for people to see what you have been working on/showcase your talent!
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_NewProjectHistory') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form action="{{ path('admin_project_history_new') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
             <legend>Project History Fields:</legend>             
             

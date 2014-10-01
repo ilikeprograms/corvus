@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_Skills') }}">Skills</a></li>
+	<li><a href="{{ path('admin_skills') }}">Skills</a></li>
 	<li class="active">New</li>
 {% endblock %}
 
@@ -12,7 +12,7 @@
 		The skills can be a great way to indicate what your good at, and just how good you are.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_NewSkills') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form action="{{ path('admin_skills_new') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Skill Fields:</legend>
                         

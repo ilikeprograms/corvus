@@ -28,7 +28,7 @@
 <body>
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="corvusBar">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="{{ path('CorvusAdminBundle_Home') }}">
+			<a class="navbar-brand" href="{{ path('admin_home') }}">
 				<img src="{{ asset('bundles/corvusadmin/images/corvusV2-64.png') }}" class="brandLogo" /> &nbsp; Corvus &nbsp;
 				{% if corvus_version %}<sup><small>V. {{ corvus_version }}</small></sup>{% endif %}
 			</a>
@@ -47,40 +47,40 @@
         <div class="row">
             <navigation class="col-md-2">
                 <ul class="nav nav-pills nav-stacked">
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_Home', 'Home', 'Home Link', 'fa-home') }}
+                    {{ portfolio_info.createNavItem('admin_home', 'Home', 'Home Link', 'fa-home') }}
                     {{ portfolio_info.createNavStack([
-                            'CorvusAdminBundle_GeneralSettings',
+                            'admin_general_settings',
                             'General Settings',
                             'General Settings Link',
                             'fa-cogs'
                         ],
                         [[
-                            'CorvusAdminBundle_Security',
+                            'admin_general_settings_security',
                             'Account Security',
                             'Account Security Link',
                             'fa-lock'
                         ], [
-                            'CorvusAdminBundle_Analytics',
+                            'admin_general_settings_analytics',
                             'Analytics',
                             'Analytics Link',
                             'fa-eye'
                         ]
                         ])
                     }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_SiteDesign', 'Site Design', 'Site Design Link', 'fa-tint') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_Education', 'Education', 'Education Link', 'fa-book') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_WorkHistory', 'Work History', 'Work History Link', 'fa-briefcase') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_ProjectHistory', 'Project History', 'Project History Link', 'fa-rocket') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_Skills', 'Skills', 'Skills Link', 'fa-magic') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_Navigation', 'Navigation', 'Navigation Link', 'fa-sitemap') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_Downloads', 'Downloads', 'Downloads Link', 'fa-gift') }}
-                    {{ portfolio_info.createNavItem('CorvusAdminBundle_About', 'About', 'About Link', 'fa-user') }}
+                    {{ portfolio_info.createNavItem('admin_site_design', 'Site Design', 'Site Design Link', 'fa-tint') }}
+                    {{ portfolio_info.createNavItem('admin_education', 'Education', 'Education Link', 'fa-book') }}
+                    {{ portfolio_info.createNavItem('admin_work_history', 'Work History', 'Work History Link', 'fa-briefcase') }}
+                    {{ portfolio_info.createNavItem('admin_project_history', 'Project History', 'Project History Link', 'fa-rocket') }}
+                    {{ portfolio_info.createNavItem('admin_skills', 'Skills', 'Skills Link', 'fa-magic') }}
+                    {{ portfolio_info.createNavItem('admin_navigation', 'Navigation', 'Navigation Link', 'fa-sitemap') }}
+                    {{ portfolio_info.createNavItem('admin_downloads', 'Downloads', 'Downloads Link', 'fa-gift') }}
+                    {{ portfolio_info.createNavItem('admin_about', 'About', 'About Link', 'fa-user') }}
                 </ul>
             </navigation>
 
             <div class="col-md-10">
                 <ol class="breadcrumb">
-                    <li><a href="{{ path('CorvusAdminBundle_Home') }}">Home</a></li>
+                    <li><a href="{{ path('admin_home') }}">Home</a></li>
                     {% block breadcrumbs %}{% endblock %}
                 </ol>
                 {% block mainContent %}

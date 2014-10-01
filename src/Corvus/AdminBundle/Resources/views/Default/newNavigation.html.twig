@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_Navigation') }}">Navigation</a></li>
+	<li><a href="{{ path('admin_navigation') }}">Navigation</a></li>
 	<li class="active">New</li>
 {% endblock %}
 
@@ -14,7 +14,7 @@
 		in the portfolio.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_NewNavigation') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form action="{{ path('admin_navigation_new') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 			

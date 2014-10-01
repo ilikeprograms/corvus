@@ -13,10 +13,10 @@
 		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
 	</div>
 
-    <form action="{{ path('CorvusAdminBundle_DeleteWorkHistory') }}" method="post" id="workHistoryform" name="workHistoryform">
+    {{ form_start(form, {"action": path('admin_work_history_delete'), "method": "DELETE" }) }}
 		<table class="table table-bordered table-hover table-striped">
 			<tfoot>
-				<tr><td colspan="6"><a href="{{ path('CorvusAdminBundle_NewWorkHistory') }}" class="btn btn-primary">New</a></td></tr>
+				<tr><td colspan="6"><a href="{{ path('admin_work_history_new') }}" class="btn btn-primary">New</a></td></tr>
 			</tfoot>
 			<thead>
 				<tr><th><input type="checkbox" id="selectAll" /></th>
@@ -34,30 +34,30 @@
                             <div class="btn-group btn-group-xs">
                                 {% if form.workHistory|length > 1 %}
                                     {% if loop.first == true %}
-                                        <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+                                        <a href="{{ path('admin_work_history_order_up', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
                                             <i class="fa fa-level-up"></i>
                                         </a>
                                     {% else %}
-                                        <a href="{{ path('CorvusAdminBundle_UpWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+                                        <a href="{{ path('admin_work_history_order_up', { id : item.vars.value.id }) }}" class="btn btn-default">
                                             <i class="fa fa-level-up"></i>
                                         </a>
                                     {% endif %}
                                     {% if loop.last == false %}
-                                        <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+                                        <a href="{{ path('admin_work_history_order_down', { id : item.vars.value.id }) }}" class="btn btn-default">
                                             <i class="fa fa-level-down"></i>
                                         </a>
                                     {% else %}
-                                        <a href="{{ path('CorvusAdminBundle_DownWorkHistoryOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+                                        <a href="{{ path('admin_work_history_order_down', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
                                             <i class="fa fa-level-down"></i>
                                         </a>
                                     {% endif %}
                                 {% endif %}
                                 {% if item.vars.value.isPublished == true %}
-                                    <a href="{{ path('CorvusAdminBundle_DepublishWorkHistory', { id: item.vars.value.id }) }}" class="btn btn-default">
+                                    <a href="{{ path('admin_work_history_depublish', { id: item.vars.value.id }) }}" class="btn btn-default">
                                         <i class="fa fa-check text-success"></i>
                                     </a>
                                 {% else %}
-                                    <a href="{{ path('CorvusAdminBundle_PublishWorkHistory', { id: item.vars.value.id }) }}" class="btn btn-default">
+                                    <a href="{{ path('admin_work_history_publish', { id: item.vars.value.id }) }}" class="btn btn-default">
                                         <i class="fa fa-times text-danger"></i>
                                     </a>
                                 {% endif %}
@@ -67,10 +67,10 @@
 						<td>{{ item.vars.value.role }}</td>
 						<td>{{ item.vars.value.startDate|date("d/m/y") }}</td>
 						<td>
-							<a href="{{ path('CorvusAdminBundle_EditWorkHistory', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
+							<a href="{{ path('admin_work_history_edit', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
 								<i class="fa fa-pencil-square-o"></i> Edit
 							</a>
-							<a href="{{ path('CorvusAdminBundle_DeleteWorkHistoryId', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
+							<a href="{{ path('admin_work_history_delete_id', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
 								<i class="fa fa-trash-o"></i> Delete
 							</a>
 						</td>

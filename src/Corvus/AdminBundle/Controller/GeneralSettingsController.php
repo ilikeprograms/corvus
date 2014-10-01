@@ -6,6 +6,8 @@ namespace Corvus\AdminBundle\Controller;
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
 
     Corvus\AdminBundle\Entity\GeneralSettings,
 
@@ -13,10 +15,15 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Form\Type\ChangePasswordType,
     Corvus\AdminBundle\Form\Type\AnalyticsType;
 
-
+/**
+ * @Route("/general-settings")
+ */
 class GeneralSettingsController extends Controller
 {
     /**
+     * @Route("/", name="admin_general_settings")
+     * @Method({"GET", "POST"})
+     * 
      * @Template
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -63,6 +70,9 @@ class GeneralSettingsController extends Controller
     }
     
     /**
+     * @Route("/security", name="admin_general_settings_security")
+     * @Method({"GET", "POST"})
+     * 
      * @Template
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -72,7 +82,7 @@ class GeneralSettingsController extends Controller
         $securityContext = $this->container->get('security.context');
         $user  = $securityContext->getToken()->getUser();
 
-        $form = $this->createForm(new ChangePasswordType, $user);
+        $form = $this->createForm(new ChangePasswordType(), $user);
 
         $form->handleRequest($request);
         
@@ -101,6 +111,9 @@ class GeneralSettingsController extends Controller
     }
     
     /**
+     * @Route("/analytics", name="admin_general_settings_analytics")
+     * @Method({"GET", "POST"})
+     * 
      * @Template
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -109,7 +122,7 @@ class GeneralSettingsController extends Controller
     {
         $analytics = $this->getDoctrine()->getRepository('CorvusAdminBundle:GeneralSettings')->Find(1);
         
-        $form = $this->createForm(new AnalyticsType, $analytics);
+        $form = $this->createForm(new AnalyticsType(), $analytics);
         
         $form->handleRequest($request);
         

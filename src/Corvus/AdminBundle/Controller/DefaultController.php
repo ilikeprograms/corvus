@@ -6,6 +6,8 @@ namespace Corvus\AdminBundle\Controller;
 use Symfony\Component\HttpFoundation\Request,
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
 
     Corvus\AdminBundle\Entity\EducationTableView,
     Corvus\AdminBundle\Entity\ProjectHistoryTableView,
@@ -14,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Entity\NavigationTableView,
     Corvus\AdminBundle\Entity\About,
 
-    ILP\BootstrapThemeBundle\Form\Type\TemplatingType,
     Corvus\AdminBundle\Form\Type\EducationTableViewType,
     Corvus\AdminBundle\Form\Type\ProjectHistoryTableViewType,
     Corvus\AdminBundle\Form\Type\WorkHistoryTableViewType,
@@ -22,10 +23,12 @@ use Symfony\Component\HttpFoundation\Request,
     Corvus\AdminBundle\Form\Type\NavigationTableViewType,
     Corvus\AdminBundle\Form\Type\AboutType;
 
-
 class DefaultController extends Controller
 {
     /**
+     * @Route("/", name="admin_home")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function indexAction()
@@ -34,6 +37,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/site-design", name="admin_site_design")
+     * @Method({"GET", "POST"})
+     * 
      * @Template
      */
     public function siteDesignAction(Request $request)
@@ -84,15 +90,20 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/theme-editor", name="admin_theme_editor")
+     * @Method({"GET", "POST"})
+     * 
      * @Template
      */
     public function themeEditorAction()
     {
-        return array(
-        );
+        return array();
     }
 
     /**
+     * @Route("/education", name="admin_education")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function educationAction()
@@ -115,6 +126,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/project-history", name="admin_project_history")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function projectHistoryAction()
@@ -137,6 +151,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/work-history", name="admin_work_history")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function workHistoryAction()
@@ -159,6 +176,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/skills", name="admin_skills")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function skillsAction()
@@ -181,6 +201,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/navigation", name="admin_navigation")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function navigationAction()
@@ -203,6 +226,9 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/downloads", name="admin_downloads")
+     * @Method({"GET"})
+     * 
      * @Template
      */
     public function downloadsAction()
@@ -211,6 +237,8 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/about", name="admin_about")
+     * @Method({"GET", "POST"})
      * @Template
      * 
      * @param \Symfony\Component\HttpFoundation\Request $request

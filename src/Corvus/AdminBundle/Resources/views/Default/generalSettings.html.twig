@@ -11,7 +11,7 @@
 		Such as the Title for your site, an optional subtitle and logo and more!
     </p>
     {{ form_errors(form) }}
-    <form action="{{ path('CorvusAdminBundle_GeneralSettings') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('admin_general_settings') }}" method="post" {{ form_enctype(form) }}>
         <fieldset>
 			<legend>General Settings Fields:</legend>
 			

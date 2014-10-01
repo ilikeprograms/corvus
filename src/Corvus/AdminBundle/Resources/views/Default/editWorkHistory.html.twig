@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_WorkHistory') }}">WorkHistory</a></li>
+	<li><a href="{{ path('admin_work_history') }}">WorkHistory</a></li>
 	<li class="active">Edit</li>
 {% endblock %}
 
@@ -11,7 +11,7 @@
 		Use this form to update the Work history details for the employer/role.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_EditWorkHistory', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('admin_work_history_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		{{ form_errors(form) }}
 		<fieldset>
 			<legend>Work History Fields:</legend>

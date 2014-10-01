@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_Skills') }}">Skills</a></li>
+	<li><a href="{{ path('admin_skills') }}">Skills</a></li>
 	<li class="active">Edit</li>
 {% endblock %}
 
@@ -11,7 +11,7 @@
 		Use this form to update the Skill details.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_EditSkills', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('admin_skills_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Skill Fields:</legend>
 

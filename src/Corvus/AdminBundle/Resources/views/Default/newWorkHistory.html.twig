@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_WorkHistory') }}">Work History</a></li>
+	<li><a href="{{ path('admin_work_history') }}">Work History</a></li>
 	<li class="active">New</li>
 {% endblock %}
 
@@ -13,7 +13,7 @@
 		current/past employment.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_NewWorkHistory') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form action="{{ path('admin_work_history_new') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Work History Fields:</legend>
             

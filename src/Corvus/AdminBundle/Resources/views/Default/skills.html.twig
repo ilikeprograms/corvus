@@ -11,10 +11,10 @@
 		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
 	</div>
     
-    <form action="{{ path('CorvusAdminBundle_DeleteSkills') }}" method="post" id="skillsform" name="skillsform">
+    {{ form_start(form, {"action": path('admin_skills_delete'), "method": "DELETE"}) }}
 		<table class="table table-bordered table-hover table-striped">
 			<tfoot>
-				<tr><td colspan="6"><a href="{{ path('CorvusAdminBundle_NewSkills') }}" class="btn btn-primary">New</a></td></tr>
+				<tr><td colspan="6"><a href="{{ path('admin_skills_new') }}" class="btn btn-primary">New</a></td></tr>
 			</tfoot>
 			<thead>
 				<tr><th><input type="checkbox" id="selectAll" /></th>
@@ -33,20 +33,20 @@
 							{% if form.skills|length > 1 %}
 								<div class="btn-group btn-group-xs">
 									{% if loop.first == true %}
-										<a href="{{ path('CorvusAdminBundle_UpSkillsOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+										<a href="{{ path('admin_skills_order_up', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
 											<i class="fa fa-level-up"></i>
 										</a>
 									{% else %}
-										<a href="{{ path('CorvusAdminBundle_UpSkillsOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+										<a href="{{ path('admin_skills_order_up', { id : item.vars.value.id }) }}" class="btn btn-default">
 											<i class="fa fa-level-up"></i>
 										</a>
 									{% endif %}
 									{% if loop.last == false %}
-										<a href="{{ path('CorvusAdminBundle_DownSkillsOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+										<a href="{{ path('admin_skills_order_down', { id : item.vars.value.id }) }}" class="btn btn-default">
 											<i class="fa fa-level-down"></i>
 										</a>
 									{% else %}
-										<a href="{{ path('CorvusAdminBundle_DownSkillsOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+										<a href="{{ path('admin_skills_order_down', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
 											<i class="fa fa-level-down"></i>
 										</a>
 									{% endif %}
@@ -57,10 +57,10 @@
 						<td>{{ item.vars.value.competency }}</td>
 						<td>{{ item.vars.value.yearsExperience }}</td>
 						<td>
-							<a href="{{ path('CorvusAdminBundle_EditSkills', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
+							<a href="{{ path('admin_skills_edit', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
 								<i class="fa fa-pencil-square-o"></i> Edit
 							</a>
-							<a href="{{ path('CorvusAdminBundle_DeleteSkillsId', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
+							<a href="{{ path('admin_skills_delete_id', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
 								<i class="fa fa-trash-o"></i> Delete
 							</a>
 						</td>

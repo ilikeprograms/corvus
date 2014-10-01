@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_GeneralSettings') }}">General Settings</a></li>
+	<li><a href="{{ path('admin_general_settings') }}">General Settings</a></li>
 	<li class="active">Analytics</li>
 {% endblock %}
 
@@ -11,7 +11,7 @@
 		Enter your Google Analytics Tracking ID to add analytics to Corvus.
 		For more information about Analytics, visit <a href="http://www.google.com/analytics/" target="_blank">Google Analytics</a>
 	</div>
-	<form role="form" action="{{ path('CorvusAdminBundle_Analytics') }}" method="post" {{ form_enctype(form) }}>		
+	<form role="form" action="{{ path('admin_general_settings_analytics') }}" method="post" {{ form_enctype(form) }}>		
 		<div class="form-group">
 			{{ form_label(form.analytics) }}
 			{{ form_widget(form.analytics) }}

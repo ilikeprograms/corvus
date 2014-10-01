@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_Education') }}">Education</a></li>
+	<li><a href="{{ path('admin_education') }}">Education</a></li>
 	<li class="active">New</li>
 {% endblock %}
 
@@ -12,7 +12,7 @@
 		all of your Education to date.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_NewEducation') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form action="{{ path('admin_education_new') }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Education Fields:</legend>
             

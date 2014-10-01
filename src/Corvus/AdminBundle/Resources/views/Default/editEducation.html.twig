@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_Education') }}">Education</a></li>
+	<li><a href="{{ path('admin_education') }}">Education</a></li>
 	<li class="active">Edit</li>
 {% endblock %}
 
@@ -11,7 +11,7 @@
 		Use the below form to update your Education details.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_EditEducation', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('admin_education_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Education Fields:</legend>
 			

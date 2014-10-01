@@ -12,10 +12,10 @@
 		It will also be included in the downloadable CV <span class="label label-info">Coming Soon</span>.
 	</div>
     
-    <form action="{{ path('CorvusAdminBundle_DeleteNavigation') }}" method="post" id="navform" name="navform">
+    {{ form_start(form, {"action": path('admin_navigation_delete'), "method": "DELETE"}) }}
 		<table class="table table-bordered table-hover table-striped">
 			<tfoot>
-				<tr><td colspan="5"><a href="{{ path('CorvusAdminBundle_NewNavigation') }}" class="btn btn-primary">New</a></td></tr>
+				<tr><td colspan="5"><a href="{{ path('admin_navigation_new') }}" class="btn btn-primary">New</a></td></tr>
 			</tfoot>
 			<thead>
 				<tr><th><input type="checkbox" id="selectAll" /></th>
@@ -32,20 +32,20 @@
 							{% if form.navItems|length > 1 %}
 								<div class="btn-group btn-group-xs">
 									{% if loop.first == true %}
-										<a href="{{ path('CorvusAdminBundle_UpNavigationOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+										<a href="{{ path('admin_navigation_order_up', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
 											<i class="fa fa-level-up"></i>
 										</a>
 									{% else %}
-										<a href="{{ path('CorvusAdminBundle_UpNavigationOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+										<a href="{{ path('admin_navigation_order_up', { id : item.vars.value.id }) }}" class="btn btn-default">
 											<i class="fa fa-level-up"></i>
 										</a>
 									{% endif %}
 									{% if loop.last == false %}
-										<a href="{{ path('CorvusAdminBundle_DownNavigationOrder', { id : item.vars.value.id }) }}" class="btn btn-default">
+										<a href="{{ path('admin_navigation_order_down', { id : item.vars.value.id }) }}" class="btn btn-default">
 											<i class="fa fa-level-down"></i>
 										</a>
 									{% else %}
-										<a href="{{ path('CorvusAdminBundle_DownNavigationOrder', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
+										<a href="{{ path('admin_navigation_order_down', { id : item.vars.value.id }) }}" class="btn btn-default disabled">
 											<i class="fa fa-level-down"></i>
 										</a>
 									{% endif %}
@@ -55,10 +55,10 @@
 						<td>{{ portfolio_info.createNavItem(item.vars.value.href, item.vars.value.href, item.vars.value.alt) }}</td>
 						<td>{{ item.vars.value.title }}</td>
 						<td>
-							<a href="{{ path('CorvusAdminBundle_EditNavigation', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
+							<a href="{{ path('admin_navigation_edit', { id : item.vars.value.id }) }}" class="btn btn-primary btn-xs">
 								<i class="fa fa-pencil-square-o"></i> Edit
 							</a>
-							<a href="{{ path('CorvusAdminBundle_DeleteNavigationId', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
+							<a href="{{ path('admin_navigation_delete_id', { id : item.vars.value.id }) }}" class="btn btn-danger btn-xs">
 								<i class="fa fa-trash-o"></i> Delete
 							</a>
 						</td>

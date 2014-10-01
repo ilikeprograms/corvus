@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_ProjectHistory') }}">Project History</a></li>
+	<li><a href="{{ path('admin_project_history') }}">Project History</a></li>
 	<li class="active">Edit</li>
 {% endblock %}
 
@@ -11,7 +11,7 @@
 		Use this form to update the Project details.<br />
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_EditProjectHistory', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form action="{{ path('admin_project_history_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }} class="classy">
 		<fieldset>
 			<legend>Project History Fields:</legend>			 
 

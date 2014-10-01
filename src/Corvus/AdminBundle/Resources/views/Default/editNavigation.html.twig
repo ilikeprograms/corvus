@@ -1,7 +1,7 @@
 {% extends 'CorvusAdminBundle:Default:adminBase.html.twig' %}
 
 {% block breadcrumbs %}
-	<li><a href="{{ path('CorvusAdminBundle_Navigation') }}">Navigation</a></li>
+	<li><a href="{{ path('admin_navigation') }}">Navigation</a></li>
 	<li class="active">Edit</li>
 {% endblock %}
 
@@ -12,7 +12,7 @@
 		<span class="label label-warning">Dont forget!</span> You can still swap the Navigation between an external/internal link.
 	</p>
 
-	<form action="{{ path('CorvusAdminBundle_EditNavigation', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('admin_navigation_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 
