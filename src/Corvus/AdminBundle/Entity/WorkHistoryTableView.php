@@ -27,10 +27,10 @@ class WorkHistoryTableView implements ITableView
     }
 
     public static function getDataName() {
-        return self::TYPE_NAME;
+        return self::DATA_NAME;
     }
 
     public static function getTypeName() {
-        return self::DATA_NAME;
+        return self::TYPE_NAME;
     }
 }
