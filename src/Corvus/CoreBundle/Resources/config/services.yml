@@ -9,6 +9,7 @@ services:
     portfolioinforepository:
         class: Corvus\CoreBundle\Extension\PortfolioInfoRepository
         calls:
+            - [setAnnotationReader, ['@annotation_reader']]
             - [setEntityManager, ['@doctrine']]
             - [setRequestStack, ['@request_stack']]
             - [setRouter, ['@router']]

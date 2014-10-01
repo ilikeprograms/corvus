@@ -4,24 +4,26 @@
 namespace Corvus\CoreBundle\Extension;
 
 use Doctrine\Bundle\DoctrineBundle\Registry,
+    Doctrine\Common\Annotations\FileCacheReader,
 
     Symfony\Component\Routing\Matcher\UrlMatcher,
     Symfony\Component\Routing\RequestContext,
-    Symfony\Component\Config\FileLocator,
-    Symfony\Component\Routing\Loader\YamlFileLoader,
+    Symfony\Component\Routing\RouteCollection,
+    Symfony\Component\Routing\Route,
+    Symfony\Component\Routing\Router,    
     Symfony\Component\Routing\Exception\ResourceNotFoundException,
     Symfony\Component\Routing\Exception\RouteNotFoundException,
-    Symfony\Component\HttpFoundation\RequestStack,
-    Symfony\Component\Routing\Router;
 
+    Symfony\Component\HttpFoundation\RequestStack;
 
 class PortfolioInfoRepository
 {
-    protected   $em;
-    protected   $router;
-    protected   $requestStack;
-    protected   $container;
-    private     $generalSettings;
+    protected $annotationReader;
+    protected $em;
+    protected $router;
+    protected $requestStack;
+    protected $container;
+    private   $generalSettings;
 
     private static $navigationIcons = array(
         '/'                 => 'fa-home',
@@ -30,6 +32,16 @@ class PortfolioInfoRepository
         '/WorkHistory'      => 'fa-briefcase',
         '/About'            => 'fa-user'
     );
+
+    /**
+     * Sets the FileCacheReader.
+     * 
+     * @param \Doctrine\Common\Annotations\FileCacheReader $annotationReader
+     */
+    public function setAnnotationReader(FileCacheReader $annotationReader)
+    {
+        $this->annotationReader = $annotationReader;
+    }
 
     /**
      * Sets the Entity Manager.
@@ -282,15 +294,55 @@ class PortfolioInfoRepository
     }
 
     /**
-     * Loads the RouteCollection of Corvus.
+     * Loads the FrontendBundle's Controller Annotations and creates a RouteCollection.
      * 
-     * @return array
+     * @return RouteCollection
      */
-    private function loadRouteCollection()
+    public function loadRouteCollection()
     {
-        $locator = new FileLocator(__DIR__.'/../../FrontendBundle/Resources/config');
-        $loader = new YamlFileLoader($locator);
+        $collection = new RouteCollection();
 
-        return $loader->load('routing.yml');
+        // Itterate over all of the files/directories in the Frontend Bundle Controller folder
+        foreach (new \DirectoryIterator(__DIR__.'/../../FrontendBundle/Controller') as $fileInfo) {
+            // Skip . and .. and make sure we are Reflecting over files
+            if($fileInfo->isDot() || !$fileInfo->isFile()) { continue; }
+
+            // Store the full path classname
+            $reflectionClassName = sprintf('\Corvus\FrontendBundle\Controller\%s', substr($fileInfo->getFilename(), 0, -4));
+            // Create a ReflectionClass with the class path, this is what the FileCacheReader public methods accept
+            $reflectionClass = new \ReflectionClass($reflectionClassName);
+            $classAnnotations = $this->annotationReader->getClassAnnotations($reflectionClass);
+            $methodAnnotations = array();
+            $classPath = '';
+
+            // Find if there is a @Route annotation on the Controller class (i.e. Route prefix)
+            foreach ($classAnnotations as $classAnnotation) {
+                // We only need to process @Route annotations
+                if (is_a($classAnnotation, 'Sensio\Bundle\FrameworkExtraBundle\Configuration\Route')) {
+                    // Get the @Route path
+                    $classPath = $classAnnotation->getPath();
+                }
+            }
+            
+            // Itterate over each method in the ReflectionClass, i.e. Public Methods/Actions of the Controller
+            foreach ($reflectionClass->getMethods() as $reflectionMethod) {
+                array_push($methodAnnotations, $this->annotationReader->getMethodAnnotations($reflectionMethod));
+            }
+
+            foreach ($methodAnnotations as $annotationTypes) {
+                foreach ($annotationTypes as $annotationType) {
+                    // We only need to process @Route annotations
+                    if (is_a($annotationType, 'Sensio\Bundle\FrameworkExtraBundle\Configuration\Route')) {
+                        // Construct a Route from the Annotation information
+                        $route2 = new Route($classPath . $annotationType->getPattern(), $annotationType->getDefaults(), $annotationType->getRequirements());
+
+                        // Add the Route to the Route Collection
+                        $collection->add($annotationType->getName(), $route2);
+                    }
+                }
+            }
+        }
+
+        return $collection;
     }
 }
