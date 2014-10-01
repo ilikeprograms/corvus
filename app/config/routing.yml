@@ -9,25 +9,30 @@ corvus_core:
 # Import Frontend Routes
 frontend:
     resource: "@CorvusFrontendBundle/Controller"
-    type: annotation
+    type:     annotation
     prefix:   /
 
 frontend_login:
-    pattern: /login
-    methods: [GET|POST]
+    pattern:  /login
+    methods:  [GET|POST]
     defaults: { _controller: CorvusFrontendBundle:Security:login }
 
 # Frontend Security
 frontend_login_check:
-    pattern: /login_check
-    methods: [POST]
+    pattern:  /login_check
+    methods:  [POST]
 
 frontend_logout:
-    pattern: /logout
-    methods: [GET]
+    pattern:  /logout
+    methods:  [GET]
 
-CorvusAdminBundle:
-    resource: "@CorvusAdminBundle/Resources/config/routing.yml"
+admin:
+    resource: "@CorvusAdminBundle/Controller"
+    type:     annotation
+    prefix:   /admin
+
+admin_yml:
+    resource: "@CorvusAdminBundle/Resources/Config/routing.yml"
     prefix:   /admin
 
 # Internal routing configuration to handle ESI
