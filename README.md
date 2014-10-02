@@ -10,7 +10,7 @@ but for advanced options/extras require paying.
 
 Create a simple portfolio, link to resources, and show the world what you can do with Corvus.
 
-## **Features**
+## Features
 
 * Corvus can be easily customised to make your portfolio Unique. The info, the styles, the showcase.
 * A Site Design section to choose themes/templates and a Fully integrated theme editor
@@ -20,7 +20,7 @@ Create a simple portfolio, link to resources, and show the world what you can do
 * Downloads let you gift people your creations *(Coming Soon)*
 * You can add your Education and Skills to prove your skillset
 
-## **Why choose Corvus?**
+## Why choose Corvus?
 
 * Corvus is Free, Open source, and Self hosted. You can do virtually anything you want with it.
 * You will never have to pay for Corvus, for upgrades or extras or support. If you value the product, then Contribute or Donate.
@@ -48,12 +48,24 @@ To do that Composer is used to install the depencencies, by running:
 php composer.phar install
 ```
 
-Note: If you dont have composer installed you can install it using the instructions on the Composer download page:
+*Note*: If you dont have composer installed you can install it using the instructions on the Composer download page:
 https://getcomposer.org/download/
+
+### Starting the Development Environment
+
+Corvus uses Vagrant to create and manage a development environment. To get up and, run the following command:
+
+```Shell
+vagrant up
+```
+
+Optionally run `vagrant ssh` to access the dev environment through ssh.
 
 ### Configuring the Database
 
 To automatically create the database and insert the dummy data, **DoctrineMigrations** are used. Run the following command to migrate the Corvus database:
+
+*Note*: When running `vagrant up` this step will automatically be performed.
 
 ```Shell
 php app/console doctrine:migrations:migrate
@@ -64,15 +76,15 @@ php app/console doctrine:migrations:migrate
 Everything should now be setup to start using the Application.
 
 In your browser go to:
-http://localhost/app.php
+`http://localhost/app.php` or `http://localhost:3000/app.php` when running Vagrant
 
 By default, there is only one user account and that should have been created in the Configuring the Database section. To login and manage your Corvus installation, use the following account details:
 
-**User**: Admin
+**User**: admin
 
 **Password**: password
 
-To access the backend go to: http://localhost/app.php/Admin
+To access the backend go to: `http://localhost/app.php/admin` or `http://localhost/app.php/admin` when running Vagrant
 
 ## Support/Contact
 
