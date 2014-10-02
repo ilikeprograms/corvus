@@ -203,7 +203,7 @@ class PortfolioInfoRepository
 
     /**
      * Creates a Navigation item out of the provided Inputs, there are a few ways in which the output
-     * changes based on the context. If the Route provided is a Symfony path (e.g. CorvusAdminBundle_Homepage)
+     * changes based on the context. If the Route provided is a Symfony path (e.g. admin_home)
      * A list item will be created, otherwise all other $route's provided will create an anchor tag.
      * 
      * @param string $route Route to be used to create the Navigation item (expected to be either a Symfony name route, route pattern or an external url).

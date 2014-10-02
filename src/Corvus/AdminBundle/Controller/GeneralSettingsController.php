@@ -57,7 +57,7 @@ class GeneralSettingsController extends Controller
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('notice', 'General Settings have been saved.');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_GeneralSettings'));
+            return $this->redirect($this->generateUrl('admin_general_settings'));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
@@ -98,7 +98,7 @@ class GeneralSettingsController extends Controller
             $em->flush();
             
             $this->get('session')->getFlashBag()->add('notice', 'New password has been Set!');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_Security'));
+            return $this->redirect($this->generateUrl('admin_general_settings_security'));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
@@ -132,7 +132,7 @@ class GeneralSettingsController extends Controller
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('notice', 'The Analytics has been Updated!');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_Analytics'));
+            return $this->redirect($this->generateUrl('admin_general_settings_analytics'));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');

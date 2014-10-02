@@ -77,7 +77,7 @@ class DefaultController extends Controller
                 $this->get('session')->getFlashBag()->add('notice', 'An error occured selecting/compiling the theme.');
             }
 
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_SiteDesign'));
+            return $this->redirect($this->generateUrl('admin_site_design'));
         } else {
             if ($form->isSubmitted()) {
                 $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
