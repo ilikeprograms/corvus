@@ -15,6 +15,7 @@
 
 	{% stylesheets filter="?cssrewrite"
 		'%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less'
+		'bundles/corvuscore/css/core.less'
 		'bundles/corvusadmin/css/layout.less'
 		'bundles/corvusadmin/css/layout.css'
         'bundles/corvusadmin/css/design.css'
@@ -26,6 +27,7 @@
     {% endblock %}
 </head>
 <body>
+    {% import 'CorvusCoreBundle:Default:core.html.twig' as core %}
 	<nav class="navbar navbar-inverse navbar-static-top" role="navigation" id="corvusBar">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="{{ path('admin_home') }}">
@@ -110,17 +112,19 @@
 		</div>
 		<p class='text-center'><sub>Corvus is released under the GPL v3 Licence, see LICENCE.txt under the project root for the full licence.</sub></p>
     </footer>
-	
-	<div id='alert-template' class="alert alert-dismissable" aria-hidden="true" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong></strong>
-		<p></p>
-	</div>
+
+    <div class="alert alert-dismissable hidden" id='alert-template' aria-hidden="true" tabindex="-1" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <strong></strong>
+        <p></p>
+    </div>
 
 {% javascripts
 	'%kernel.root_dir%/Resources/js/jquery.min.js'
 	'bundles/corvuscore/js/common.js'
+	'bundles/corvuscore/js/core.js'
 	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js'
+	'%kernel.root_dir%/../vendor/twbs/bootstrap/js/alert.js'
 	'bundles/corvusadmin/js/noticeScript.js'
 %}
 	<script src="{{ asset_url }}"></script>
@@ -130,16 +134,7 @@
 {% endblock %}
 
 {% if app.session.flashbag.has('notice') %}
-			
-{#			<div id="flash-notice">#}
-{#				{% notice = app.session.flashbag.get('notice')[0] %}#}
-	<script type='text/javascript'>
-		$(function () {
-			Corvus.displayAlert('Alert', '{{ app.session.flashbag.get('notice')[0] }}', 'warning');
-		});
-	</script>
-				
-{#			</div>#}
+    {{ core.displayNotice(app.session.flashbag.get('notice')[0]) }}
 {% endif %}
 </body>
 </html>
