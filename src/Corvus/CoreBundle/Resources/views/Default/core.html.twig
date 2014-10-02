@@ -1,0 +1,50 @@
+{#
+    Displays a Notice at the top of the Brower window,
+    The 'flash' param should be a Flashbag JSON message
+#}
+{% macro displayNotice(flash) %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the JSON stored in the Flashbag
+            var alertDetails = {{ flash | raw }};
+
+            // Display an Alert with the Flashbag JSON data
+            Corvus.displayAlertTemplate(alertDetails.title, alertDetails.message, alertDetails.level);
+        }, false);
+    </script>
+{% endmacro %}
+
+{#
+    Displays an Error message (Bootstrap style!) under an invalid Form Field and Highlight the Field,
+    The 'form' param should be the Form Field
+#}
+{% macro fieldError(form) %}
+    {# Make sure were only trying to display alerts for invalid fields #}
+    {% if not form.vars.valid %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Get all of the form errors
+                {% for error in form.vars.errors %}
+                    // Display an alert for each error
+                    Corvus.displayAlertTemplate('{{ error.message|capitalize }}', '', 'danger', {
+                        // Use an unique ID, stops multiple alerts behaving weirdly
+                        id: '{{ form.vars.id }}_alert',
+                        // Target the form field
+                        target: {
+                            selector: '#{{ form.vars.id }}',
+                            method: 'after', // Put the alert after the field
+                            // Highlight the form field, and preserve the highlight
+                            // once the Alert disapears
+                            highlight: {
+                                preserve: true
+                            }
+                        },
+                        // Dont make the Alert auto disapear after 4000ms
+                        // (can be closed with the close button/x
+                        preserve: true
+                    });
+                {% endfor %}
+            }, false);
+        </script>
+    {% endif %}
+{% endmacro %}
