@@ -38,16 +38,14 @@ abstract class TableViewController extends AbstractTableViewController
             // Increase the row_order by 1
             $this->ogEntity->setRowOrder($maxRowOrder + 1);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($this->ogEntity);
-            $em->flush();
+            $this->persistFlush();
             
             $this->get('session')->getFlashBag()->add('notice', json_encode(array(
                 'title'     => 'New ' . $this->ogEntity->getName() . ' was added!',
                 'level'     => 'success'
             )));
 
-            return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
+            return $this->redirectToRouteStem();
         } else {
             if ($form->isSubmitted()) {
                 $this->addErrorFlash();
@@ -80,15 +78,14 @@ abstract class TableViewController extends AbstractTableViewController
         $form->handleRequest($request);
         
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($this->ogEntity);
-            $em->flush();
+            $this->persistFlush();
 
             $this->get('session')->getFlashBag()->add('notice', json_encode(array(
                 'title'     => 'Your changes were saved!',
                 'level'     => 'success'
             )));
 
+            return $this->redirectToRouteStem();
         } else {
             if ($form->isSubmitted()) {
                 $this->addErrorFlash();
@@ -105,8 +102,7 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function orderUpAction($id)
     {
-        $this->swapRowOrder($id, 'Up');
-        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
+        return $this->swapRowOrder($id, 'Up');
     }
 
     /**
@@ -114,26 +110,7 @@ abstract class TableViewController extends AbstractTableViewController
      */
     public function orderDownAction($id)
     {
-    	$this->swapRowOrder($id, 'Down');
-        return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
-    }
-
-    protected function swapRowOrder($id, $direction)
-    {
-        /* Call the changeRowOrder method on this entity's repository
-         * Send the direction and Id.
-         * 
-         * @link \Corvus\AdminBundle\ILP\ORM\Repository\BaseEntityRepository
-         */
-        $this->getDoctrine()->getManager()
-            ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
-            ->changeRowOrder($id, $direction);
-
-        $this->get('session')->getFlashBag()->add('notice', json_encode(array(
-            'title'     => 'Order has been updated!',
-            'level'     => 'info'
-        )));
-
+    	return $this->swapRowOrder($id, 'Down');
     }
 
     /**
@@ -183,9 +160,60 @@ abstract class TableViewController extends AbstractTableViewController
             'level'     => 'info'
         )));
 
+        return $this->redirectToRouteStem();
+    }
+    
+    /**
+     * Changes the Row Order of the Entity found using the $id, in the $direction provided.
+     * 
+     * @param int $id The id of the Entity to move in the TableView.
+     * @param string $direction The direction to move the Entity.
+     * 
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    protected function swapRowOrder($id, $direction)
+    {
+        /* Call the changeRowOrder method on this entity's repository
+         * Send the direction and Id.
+         * 
+         * @link \Corvus\AdminBundle\ILP\ORM\Repository\BaseEntityRepository
+         */
+        $this->getDoctrine()->getManager()
+            ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
+            ->changeRowOrder($id, $direction);
+
+        $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+            'title'     => 'Order has been updated!',
+            'level'     => 'info'
+        )));
+
+        return $this->redirectToRouteStem();
+    }
+    
+    /**
+     * Persists and Flushes the Entity.
+     */
+    private function persistFlush()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($this->ogEntity);
+        $em->flush();
+    }
+    
+    /**
+     * Redirects to the Table View Main URL.
+     * This is found using the Entity's ROUTE_STEM.
+     * 
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    private function redirectToRouteStem()
+    {
         return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }
     
+    /**
+     * Set's an Error Alert/Flash message.
+     */
     private function addErrorFlash()
     {
         $this->get('session')->getFlashBag()->add('notice', json_encode(array(

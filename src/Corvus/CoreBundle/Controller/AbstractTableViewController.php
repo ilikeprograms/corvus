@@ -72,14 +72,14 @@ abstract class AbstractTableViewController extends Controller
     abstract function editAction($id, Request $request);
 
     /**
-     * Order up action, used to move move the Entity which matches $id up one in the TableView.
+     * Order up action, used to move the Entity which matches $id up one in the TableView.
      * 
      * @param int $id The id of the Entity to move up in the TableView
      */
     abstract function orderUpAction($id);
 
     /**
-     * Order up action, used to move move the Entity which matches $id up one in the TableView.
+     * Order up action, used to move the Entity which matches $id up one in the TableView.
      * 
      * @param int $id The id of the Entity to move up in the TableView
      */
