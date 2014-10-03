@@ -56,11 +56,18 @@ class GeneralSettingsController extends Controller
             $em->persist($generalSettings);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'General Settings have been saved.');
+            $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                'title'     => 'General Settings have been saved!',
+                'level'     => 'success'
+            )));
             return $this->redirect($this->generateUrl('admin_general_settings'));
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'Validation Failed',
+                    'message'   => 'Please correct the errors to continue!',
+                    'level'     => 'warning'
+                )));
             }
         }
 
@@ -97,11 +104,18 @@ class GeneralSettingsController extends Controller
             $em->persist($user);
             $em->flush();
             
-            $this->get('session')->getFlashBag()->add('notice', 'New password has been Set!');
+            $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                'title'     => 'New password has been Set!',
+                'level'     => 'success'
+            )));
             return $this->redirect($this->generateUrl('admin_general_settings_security'));
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'Validation Failed',
+                    'message'   => 'Please correct the errors to continue!',
+                    'level'     => 'warning'
+                )));
             }
         }
 
@@ -131,11 +145,18 @@ class GeneralSettingsController extends Controller
             $em->persist($analytics);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'The Analytics has been Updated!');
+            $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                'title'     => 'The Analytics has been Updated!',
+                'level'     => 'success'
+            )));
             return $this->redirect($this->generateUrl('admin_general_settings_analytics'));
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'Validation Failed',
+                    'message'   => 'Please correct the errors to continue!',
+                    'level'     => 'warning'
+                )));
             }
         }
 

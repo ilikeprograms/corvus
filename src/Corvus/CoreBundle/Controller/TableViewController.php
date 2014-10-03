@@ -41,13 +41,16 @@ abstract class TableViewController extends AbstractTableViewController
             $em = $this->getDoctrine()->getManager();
             $em->persist($this->ogEntity);
             $em->flush();
-
-            $this->get('session')->getFlashBag()->add('notice', 'New ' . $this->ogEntity->getName() . ' was added!');
+            
+            $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                'title'     => 'New ' . $this->ogEntity->getName() . ' was added!',
+                'level'     => 'success'
+            )));
 
             return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->addErrorFlash();
             }
         }
 
@@ -81,11 +84,14 @@ abstract class TableViewController extends AbstractTableViewController
             $em->persist($this->ogEntity);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
-            return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
+            $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                'title'     => 'Your changes were saved!',
+                'level'     => 'success'
+            )));
+
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->addErrorFlash();
             }
         }
 
@@ -123,7 +129,11 @@ abstract class TableViewController extends AbstractTableViewController
             ->getRepository('CorvusAdminBundle:' . $this->ogEntity->getRepoName())
             ->changeRowOrder($id, $direction);
 
-        $this->get('session')->getFlashBag()->add('notice', 'Order has been updated!');
+        $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+            'title'     => 'Order has been updated!',
+            'level'     => 'info'
+        )));
+
     }
 
     /**
@@ -167,8 +177,21 @@ abstract class TableViewController extends AbstractTableViewController
 
         // Flush the Entity manager to save all deletions
         $em->flush();
+        
+        $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+            'title'     => 'Selected ' . $this->ogEntity->getName() . ' was deleted!',
+            'level'     => 'info'
+        )));
 
-        $this->get('session')->getFlashBag()->add('notice', 'Selected ' . $this->ogEntity->getName() . ' was deleted!');
         return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
+    }
+    
+    private function addErrorFlash()
+    {
+        $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+            'title'     => 'Validation Failed',
+            'message'   => 'Please correct the errors to continue!',
+            'level'     => 'warning'
+        )));
     }
 }

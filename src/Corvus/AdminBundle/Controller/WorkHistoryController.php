@@ -61,7 +61,10 @@ class WorkHistoryController extends TableViewController
         $em->persist($workHistory);
         $em->flush();
 
-        $this->get('session')->getFlashBag()->add('Published state has been updated!');
+        $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+            'title'     => 'Published state has been updated!',
+            'level'     => 'info'
+        )));
 
         return $this->redirect($this->generateUrl('admin_' . $this->ogEntity->getRouteStem()));
     }

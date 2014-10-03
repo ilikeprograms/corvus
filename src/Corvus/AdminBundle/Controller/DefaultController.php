@@ -72,15 +72,26 @@ class DefaultController extends Controller
             
             
             if ($returnCode === 0) { // $returnCode === 0 means success
-                $this->get('session')->getFlashBag()->add('notice', 'Theme Choice has been saved. The theme has also been compiled.');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'Theme Choice has been saved',
+                    'message'   => 'The theme has also been compiled!',
+                    'level'     => 'success'
+                )));
             } else {
-                $this->get('session')->getFlashBag()->add('notice', 'An error occured selecting/compiling the theme.');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'An error occured selecting/compiling the theme',
+                    'level'     => 'danger'
+                )));
             }
 
             return $this->redirect($this->generateUrl('admin_site_design'));
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'Validation Failed',
+                    'message'   => 'Please correct the errors to continue!',
+                    'level'     => 'warning'
+                )));
             }
         }
 
@@ -263,11 +274,18 @@ class DefaultController extends Controller
             $em->persist($about);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Your changes were saved!');
-            return $this->redirect($this->generateUrl('CorvusAdminBundle_About'));
+            $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                'title'     => 'Your changes were saved!',
+                'level'     => 'success'
+            )));
+            return $this->redirect($this->generateUrl('admin_about'));
         } else {
             if ($form->isSubmitted()) {
-                $this->get('session')->getFlashBag()->add('notice', 'Please correct the errors to continue!');
+                $this->get('session')->getFlashBag()->add('notice', json_encode(array(
+                    'title'     => 'Validation Failed',
+                    'message'   => 'Please correct the errors to continue!',
+                    'level'     => 'warning'
+                )));
             }
         }
         
