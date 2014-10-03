@@ -30,7 +30,8 @@ class ChangePasswordType extends AbstractType
             'second_options' => array(
                 'label' => 'Confirm New Password',
                 'attr' => array('class' => 'form-control')
-            )
+            ),
+            'invalid_message' => 'Passwords must match'
         ));
     }
 
