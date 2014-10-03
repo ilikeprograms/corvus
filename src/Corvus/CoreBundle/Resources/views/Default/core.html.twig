@@ -46,5 +46,22 @@
                 {% endfor %}
             }, false);
         </script>
+
+        {# Set that an Alert has been displayed for this Field #}
+        {{ setAlert(form.vars.id) }}
     {% endif %}
+{% endmacro %}
+
+{#
+    Displays Error messages for every invalid Form Field, by recursively
+    calling fieldErrors if an Alert hasnt been displayed for a Field
+    The 'form' param should be the FormView
+#}
+{% macro formErrors(form) %}
+    {% for child in form %}
+        {# Only display the error if an Alert hasnt been displayed for this Field #}
+        {% if not getAlert(child.vars.id) %}
+            {{ _self.fieldError(child) }}
+        {% endif %}
+    {% endfor %}
 {% endmacro %}
