@@ -10,3 +10,4 @@
 /web/fonts/
 /web/assetic/
 src/Corvus/CoreBundle/Resources/config/corvusdb.yml
+.vagrant/
