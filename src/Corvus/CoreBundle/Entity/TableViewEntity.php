@@ -2,10 +2,16 @@
 
 namespace Corvus\CoreBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert;
+
 class TableViewEntity implements ITableViewEntity
 {
     /**
-     * @var integer $row_order
+     * @ORM\Column(type="integer")
+     * 
+     * @Assert\NotNull()
      */
     protected $row_order;
 

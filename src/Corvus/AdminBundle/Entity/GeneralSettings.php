@@ -3,99 +3,156 @@
 // src/Corvus/AdminBundle/Entity/GeneralSettings.php
 namespace Corvus\AdminBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Corvus\AdminBundle\Entity\GeneralSettings
+ * 
+ * @ORM\Entity
+ * @ORM\Table
  */
 class GeneralSettings
 {
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $portfolio_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\NotNull()
+     * @Assert\Length(max=100)
      */
     private $portfolio_title;
 
     /**
-     * @var string $portfolio_subtitle
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $portfolio_subtitle;
 
     /**
-     * @var boolean $display_subtitle
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $display_subtitle;
 
     /**
-     * @var string $path
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $path;
 
     /**
-     * @var file $logo
+     * @var image $logo
+     * 
+     * @Assert\Image()
      */
     private $logo;
 
     /**
-     * @var boolean $display_logo
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $display_logo;
 
     /**
-     * @var string $global_general_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $global_general_meta_title;
 
     /**
-     * @var string $home_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $home_meta_title;
 
     /**
-     * @var string $about_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $about_meta_title;
 
     /**
-     * @var string $education_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $education_meta_title;
 
     /**
-     * @var string $skills_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $skills_meta_title;
 
     /**
-     * @var string $work_history_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $work_history_meta_title;
 
     /**
-     * @var string $project_history_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $project_history_meta_title;
 
     /**
-     * @var string $global_work_history_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $global_work_history_meta_title;
 
     /**
-     * @var string $global_project_history_meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $global_project_history_meta_title;
 
-    /*
-     * @var string $analytics
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $analytics;
 
     /**
-     * @var string $footer_text
+     * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=1500)
      */
     private $footer_text;
 

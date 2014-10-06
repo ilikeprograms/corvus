@@ -3,11 +3,18 @@
 // src/Corvus/AdminBundle/Entity/Education.php
 namespace Corvus\AdminBundle\Entity;
 
-use Corvus\CoreBundle\Entity\TableViewEntity;
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert,
+
+    Corvus\CoreBundle\Entity\TableViewEntity;
 
 
 /**
  * Corvus\AdminBundle\Entity\Education
+ * 
+ * @ORM\Entity(repositoryClass="Corvus\AdminBundle\Entity\EducationRepository")
+ * @ORM\Table
  */
 class Education extends TableViewEntity
 {
@@ -17,37 +24,57 @@ class Education extends TableViewEntity
 
     
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $education_institute
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $education_institute;
 
     /**
-     * @var string $qualification
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $qualification;
 
     /**
-     * @var date $start_date
+     * @ORM\Column(type="date")
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Date()
      */
     private $start_date;
 
     /**
-     * @var date $end_date
+     * @ORM\Column(type="date", nullable=true)
+     * 
+     * @Assert\Date()
      */
     private $end_date;
     
     /**
-     * @var boolean $is_current_position
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $is_current_position;
 
     /**
-     * @var string $result
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $result;
 

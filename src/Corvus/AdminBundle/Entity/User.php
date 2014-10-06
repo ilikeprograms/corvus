@@ -3,26 +3,39 @@
 // src/Corvus/AdminBundle/Entity/User.php
 namespace Corvus\AdminBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert,
+
+    Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
  * Corvus\AdminBundle\Entity\User
+ * 
+ * @ORM\Entity
+ * @ORM\Table
  */
 class User implements UserInterface
 {
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $username
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
      */
     private $username;
 
     /**
-     * @var string $password
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
      */
     private $password;
     

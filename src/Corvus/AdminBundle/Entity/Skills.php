@@ -3,11 +3,18 @@
 // src/Corvus/AdminBundle/Entity/Skills.php
 namespace Corvus\AdminBundle\Entity;
 
-use Corvus\CoreBundle\Entity\TableViewEntity;
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert,
+
+    Corvus\CoreBundle\Entity\TableViewEntity;
 
 
 /**
  * Corvus\AdminBundle\Entity\Skills
+ * 
+ * @ORM\Entity(repositoryClass="Corvus\AdminBundle\Entity\SkillsRepository")
+ * @ORM\Table
  */
 class Skills extends TableViewEntity
 {
@@ -17,37 +24,53 @@ class Skills extends TableViewEntity
 
 
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $skill_name
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $skill_name;
 
     /**
-     * @var string $competency
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $competency;
 
     /**
-     * @var decimal $years_experience
+     * @ORM\Column(type="decimal", nullable=true)
      */
     private $years_experience;
 
     /**
-     * @var string $description
+     * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2500)
      */
     private $description;
 
     /**
-     * @var boolean $can_display_skill
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $can_display_skill;
 
     /**
-     * @var boolean $is_quick_skill
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $is_quick_skill;
 

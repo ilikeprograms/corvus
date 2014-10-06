@@ -3,11 +3,18 @@
 // src/Corvus/AdminBundle/Entity/Navigation.php
 namespace Corvus\AdminBundle\Entity;
 
-use Corvus\CoreBundle\Entity\TableViewEntity;
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert,
+
+    Corvus\CoreBundle\Entity\TableViewEntity;
 
 
 /**
  * Corvus\AdminBundle\Entity\Navigation
+ * 
+ * @ORM\Entity(repositoryClass="Corvus\AdminBundle\Entity\NavigationRepository")
+ * @ORM\Table
  */
 class Navigation extends TableViewEntity
 {
@@ -17,22 +24,36 @@ class Navigation extends TableViewEntity
 
     
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $href
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $href;
 
     /**
-     * @var string $title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $title;
 
     /**
-     * @var string $alt
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $alt;
 

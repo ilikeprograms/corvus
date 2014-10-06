@@ -3,10 +3,17 @@
 // src/Corvus/AdminBundle/Entity/WorkHistory.php
 namespace Corvus\AdminBundle\Entity;
 
-use Corvus\CoreBundle\Entity\TableViewEntity;
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert,
+
+    Corvus\CoreBundle\Entity\TableViewEntity;
 
 /**
  * Corvus\AdminBundle\Entity\WorkHistory
+ * 
+ * @ORM\Entity(repositoryClass="Corvus\AdminBundle\Entity\WorkHistoryRepository")
+ * @ORM\Table
  */
 class WorkHistory extends TableViewEntity
 {
@@ -16,77 +23,121 @@ class WorkHistory extends TableViewEntity
 
     
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $slug
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $slug;
 
     /**
-     * @var string $employer_name
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $employer_name;
 
     /**
-     * @var string $employer_address
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $employer_address;
 
     /**
-     * @var date $start_date
+     * @ORM\Column(type="date")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Date()
      */
     private $start_date;
 
     /**
-     * @var date $end_date
+     * @ORM\Column(type="date", nullable=true)
+     * 
+     * @Assert\Date()
      */
     private $end_date;
     
     /**
-     * @var boolean $is_current_position
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $is_current_position;
 
     /**
-     * @var string $role
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $role;
 
     /**
-     * @var string $duties
+     * @ORM\Column(type="string", length=2500, nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2500)
      */
     private $duties;
 
     /**
-     * @var string $feedback_received
+     * @ORM\Column(type="string", length=2000, nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2000)
      */
     private $feedback_received;
 
     /**
-     * @var string $reflection
+     * @ORM\Column(type="string", length=2000, nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2000)
      */
     private $reflection;
 
     /**
-     * @var string $employer_phone_number
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $employer_phone_number;
 
     /**
-     * @var string $isPublished;
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $isPublished;
 
     /**
-     * @var string $meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $meta_title;
 
     /**
-     * @var string $meta_description
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $meta_description;
 

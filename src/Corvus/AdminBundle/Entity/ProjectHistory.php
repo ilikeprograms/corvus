@@ -3,11 +3,18 @@
 // src/Corvus/AdminBundle/Entity/ProjectHistory.php
 namespace Corvus\AdminBundle\Entity;
         
-use Corvus\CoreBundle\Entity\TableViewEntity;
+use Doctrine\ORM\Mapping as ORM,
+
+    Symfony\Component\Validator\Constraints as Assert,
+
+    Corvus\CoreBundle\Entity\TableViewEntity;
 
 
 /**
  * Corvus\AdminBundle\Entity\ProjectHistory
+ * 
+ * @ORM\Entity(repositoryClass="Corvus\AdminBundle\Entity\ProjectHistoryRepository")
+ * @ORM\Table
  */
 class ProjectHistory extends TableViewEntity
 {
@@ -16,67 +23,106 @@ class ProjectHistory extends TableViewEntity
     const ROUTE_STEM    = 'project_history';
 
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $slug
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $slug;
 
     /**
-     * @var string $project_name
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $project_name;
 
     /**
-     * @var string $project_description
+     * @ORM\Column(type="string", length=2000)
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2000)
      */
     private $project_description;
 
     /**
-     * @var string $role
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $role;
 
     /**
-     * @var string $process
+     * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=3000)
      */
     private $process;
 
-    /**
-     * @var string $feedback_received
+     /**
+     * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2000)
      */
     private $feedback_received;
 
     /**
-     * @var string $reflection
+     * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=2000)
      */
     private $reflection;
 
     /**
-     * @var string $url
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Url()
      */
     private $url;
 
     /**
-     * @var datetime $updated
+     * @ORM\Column(type="datetime")
+     * 
+     * @Assert\DateTime
      */
     private $updated;
 
     /**
-     * @var string $isPublished
+     * @ORM\Column(type="boolean")
+     * 
+     * @Assert\Type(type="bool")
      */
     private $isPublished;
 
     /**
-     * @var string $meta_title
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\NotNull()
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $meta_title;
 
     /**
-     * @var string $meta_description
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $meta_description;
 

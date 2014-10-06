@@ -3,64 +3,109 @@
 // src/Corvus/AdminBundle/Entity/About.php
 namespace Corvus\AdminBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM,
+    
+    Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Corvus\AdminBundle\Entity\About
+ * 
+ * @ORM\Entity
+ * @ORM\Table
  */
 class About
 {
     /**
-     * @var integer $id
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @var string $firstname
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $firstname;
 
     /**
-     * @var string $lastname
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $lastname;
 
     /**
-     * @var integer $age
+     * @ORM\Column(type="integer")
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Range(
+     *  min=0,
+     *  max=130
+     * )
      */
     private $age;
 
     /**
-     * @var string $bio
+     * @ORM\Column(type="text")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=15000)
+     * @Assert\NotBlank()
      */
     private $bio;
 
     /**
-     * @var string $address
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $address;
 
     /**
-     * @var string $location
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $location;
 
     /**
-     * @var string $interests_hobbies
+     * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=10000)
      */
     private $interests_hobbies;
 
     /**
-     * @var string $email_address
+     * @ORM\Column(type="string")
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email_address;
 
     /**
-     * @var string $twitter
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $twitter;
 
     /**
-     * @var string $facebook
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @Assert\Type(type="string")
+     * @Assert\Length(max=255)
      */
     private $facebook;
 
