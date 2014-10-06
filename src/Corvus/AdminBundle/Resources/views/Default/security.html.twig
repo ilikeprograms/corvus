@@ -8,6 +8,7 @@
 {% block mainContent %}
 	<h2>Account Security</h2>
 	<p class="well">Use the form below to change your password. This needs to be done to make sure your installation of Corvus is secure.</p>
+
 	<form role="form" action="{{ path('admin_general_settings_security') }}" method="post" {{ form_enctype(form) }}>
 		<p>Enter the current password and a matching new password and confirmation.</p>
 

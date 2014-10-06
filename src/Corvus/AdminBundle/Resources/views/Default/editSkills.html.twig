@@ -11,7 +11,7 @@
 		Use this form to update the Skill details.
 	</p>
 
-	<form action="{{ path('admin_skills_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form role="form" action="{{ path('admin_skills_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Skill Fields:</legend>
 

@@ -14,7 +14,7 @@
 		in the portfolio.
 	</p>
 
-	<form action="{{ path('admin_navigation_new') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form role="form" action="{{ path('admin_navigation_new') }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 			
@@ -33,8 +33,10 @@
                 {{ form_widget(form.alt) }}
             </div>
 
-            {{ form_row(form.internalRoutes) }}
-
+            <div class="form-group">
+                {{ form_label(form.internalRoutes) }}
+                {{ form_widget(form.internalRoutes) }}
+            </div>
 		</fieldset>
 
 		{{ form_rest(form) }}

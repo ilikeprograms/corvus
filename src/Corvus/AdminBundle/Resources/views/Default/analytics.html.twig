@@ -18,6 +18,7 @@
 		</div>
 		<p class="help-block">Leave blank or remove to stop tracking.</p>
 		
+        {{ core.formErrors(form) }}
 		{{ form_rest(form) }}
 		
 		<input type="submit" class="btn btn-primary" value="Save" />

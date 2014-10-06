@@ -21,23 +21,28 @@
             </div>
 
 			<div class="form-group">
-				{{ form_row(form.portfolio_subtitle) }}
+				{{ form_label(form.portfolio_subtitle) }}
+				{{ form_widget(form.portfolio_subtitle) }}
 			</div>
 
 			<div class="form-group">
-				{{ form_row(form.display_subtitle) }}
+				{{ form_label(form.display_subtitle) }}
+				{{ form_widget(form.display_subtitle) }}
 			</div>
 
 			<div class="form-group">
-				{{ form_row(form.logo) }}
+				{{ form_label(form.logo) }}
+				{{ form_widget(form.logo) }}
 			</div>
 
 			<div class="form-group">
-				{{ form_row(form.display_logo) }}
+				{{ form_label(form.display_logo) }}
+				{{ form_widget(form.display_logo) }}
 			</div>
 
 			<div class="form-group">
-				{{ form_row(form.footer_text) }}
+				{{ form_label(form.footer_text) }}
+				{{ form_widget(form.footer_text) }}
 			</div>
 		</fieldset>
 
@@ -47,17 +52,55 @@
 				The Meta fields are used for search engine optimisation aswell as the titles for the pages (The bar at the top of the screen).<br />
 				They use the titles here, aswell as the extra parts in the education/skills records etc.
 			</div>
-			{{ form_row(form.global_general_meta_title) }}
-			{{ form_row(form.home_meta_title) }}
-			{{ form_row(form.about_meta_title) }}
-			{{ form_row(form.education_meta_title) }}
-			{{ form_row(form.skills_meta_title) }}
-			{{ form_row(form.work_history_meta_title) }}
-			{{ form_row(form.project_history_meta_title) }}
-			{{ form_row(form.global_work_history_meta_title) }}
-			{{ form_row(form.global_project_history_meta_title) }}
+            
+            <div class="form-group">
+                {{ form_label(form.global_general_meta_title) }}
+                {{ form_widget(form.global_general_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.home_meta_title) }}
+                {{ form_widget(form.home_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.about_meta_title) }}
+                {{ form_widget(form.about_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.education_meta_title) }}
+                {{ form_widget(form.education_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.skills_meta_title) }}
+                {{ form_widget(form.skills_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.work_history_meta_title) }}
+                {{ form_widget(form.work_history_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.project_history_meta_title) }}
+                {{ form_widget(form.project_history_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.global_work_history_meta_title) }}
+                {{ form_widget(form.global_work_history_meta_title) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.global_project_history_meta_title) }}
+                {{ form_widget(form.global_project_history_meta_title) }}
+            </div>
 		</fieldset>
+
 		{{ form_rest(form) }}
+        {{ core.formErrors(form) }}
 
 		<input type="submit" class="btn btn-primary" value="Save" />
     </form>
@@ -66,6 +109,4 @@
 		<h3>Help</h3>
 		<p>Fields marked with <span class="required-hint"></span> are required</p>
 	</aside>
-
-    {{ core.formErrors(form) }}
 {% endblock %}

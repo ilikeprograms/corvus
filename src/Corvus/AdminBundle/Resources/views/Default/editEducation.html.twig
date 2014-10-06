@@ -11,7 +11,7 @@
 		Use the below form to update your Education details.
 	</p>
 
-	<form action="{{ path('admin_education_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form role="form" action="{{ path('admin_education_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Education Fields:</legend>
 			
@@ -40,7 +40,10 @@
                 {{ form_widget(form.is_current_position) }}
             </div>
 
-            {{ form_row(form.result) }}
+            <div class="form-group">
+                {{ form_label(form.result) }}
+                {{ form_widget(form.result) }}
+            </div>
 		</fieldset>
 
 		{{ form_rest(form) }}

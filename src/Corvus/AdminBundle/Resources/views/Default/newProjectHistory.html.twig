@@ -12,7 +12,7 @@
 		The Project details can be a great way for people to see what you have been working on/showcase your talent!
 	</p>
 
-	<form action="{{ path('admin_project_history_new') }}" method="post" {{ form_enctype(form) }} class="classy">
+	<form role="form" action="{{ path('admin_project_history_new') }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
             <legend>Project History Fields:</legend>             
             
@@ -36,10 +36,25 @@
                 {{ form_widget(form.role) }}
             </div>
 
-            {{ form_row(form.process) }}
-            {{ form_row(form.feedback_received) }}
-            {{ form_row(form.reflection) }}
-            {{ form_row(form.url) }}
+            <div class="form§-group">
+                {{ form_label(form.process) }}
+                {{ form_widget(form.process) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.feedback_received) }}
+                {{ form_widget(form.feedback_received) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.reflection) }}
+                {{ form_widget(form.reflection) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.url) }}
+                {{ form_widget(form.url) }}
+            </div>
             
             <div class="form-group">
                 {{ form_label(form.is_published) }}
@@ -49,11 +64,16 @@
 
         <fieldset>
             <legend>Meta Info:</legend>
+
             <div class="form-group">
                 {{ form_label(form.meta_title) }}
                 {{ form_widget(form.meta_title) }}
             </div>
-            {{ form_row(form.meta_description) }}
+            
+            <div class="form-group">
+                {{ form_label(form.meta_description) }}
+                {{ form_widget(form.meta_description) }}
+            </div>
         </fieldset>
 
         {{ form_rest(form) }}

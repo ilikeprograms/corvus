@@ -12,7 +12,7 @@
 		<span class="label label-warning">Dont forget!</span> You can still swap the Navigation between an external/internal link.
 	</p>
 
-	<form action="{{ path('admin_navigation_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
+	<form role="form" action="{{ path('admin_navigation_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
 		<fieldset>
 			<legend>Navigation Fields:</legend>
 
@@ -31,7 +31,10 @@
                 {{ form_widget(form.alt) }}
             </div>
 
-            {{ form_row(form.internalRoutes) }}
+            <div class="form-group">
+                {{ form_label(form.internalRoutes) }}
+                {{ form_widget(form.internalRoutes) }}
+            </div>
 		</fieldset>
 
 		{{ form_rest(form) }}
