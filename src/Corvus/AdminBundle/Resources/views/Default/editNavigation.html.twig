@@ -18,27 +18,24 @@
 
             <div class="form-group">
                 {{ form_label(form.href) }}
-                {{ form_errors(form.href) }}
                 {{ form_widget(form.href) }}
             </div>
 
             <div class="form-group">
                 {{ form_label(form.title) }}
-                {{ form_errors(form.title) }}
                 {{ form_widget(form.title) }}
             </div>
 
             <div class="form-group">
                 {{ form_label(form.alt) }}
-                {{ form_errors(form.alt) }}
                 {{ form_widget(form.alt) }}
             </div>
 
             {{ form_row(form.internalRoutes) }}
-
 		</fieldset>
 
 		{{ form_rest(form) }}
+        {{ core.formErrors(form) }}
 
 		<input type="submit" class="btn btn-primary" value="Save" />	
 	</form>

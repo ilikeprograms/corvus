@@ -17,7 +17,6 @@
 			
 			<div class="form-group">
                 {{ form_label(form.portfolio_title) }}
-                {{ form_errors(form.portfolio_title) }}
                 {{ form_widget(form.portfolio_title) }}
             </div>
 
@@ -58,7 +57,6 @@
 			{{ form_row(form.global_work_history_meta_title) }}
 			{{ form_row(form.global_project_history_meta_title) }}
 		</fieldset>
-
 		{{ form_rest(form) }}
 
 		<input type="submit" class="btn btn-primary" value="Save" />
@@ -68,4 +66,6 @@
 		<h3>Help</h3>
 		<p>Fields marked with <span class="required-hint"></span> are required</p>
 	</aside>
+
+    {{ core.formErrors(form) }}
 {% endblock %}

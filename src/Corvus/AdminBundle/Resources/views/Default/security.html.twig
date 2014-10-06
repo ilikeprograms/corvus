@@ -20,6 +20,7 @@
 			{{ form_label(form.plainPassword.first) }}
 			<sup>[1]</sup>
 			{{ form_widget(form.plainPassword.first) }}
+            {{ core.fieldError(form.plainPassword.first) }}
 		</div>
 
 		<div class="form-group">
@@ -28,6 +29,7 @@
 			{{ form_widget(form.plainPassword.second) }}
 		</div>
 
+        {{ core.formErrors(form) }}
 		{{ form_rest(form) }}
 		
 		<input type="submit" class="btn btn-primary" value="Save" />

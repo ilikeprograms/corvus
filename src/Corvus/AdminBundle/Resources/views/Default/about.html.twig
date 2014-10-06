@@ -20,24 +20,20 @@
 					<legend><span>About Fields:</span></legend>
 
 						{{ form_label(form.firstname) }}
-						{{ form_errors(form.firstname) }}
 						{{ form_widget(form.firstname) }}
 
 					<div>
 						{{ form_label(form.lastname) }}
-						{{ form_errors(form.lastname) }}
 						{{ form_widget(form.lastname) }}
 					</div>
 
 					<div>
 						{{ form_label(form.age) }}
-						{{ form_errors(form.age) }}
 						{{ form_widget(form.age) }}
 					</div>
 
 					<div>
 						{{ form_label(form.bio) }}
-						{{ form_errors(form.bio) }}
 						{{ form_widget(form.bio) }}
 					</div>
 
@@ -47,7 +43,6 @@
 
 					<div>
 						{{ form_label(form.email_address) }}
-						{{ form_errors(form.email_address) }}
 						{{ form_widget(form.email_address) }}
 					</div>
 
@@ -57,7 +52,8 @@
 				</fieldset>
 
 				{{ form_row(form._token) }}
-
+                {{ core.formErrors(form) }}
+                
 				<input type="submit" class="btn btn-primary" value="Save" />
 			</form>
 		</div>
