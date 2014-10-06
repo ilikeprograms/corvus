@@ -8,7 +8,7 @@
 {% block mainContent %}
 	<h2>Editing "{{ form.vars.value.educationInstitute }} - {{ form.vars.value.qualification }}"</h2>
 	<p class="well">
-		Use the below form to update your Education details.
+		Use the below form to update your <b>Education details</b>.
 	</p>
 
 	<form role="form" action="{{ path('admin_education_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>

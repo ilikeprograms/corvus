@@ -8,7 +8,7 @@
 {% block mainContent %}
 	<h2>Editing "{{ form.vars.value.skillName }}"</h2>
 	<p class="well">
-		Use this form to update the Skill details.
+		Use this form to update the <b>Skill details</b>.
 	</p>
 
 	<form role="form" action="{{ path('admin_skills_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
@@ -40,14 +40,14 @@
                 {{ form_widget(form.can_display_skill) }}
             </div>
 			
-			<p class="help-block">Display skill controls if all details about a Skill will be displayed</p>
+			<p class="help-block">Controls if <b>All details about the Skill</b> will be displayed</p>
 			
 			<div class="form-group">
                 {{ form_label(form.is_quick_skill) }}
                 {{ form_widget(form.is_quick_skill) }}
             </div>
 			
-			<p class="help-block">Display skill controls if all Skill will be displayed in the Quick Skills section</p>
+			<p class="help-block">Controls if the Skill will be <b>displayed in the Quick Skills</b> section</p>
 		</fieldset>
 
 		{{ form_rest(form) }}

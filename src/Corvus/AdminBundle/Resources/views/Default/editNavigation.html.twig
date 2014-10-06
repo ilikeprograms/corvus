@@ -9,7 +9,7 @@
 	<h2>Editing "{{ form.vars.value.title }} Link"</h2>
 	<p class="well">
 		Use this form to update the Navigation item.<br />
-		<span class="label label-warning">Dont forget!</span> You can still swap the Navigation between an external/internal link.
+		<span class="label label-warning">Dont forget!</span> You can still swap the Navigation between an <b>External/Internal</b> link.
 	</p>
 
 	<form role="form" action="{{ path('admin_navigation_edit', {'id' : form.vars.value.id }) }}" method="post" {{ form_enctype(form) }}>
@@ -35,6 +35,8 @@
                 {{ form_label(form.internalRoutes) }}
                 {{ form_widget(form.internalRoutes) }}
             </div>
+
+            <p class="help-block">The Internal Routes are pages on the Frontend of the Portfolio</p>
 		</fieldset>
 
 		{{ form_rest(form) }}

@@ -8,9 +8,10 @@
 {% block mainContent %}
     <h2>Analytics</h2>
 	<div class="well">
-		Enter your Google Analytics Tracking ID to add analytics to Corvus.
+        Enter your <b>Google Analytics Tracking ID</b> to add analytics to Corvus.
 		For more information about Analytics, visit <a href="http://www.google.com/analytics/" target="_blank">Google Analytics</a>
 	</div>
+
 	<form role="form" action="{{ path('admin_general_settings_analytics') }}" method="post" {{ form_enctype(form) }}>		
 		<div class="form-group">
 			{{ form_label(form.analytics) }}

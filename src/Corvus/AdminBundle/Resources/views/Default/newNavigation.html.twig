@@ -6,11 +6,10 @@
 {% endblock %}
 
 {% block mainContent %}
-
 	<h2>Add new Navigation</h2>
 	<p class="well">
-		A new Navigation item will display another link in the Navigation on the frontend.<br />
-		Enter the HREF to link to an external resource, or use the Internal Routes to link to a page
+        A new <b>Navigation item</b> will display another link in the Navigation on the frontend.<br />
+        Enter the <b>HREF</b> to link to an external resource, <b>or</b> use the <b>Internal Routes</b> to link to a page
 		in the portfolio.
 	</p>
 
@@ -37,6 +36,8 @@
                 {{ form_label(form.internalRoutes) }}
                 {{ form_widget(form.internalRoutes) }}
             </div>
+
+            <p class="help-block">The Internal Routes are pages on the Frontend of the Portfolio</p>
 		</fieldset>
 
 		{{ form_rest(form) }}

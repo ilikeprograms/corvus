@@ -7,11 +7,11 @@
 {% block mainContent %}
     <h2>Portfolio General Settings</h2>
     <p class="well">
-        Here you can customise information about your corvus installation.<br />
+        Here you can <b>Customise General Information</b> about your Corvus installation.<br />
 		Such as the Title for your site, an optional subtitle and logo and more!
     </p>
-    {{ form_errors(form) }}
-    <form action="{{ path('admin_general_settings') }}" method="post" {{ form_enctype(form) }}>
+
+    <form role="form" action="{{ path('admin_general_settings') }}" method="post" {{ form_enctype(form) }}>
         <fieldset>
 			<legend>General Settings Fields:</legend>
 			
@@ -49,8 +49,8 @@
 		<fieldset>
 			<legend>Meta Title Fields:</legend>
 			<div class="well">
-				The Meta fields are used for search engine optimisation aswell as the titles for the pages (The bar at the top of the screen).<br />
-				They use the titles here, aswell as the extra parts in the education/skills records etc.
+              The <b>Meta fields</b> are used for <em>Search Engine Optimisation (SEO)</em> aswell as the Titles for the Pages (The bar at the top of the screen).<br />
+				They use the Titles here, aswell as the extra parts in the other sections (Education/Skills meta titled/descriptions etc).
 			</div>
             
             <div class="form-group">
