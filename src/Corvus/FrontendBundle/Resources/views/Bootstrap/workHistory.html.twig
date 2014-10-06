@@ -14,11 +14,11 @@
 		{% for work in workHistory %}
 			{% if work.isPublished == true or is_granted('IS_AUTHENTICATED_FULLY') %}
                 <section>
-                    <h3>{{ work.employerName }}</h3>
+                    <h3>{{ work.role }}</h3>
                     <div class="description">
-                        {{ work.role }}
+                        {{ work.employerName }}
                         <br />
-                        Started: {{ work.startDate | date("d/m/y") }}
+                        {{ work.startDate | date('F j, Y') }} to {{ work.isCurrentPosition == true ? 'Current' : work.endDate | date('F j, Y') }}
                     </div>
 
                     <br />

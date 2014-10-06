@@ -8,8 +8,8 @@
 	<article id="mainContainer">
 		<header class="well clearfix">
 			<i class="fa fa-briefcase fa-2x wellImg pull-left hidden-xs" title="Small Work History Icon"></i>
-			<h2>{{ workHistory.employerName }}</h2>
-			<p>{{ workHistory.role }} - {{ workHistory.startDate | date('F j, Y') }} to {{ workHistory.isCurrentPosition == true ? 'Current' : workHistory.endDate | date('F j, Y') }}</p>
+			<h2>{{ workHistory.role }}</h2>
+			<p>{{ workHistory.employerName }} - {{ workHistory.startDate | date('F j, Y') }} to {{ workHistory.isCurrentPosition == true ? 'Current' : workHistory.endDate | date('F j, Y') }}</p>
 		</header>
 		<section>
 			{% if workHistory.duties %}
