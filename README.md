@@ -93,3 +93,4 @@ To access the backend go to: `http://localhost/app.php/admin` or `http://localho
 * <a href="irc://irc.freenode.net/corvus">#corvus on irc.freenode</a>
 * <a href="mailto:%22Corvus%20Support%22%20%3ccorvus-support@ilikeprograms.com%3e?subject=Corvus Support">Send us an Email</a> <sup>(corvus-support@ilikeprograms.com)</sup>
 * [Stack Overflow](http://stackoverflow.com/questions/tagged/corvus)
+* Need Webhosting? We recommend using <a href="https://www.digitalocean.com/?refcode=8ebdbca3d82d" target="_blank">Digital Ocean</a>. You will receive $10 free credit for using the Referral Link.
