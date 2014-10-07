@@ -62,16 +62,23 @@
 		</div>
 	</nav> <!-- Main Navigation End -->
 
-    <header class="page-header clearfix">
-		<div id="logo" class="pull-left">
-            {% if portfolio_info.generalSettings.displayLogo == true %}
-                {{ portfolio_info.includeLogo }}
-            {% endif %}
+    <header class="page-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="logo" style="display: inline-block;">
+                {% if portfolio_info.generalSettings.displayLogo == true %}
+                    {{ portfolio_info.includeLogo }}
+                {% endif %}
+            </div>
+            <div style="display: inline-block;">
+                <h1>{{ portfolio_info.generalSettings.portfolioTitle }}</h1>
+                {% if portfolio_info.generalSettings.displaySubtitle == true %}
+                    <small>{{ portfolio_info.generalSettings.portfolioSubtitle }}</small>
+                {% endif %}
+            </div>
         </div>
-		<h1>{{ portfolio_info.generalSettings.portfolioTitle }}</h1>
-		{% if portfolio_info.generalSettings.displaySubtitle == true %}
-			<small>{{ portfolio_info.generalSettings.portfolioSubtitle }}</small>
-		{% endif %}
+      </div>
     </header>
 
 	{% block mainContentBlock %}
