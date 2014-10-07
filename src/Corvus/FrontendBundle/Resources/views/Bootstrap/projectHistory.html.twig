@@ -3,41 +3,44 @@
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.projectHistoryMetaTitle }}{% endblock %}
 
 {% block mainContent %}
-	<div class="well clearfix">
-		<i class="fa fa-rocket fa-5x wellImg pull-left" alt="Small Project History Icon"></i>
-		<hgroup class="pull-left">
-			<h2>Project History</h2>
-			<p>These are past projects that I have had the pleasure of working on. For the full project case study click the read more button</p>
-		</hgroup>
-	</div>
-	<div>
-		{% for project in projectHistory %}
-            {% if project.isPublished == true or is_granted('IS_AUTHENTICATED_FULLY') %}
-                <section>
-                    <h3>{{ project.projectName }}</h3>
-                    <div>
-                        {{ project.projectDescription }}
-                    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well clearfix">
+                <i class="fa fa-rocket fa-5x wellImg pull-left" alt="Small Project History Icon"></i>
+                <hgroup class="pull-left">
+                    <h2>Project History</h2>
+                    <p>These are past projects that I have had the pleasure of working on. For the full project case study click the read more button</p>
+                </hgroup>
+            </div>
+            <div>
+                {% for project in projectHistory %}
+                    {% if project.isPublished == true or is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <section>
+                            <h3>{{ project.projectName }}</h3>
+                            <div>
+                                {{ project.projectDescription }}
+                            </div>
 
-                    <br />
+                            <br />
 
-                    {% if project.slug is not null %}
-                        {% set path = "frontend_project_history_slug" %}
-                        {% set params = { "slug": project.slug } %}
-                    {% else %}
-                        {% set path = "frontend_project_history_id" %}
-                        {% set params = { "id": project.id } %}
+                            {% if project.slug is not null %}
+                                {% set path = "frontend_project_history_slug" %}
+                                {% set params = { "slug": project.slug } %}
+                            {% else %}
+                                {% set path = "frontend_project_history_id" %}
+                                {% set params = { "id": project.id } %}
+                            {% endif %}
+
+                            <a href="{{ path(path, params) }}" class="btn btn-primary">Read More</a>
+                        </section>
+
+                        <br />
+                        {% if loop.last == false %}
+                        <hr />
+                        {% endif %}
                     {% endif %}
-
-                    <a href="{{ path(path, params) }}" class="btn btn-primary">Read More</a>
-                </section>
-
-                {% if loop.last == false %}
-                <br />
-                <hr />
-                <br />
-                {% endif %}
-            {% endif %}
-		{% endfor %}
-	</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

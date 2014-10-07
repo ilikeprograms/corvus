@@ -3,43 +3,49 @@
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.skillsMetaTitle }}{% endblock %}
 
 {% block mainContentBlock %}
-	<article id="mainContainer">
-		<header class="well clearfix">
-			<i class="fa fa-magic fa-5x wellImg pull-left hidden-xs" title="Large Skills Icon"></i>
-			<h2>Skills</h2>
-			<p>This is a list of my skills.</p>
-		</header>
-		{% if skills | length > 0 %}
-		<aside>
-			<h2>Quick list of skills</h2>
-			<br />
-				<ul class="list-inline">
-				{% for skill in skills %}
-					{% if skill.isQuickSkill %}
-						<li>{{ skill.skillName }}</li>
-					{% endif %}
-				{% endfor %}
-				</ul>	
-		</aside>
-		<hr />
-		{% endif %}
-		<section>
-			<h3>Top Skills</h3>
-			{% for skill in skills %}
-                <br />
-				{% if skill.canDisplaySkill %}
-					<h4>{{ skill.skillName }}</h4>
+	<article id="mainContainer" class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <header class="well clearfix">
+                <i class="fa fa-magic fa-5x wellImg pull-left hidden-xs" title="Large Skills Icon"></i>
+                <h2>Skills</h2>
+                <p>This is a list of my skills.</p>
+            </header>
 
-                    <h5>Competency</h5>
-                    <p>{{ skill.competency }}</p>
-                    
-                    <h5>Years Experience</h5>
-                    <p>{{ skill.yearsExperience }}</p>
-                    
-                    <h5>Description</h5>
-                    <p>{{ skill.description }}</p>
-				{% endif %}
-			{% endfor %}
-		</section>
+            {% if skills | length > 0 %}
+            <aside>
+                <h2>Quick list of skills</h2>
+                <br />
+                    <ul class="list-inline">
+                    {% for skill in skills %}
+                        {% if skill.isQuickSkill %}
+                            <li>{{ skill.skillName }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>	
+            </aside>
+            <hr />
+            {% endif %}
+
+            <section>
+                <h3>Top Skills</h3>
+                {% for skill in skills %}
+                    <br />
+                    {% if skill.canDisplaySkill %}
+                        <h4>{{ skill.skillName }}</h4>
+
+                        <h5>Competency</h5>
+                        <p>{{ skill.competency }}</p>
+
+                        <h5>Years Experience</h5>
+                        <p>{{ skill.yearsExperience }}</p>
+
+                        <h5>Description</h5>
+                        <p>{{ skill.description }}</p>
+                    {% endif %}
+                {% endfor %}
+            </section>
+        </div>
+      </div>
 	</article>
 {% endblock %}

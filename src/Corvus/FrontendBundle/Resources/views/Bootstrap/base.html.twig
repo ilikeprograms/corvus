@@ -75,7 +75,7 @@
     </header>
 
 	{% block mainContentBlock %}
-    <div id="mainContainer">
+    <div id="mainContainer" class="container-fluid">
         {% block mainContent %}
         {% endblock %}
     </div>
@@ -84,7 +84,7 @@
     <footer>
         <div id="subFooter">{{ portfolio_info.generalSettings.footerText }}</div>
     </footer>
-	<div class="corvusFooter">
+	<div class="corvusFooter container-fluid">
 		<div class="row">
 			<div class="col-md-6">
 				Powered by <strong><a href='https://github.com/ilikeprograms/corvus' target='_blank'>Corvus <small><sup>{{ corvus_version }}</sup></small></a></strong>

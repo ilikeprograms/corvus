@@ -3,37 +3,41 @@
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.aboutMetaTitle }}{% endblock %}
 
 {% block mainContentBlock %}
-	<article id="mainContainer">
-		<header class="well clearfix">
-			<i class="fa fa-user fa-5x wellImg pull-left hidden-xs" title="Large About Icon"></i>
-			<h2>About Me, {{ about.firstname }}</h2>
-			<p>Some more info about good ol' me!</p>
-		</header>
-		<section>
-			<h3>A little about me</h3>
-			<p>
-				Firstname: {{ about.firstname }} <br />
-				Lastname: {{ about.lastname }} <br />
-				Age: {{ about.age }}
-			</p>
+	<article id="mainContainer" class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <header class="well clearfix">
+                <i class="fa fa-user fa-5x wellImg pull-left hidden-xs" title="Large About Icon"></i>
+                <h2>About Me, {{ about.firstname }}</h2>
+                <p>Some more info about good ol' me!</p>
+            </header>
+            <section>
+                <h3>A little about me</h3>
+                <p>
+                    Firstname: {{ about.firstname }} <br />
+                    Lastname: {{ about.lastname }} <br />
+                    Age: {{ about.age }}
+                </p>
 
-			<h3>Bio</h3>
-			<p>{{ about.bio }}</p>
+                <h3>Bio</h3>
+                <p>{{ about.bio }}</p>
 
-			{% if about.address %}
-				<h3>Address</h3>
-				<p>{{ about.address }}</p>
-			{% endif %}
+                {% if about.address %}
+                    <h3>Address</h3>
+                    <p>{{ about.address }}</p>
+                {% endif %}
 
-			{% if about.location %}
-				<h3>Location</h3>
-				<p>{{ about.location }}</p>
-			{% endif %}
+                {% if about.location %}
+                    <h3>Location</h3>
+                    <p>{{ about.location }}</p>
+                {% endif %}
 
-			{% if about.interestsHobbies %}
-				<h3>Interests & Hobbies</h3>
-				<p>{{ about.interestsHobbies }}</p>
-			{% endif %}
-		</section>
+                {% if about.interestsHobbies %}
+                    <h3>Interests & Hobbies</h3>
+                    <p>{{ about.interestsHobbies }}</p>
+                {% endif %}
+            </section>
+        </div>
+      </div>
 	</article>
 {% endblock %}

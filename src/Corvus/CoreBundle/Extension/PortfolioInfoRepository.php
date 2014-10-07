@@ -115,7 +115,7 @@ class PortfolioInfoRepository
         $path = $this->getGeneralSettings()->getPath();
 
         $portfolioTitle = $this->getGeneralSettings()->getPortfolioTitle();
-        echo '<img src="/uploads/' . $path . '" alt="'.$portfolioTitle.' logo" />';
+        echo '<img src="/uploads/' . $path . '" alt="'.$portfolioTitle.' logo" class="img-responsive" />';
     }
 
     /**

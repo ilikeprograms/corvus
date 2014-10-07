@@ -3,27 +3,31 @@
 {% block metaTitleStart %}{{ portfolio_info.generalSettings.educationMetaTitle }}{% endblock %}
 
 {% block mainContentBlock %}
-	<article id="mainContainer">
-		<header class="well clearfix">
-			<i class="fa fa-book fa-5x wellImg pull-left hidden-xs" title="Large Education Icon"></i>
-			<h2>Education</h2>
-			<p>This is a list of my education, lets test to make sure that it can blah blah</p>
-		</header>
-		{% for edu in education %}
-			<section>
-				<header>
-					<h3>{{ edu.educationInstitute }}</h3>
-					<p><b>{{ edu.startDate | date('F j, Y') }} to {{ edu.isCurrentPosition == true ? 'Current' : edu.endDate | date('F j, Y') }}</b></p>
-				</header>
-				<p>{{ edu.qualification }}</p>
+	<article id="mainContainer" class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <header class="well clearfix">
+                <i class="fa fa-book fa-5x wellImg pull-left hidden-xs" title="Large Education Icon"></i>
+                <h2>Education</h2>
+                <p>This is a list of my education, lets test to make sure that it can blah blah</p>
+            </header>
+            {% for edu in education %}
+                <section>
+                    <header>
+                        <h3>{{ edu.educationInstitute }}</h3>
+                        <p><b>{{ edu.startDate | date('F j, Y') }} to {{ edu.isCurrentPosition == true ? 'Current' : edu.endDate | date('F j, Y') }}</b></p>
+                    </header>
+                    <p>{{ edu.qualification }}</p>
 
-				<h4>Result</h4>
-				<p>{{ edu.result }}</p>
-			</section>
+                    <h4>Result</h4>
+                    <p>{{ edu.result }}</p>
+                </section>
 
-			{% if loop.last == false %}
-				<br />
-			{% endif %}
-		{% endfor %}
+                {% if loop.last == false %}
+                    <br />
+                {% endif %}
+            {% endfor %}
+        </div>
+      </div>
 	</article>
 {% endblock %}
