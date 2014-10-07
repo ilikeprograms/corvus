@@ -112,7 +112,6 @@ class WorkHistory extends TableViewEntity
     /**
      * @ORM\Column(type="string", nullable=true)
      * 
-     * @Assert\Type(type="string")
      * @Assert\Length(max=255)
      */
     private $employer_phone_number;
