@@ -2,13 +2,69 @@ Corvus Changelog
 ================
 
 This ChangeLog details all of the changes that were made (briefly) in each version of Corvus.
+
 The format of this ChangeLog is the following:
 
 [**Version Number**]
 
--   Commit summary - *git commit sha*
+-   Commit summary
 
 ---
+
+[**0.5.0**]
+
+-   [License] Changed to MIT Licence
+-   [Composer] Updated bootstrap-theme-bundle to 0.2.*
+-   [Migrations] Added new migrations to update the default boilerplate data
+-   [ThemeEditor] Updated to using new Cluckles API
+-   [Theme] Added `Bootswatch-cerulean` theme
+-   [Admin] Updated Dashboard Coming soon section
+-   [Views] Added inline fix for dropdown/modal examples in themeEditor view
+-   [Theme] Updated Brown Theme
+-   [Parameters] Removed redundant DB params
+-   [Entity] Removed String Assertion from employer_phone_number
+-   [Frontend] Improved Header/Logo.
+-   [Frontend] Added .containers/.rows/.cols
+-   [Robots] Lower cased /Admin/ in Disallow
+-   [Frontend] Added .navbar-static-top to Navigation
+-   [Frontend] Swapped Employer Name/Role positioning
+-   [Referral] Updated Referal link to Digital Ocean
+-   [Admin] Improved Section Intros and Help block's
+-   [Admin] Added Help aside to about page
+-   [Forms] Improved Bootstrap forms styling
+-   [Ignore] Added .vagrant/ to .gitignore
+-   [Forms] Improved Error messages using formErrors
+-   [Entities] Moved ORM/validation to Annotations in Entities.
+-   [Core] formErrors macro displayed Errors for all Form Fields. Also storing which fields have Alerts displayed in fieldError
+-   [Extension] Added twig functions to track what alerts have been displayed
+-   [Admin] Set an Invalid message for ChangePassword confirmation
+-   [TableViewController] Separated functionality into functions
+-   [Controller] Made all flashes use JSON compatible with Auto Alerting macro
+-   [Admin] Made all Admin pages auto display Notices, if the FlashBag notice is set.
+-   [Core] Added core.less which has Core CSS (atm Alerts)
+-   [Core] Added core.html.twig containing macros, to display notices and field error alerts
+-   [Core] Added core.js file to hold core JS functionality, starting with an Alerting function
+-   [README] Added Vagrant instructions
+-   [Vagrant] Added Vagrant for creating Dev env
+-   [TableViewEntity] getRepoName replaces spaces. Makes TableViewController's work.
+-   [Entity] ENTITY_NAME first char upper and includes spaced. Makes TableViewController's work with Routing
+-   [Entity] Added getRouteStem to allow TableViewController work with lower case/underscored routes
+-   [FormType] Made check field not required
+-   [Routing] Using annotations for AdminBundle. Lower cased routes per convention.
+-   [PortfolioInfo] Creating RouteCollection from Annotations instead of yml file. Injecting @annotation_reader.
+-   [Routing] Using Annotations on frontend. Lower cased all routes per conventions.
+-   [PortfolioInfo] Passing route_params in createNavigation method
+-   [Entity] Added slug to Work/Project History. Updated View/Forms etc. Fix #17
+-   [Entity] Added isPublished to Work/Project history. Updated views/forms/frontend to use this. Fix #16
+-   [ThemeEditor] Added "scope" to editor. To limit the theme editing/preview to the #mainContainer
+-   [Theme] Updated Brown Theme to support all Bootstrap
+-   [Theme] Added Brown Theme
+-   [Composer] Updated ilp/bootstrap-theme-bundle to 0.1.0
+-   [View] Updated themeEditor options to reflect newer API, including theme.json using theme_manager.getCurrentThemeJsonPath
+-   [View] Replaced bootstrap.less path with theme_editor.bootstrap_path twig global
+-   [View] Including themeEditor instead of editor in themeEditor.html.twig
+-   [Config] Configured ilp_bootstrap_theme.bundle param
+-   [Config] Added FrontendBundleResourcePath parameter
 
 [**0.4.0**]
 
@@ -27,44 +83,44 @@ The format of this ChangeLog is the following:
 
 [**0.3.0**]
 
--	[JS] Added workHistory.js to toggle disabling end_date when is_current_position field is checked
--	[Entity] Made employer_address and employer_phone_number fields not required
--	[Entity] Added is_current_position field to WorkHistory
--	[Entity] Made competency, years_experience and description fields optional in Skills Entity
--	[Entity] Added is_quick_skill and can_display_skill fields to Skills Entity
--	[Entity] Added homeMetaTitle field, used in Frontend
--	[DB] Added migration file to support Entity changes
--	[JS] Wrapped external icons in <sup>
--	[Route] Changed to normal urls and - separator for dual words (e.g. WorkHistory = work-history)
--	[Security] Added CSFR protection
+-   [JS] Added workHistory.js to toggle disabling end_date when is_current_position field is checked
+-   [Entity] Made employer_address and employer_phone_number fields not required
+-   [Entity] Added is_current_position field to WorkHistory
+-   [Entity] Made competency, years_experience and description fields optional in Skills Entity
+-   [Entity] Added is_quick_skill and can_display_skill fields to Skills Entity
+-   [Entity] Added homeMetaTitle field, used in Frontend
+-   [DB] Added migration file to support Entity changes
+-   [JS] Wrapped external icons in <sup>
+-   [Route] Changed to normal urls and - separator for dual words (e.g. WorkHistory = work-history)
+-   [Security] Added CSFR protection
 
 [**0.2.0**]
 
--	Made Travis CI only run when commiting to master branch
--	Removed default DB password in .dist files, causes problems with .travis builds
--	PortfolioInfoRepository loads routes from Frontend and Active Nav works with Prod/Dev
--	Updated .htaccess to remove app.php properly
--	Moved key files to the Core Bundle
--	Created the Corvus Core Bundle
+-   Made Travis CI only run when commiting to master branch
+-   Removed default DB password in .dist files, causes problems with .travis builds
+-   PortfolioInfoRepository loads routes from Frontend and Active Nav works with Prod/Dev
+-   Updated .htaccess to remove app.php properly
+-   Moved key files to the Core Bundle
+-   Created the Corvus Core Bundle
 
 [**0.1.1**]
 
--	Created a Controller Listener to handle Rendering the correct response, based on Template choice
--	Added GeneralSettingsController, Template Annotations
--	Services use Setter Injection, no request scope in AppKernel
--	File Entity removed from view, and JS for Lightbox
--	Removed NavTop and Default templates.
--	Using incenteev-parameters to manage Configs dist
--	PSR-1 compliance, removed unused use statements
--	Stabilised Composer deps versions. Added more info to Composer such as Support links and Licence/Authors
--	Fixed some file permissions to remove executable permissions
+-   Created a Controller Listener to handle Rendering the correct response, based on Template choice
+-   Added GeneralSettingsController, Template Annotations
+-   Services use Setter Injection, no request scope in AppKernel
+-   File Entity removed from view, and JS for Lightbox
+-   Removed NavTop and Default templates.
+-   Using incenteev-parameters to manage Configs dist
+-   PSR-1 compliance, removed unused use statements
+-   Stabilised Composer deps versions. Added more info to Composer such as Support links and Licence/Authors
+-   Fixed some file permissions to remove executable permissions
 
 [**0.1.0**]
 
--	Created a proper README and LICENCE files
--	Performed alot of Improvements and some bug fixes
--	Changes the Whole project to start using Twitter Bootstrap and Font Awesome
--	Updated the Project to conform to Symfony 2.4, PSR-0 standards (or started to)
+-   Created a proper README and LICENCE files
+-   Performed alot of Improvements and some bug fixes
+-   Changes the Whole project to start using Twitter Bootstrap and Font Awesome
+-   Updated the Project to conform to Symfony 2.4, PSR-0 standards (or started to)
 
 ---
 
@@ -76,13 +132,13 @@ Thee changelog below was kept only in the interest of history and may be removed
 
 [**1.2.2**]
 
--	Updated Corvus version to 1.2.2
--	Added a method to find the closest Entity when changing the row order of an Entity.
+-   Updated Corvus version to 1.2.2
+-   Added a method to find the closest Entity when changing the row order of an Entity.
 
 [**1.2.1**]
 
--	Updated Corvus version to 1.2.1
--	Added .corvusdb to .gitignore and remove it from upstream
+-   Updated Corvus version to 1.2.1
+-   Added .corvusdb to .gitignore and remove it from upstream
 -   Changed the paramaters sent to the Order Up/Down routes in the TableViewController Templates (skills.html.twig etc). Now uses the Entity Id instead of loop index.
 -   Removed the row_order field from all of the new Entity form templates as it is no longer needed to be set manually
 -   Removed the row_order field from all Entity form types which are managed by a TableViewController
