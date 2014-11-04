@@ -22,7 +22,7 @@
         "stackoverflow": "http://stackoverflow.com/questions/tagged/corvus",
         "gittip": "https://www.gittip.com/ilikeprograms"
     },
-    "license": "GPL-3.0+",
+    "license": "MIT",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
