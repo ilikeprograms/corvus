@@ -52,7 +52,7 @@
         "twbs/bootstrap": "v3.0.0",
         "twig/extensions": "1.0.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "ilp/bootstrap-theme-bundle": "0.1.0",
+        "ilp/bootstrap-theme-bundle": "0.2.*",
         "oyejorge/less.php": "~1.7.0",
         "knplabs/knp-markdown-bundle": "~1.3"
     },
