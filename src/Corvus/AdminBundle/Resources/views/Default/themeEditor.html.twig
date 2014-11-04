@@ -44,7 +44,11 @@
 
     <script>
         var clucklesEditor = new ClucklesEditor(less, {
-            scope: "#mainContainer",
+            scope: {
+                selector: "#mainContainer",
+                customCss: true,
+                customLess: true
+            },
             theme: {
                 src: '{{ asset(theme_manager.getCurrentThemeJsonPath) }}'
             },
