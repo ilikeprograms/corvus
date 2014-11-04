@@ -3,7 +3,6 @@
 // src/Corvus/CoreBundle/Extension/PortfolioInfoRepositoryExtension
 namespace Corvus\CoreBundle\Extension;
 
-
 class PortfolioInfoRepositoryExtension extends \Twig_Extension
 {
     protected $portfolioInfoRepository;
@@ -35,8 +34,8 @@ class PortfolioInfoRepositoryExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'setAlert' => new \Twig_function_method($this, 'setAlert'),
-            'getAlert' => new \Twig_function_method($this, 'getAlert'),
+            new \Twig_SimpleFunction('setAlert', array($this, 'setAlert')),
+            new \Twig_SimpleFunction('getAlert', array($this, 'getAlert')),
         );
     }
     
